@@ -28,9 +28,9 @@ namespace DotNetXri.Syntax.Xri3.Impl {
 
 		this.reset();
 		
-		Object object = this.rule;	// iquery
+		Object obj = this.rule;	// iquery
 
-		this.value = ((iquery) object).spelling;
+		this.value = ((iquery) obj).spelling;
 	}
 
 	public Rule getParserObject() {

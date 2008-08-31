@@ -50,7 +50,7 @@ public abstract class SEPElement : Cloneable, Serializable {
 	private String  value; // represents the value of this rule
 
 	/**
-	 * Creates a default <code>SEPElement</code> object
+	 * Creates a default <code>SEPElement</code> obj
 	 */
 	public SEPElement()
 	{
@@ -58,7 +58,7 @@ public abstract class SEPElement : Cloneable, Serializable {
 	}
 
 	/**
-	 * Creates a  <code>SEPElement with required attributes</code> object with the given value
+	 * Creates a  <code>SEPElement with required attributes</code> obj with the given value
 	 */
 	public SEPElement( String value, String match, Boolean select )
 	{
@@ -187,7 +187,7 @@ public abstract class SEPElement : Cloneable, Serializable {
     }
 
     public Object clone()throws CloneNotSupportedException {
-    	return super.clone();
+    	return base.clone();
     }
 
 	public bool equals(Object o) {

@@ -19,7 +19,7 @@ public class XDIService :Service {
 	 */
 	public XDIService(URI[] uris, String providerID) {
 		
-		super();
+		
 		
 		/*
 		 * The ProviderID of the XDI Service 
@@ -82,7 +82,7 @@ public class XDIService :Service {
 	 */
 	public XDIService(Ref[] xdiRefs, String providerID) {
 		
-		super();
+		
 		
 		/*
 		 * The ProviderID of the XDI Service 
@@ -135,7 +135,7 @@ public class XDIService :Service {
 
 	public static bool isInstance(Service service) {
 		
-		if (service instanceof XDIService) return(true);
+		if (service is XDIService) return(true);
 		
 		List serviceTypes = service.getTypes();
 		

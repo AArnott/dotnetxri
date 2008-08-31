@@ -9,7 +9,7 @@ import org.openxri.xml.*;
 public class SampleResolver {
 
 	public SampleResolver() {
-		super();
+		
 		// TODO Auto-generated constructor stub
 	}
 

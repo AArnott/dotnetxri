@@ -56,63 +56,63 @@ public class XRI3Reference :XRI3SyntaxComponent, XRIReference {
 
 		this.reset();
 
-		Object object = this.rule;	// xri_reference
+		Object obj = this.rule;	// xri_reference
 
 		// read xri or relative_xri_ref from xri_reference
 
-		List list_xri_reference = ((xri_reference) object).rules;
+		List list_xri_reference = ((xri_reference) obj).rules;
 		if (list_xri_reference.size() < 1) return;
-		object = list_xri_reference.get(0);	// xri or relative_xri_ref
+		obj = list_xri_reference.get(0);	// xri or relative_xri_ref
 
 		// xri or relative_xri_ref ?
 
-		if (object instanceof xri) {
+		if (obj is xri) {
 
-			this.xri = new XRI3((xri) object);
-		} else if (object instanceof relative_xri_ref) {
+			this.xri = new XRI3((xri) obj);
+		} else if (obj is relative_xri_ref) {
 
 			// read relative_xri_part from relative_xri_ref
 
-			List list_relative_xri_ref = ((relative_xri_ref) object).rules;
+			List list_relative_xri_ref = ((relative_xri_ref) obj).rules;
 			if (list_relative_xri_ref.size() < 1) return;
-			object = list_relative_xri_ref.get(0);	// relative_xri_part
+			obj = list_relative_xri_ref.get(0);	// relative_xri_part
 
 			// read xri_path_abs or xri_path_noscheme or ipath_empty from relative_xri_part
 
-			List list_relative_xri_part = ((relative_xri_part) object).rules;
+			List list_relative_xri_part = ((relative_xri_part) obj).rules;
 			if (list_relative_xri_part.size() < 1) return;
-			object = list_relative_xri_part.get(0);	// xri_path_abs or xri_path_noscheme or ipath_empty	
+			obj = list_relative_xri_part.get(0);	// xri_path_abs or xri_path_noscheme or ipath_empty	
 
 			// read xri_path_abs or xri_path_noscheme or ipath_emptry ?
 
-			if (object instanceof xri_path_abs) {
+			if (obj is xri_path_abs) {
 
-				this.path = new XRI3Path((xri_path_abs) object);
-			} else if (object instanceof xri_path_noscheme) {
+				this.path = new XRI3Path((xri_path_abs) obj);
+			} else if (obj is xri_path_noscheme) {
 
-				this.path = new XRI3Path((xri_path_noscheme) object);
-			} else if (object instanceof ipath_empty) {
+				this.path = new XRI3Path((xri_path_noscheme) obj);
+			} else if (obj is ipath_empty) {
 
-				this.path = new XRI3Path((ipath_empty) object);
+				this.path = new XRI3Path((ipath_empty) obj);
 			} else {
 
-				throw new ClassCastException(object.getClass().getName());
+				throw new ClassCastException(obj.getClass().getName());
 			}
 
 			// read iquery from relative_xri_ref
 
 			if (list_relative_xri_ref.size() < 3) return;
-			object = list_relative_xri_ref.get(2);	// iquery
-			this.query = new XRI3Query((iquery) object);
+			obj = list_relative_xri_ref.get(2);	// iquery
+			this.query = new XRI3Query((iquery) obj);
 
 			// read ifragment from relative_xri_ref
 
 			if (list_relative_xri_ref.size() < 5) return;
-			object = list_relative_xri_ref.get(4);	// ifragment
-			this.fragment = new XRI3Fragment((ifragment) object);
+			obj = list_relative_xri_ref.get(4);	// ifragment
+			this.fragment = new XRI3Fragment((ifragment) obj);
 		} else {
 
-			throw new ClassCastException(object.getClass().getName());
+			throw new ClassCastException(obj.getClass().getName());
 		}
 	}
 
@@ -195,7 +195,7 @@ public class XRI3Reference :XRI3SyntaxComponent, XRIReference {
 
 		if (this.xri != null) return(this.xri.toIRINormalForm());
 
-		return(super.toIRINormalForm());
+		return(base.toIRINormalForm());
 	}
 
 	public bool isValidXRI() {

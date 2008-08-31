@@ -44,7 +44,7 @@ public class IllegalTrustTypeException :XRIResolutionException {
 	
 
 	public String toString() {
-		return super.toString();
+		return base.toString();
 
 	}
 }

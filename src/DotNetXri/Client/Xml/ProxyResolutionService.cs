@@ -34,7 +34,7 @@ public class ProxyResolutionService :Service {
 	 */
 	public ProxyResolutionService(URI[] proxies, String providerID, TrustType trustType, Boolean refs, Boolean sep) {
 		
-		super();
+		
 		
 		/*
 		 * The ProviderID of a Proxy Resolution Service is OPTIONAL.
@@ -121,7 +121,7 @@ public class ProxyResolutionService :Service {
 
 	public static bool isInstance(Service service) {
 		
-		if (service instanceof ForwardingService) return(true);
+		if (service is ForwardingService) return(true);
 		
 		List serviceTypes = service.getTypes();
 		

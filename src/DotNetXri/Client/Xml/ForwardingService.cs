@@ -32,7 +32,7 @@ public class ForwardingService :Service {
 	 */
 	public ForwardingService(URI[] forwardingPages, String providerID, bool makeDefault, bool useIndexPath) {
 
-		super();
+		
 
 		/*
 		 * According to the Forwarding Service specification, the ProviderID of the Forwarding Service 
@@ -113,7 +113,7 @@ public class ForwardingService :Service {
 
 	public static bool isInstance(Service service) {
 
-		if (service instanceof ForwardingService) return(true);
+		if (service is ForwardingService) return(true);
 
 		List serviceTypes = service.getTypes();
 

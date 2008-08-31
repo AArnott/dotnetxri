@@ -40,8 +40,7 @@ public class IRIAuthority
     *
     */
     public IRIAuthority(String sPath)
-    {
-        super(sPath);
+    : base(sPath) {
         parse();
 
     } // Constructor()
@@ -55,7 +54,7 @@ public class IRIAuthority
     */
     IRIAuthority()
     {
-        super();
+        
 
     } // Constructor()
 

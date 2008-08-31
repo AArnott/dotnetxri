@@ -39,8 +39,7 @@ namespace DotNetXri.Syntax {
 		/**
 	 * Constructs GCSAuthority from a String
 	 */
-		public GCSAuthority(String sPath) {
-			super(sPath);
+		public GCSAuthority(String sPath) : base(sPath) {
 			parse();
 
 		} // Constructor()
@@ -54,7 +53,7 @@ namespace DotNetXri.Syntax {
 	 * Protected Constructor used by package only
 	 */
 		GCSAuthority() {
-			super();
+			
 
 		} // Constructor()
 

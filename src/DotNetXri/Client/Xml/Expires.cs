@@ -7,16 +7,13 @@ import org.openxri.util.DOMUtils;
 public class Expires :SimpleXMLElement{
 	private Date expires = null;
 	
-	public Expires (Expires e) {
-		super(e);
+	public Expires (Expires e) : base(e) {
 	}
 	
-	public Expires(){
-		super(Tags.TAG_EXPIRES);
+	public Expires(): base(Tags.TAG_EXPIRES) {
 	}
 	
-	public Expires(Date dateValue){
-		super(Tags.TAG_EXPIRES);
+	public Expires(Date dateValue): base(Tags.TAG_EXPIRES) {
 		setDate(dateValue);
 	}
 	

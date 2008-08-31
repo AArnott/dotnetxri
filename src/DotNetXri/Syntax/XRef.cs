@@ -42,8 +42,7 @@ namespace DotNetXri.Syntax {
 		/**
 	 * Constructs a cross-reference from a string
 	 */
-		public XRef(String sPath) {
-			super(sPath);
+		public XRef(String sPath) : base(sPath) {
 			parse();
 
 		} // Constructor()
@@ -57,7 +56,7 @@ namespace DotNetXri.Syntax {
 	 *
 	 */
 		XRef() {
-			super();
+			
 
 		} // Constructor()
 

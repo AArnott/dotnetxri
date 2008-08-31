@@ -251,11 +251,11 @@ public class SEPSelector {
 			if (inValue == null || inValue.length() == 0)
 				return (selVal.length() == 0);
 
-			if (element instanceof SEPType)
+			if (element is SEPType)
 				return matchType(selVal, inValue);
-			else if (element instanceof SEPPath)
+			else if (element is SEPPath)
 				return matchPath(selVal, inValue);
-			else if (element instanceof SEPMediaType)
+			else if (element is SEPMediaType)
 				return matchMediaType(selVal, inValue);
 			else
 				throw new RuntimeException("Unsupported SEL");
@@ -583,13 +583,13 @@ public class SEPSelector {
 			if (element.getSelect())
 				selectService = true;
 
-			if(element instanceof SEPType){
+			if(element is SEPType){
 				typeMatched = true;
 			}
-			else if(element instanceof SEPMediaType){
+			else if(element is SEPMediaType){
 				mediaTypeMatched = true;
 			}
-			else if(element instanceof SEPPath){
+			else if(element is SEPPath){
 				pathMatched = true;
 			}
 		}
@@ -608,13 +608,13 @@ public class SEPSelector {
 		
 		String matchElementValue = null;
 		
-		if(element instanceof SEPType){
+		if(element is SEPType){
 			matchElementValue = this.matchTypeValue;
 		}
-		else if(element instanceof SEPMediaType){
+		else if(element is SEPMediaType){
 			matchElementValue = this.matchMediaTypeValue;
 		}
-		else if(element instanceof SEPPath){
+		else if(element is SEPPath){
 			matchElementValue = this.matchPathValue;
 		}
 
@@ -651,13 +651,13 @@ public class SEPSelector {
 
 	
 	public bool matchContent (SEPElement candidate) {
-		if (candidate instanceof SEPType) {
+		if (candidate is SEPType) {
 			return matchContent((SEPType)candidate);
 		}
-		else if (candidate instanceof SEPPath) {
+		else if (candidate is SEPPath) {
 			return matchContent((SEPPath)candidate);
 		}
-		else if (candidate instanceof SEPMediaType) {
+		else if (candidate is SEPMediaType) {
 			return matchContent((SEPMediaType)candidate);
 		}
 		return false;

@@ -17,7 +17,7 @@ public class DefaultService :Service {
 	 */
 	public DefaultService(URI[] pages, String providerID) {
 
-		super();
+		
 
 		/*
 		 * According to the Contact Service specification, the ProviderID of the Contact Service
@@ -67,7 +67,7 @@ public class DefaultService :Service {
 
 	public static bool isInstance(Service service) {
 
-		if (service instanceof DefaultService) return(true);
+		if (service is DefaultService) return(true);
 
 		bool mediaTypeNull = false, serviceTypeNull = false, pathNull = false;
 

@@ -36,7 +36,7 @@ public class XRINoSchemePath : XRIPath
     */ /**
     * Constructs RelativePath from a String
     */
-    public XRINoSchemePath(String sXRI) : base(sXRI)
+    public XRINoSchemePath(String sXRI) : base(sXRI) {
     {
         mbAllowColon = false;
         parse();

@@ -24,21 +24,17 @@ package org.openxri.xml;
  */
 public class ServerStatus :SimpleXMLElement
 {
-	public ServerStatus(ServerStatus s) {
-		super(s);
+	public ServerStatus(ServerStatus s) : base(s) {
 	}
 	
-	public ServerStatus() {
-		super(Tags.TAG_SERVERSTATUS);
+	public ServerStatus() : base(Tags.TAG_SERVERSTATUS) {
 	}
 
-	public ServerStatus(String code) {
-		super(Tags.TAG_SERVERSTATUS);
+	public ServerStatus(String code) : base(Tags.TAG_SERVERSTATUS) {
 		setCode(code);	
 	}	
 	
-	public ServerStatus(String code, String text) {
-		super(Tags.TAG_SERVERSTATUS, text);
+	public ServerStatus(String code, String text) : base(Tags.TAG_SERVERSTATUS, text) {
 		setCode(code);
 	}
 	

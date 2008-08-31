@@ -83,7 +83,7 @@ public class Service : Cloneable, Serializable
 
 
 	/**
-	 *  This method constructs the object from DOM.  It does not keep a
+	 *  This method constructs the obj from DOM.  It does not keep a
 	 * copy of the DOM around.  Whitespace information is lost in this process.
 	 */
 	public Service(Element oElem) throws URISyntaxException
@@ -93,7 +93,7 @@ public class Service : Cloneable, Serializable
 
 
 	/**
-	 * Resets the internal state of this object
+	 * Resets the internal state of this obj
 	 */
 	public void reset()
 	{
@@ -115,7 +115,7 @@ public class Service : Cloneable, Serializable
 
 
 	/**
-	 * This method populates the object from DOM.  It does not keep a
+	 * This method populates the obj from DOM.  It does not keep a
 	 * copy of the DOM around.  Whitespace information is lost in this processs.
 	 */
 	public void fromDOM(Element oElem)  throws URISyntaxException
@@ -434,7 +434,7 @@ public class Service : Cloneable, Serializable
 
 
 	/**
-	 * Adds an SEPUri object to the list of URIs
+	 * Adds an SEPUri obj to the list of URIs
 	 * @param uri
 	 */
 	public void addURI(SEPUri uri)
@@ -530,7 +530,7 @@ public class Service : Cloneable, Serializable
 	/**
 	 * Stores simple elements in the Service by Tag
 	 *
-	 * Here we are converting the String object that is being passed into XML
+	 * Here we are converting the String obj that is being passed into XML
 	 * Element before storing it into otherChildrenVectorMap Vector. The reason
 	 * we are doing this is, we need to preserve NameSpaces, and also support a scenario
 	 * where a Child Element under Service Element, can have Sub Elements. With this
@@ -629,7 +629,7 @@ public class Service : Cloneable, Serializable
 
 	/**
 	 * This method will make DOM using the specified document.  If any DOM state
-	 * has been stored with the object, it will not be used in this method.
+	 * has been stored with the obj, it will not be used in this method.
 	 * This method generates a reference-free copy of new DOM.
 	 * 
 	 * @param oDoc - The document to use for generating DOM
@@ -642,7 +642,7 @@ public class Service : Cloneable, Serializable
 
 	/**
 	 * This method will make DOM using the specified document.  If any DOM state
-	 * has been stored with the object, it will not be used in this method.
+	 * has been stored with the obj, it will not be used in this method.
 	 * This method generates a reference-free copy of new DOM.
 	 * 
 	 * @param doc - The document to use for generating DOM
@@ -739,7 +739,7 @@ public class Service : Cloneable, Serializable
 
 
 	/**
-	 * Returns formatted object.  Do not use if signature needs to be preserved.
+	 * Returns formatted obj.  Do not use if signature needs to be preserved.
 	 */
 	public String toString()
 	{
@@ -748,7 +748,7 @@ public class Service : Cloneable, Serializable
 
 
 	/**
-	 * Returns object as a formatted XML string.
+	 * Returns obj as a formatted XML string.
 	 * @param sTab - The characters to prepend before each new line
 	 */
 	public String dump()
@@ -1014,7 +1014,7 @@ public class Service : Cloneable, Serializable
 
 	public bool equals(Object o) {
 
-		if (! (o instanceof Service)) return(false);
+		if (! (o is Service)) return(false);
 		
 		Service other = (Service) o;
 

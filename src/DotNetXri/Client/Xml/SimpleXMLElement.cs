@@ -26,7 +26,7 @@ public abstract class SimpleXMLElement : Cloneable, Serializable {
 	}
 
 	/**
-	 * Creates a <code>SimpleXMLElement</code> object with the given <code>tagname</code>
+	 * Creates a <code>SimpleXMLElement</code> obj with the given <code>tagname</code>
 	 * @param tagname
 	 */
 	public SimpleXMLElement(String tagname)
@@ -87,12 +87,12 @@ public abstract class SimpleXMLElement : Cloneable, Serializable {
 	}
 
 	/**
-	 * Converts the <code>EppXriServiceEndpointRule</code> object into an XML element
+	 * Converts the <code>EppXriServiceEndpointRule</code> obj into an XML element
 	 *
-	 * @param doc the XML <code>Document</code> object
-	 * @param tag the tag/element name for the <code>EppXriServiceEndpoint</code> object
+	 * @param doc the XML <code>Document</code> obj
+	 * @param tag the tag/element name for the <code>EppXriServiceEndpoint</code> obj
 	 *
-	 * @return an <code>Element</code> object
+	 * @return an <code>Element</code> obj
 	 */
 	public Element toXML( Document doc, String tag )
 	{
@@ -120,11 +120,11 @@ public abstract class SimpleXMLElement : Cloneable, Serializable {
 		return toXML(doc,this.tag);
 	}
 	/**
-	 * Sets the members of this <code>EppXriServiceEndpointRule</code> object from the given XML element.
+	 * Sets the members of this <code>EppXriServiceEndpointRule</code> obj from the given XML element.
 	 * The caller of this method must make sure that the root node is of
 	 * the EPP XRI sepRuleType.
 	 *
-	 * @param root root node for an <code>EppXriServiceEndpointRule</code> object in
+	 * @param root root node for an <code>EppXriServiceEndpointRule</code> obj in
 	 *             XML format
 	 *
 	 */
@@ -154,7 +154,7 @@ public abstract class SimpleXMLElement : Cloneable, Serializable {
 
 	public Object clone() throws CloneNotSupportedException {
 
-		return(super.clone());
+		return(base.clone());
 	}
 
 	public bool equals(Object o) {

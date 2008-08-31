@@ -66,10 +66,10 @@ public class DOMUtils
     * getDOMParser()
     ****************************************************************************
     */ /**
-    * Returns a DOMParser object that can safely be used in the current
-    * thread.  This is done because newing a Xerces DOMParser object is
+    * Returns a DOMParser obj that can safely be used in the current
+    * thread.  This is done because newing a Xerces DOMParser obj is
     * expensive and parser instances are not thread safe.
-    * @return a reset DOMParser object
+    * @return a reset DOMParser obj
     */
     public static DOMParser getDOMParser()
     {
@@ -255,7 +255,7 @@ public class DOMUtils
     ****************************************************************************
     */ /**
     * Converts the specified String in xsd:DateTime format (GMT) to a Java Date
-    * object
+    * obj
     */
     public static Date fromXMLDateTime(String sTime)
         throws ParseException
@@ -275,7 +275,7 @@ public class DOMUtils
     * toXMLDateTime()
     ****************************************************************************
     */ /**
-    *  Converts the Java Date object to a xsd:DateTime String in GMT.
+    *  Converts the Java Date obj to a xsd:DateTime String in GMT.
     */
     public static String toXMLDateTime(Date oTime)
     {
@@ -288,7 +288,7 @@ public class DOMUtils
     
     /**
      * Gets the text string associated with a node
-     * @param root <code>Node</code> object from which text to be extracted.
+     * @param root <code>Node</code> obj from which text to be extracted.
      * @return a string associated with the node
      */
     public static String getText( Node root )
@@ -307,7 +307,7 @@ public class DOMUtils
             for( int i = 0; i < list.getLength(); i++ )
             {
                     Node node = list.item(i);
-                    if( node instanceof TextImpl )
+                    if( node is TextImpl )
                     {
                             String val = ((TextImpl) node).getNodeValue();
                             if( (val != null) && (val.length() > 0) )

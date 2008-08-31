@@ -48,8 +48,7 @@ public abstract class XRIPath : Parsable
     *
     */
     XRIPath(String sVal)
-    {
-        super(sVal);
+    : base(sVal) {
 
     } // Constructor()
 

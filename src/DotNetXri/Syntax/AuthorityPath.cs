@@ -37,7 +37,7 @@ namespace DotNetXri.Syntax {
 	 * Protected Constructor used by package only
 	 */
 		AuthorityPath() {
-			super();
+			
 
 		} // Constructor()
 
@@ -49,8 +49,7 @@ namespace DotNetXri.Syntax {
 		/**
 	 * Constructs AuthorityPath from a String
 	 */
-		AuthorityPath(String sPath) {
-			super(sPath);
+		AuthorityPath(String sPath) : base(sPath) {
 
 		} // Constructor()
 

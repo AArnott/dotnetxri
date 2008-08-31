@@ -49,8 +49,7 @@ namespace DotNetXri.Syntax {
 		/**
 	 * Constructs XRI from String
 	 */
-		public RelativeXRI(String sXRI) {
-			super(sXRI);
+		public RelativeXRI(String sXRI) : base(sXRI) {
 			parse();
 
 		} // Constructor()

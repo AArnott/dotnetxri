@@ -15,16 +15,14 @@ public class RefNotFollowedException :XRIResolutionException {
 	 * @param unresolved
 	 * @param sMsg
 	 */
-	public RefNotFollowedException(String unresolved, String sMsg) {
-		super(sMsg + " (" + unresolved + ")");
+	public RefNotFollowedException(String unresolved, String sMsg) :base (sMsg + " (" + unresolved + ")") {
 		this.unresolved = unresolved;
 	}
 	
 	/**
 	 * @param unresolved
 	 */
-	public RefNotFollowedException(String unresolved) {
-		super("Ref not followed while unresolved segment exists: " + unresolved);
+	public RefNotFollowedException(String unresolved) : base("Ref not followed while unresolved segment exists: " + unresolved) {
 		this.unresolved = unresolved;
 	}
 }

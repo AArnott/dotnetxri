@@ -123,7 +123,7 @@ namespace DotNetXri.Syntax {
 			parse();
 
 			// add the dot if necessary
-			String sRetval = super.toString();
+			String sRetval = base.toString();
 			if ((sRetval.length() > 0) &&
 				(sRetval.charAt(0) != XRI.RDELIM) &&
 				(sRetval.charAt(0) != XRI.PDELIM) &&

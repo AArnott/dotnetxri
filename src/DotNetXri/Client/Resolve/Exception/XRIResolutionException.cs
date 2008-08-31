@@ -40,8 +40,7 @@ public class XRIResolutionException
     * Constructs an exception with the given message
     */
     public XRIResolutionException(String sMsg)
-    {
-        super(sMsg);
+    : base(sMsg) {
 
     } // Constructor()
 
@@ -53,15 +52,13 @@ public class XRIResolutionException
     * Constructs an exception with the given message and underlying exception
     */
     public XRIResolutionException(String sMsg, Exception oEx)
-    {
-        super(sMsg);
+    : base(sMsg) {
         moEx = oEx;
 
     } // Constructor()
 
     public XRIResolutionException(String statusCode, String sMsg)
-    {
-    	super(sMsg);
+    : base(sMsg) {
     	status = statusCode;
     }
     /*

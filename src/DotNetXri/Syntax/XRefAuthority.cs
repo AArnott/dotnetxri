@@ -39,8 +39,7 @@ namespace DotNetXri.Syntax {
 		/**
 	 * Constructs a cross-reference authority from a string
 	 */
-		public XRefAuthority(String sPath) {
-			super(sPath);
+		public XRefAuthority(String sPath) : base(sPath) {
 			parse();
 
 		} // Constructor()

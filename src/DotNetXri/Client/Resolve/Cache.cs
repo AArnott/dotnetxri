@@ -39,7 +39,7 @@ import org.openxri.xml.XRDS;
 */
 public class Cache
 {
-    // points to the CacheNode for this Cache object
+    // points to the CacheNode for this Cache obj
     CacheNode moRootNode = null;
     private int mnNodes = 0;
     private int mnMaxSize = 1000;

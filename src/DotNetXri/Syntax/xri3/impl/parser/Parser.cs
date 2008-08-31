@@ -10381,8 +10381,7 @@ public class Parser
   public class StringValue :Rule
   {
     public StringValue(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -10418,8 +10417,7 @@ public class Parser
   public class NumericValue :Rule
   {
     public NumericValue(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -10460,13 +10458,11 @@ public class Parser
   static final public class xri :Rule
   {
     private xri(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public xri(xri rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -10478,13 +10474,11 @@ public class Parser
   static final public class xri_scheme :Rule
   {
     private xri_scheme(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public xri_scheme(xri_scheme rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -10496,13 +10490,11 @@ public class Parser
   static final public class xri_noscheme :Rule
   {
     private xri_noscheme(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public xri_noscheme(xri_noscheme rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -10514,13 +10506,11 @@ public class Parser
   static final public class xri_reference :Rule
   {
     private xri_reference(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public xri_reference(xri_reference rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -10532,13 +10522,11 @@ public class Parser
   static final public class relative_xri_ref :Rule
   {
     private relative_xri_ref(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public relative_xri_ref(relative_xri_ref rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -10550,13 +10538,11 @@ public class Parser
   static final public class relative_xri_part :Rule
   {
     private relative_xri_part(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public relative_xri_part(relative_xri_part rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -10568,13 +10554,11 @@ public class Parser
   static final public class xri_hier_part :Rule
   {
     private xri_hier_part(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public xri_hier_part(xri_hier_part rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -10586,13 +10570,11 @@ public class Parser
   static final public class xri_authority :Rule
   {
     private xri_authority(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public xri_authority(xri_authority rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -10604,13 +10586,11 @@ public class Parser
   static final public class subseg :Rule
   {
     private subseg(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public subseg(subseg rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -10622,13 +10602,11 @@ public class Parser
   static final public class global_subseg :Rule
   {
     private global_subseg(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public global_subseg(global_subseg rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -10640,13 +10618,11 @@ public class Parser
   static final public class local_subseg :Rule
   {
     private local_subseg(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public local_subseg(local_subseg rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -10658,13 +10634,11 @@ public class Parser
   static final public class gcs_char :Rule
   {
     private gcs_char(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public gcs_char(gcs_char rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -10676,13 +10650,11 @@ public class Parser
   static final public class lcs_char :Rule
   {
     private lcs_char(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public lcs_char(lcs_char rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -10694,13 +10666,11 @@ public class Parser
   static final public class rel_subseg :Rule
   {
     private rel_subseg(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public rel_subseg(rel_subseg rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -10712,13 +10682,11 @@ public class Parser
   static final public class rel_subseg_nc :Rule
   {
     private rel_subseg_nc(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public rel_subseg_nc(rel_subseg_nc rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -10730,13 +10698,11 @@ public class Parser
   static final public class literal :Rule
   {
     private literal(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public literal(literal rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -10748,13 +10714,11 @@ public class Parser
   static final public class literal_nc :Rule
   {
     private literal_nc(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public literal_nc(literal_nc rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -10766,13 +10730,11 @@ public class Parser
   static final public class xref :Rule
   {
     private xref(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public xref(xref rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -10784,13 +10746,11 @@ public class Parser
   static final public class xref_empty :Rule
   {
     private xref_empty(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public xref_empty(xref_empty rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -10802,13 +10762,11 @@ public class Parser
   static final public class xref_xri_reference :Rule
   {
     private xref_xri_reference(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public xref_xri_reference(xref_xri_reference rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -10820,13 +10778,11 @@ public class Parser
   static final public class xref_IRI :Rule
   {
     private xref_IRI(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public xref_IRI(xref_IRI rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -10838,13 +10794,11 @@ public class Parser
   static final public class xref_value :Rule
   {
     private xref_value(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public xref_value(xref_value rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -10856,13 +10810,11 @@ public class Parser
   static final public class xri_path :Rule
   {
     private xri_path(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public xri_path(xri_path rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -10874,13 +10826,11 @@ public class Parser
   static final public class xri_path_abempty :Rule
   {
     private xri_path_abempty(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public xri_path_abempty(xri_path_abempty rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -10892,13 +10842,11 @@ public class Parser
   static final public class xri_path_abs :Rule
   {
     private xri_path_abs(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public xri_path_abs(xri_path_abs rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -10910,13 +10858,11 @@ public class Parser
   static final public class xri_path_noscheme :Rule
   {
     private xri_path_noscheme(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public xri_path_noscheme(xri_path_noscheme rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -10928,13 +10874,11 @@ public class Parser
   static final public class xri_segment :Rule
   {
     private xri_segment(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) { {
     }
 
     public xri_segment(xri_segment rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -10946,13 +10890,11 @@ public class Parser
   static final public class xri_segment_nz :Rule
   {
     private xri_segment_nz(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public xri_segment_nz(xri_segment_nz rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -10964,13 +10906,11 @@ public class Parser
   static final public class xri_segment_nc :Rule
   {
     private xri_segment_nc(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public xri_segment_nc(xri_segment_nc rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -10982,13 +10922,11 @@ public class Parser
   static final public class xri_pchar :Rule
   {
     private xri_pchar(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public xri_pchar(xri_pchar rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -11000,13 +10938,11 @@ public class Parser
   static final public class xri_pchar_nc :Rule
   {
     private xri_pchar_nc(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public xri_pchar_nc(xri_pchar_nc rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -11018,13 +10954,11 @@ public class Parser
   static final public class xri_reserved :Rule
   {
     private xri_reserved(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public xri_reserved(xri_reserved rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -11036,13 +10970,11 @@ public class Parser
   static final public class xri_gen_delims :Rule
   {
     private xri_gen_delims(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public xri_gen_delims(xri_gen_delims rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -11054,13 +10986,11 @@ public class Parser
   static final public class xri_sub_delims :Rule
   {
     private xri_sub_delims(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public xri_sub_delims(xri_sub_delims rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -11072,13 +11002,11 @@ public class Parser
   static final public class IRI :Rule
   {
     private IRI(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public IRI(IRI rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -11090,13 +11018,11 @@ public class Parser
   static final public class scheme :Rule
   {
     private scheme(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public scheme(scheme rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -11108,13 +11034,11 @@ public class Parser
   static final public class ihier_part :Rule
   {
     private ihier_part(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public ihier_part(ihier_part rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -11126,13 +11050,11 @@ public class Parser
   static final public class iauthority :Rule
   {
     private iauthority(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public iauthority(iauthority rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -11144,13 +11066,11 @@ public class Parser
   static final public class iuserinfo :Rule
   {
     private iuserinfo(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public iuserinfo(iuserinfo rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -11162,13 +11082,11 @@ public class Parser
   static final public class ihost :Rule
   {
     private ihost(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public ihost(ihost rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -11180,13 +11098,11 @@ public class Parser
   static final public class IP_literal :Rule
   {
     private IP_literal(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public IP_literal(IP_literal rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -11198,13 +11114,11 @@ public class Parser
   static final public class IPvFuture :Rule
   {
     private IPvFuture(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public IPvFuture(IPvFuture rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -11216,13 +11130,11 @@ public class Parser
   static final public class IPv6address :Rule
   {
     private IPv6address(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public IPv6address(IPv6address rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -11234,13 +11146,11 @@ public class Parser
   static final public class ls32 :Rule
   {
     private ls32(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public ls32(ls32 rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -11252,13 +11162,11 @@ public class Parser
   static final public class h16 :Rule
   {
     private h16(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public h16(h16 rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -11270,13 +11178,11 @@ public class Parser
   static final public class IPv4address :Rule
   {
     private IPv4address(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public IPv4address(IPv4address rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -11288,13 +11194,11 @@ public class Parser
   static final public class dec_octet :Rule
   {
     private dec_octet(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public dec_octet(dec_octet rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -11306,13 +11210,11 @@ public class Parser
   static final public class ireg_name :Rule
   {
     private ireg_name(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public ireg_name(ireg_name rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -11324,13 +11226,11 @@ public class Parser
   static final public class port :Rule
   {
     private port(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public port(port rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -11342,13 +11242,11 @@ public class Parser
   static final public class ipath_abempty :Rule
   {
     private ipath_abempty(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public ipath_abempty(ipath_abempty rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -11360,13 +11258,11 @@ public class Parser
   static final public class ipath_abs :Rule
   {
     private ipath_abs(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public ipath_abs(ipath_abs rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -11378,13 +11274,11 @@ public class Parser
   static final public class ipath_rootless :Rule
   {
     private ipath_rootless(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public ipath_rootless(ipath_rootless rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -11396,13 +11290,11 @@ public class Parser
   static final public class ipath_empty :Rule
   {
     private ipath_empty(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public ipath_empty(ipath_empty rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -11414,13 +11306,11 @@ public class Parser
   static final public class isegment :Rule
   {
     private isegment(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public isegment(isegment rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -11432,13 +11322,11 @@ public class Parser
   static final public class isegment_nz :Rule
   {
     private isegment_nz(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public isegment_nz(isegment_nz rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -11450,13 +11338,11 @@ public class Parser
   static final public class iquery :Rule
   {
     private iquery(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public iquery(iquery rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -11468,13 +11354,11 @@ public class Parser
   static final public class iprivate :Rule
   {
     private iprivate(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public iprivate(iprivate rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -11486,13 +11370,11 @@ public class Parser
   static final public class ifragment :Rule
   {
     private ifragment(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public ifragment(ifragment rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -11504,13 +11386,11 @@ public class Parser
   static final public class ipchar :Rule
   {
     private ipchar(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public ipchar(ipchar rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -11522,13 +11402,11 @@ public class Parser
   static final public class iunreserved :Rule
   {
     private iunreserved(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public iunreserved(iunreserved rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -11540,13 +11418,11 @@ public class Parser
   static final public class pct_encoded :Rule
   {
     private pct_encoded(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public pct_encoded(pct_encoded rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -11558,13 +11434,11 @@ public class Parser
   static final public class ucschar :Rule
   {
     private ucschar(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public ucschar(ucschar rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -11576,13 +11450,11 @@ public class Parser
   static final public class reserved :Rule
   {
     private reserved(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public reserved(reserved rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -11594,13 +11466,11 @@ public class Parser
   static final public class gen_delims :Rule
   {
     private gen_delims(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public gen_delims(gen_delims rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -11612,13 +11482,11 @@ public class Parser
   static final public class sub_delims :Rule
   {
     private sub_delims(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public sub_delims(sub_delims rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -11630,13 +11498,11 @@ public class Parser
   static final public class unreserved :Rule
   {
     private unreserved(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public unreserved(unreserved rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -11648,13 +11514,11 @@ public class Parser
   static final public class ALPHA :Rule
   {
     private ALPHA(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public ALPHA(ALPHA rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -11666,13 +11530,11 @@ public class Parser
   static final public class BIT :Rule
   {
     private BIT(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public BIT(BIT rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -11684,13 +11546,11 @@ public class Parser
   static final public class CHAR :Rule
   {
     private CHAR(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public CHAR(CHAR rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -11702,13 +11562,11 @@ public class Parser
   static final public class CR :Rule
   {
     private CR(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public CR(CR rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -11720,13 +11578,11 @@ public class Parser
   static final public class CRLF :Rule
   {
     private CRLF(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public CRLF(CRLF rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -11738,13 +11594,11 @@ public class Parser
   static final public class CTL :Rule
   {
     private CTL(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public CTL(CTL rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -11756,13 +11610,11 @@ public class Parser
   static final public class DIGIT :Rule
   {
     private DIGIT(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public DIGIT(DIGIT rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -11774,13 +11626,11 @@ public class Parser
   static final public class DQUOTE :Rule
   {
     private DQUOTE(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public DQUOTE(DQUOTE rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -11792,13 +11642,11 @@ public class Parser
   static final public class HEXDIG :Rule
   {
     private HEXDIG(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public HEXDIG(HEXDIG rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -11810,13 +11658,11 @@ public class Parser
   static final public class HTAB :Rule
   {
     private HTAB(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public HTAB(HTAB rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -11828,13 +11674,11 @@ public class Parser
   static final public class LF :Rule
   {
     private LF(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public LF(LF rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -11846,13 +11690,11 @@ public class Parser
   static final public class LWSP :Rule
   {
     private LWSP(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public LWSP(LWSP rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -11864,13 +11706,11 @@ public class Parser
   static final public class OCTET :Rule
   {
     private OCTET(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public OCTET(OCTET rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -11882,13 +11722,11 @@ public class Parser
   static final public class SP :Rule
   {
     private SP(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public SP(SP rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -11900,13 +11738,11 @@ public class Parser
   static final public class VCHAR :Rule
   {
     private VCHAR(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public VCHAR(VCHAR rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)
@@ -11918,13 +11754,11 @@ public class Parser
   static final public class WSP :Rule
   {
     private WSP(String spelling, ArrayList rules)
-    {
-      super(spelling, rules);
+    : base(spelling, rules) {
     }
 
     public WSP(WSP rule)
-    {
-      super(rule.spelling, rule.rules);
+    : base(rule.spelling, rule.rules) {
     }
 
     public Object visit(Visitor visitor)

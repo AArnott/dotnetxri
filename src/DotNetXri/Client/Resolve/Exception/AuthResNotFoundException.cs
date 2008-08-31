@@ -16,8 +16,7 @@ public class AuthResNotFoundException :XRIResolutionException {
 	/**
 	 * @param msg
 	 */
-	public AuthResNotFoundException(String msg) {
-		super(msg);
+	public AuthResNotFoundException(String msg) : base(msg) {
 	}
 	
 }

@@ -9,9 +9,7 @@ import org.openxri.xri3.impl.XRI3SubSegment;
 
 public class ParseTest :TestCase {
 
-	public ParseTest(String name) {
-
-		super(name);
+	public ParseTest(String name) :base(name){
 	}
 
 	public void testXRI3() throws Exception {

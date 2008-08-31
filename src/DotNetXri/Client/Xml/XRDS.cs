@@ -59,7 +59,7 @@ public class XRDS : Serializable
     * Constructor()
     ****************************************************************************
     */ /**
-    *  This creates the object from DOM and optionally preserves the DOM of
+    *  This creates the obj from DOM and optionally preserves the DOM of
     * the XRD child elements.
     * @param bKeepXRIDDOMs - Whether or not the XRDS should keep
     * a copy of their DOM after construction.
@@ -157,7 +157,7 @@ public class XRDS : Serializable
 			 return null;
 		 }
 		 Object o = moXRDs.get(n);
-		 if(o instanceof XRD) return (XRD)o;
+		 if(o is XRD) return (XRD)o;
 		 return null;
 
     } // getDescriptorAt()
@@ -175,7 +175,7 @@ public class XRDS : Serializable
     		 return null;
     	 }
     	 Object o = moXRDs.get(n);
-    	 if(o instanceof XRDS) return (XRDS)o;
+    	 if(o is XRDS) return (XRDS)o;
     	 return null;
      } // getDescriptorAt()
 
@@ -184,7 +184,7 @@ public class XRDS : Serializable
     	 
     	 if ( o == null) return false;
     	 
-    	 if (o instanceof XRDS)
+    	 if (o is XRDS)
     		 return true;
     	 return false;
      }
@@ -194,7 +194,7 @@ public class XRDS : Serializable
     	 
     	 if ( o == null) return false;
     	 
-    	 if (o instanceof XRD)
+    	 if (o is XRD)
     		 return true;
     	 return false;
      }
@@ -203,7 +203,7 @@ public class XRDS : Serializable
     * reset()
     ****************************************************************************
     */ /**
-    * This method resets the state of the object.
+    * This method resets the state of the obj.
     */
     public void reset()
     {
@@ -216,7 +216,7 @@ public class XRDS : Serializable
     * fromDOM()
     ****************************************************************************
     */ /**
-    * This populates the object from DOM and optionally preserves the DOM of
+    * This populates the obj from DOM and optionally preserves the DOM of
     * the XRD child elements.
     * @param bKeepXRIDDOMs - Whether or not the XRDS should keep
     * a copy of their DOM after construction.
@@ -257,7 +257,7 @@ public class XRDS : Serializable
     ****************************************************************************
     */ /**
     *  This method will make DOM using the specified document.  If any DOM state
-    * has been stored with the object, it will not be used in this method.
+    * has been stored with the obj, it will not be used in this method.
     * This method generates a reference-free copy of new DOM.
     * @param oDoc - The document to use for generating DOM
     */
@@ -300,7 +300,7 @@ public class XRDS : Serializable
     * clearDOM()
     ****************************************************************************
     */ /**
-    * Clears any DOM that has been stored with this object
+    * Clears any DOM that has been stored with this obj
     */
     public void clearDOM()
     {
@@ -316,7 +316,7 @@ public class XRDS : Serializable
     * serializeDescriptorDOM()
     ****************************************************************************
     */ /**
-    *  Serializes the object based on calling serializeDOM(false, true) on each
+    *  Serializes the obj based on calling serializeDOM(false, true) on each
     * of the child XRDS
     */
     public String serializeDescriptorDOM()
@@ -330,7 +330,7 @@ public class XRDS : Serializable
     * toString()
     ****************************************************************************
     */ /**
-    * Returns formatted object.  Do not use if signature needs to be preserved.
+    * Returns formatted obj.  Do not use if signature needs to be preserved.
     */
     public String toString()
     {
@@ -340,7 +340,7 @@ public class XRDS : Serializable
     } // toString()
 
     /**
-    * Returns object as a formatted XML string.
+    * Returns obj as a formatted XML string.
     * @param sTab - The characters to prepend before each new line
     */
     public String dump()

@@ -25,7 +25,7 @@ public class ContactService :Service {
 	 */
 	public ContactService(URI[] contactPages, String providerID, bool makeDefault) {
 		
-		super();
+		
 		
 		/*
 		 * According to the Contact Service specification, the ProviderID of the Contact Service
@@ -95,7 +95,7 @@ public class ContactService :Service {
 
 	public static bool isInstance(Service service) {
 		
-		if (service instanceof ForwardingService) return(true);
+		if (service is ForwardingService) return(true);
 		
 		List serviceTypes = service.getTypes();
 		

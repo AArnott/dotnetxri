@@ -55,7 +55,7 @@ public class Conditions
     * Constructor()
     ****************************************************************************
     */ /**
-    *  This method populates the object from DOM.  It does not keep a
+    *  This method populates the obj from DOM.  It does not keep a
     * copy of the DOM around.  Whitespace information is lost in this process.
     */
     public Conditions(Element oElem)
@@ -69,7 +69,7 @@ public class Conditions
     * toString()
     ****************************************************************************
     */ /**
-    * Returns formatted object.  Do not use if signature needs to be preserved.
+    * Returns formatted obj.  Do not use if signature needs to be preserved.
     */
     public String toString()
     {
@@ -82,7 +82,7 @@ public class Conditions
     * dump()
     ****************************************************************************
     */ /**
-    * Returns object as a formatted XML string.
+    * Returns obj as a formatted XML string.
     * @param sTab - The characters to prepend before each new line
     */
     public String dump(String sTab)
@@ -98,7 +98,7 @@ public class Conditions
     * reset()
     ****************************************************************************
     */ /**
-    * Resets the internal state of this object
+    * Resets the internal state of this obj
     */
     public void reset()
     {
@@ -112,7 +112,7 @@ public class Conditions
     * fromDOM()
     ****************************************************************************
     */ /**
-    *  This method populates the object from DOM.  It does not keep a
+    *  This method populates the obj from DOM.  It does not keep a
     * copy of the DOM around.  Whitespace information is lost in this process.
     */
     public void fromDOM(Element oElem)
@@ -180,7 +180,7 @@ public class Conditions
     ****************************************************************************
     */ /**
     *  This method will make DOM using the specified document.  If any DOM state
-    * has been stored with the object, it will not be used in this method.
+    * has been stored with the obj, it will not be used in this method.
     * This method generates a reference-free copy of new DOM.
     * @param oDoc - The document to use for generating DOM
     */

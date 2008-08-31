@@ -24,16 +24,13 @@ package org.openxri.xml;
  */
 public class XRDType :SimpleXMLElement
 {
-	public XRDType(XRDType s) {
-		super(s);
+	public XRDType(XRDType s) : base(s) {
 	}
 	
-	public XRDType() {
-		super(Tags.TAG_TYPE);
+	public XRDType() : base(Tags.TAG_TYPE) {
 	}
 
-	public XRDType(String type) {
-		super(Tags.TAG_TYPE);
+	public XRDType(String type) : base(Tags.TAG_TYPE) {
 		setType(type);
 	}
 	

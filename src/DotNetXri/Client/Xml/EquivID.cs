@@ -6,22 +6,19 @@ import org.w3c.dom.Element;
 
 public class EquivID :SimpleXMLElement {
 
-	public EquivID() {
-		super(Tags.TAG_EQUIVID);
+	public EquivID() : base(Tags.TAG_EQUIVID) {
 	}
 	
-	public EquivID(String equivID) {
-		super(Tags.TAG_EQUIVID);
+	public EquivID(String equivID) : base(Tags.TAG_EQUIVID) {
 		setValue(equivID);
 	}
 
 	/**
-	 * This method constructs the object from DOM.  It does not keep a
+	 * This method constructs the obj from DOM.  It does not keep a
 	 * copy of the DOM around.  Whitespace information is lost in this process.
 	 */
 	public EquivID(Element elem) throws URISyntaxException
-	{
-		super(Tags.TAG_EQUIVID);
+	: base(Tags.TAG_EQUIVID) {
 		fromXML(elem);
 		
 		// make sure that the priority (if present) is valid (vommits exception if invalid)

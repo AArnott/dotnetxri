@@ -17,8 +17,7 @@ public class XRDErrorStatusException :XRIResolutionException {
 	/**
 	 * @param xrd
 	 */
-	public XRDErrorStatusException(XRD xrd) {
-		super("XRD contains a non-SUCCESS status code");
+	public XRDErrorStatusException(XRD xrd) : base("XRD contains a non-SUCCESS status code") {
 		this.xrd = xrd;
 	}
 

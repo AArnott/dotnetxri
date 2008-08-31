@@ -34,16 +34,16 @@ public class XRI3XRef :XRI3SyntaxComponent, XRIXRef {
 
 		// xref or xref_empty or xref_xri_reference or xref_IRI ?
 
-		if (obj instanceof xref) {
+		if (obj is xref) {
 
 			List list_xref = ((xref) obj).rules;
 			if (list_xref.size() < 1) return;
 			obj = list_xref.get(0);	// xref_empty or xref_xri_reference or xref_IRI
-		} else if (obj instanceof xref_empty) {
+		} else if (obj is xref_empty) {
 
-		} else if (obj instanceof xref_xri_reference) {
+		} else if (obj is xref_xri_reference) {
 
-		} else if (obj instanceof xref_IRI) {
+		} else if (obj is xref_IRI) {
 
 		} else {
 
@@ -53,9 +53,9 @@ public class XRI3XRef :XRI3SyntaxComponent, XRIXRef {
 		// xref_empty or xref_xri_reference or xref_IRI ?
 
 
-		if (obj instanceof xref_empty) {
+		if (obj is xref_empty) {
 
-		} else if (obj instanceof xref_xri_reference) {
+		} else if (obj is xref_xri_reference) {
 
 			// read xri_reference from xref_xri_reference
 			
@@ -63,7 +63,7 @@ public class XRI3XRef :XRI3SyntaxComponent, XRIXRef {
 			if (list_xref_xri_reference.size() < 2) return;
 			obj = list_xref_xri_reference.get(1);	// xri_reference
 			this.xriReference = new XRI3Reference((xri_reference) obj);
-		} else if (obj instanceof xref_IRI) {
+		} else if (obj is xref_IRI) {
 
 			// read IRI from xref_IRI
 			

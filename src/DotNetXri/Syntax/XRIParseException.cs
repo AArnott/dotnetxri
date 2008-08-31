@@ -48,8 +48,7 @@ namespace DotNetXri.Syntax {
 		/**
 	 *Constructs a XRIParseException with the provided message
 	 */
-		public XRIParseException(String sMsg) {
-			super(sMsg);
+		public XRIParseException(String sMsg) : base(sMsg) {
 
 		} // Constructor()
 
@@ -62,8 +61,7 @@ namespace DotNetXri.Syntax {
 	 *Constructs a XRIParseException with the provided message and
 	 *based off of the provided Exception
 	 */
-		public XRIParseException(String sMsg, Exception oEx) {
-			super(sMsg);
+		public XRIParseException(String sMsg, Exception oEx) : base(sMsg) {
 			moEx = oEx;
 
 		} // Constructor()
@@ -95,7 +93,7 @@ namespace DotNetXri.Syntax {
 	 * Provides String representation of the exception
 	 */
 		public String toString() {
-			return super.toString();
+			return base.toString();
 
 		} // toString()
 

@@ -6,21 +6,18 @@ import org.w3c.dom.Element;
 
 public class Ref :SimpleXMLElement {
 
-	public Ref() {
-		super(Tags.TAG_REF);
+	public Ref() : base(Tags.TAG_REF) {
 	}
 
-	public Ref(String sValue) {
-		super(Tags.TAG_REF);
+	public Ref(String sValue) : base(Tags.TAG_REF) {
 		setValue(sValue);
 	}
 
 	/**
-	 *  This method constructs the object from DOM.  It does not keep a
+	 *  This method constructs the obj from DOM.  It does not keep a
 	 * copy of the DOM around.  Whitespace information is lost in this process.
 	 */
-	public Ref(Element oElem) throws URISyntaxException {
-		super(Tags.TAG_REF);
+	public Ref(Element oElem) throws URISyntaxException : base(Tags.TAG_REF) {
 		fromXML(oElem);
 		
 		// make sure that the priority (if present) is valid (vommits exception if invalid)

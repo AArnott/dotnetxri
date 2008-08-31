@@ -51,7 +51,7 @@ public class IO
     *@param oSSLFactory The SSL Socket Factory to use if necessary
     *@param bFollowRedirects Whether or not to follow unlimited redirects
     *@param bUseCaches Whether or not to use the HTTP cache
-    *@return the HttpURLConnection The connection object after calling connect()
+    *@return the HttpURLConnection The connection obj after calling connect()
     */
     public static HttpURLConnection getConnectionToURI(
         URI oURI, String sMethod, Map oReqProperties,
@@ -66,7 +66,7 @@ public class IO
         HttpURLConnection oConnection = null;
         try
         {
-            // create the connection object
+            // create the connection obj
             oConnection = (HttpURLConnection) oURI.toURL().openConnection();
             oConnection.setRequestMethod(sMethod);
             oConnection.setInstanceFollowRedirects(bFollowRedirects);
@@ -90,7 +90,7 @@ public class IO
             }
 
             // setup the SSL Socket factory
-            if (oConnection instanceof HttpsURLConnection)
+            if (oConnection is HttpsURLConnection)
             {
                 // only set the socket factory if it has been overriden
                 if (oSSLFactory != null)
@@ -134,7 +134,7 @@ public class IO
     *@param oSSLFactory The SSL Socket Factory to use if necessary
     *@param nFollowRedirects The maximum number of redirects to follow
     *@param bUseCaches Whether or not to use the HTTP cache
-    *@return the HttpURLConnection The connection object after calling connect()
+    *@return the HttpURLConnection The connection obj after calling connect()
     */
     public static HttpURLConnection getConnectionToURI(
         URI oURI, String sMethod, Map oReqProperties,

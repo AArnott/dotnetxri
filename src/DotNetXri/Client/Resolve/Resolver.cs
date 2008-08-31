@@ -89,7 +89,7 @@ public class Resolver :BaseFetcher {
 	
 
 	/**
-	 * Creates a Resolver object.
+	 * Creates a Resolver obj.
 	 */
 	public Resolver() {
 		root = new HashMap();
@@ -501,9 +501,9 @@ public class Resolver :BaseFetcher {
 		AuthorityPath ap = qxri.getAuthorityPath();
 		try {
 			XRDS newXRDS;
-			if (ap instanceof XRIAuthority)
+			if (ap is XRIAuthority)
 				newXRDS = resolveXRIAuth(qxri, (XRIAuthority)ap, flags, state);
-			else if (ap instanceof IRIAuthority)
+			else if (ap is IRIAuthority)
 				newXRDS = resolveIRIAuth((IRIAuthority) ap, flags, state);
 			else
 				throw new RuntimeException("Unknown authority type");
@@ -827,7 +827,7 @@ public class Resolver :BaseFetcher {
 			if (thisAuthorityAP == null)
 				return Status.CID_FAILED;
 			
-			if (!(thisAuthorityAP instanceof XRIAuthority))
+			if (!(thisAuthorityAP is XRIAuthority))
 				return Status.CID_FAILED;
 			
 			XRI thisAuthorityParentXRI = ((XRIAuthority)thisAuthorityAP).getParentAsXRI();
@@ -1919,7 +1919,7 @@ public class Resolver :BaseFetcher {
 
 
 	/**
-	 * Creates a Resolver object configured by properties.
+	 * Creates a Resolver obj configured by properties.
 	 * @throws ParseException 
 	 * @throws URISyntaxException 
 	 */

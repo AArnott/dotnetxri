@@ -26,7 +26,7 @@ import org.openxri.xml.XRD;
 
 
 /**
- * This class <strong>used to provide</strong> encapsulation of the cache state of a Resolver object.
+ * This class <strong>used to provide</strong> encapsulation of the cache state of a Resolver obj.
  * Now, it is used to store information about the references processed, URI traversed, etc. during
  * a resolution request.
  * The caching functionality may be revived at a later date.
@@ -56,7 +56,7 @@ public class ResolverState
     }
 
     /**
-     * @return Returns the time that this object was constructed.
+     * @return Returns the time that this obj was constructed.
      */
     public long getTimeStarted()
     {
@@ -191,7 +191,7 @@ public class ResolverState
 
 
     /**
-     * Returns the Cache object for the security model
+     * Returns the Cache obj for the security model
      * @param bTrusted if true, returns the trusted cache, if false, returns
      *        the regular cache.
 	 * @deprecated

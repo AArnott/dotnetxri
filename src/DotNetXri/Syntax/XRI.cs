@@ -17,7 +17,7 @@ namespace DotNetXri.Syntax {
 
 /**
  * This class provides a strong typing for a XRI.  Any
- * object of this class that appears outside of the package is a valid
+ * obj of this class that appears outside of the package is a valid
  * XRI.  THERE ARE INTENTIONALLY NO SET METHODS.  Use this class like
  * java.lang.String or java.net.URI
  *
@@ -76,8 +76,7 @@ public class XRI
      * Constructs XRI from String
      */
     public XRI(String sXRI)
-    {
-        super(sXRI);
+    : base(sXRI) {
         parse();
 
     }
@@ -109,11 +108,11 @@ public class XRI
         moAuthorityPath = oAuthority;
         if (oPath != null)
         {
-            if (oPath instanceof XRINoSchemePath)
+            if (oPath is XRINoSchemePath)
             {
                 moAbsolutePath = new XRIAbsolutePath((XRINoSchemePath) oPath);
             }
-            else if (oPath instanceof XRIAbsolutePath)
+            else if (oPath is XRIAbsolutePath)
             {
                 moAbsolutePath = (XRIAbsolutePath) oPath;
             }
@@ -140,11 +139,11 @@ public class XRI
         moAuthorityPath = oAuthority;
         if (oPath != null)
         {
-            if (oPath instanceof XRINoSchemePath)
+            if (oPath is XRINoSchemePath)
             {
                 moAbsolutePath = new XRIAbsolutePath((XRINoSchemePath) oPath);
             }
-            else if (oPath instanceof XRIAbsolutePath)
+            else if (oPath is XRIAbsolutePath)
             {
                 moAbsolutePath = (XRIAbsolutePath) oPath;
             }
@@ -355,9 +354,9 @@ public class XRI
 
     
     /**
-     * Parses the input stream into the object
+     * Parses the input stream into the obj
      * @param oStream The input stream to scan from
-     * @return  bool True if part of the Stream was consumed into the object
+     * @return  bool True if part of the Stream was consumed into the obj
      */
     bool doScan(ParseStream oStream)
     {

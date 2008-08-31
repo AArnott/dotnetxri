@@ -169,82 +169,82 @@ public class XRI3 :XRI3SyntaxComponent, XRI {
 
 		this.reset();
 
-		Object object = this.rule;	// xri
+		Object obj = this.rule;	// xri
 
 		// read xri_scheme or xri_noscheme from xri
 
-		List list_xri = ((xri) object).rules;
+		List list_xri = ((xri) obj).rules;
 		if (list_xri.size() < 1) return;
-		object = list_xri.get(0);	// xri_scheme or xri_noscheme
+		obj = list_xri.get(0);	// xri_scheme or xri_noscheme
 
 		// xri_scheme or xri_noscheme ?
 
-		if (object instanceof xri_scheme) {
+		if (obj is xri_scheme) {
 
 			// read "xri:" from xri_scheme
 
-			List list_xri_scheme = ((xri_scheme) object).rules;
+			List list_xri_scheme = ((xri_scheme) obj).rules;
 			if (list_xri_scheme.size() < 1) return;
-			object = list_xri_scheme.get(0);	// "xri:"
-			this.scheme = ((StringValue) object).spelling;
+			obj = list_xri_scheme.get(0);	// "xri:"
+			this.scheme = ((StringValue) obj).spelling;
 
 			// read xri_noscheme from xri_scheme
 
 			if (list_xri_scheme.size() < 2) return;
-			object = list_xri_scheme.get(1);	// xri_noscheme
-		} else if (object instanceof xri_noscheme) {
+			obj = list_xri_scheme.get(1);	// xri_noscheme
+		} else if (obj is xri_noscheme) {
 
 		} else {
 
-			throw new ClassCastException(object.getClass().getName());
+			throw new ClassCastException(obj.getClass().getName());
 		}
 
 		// read xri_hier_part from xri_noscheme
 
-		List list_xri_noscheme = ((xri_noscheme) object).rules;
+		List list_xri_noscheme = ((xri_noscheme) obj).rules;
 		if (list_xri_noscheme.size() < 1) return;
-		object = list_xri_noscheme.get(0);	// xri_hier_part
+		obj = list_xri_noscheme.get(0);	// xri_hier_part
 
 		// read xri_authority from xri_hier_part
 
-		List list_xri_hier_part = ((xri_hier_part) object).rules;
+		List list_xri_hier_part = ((xri_hier_part) obj).rules;
 		if (list_xri_hier_part.size() < 1) return;
-		object = list_xri_hier_part.get(0);	// xri_authority
-		this.authority = new XRI3Authority((xri_authority) object);
+		obj = list_xri_hier_part.get(0);	// xri_authority
+		this.authority = new XRI3Authority((xri_authority) obj);
 		if (this.authority.getParserObject().spelling.length() < 1) this.authority = null;
 
 		// read xri_path_abempty from xri_hier_part
 
 		if (list_xri_hier_part.size() < 2) return;
-		object = list_xri_hier_part.get(1);	// xri_path_abempty
-		this.path = new XRI3Path((xri_path_abempty) object);
+		obj = list_xri_hier_part.get(1);	// xri_path_abempty
+		this.path = new XRI3Path((xri_path_abempty) obj);
 		if (this.path.getParserObject().spelling.length() < 1) this.path = null;
 
 		// read iquery or ifragment from xri_noscheme
 
 		if (list_xri_noscheme.size() < 3) return;
-		object = list_xri_noscheme.get(2);	// iquery or ifragment
+		obj = list_xri_noscheme.get(2);	// iquery or ifragment
 
 		// iquery or ifragment ?
 
-		if (object instanceof iquery) {
+		if (obj is iquery) {
 
-			this.query = new XRI3Query((iquery) object);
+			this.query = new XRI3Query((iquery) obj);
 			if (this.query.getParserObject().spelling.length() < 1) this.query = null;
 
 			// read ifragment from xri_noscheme
 
 			if (list_xri_noscheme.size() < 5) return;
-			object = list_xri_noscheme.get(4);	// ifragment
-			this.fragment = new XRI3Fragment((ifragment) object);
+			obj = list_xri_noscheme.get(4);	// ifragment
+			this.fragment = new XRI3Fragment((ifragment) obj);
 			if (this.fragment.getParserObject().spelling.length() < 1) this.fragment = null;
-		} else if (object instanceof ifragment) {
+		} else if (obj is ifragment) {
 
-			this.fragment = new XRI3Fragment((ifragment) object);
+			this.fragment = new XRI3Fragment((ifragment) obj);
 			if (this.fragment.getParserObject().spelling.length() < 1) this.fragment = null;
 		} else {
 
-			throw new ClassCastException(object.getClass().getName());
+			throw new ClassCastException(obj.getClass().getName());
 		}
 	}
 

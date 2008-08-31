@@ -6,9 +6,7 @@ import org.openxri.xri3.impl.XRI3;
 
 public class INameTest :TestCase {
 
-	public INameTest(String name) {
-
-		super(name);
+	public INameTest(String name) :base(name) {
 	}
 
 	public void testINames() throws Exception {

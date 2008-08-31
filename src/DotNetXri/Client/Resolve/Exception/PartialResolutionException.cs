@@ -20,8 +20,7 @@ public class PartialResolutionException :XRIResolutionException {
 	 * @param msg Error message
 	 * @param xrds The partial resolution results
 	 */
-	public PartialResolutionException(XRDS xrds) {
-		super("Resolution did not complete successfully.");
+	public PartialResolutionException(XRDS xrds) : base("Resolution did not complete successfully.") {
 		this.xrds = xrds;
 	}
 

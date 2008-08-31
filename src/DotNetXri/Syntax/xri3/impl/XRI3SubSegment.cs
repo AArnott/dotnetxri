@@ -58,69 +58,69 @@ public class XRI3SubSegment :XRI3SyntaxComponent, XRISubSegment {
 
 		this.reset();
 
-		Object object = this.rule;	// subseg or global_subseg or local_subseg or rel_subseg or rel_subseg_nc
+		Object obj = this.rule;	// subseg or global_subseg or local_subseg or rel_subseg or rel_subseg_nc
 
 		// subseg?
 
-		if (object instanceof subseg) {
+		if (obj is subseg) {
 
 			// read global_subseg or local_subseg from subseg
 
-			List list_subseg = ((subseg) object).rules;
+			List list_subseg = ((subseg) obj).rules;
 			if (list_subseg.size() < 1) return;
-			object = list_subseg.get(0);	// global_subseg or local_subseg
+			obj = list_subseg.get(0);	// global_subseg or local_subseg
 		}
 
 		// global_subseg?
 
-		if (object instanceof global_subseg) {
+		if (obj is global_subseg) {
 
 			// read gcs_char from global_subseg;
 
-			List list_global_subseg = ((global_subseg) object).rules;
+			List list_global_subseg = ((global_subseg) obj).rules;
 			if (list_global_subseg.size() < 1) return;
-			object = list_global_subseg.get(0);	// gcs_char
-			this.gcs = new char(((gcs_char) object).spelling.charAt(0));
+			obj = list_global_subseg.get(0);	// gcs_char
+			this.gcs = new char(((gcs_char) obj).spelling.charAt(0));
 
 			// read rel_subseg or local_subseg from global_subseg
 
 			if (list_global_subseg.size() < 2) return;
-			object = list_global_subseg.get(1);	// rel_subseg or local_subseg
+			obj = list_global_subseg.get(1);	// rel_subseg or local_subseg
 		}
 
 		// local_subseg?
 
-		if (object instanceof local_subseg) {
+		if (obj is local_subseg) {
 
 			// read lcs_char from local_subseg;
 
-			List list_local_subseg = ((local_subseg) object).rules;
+			List list_local_subseg = ((local_subseg) obj).rules;
 			if (list_local_subseg.size() < 1) return;
-			object = list_local_subseg.get(0);	// lcs_char
-			this.lcs = new char(((lcs_char) object).spelling.charAt(0));
+			obj = list_local_subseg.get(0);	// lcs_char
+			this.lcs = new char(((lcs_char) obj).spelling.charAt(0));
 
 			// read rel_subseg from local_subseg
 
 			if (list_local_subseg.size() < 2) return;
-			object = list_local_subseg.get(1);	// rel_subseg
+			obj = list_local_subseg.get(1);	// rel_subseg
 		}
 
 		// rel_subseg or rel_subseg_nc?
 
-		if (object instanceof rel_subseg) {
+		if (obj is rel_subseg) {
 
 			// read literal or xref from rel_subseg
 
-			List list_rel_subseg = ((rel_subseg) object).rules;
+			List list_rel_subseg = ((rel_subseg) obj).rules;
 			if (list_rel_subseg.size() < 1) return;
-			object = list_rel_subseg.get(0);	// literal or xref
-		} else if (object instanceof rel_subseg_nc) {
+			obj = list_rel_subseg.get(0);	// literal or xref
+		} else if (obj is rel_subseg_nc) {
 
 			// read literal_nc or xref from rel_subseg_nc
 
-			List list_rel_subseg_nc = ((rel_subseg_nc) object).rules;
+			List list_rel_subseg_nc = ((rel_subseg_nc) obj).rules;
 			if (list_rel_subseg_nc.size() < 1) return;
-			object = list_rel_subseg_nc.get(0);	// literal_nc or xref
+			obj = list_rel_subseg_nc.get(0);	// literal_nc or xref
 		} else {
 
 			return;
@@ -128,15 +128,15 @@ public class XRI3SubSegment :XRI3SyntaxComponent, XRISubSegment {
 
 		// literal or literal_nc or xref?
 
-		if (object instanceof literal) {
+		if (obj is literal) {
 
-			this.literal = new XRI3Literal((literal) object);
-		} else if (object instanceof literal_nc) {
+			this.literal = new XRI3Literal((literal) obj);
+		} else if (obj is literal_nc) {
 
-			this.literal = new XRI3Literal((literal_nc) object);
-		} else if (object instanceof xref) {
+			this.literal = new XRI3Literal((literal_nc) obj);
+		} else if (obj is xref) {
 
-			this.xref = new XRI3XRef((xref) object);
+			this.xref = new XRI3XRef((xref) obj);
 		} else {
 
 			return;

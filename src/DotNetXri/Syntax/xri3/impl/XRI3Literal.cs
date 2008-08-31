@@ -28,16 +28,16 @@ public class XRI3Literal :XRI3SyntaxComponent, XRILiteral {
 
 		this.reset();
 		
-		Object object = this.rule;	// literal or literal_nc
+		Object obj = this.rule;	// literal or literal_nc
 
 		// literal of literal_nc
 		
-		if (object instanceof literal) {
+		if (obj is literal) {
 			
-			this.value = ((literal) object).spelling;
-		} else if (object instanceof literal_nc) {
+			this.value = ((literal) obj).spelling;
+		} else if (obj is literal_nc) {
 			
-			this.value = ((literal_nc) object).spelling;
+			this.value = ((literal_nc) obj).spelling;
 		}
 	}
 

@@ -28,69 +28,69 @@ public class XRI3Path :XRI3SyntaxComponent, XRIPath {
 
 		this.reset();
 		
-		Object object = this.rule;	// xri_path or xri_path_abempty or xri_path_abs or xri_path_noscheme
+		Object obj = this.rule;	// xri_path or xri_path_abempty or xri_path_abs or xri_path_noscheme
 
 		// xri_path ?
 
-		if (object instanceof xri_path) {
+		if (obj is xri_path) {
 
 			// read xri_path_abempty or xri_path_abs or xri_path_noscheme from xri_path
 
-			List list_xri_path = ((xri_path) object).rules;
+			List list_xri_path = ((xri_path) obj).rules;
 			if (list_xri_path.size() < 1) return;
-			object = list_xri_path.get(0);	// xri_path_abempty or xri_path_abs or xri_path_noscheme
+			obj = list_xri_path.get(0);	// xri_path_abempty or xri_path_abs or xri_path_noscheme
 		}
 
 		// xri_path_abempty or xri_path_abs or xri_path_noscheme ?
 
-		if (object instanceof xri_path_abempty) {
+		if (obj is xri_path_abempty) {
 
 			// read xri_segments from xri_path_abempty
 
-			List list_xri_path_abempty = ((xri_path_abempty) object).rules;
+			List list_xri_path_abempty = ((xri_path_abempty) obj).rules;
 			if (list_xri_path_abempty.size() < 2) return;
 			for (int i=0; i+1<list_xri_path_abempty.size(); i+=2) {
 
-				object = list_xri_path_abempty.get(i+1);	// xri_segment
-				this.segments.add(new XRI3Segment((xri_segment) object));
+				obj = list_xri_path_abempty.get(i+1);	// xri_segment
+				this.segments.add(new XRI3Segment((xri_segment) obj));
 			}
-		} else if (object instanceof xri_path_abs) {
+		} else if (obj is xri_path_abs) {
 
 			// read xri_segment_nz from xri_path_abs
 
-			List list_xri_path_abs = ((xri_path_abs) object).rules;
+			List list_xri_path_abs = ((xri_path_abs) obj).rules;
 			if (list_xri_path_abs.size() < 2) return;
-			object = list_xri_path_abs.get(1);	// xri_segment_nz
-			this.segments.add(new XRI3Segment((xri_segment_nz) object));
+			obj = list_xri_path_abs.get(1);	// xri_segment_nz
+			this.segments.add(new XRI3Segment((xri_segment_nz) obj));
 			
 			// read xri_segments from xri_path_abs
 			
 			if (list_xri_path_abs.size() < 4) return;
 			for (int i=2; i+1<list_xri_path_abs.size(); i+=2) {
 				
-				object = list_xri_path_abs.get(i+1);	// xri_segment
-				this.segments.add(new XRI3Segment((xri_segment) object));
+				obj = list_xri_path_abs.get(i+1);	// xri_segment
+				this.segments.add(new XRI3Segment((xri_segment) obj));
 			}
-		} else if (object instanceof xri_path_noscheme) {
+		} else if (obj is xri_path_noscheme) {
 			
 			// read xri_segment_nc from xri_path_noscheme
 			
-			List list_xri_path_noscheme = ((xri_path_noscheme) object).rules;
+			List list_xri_path_noscheme = ((xri_path_noscheme) obj).rules;
 			if (list_xri_path_noscheme.size() < 1) return;
-			object = list_xri_path_noscheme.get(0);	// xri_segment_nc
-			this.segments.add(new XRI3Segment((xri_segment_nc) object));
+			obj = list_xri_path_noscheme.get(0);	// xri_segment_nc
+			this.segments.add(new XRI3Segment((xri_segment_nc) obj));
 			
 			// read xri_segments from xri_path_noscheme
 			
 			if (list_xri_path_noscheme.size() < 3) return;
 			for (int i=1; i+1<list_xri_path_noscheme.size(); i+=2) {
 				
-				object = list_xri_path_noscheme.get(i+1);	// xri_segment
-				this.segments.add(new XRI3Segment((xri_segment) object));
+				obj = list_xri_path_noscheme.get(i+1);	// xri_segment
+				this.segments.add(new XRI3Segment((xri_segment) obj));
 			}
 		} else {
 			
-			throw new ClassCastException(object.getClass().getName());
+			throw new ClassCastException(obj.getClass().getName());
 		}
 	}
 

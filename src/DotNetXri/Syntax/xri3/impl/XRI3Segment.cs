@@ -28,31 +28,31 @@ public class XRI3Segment :XRI3SyntaxComponent, XRISegment {
 
 		this.reset();
 		
-		Object object = this.rule;	// xri_segment or xri_segment_nz or xri_segment_nc
+		Object obj = this.rule;	// xri_segment or xri_segment_nz or xri_segment_nc
 
 		// read rel_subsegs or subsegs or rel_subseg_ncs from xri_segment or xri_segment_nz or xri_segment_nc
 
 		// xri_segment or xri_segment_nz or xri_segment_nc ?
 		
-		if (object instanceof xri_segment) {
+		if (obj is xri_segment) {
 			
 			// read rel_subseg or subseg from xri_segment
 			
-			List list_xri_segment = ((xri_segment) object).rules;
+			List list_xri_segment = ((xri_segment) obj).rules;
 			if (list_xri_segment.size() < 1) return;
-			object = list_xri_segment.get(0);	// rel_subseg or subseg
+			obj = list_xri_segment.get(0);	// rel_subseg or subseg
 			
 			// rel_subseg or subseg?
 			
-			if (object instanceof rel_subseg) {
+			if (obj is rel_subseg) {
 				
-				this.subSegments.add(new XRI3SubSegment((rel_subseg) object));
-			} else if (object instanceof subseg) {
+				this.subSegments.add(new XRI3SubSegment((rel_subseg) obj));
+			} else if (obj is subseg) {
 				
-				this.subSegments.add(new XRI3SubSegment((subseg) object));
+				this.subSegments.add(new XRI3SubSegment((subseg) obj));
 			} else {
 				
-				throw new ClassCastException(object.getClass().getName());
+				throw new ClassCastException(obj.getClass().getName());
 			}
 			
 			// read subsegs from xri_segment
@@ -60,28 +60,28 @@ public class XRI3Segment :XRI3SyntaxComponent, XRISegment {
 			if (list_xri_segment.size() < 2) return;
 			for (int i=1; i<list_xri_segment.size(); i++) {
 				
-				object = list_xri_segment.get(i);	// subseg
-				this.subSegments.add(new XRI3SubSegment((subseg) object));
+				obj = list_xri_segment.get(i);	// subseg
+				this.subSegments.add(new XRI3SubSegment((subseg) obj));
 			}
-		} else if (object instanceof xri_segment_nz) {
+		} else if (obj is xri_segment_nz) {
 			
 			// read rel_subseg or subseg from xri_segment_nz
 			
-			List list_xri_segment_nz = ((xri_segment_nz) object).rules;
+			List list_xri_segment_nz = ((xri_segment_nz) obj).rules;
 			if (list_xri_segment_nz.size() < 1) return;
-			object = list_xri_segment_nz.get(0);	// rel_subseg or subseg
+			obj = list_xri_segment_nz.get(0);	// rel_subseg or subseg
 			
 			// rel_subseg or subseg?
 			
-			if (object instanceof rel_subseg) {
+			if (obj is rel_subseg) {
 				
-				this.subSegments.add(new XRI3SubSegment((rel_subseg) object));
-			} else if (object instanceof subseg) {
+				this.subSegments.add(new XRI3SubSegment((rel_subseg) obj));
+			} else if (obj is subseg) {
 				
-				this.subSegments.add(new XRI3SubSegment((subseg) object));
+				this.subSegments.add(new XRI3SubSegment((subseg) obj));
 			} else {
 				
-				throw new ClassCastException(object.getClass().getName());
+				throw new ClassCastException(obj.getClass().getName());
 			}
 			
 			// read subsegs from xri_segment
@@ -89,28 +89,28 @@ public class XRI3Segment :XRI3SyntaxComponent, XRISegment {
 			if (list_xri_segment_nz.size() < 2) return;
 			for (int i=1; i<list_xri_segment_nz.size(); i++) {
 				
-				object = list_xri_segment_nz.get(i);	// subseg
-				this.subSegments.add(new XRI3SubSegment((subseg) object));
+				obj = list_xri_segment_nz.get(i);	// subseg
+				this.subSegments.add(new XRI3SubSegment((subseg) obj));
 			}
-		} else if (object instanceof xri_segment_nc) {
+		} else if (obj is xri_segment_nc) {
 			
 			// read rel_subseg_nc or subseg from xri_segment_nc
 			
-			List list_xri_segment_nc = ((xri_segment_nc) object).rules;
+			List list_xri_segment_nc = ((xri_segment_nc) obj).rules;
 			if (list_xri_segment_nc.size() < 1) return;
-			object = list_xri_segment_nc.get(0);	// rel_subseg_nc or subseg
+			obj = list_xri_segment_nc.get(0);	// rel_subseg_nc or subseg
 			
 			// rel_subseg_nc or subseg?
 			
-			if (object instanceof rel_subseg_nc) {
+			if (obj is rel_subseg_nc) {
 				
-				this.subSegments.add(new XRI3SubSegment((rel_subseg_nc) object));
-			} else if (object instanceof subseg) {
+				this.subSegments.add(new XRI3SubSegment((rel_subseg_nc) obj));
+			} else if (obj is subseg) {
 				
-				this.subSegments.add(new XRI3SubSegment((subseg) object));
+				this.subSegments.add(new XRI3SubSegment((subseg) obj));
 			} else {
 				
-				throw new ClassCastException(object.getClass().getName());
+				throw new ClassCastException(obj.getClass().getName());
 			}
 			
 			// read subsegs from xri_segment
@@ -118,12 +118,12 @@ public class XRI3Segment :XRI3SyntaxComponent, XRISegment {
 			if (list_xri_segment_nc.size() < 2) return;
 			for (int i=1; i<list_xri_segment_nc.size(); i++) {
 				
-				object = list_xri_segment_nc.get(i);	// subseg
-				this.subSegments.add(new XRI3SubSegment((subseg) object));
+				obj = list_xri_segment_nc.get(i);	// subseg
+				this.subSegments.add(new XRI3SubSegment((subseg) obj));
 			}
 		} else {
 			
-			throw new ClassCastException(object.getClass().getName());
+			throw new ClassCastException(obj.getClass().getName());
 		}
 	}
 

@@ -39,8 +39,7 @@ public class InvalidAuthorityURIException
     * Constructor
     */
     public InvalidAuthorityURIException(String sMsg)
-    {
-        super(sMsg);
+    : base(sMsg) {
 
     } // Constructor()
 
@@ -52,8 +51,7 @@ public class InvalidAuthorityURIException
     * Constructor
     */
     public InvalidAuthorityURIException(String sMsg, Exception oEx)
-    {
-        super(sMsg, oEx);
+    : base(sMsg, oEx) {
 
     } // Constructor()
 
@@ -66,7 +64,7 @@ public class InvalidAuthorityURIException
     */
     public String toString()
     {
-        return super.toString();
+        return base.toString();
 
     } // toString()
 

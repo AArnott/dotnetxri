@@ -42,8 +42,7 @@ public class NoInitialDescriptorException
     * @param sXRI - The XRI that had no community configured
     */
     public NoInitialDescriptorException(String sXRI)
-    {
-        super("No global authority server found for XRI " + sXRI);
+    : base("No global authority server found for XRI " + sXRI) {
 
         msXRI = sXRI;
 
@@ -71,7 +70,7 @@ public class NoInitialDescriptorException
     */
     public String toString()
     {
-        return super.toString();
+        return base.toString();
 
     } // toString()
 

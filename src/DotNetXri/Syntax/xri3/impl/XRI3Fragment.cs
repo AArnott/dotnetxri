@@ -29,9 +29,9 @@ public class XRI3Fragment :XRI3SyntaxComponent, XRIFragment {
 
 		this.reset();
 		
-		Object object = this.rule;	// ifragment
+		Object obj = this.rule;	// ifragment
 
-		this.value = ((ifragment) object).spelling;
+		this.value = ((ifragment) obj).spelling;
 	}
 
 	public Rule getParserObject() {

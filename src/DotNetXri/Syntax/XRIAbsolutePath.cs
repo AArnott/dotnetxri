@@ -92,7 +92,7 @@ namespace DotNetXri.Syntax {
 			oStream.consume(1);
 
 			// now scan the XRI segments as we are supposed to
-			super.scanXRISegments(oStream);
+			base.scanXRISegments(oStream);
 
 			// return true no matter what, we got the slash
 			return true;
@@ -105,7 +105,7 @@ namespace DotNetXri.Syntax {
 		 * @return The IRI normal form of the Local Path
 		 */
 		public String toIRINormalForm() {
-			return "/" + super.toIRINormalForm();
+			return "/" + base.toIRINormalForm();
 		}
 
 		/**

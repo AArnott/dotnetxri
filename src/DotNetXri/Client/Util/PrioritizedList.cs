@@ -19,7 +19,7 @@ public class PrioritizedList : Serializable {
 
 
 	public PrioritizedList() {
-		super();
+		
 	}
 	
 	public Object clone() {
@@ -29,7 +29,7 @@ public class PrioritizedList : Serializable {
 	}
 
 	/**
-	 * Add the given object based unsigned priroity string
+	 * Add the given obj based unsigned priroity string
 	 * if multiple objects are stored with same priority, they
 	 * are grouped together and later applies random shuffling
 	 * @param pPriority
@@ -95,7 +95,7 @@ public class PrioritizedList : Serializable {
 			if(a == null && b == null){
 				throw new IllegalArgumentException ("arguments cannot be null");
 			}
-			if(!(a instanceof String || b instanceof String)){
+			if(!(a is String || b is String)){
 				throw new IllegalArgumentException ("arguments must be of type 'String'");		    		 
 			}
 

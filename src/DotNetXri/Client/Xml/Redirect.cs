@@ -6,21 +6,18 @@ import org.w3c.dom.Element;
 
 public class Redirect :SimpleXMLElement {
 
-	public Redirect() {
-		super(Tags.TAG_REDIRECT);
+	public Redirect() : base(Tags.TAG_REDIRECT) {
 	}
 
-	public Redirect(String sValue) {
-		super(Tags.TAG_REDIRECT);
+	public Redirect(String sValue) : base(Tags.TAG_REDIRECT) {
 		setValue(sValue);
 	}
 
 	/**
-	 * This method constructs the object from DOM.  It does not keep a
+	 * This method constructs the obj from DOM.  It does not keep a
 	 * copy of the DOM around.  Whitespace information is lost in this process.
 	 */
-	public Redirect(Element oElem) throws URISyntaxException {
-		super(Tags.TAG_REDIRECT);
+	public Redirect(Element oElem) throws URISyntaxException : base(Tags.TAG_REDIRECT) {
 		fromXML(oElem);
 		
 		// make sure that the priority (if present) is valid (vommits exception if invalid)

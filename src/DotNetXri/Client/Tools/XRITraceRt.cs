@@ -45,19 +45,19 @@ import org.openxri.xml.XRDS;
 public class XRITraceRt {
     
     // program results
-    final private static int SUCCESS                        = 0;
-    final private static int FAILURE                        = 1;
+    private const int SUCCESS                        = 0;
+    private const int FAILURE                        = 1;
     
     // program commands as command line args
-    final private static String CMD_HELP                    = "help";
+    private const String CMD_HELP                    = "help";
     
     // options as command line args
-    final private static String OPT_ROOT_EQUALS_URI         = "-root_equals_auth";    
-    final private static String OPT_ROOT_AT_URI             = "-root_at_auth";    
-    final private static String OPT_VERBOSE                 = "-verbose";                
-    final private static String OPT_NO_HEADER               = "-no_header";    
+    private const String OPT_ROOT_EQUALS_URI         = "-root_equals_auth";    
+    private const String OPT_ROOT_AT_URI             = "-root_at_auth";    
+    private const String OPT_VERBOSE                 = "-verbose";                
+    private const String OPT_NO_HEADER               = "-no_header";    
     
-    final private static String ROOT_DEF_URI  = "http://localhost:8080/xri/resolve?ns=at";
+    private const String ROOT_DEF_URI  = "http://localhost:8080/xri/resolve?ns=at";
     
     // data argument variable
     private String msTargetXRI;

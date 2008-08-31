@@ -13,8 +13,7 @@ public class LimitExceededException :XRIResolutionException {
 	/**
 	 * @param msg
 	 */
-	public LimitExceededException(String msg) {
-		super(msg);
+	public LimitExceededException(String msg) : base(msg) {
 	}
 
 }

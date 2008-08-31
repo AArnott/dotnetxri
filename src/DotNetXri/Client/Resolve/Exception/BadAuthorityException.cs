@@ -40,9 +40,7 @@ public class BadAuthorityException
     */ /**
     *
     */
-    public BadAuthorityException(String sXRI)
-    {
-        super("Missing global authority symbol in XRI " + sXRI);
+    public BadAuthorityException(String sXRI):  base("Missing global authority symbol in XRI " + sXRI) {
 
         msXRI = sXRI;
 
@@ -70,7 +68,7 @@ public class BadAuthorityException
     */
     public String toString()
     {
-        return super.toString();
+        return base.toString();
 
     } // toString()
 

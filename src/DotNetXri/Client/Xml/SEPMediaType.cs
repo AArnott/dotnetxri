@@ -7,30 +7,29 @@ public class SEPMediaType :SEPElement
 {
 
 	/**
-	 * Creates a default <code>EppXriServiceEndpointMediaType</code> object
+	 * Creates a default <code>EppXriServiceEndpointMediaType</code> obj
 	 */
 	public SEPMediaType()
 	{
-		super();
+		
 	}
 
 	/**
-	 * Creates an <code>EppXriServiceEndpointMediaType</code> object with the specified fields
+	 * Creates an <code>EppXriServiceEndpointMediaType</code> obj with the specified fields
 	 */
 	public SEPMediaType( String mediaType, String match, Boolean select )
-	{
-		super(mediaType, match, select);
+	: base(mediaType, match, select) {
 	}
 
 	/**
-	 * Converts an XML element into an <code>EppXriServiceEndpointMediaType</code> object.
+	 * Converts an XML element into an <code>EppXriServiceEndpointMediaType</code> obj.
 	 * The caller of this method must make sure that the root node is of
 	 * the EPP XRI sepMediaTypeType.
 	 *
-	 * @param root root node for an <code>EppXriServiceEndpoint</code> object in
+	 * @param root root node for an <code>EppXriServiceEndpoint</code> obj in
 	 *             XML format
 	 *
-	 * @return an <code>EppXriServiceEndpointMediaType</code> object, or null if the node is
+	 * @return an <code>EppXriServiceEndpointMediaType</code> obj, or null if the node is
 	 *         invalid
 	 */
 	public static SEPMediaType fromXML( Node root )

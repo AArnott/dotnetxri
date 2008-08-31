@@ -27,7 +27,7 @@ public class AuthorityResolutionService :Service {
 	 */
 	public AuthorityResolutionService(URI[] resolvers, String providerID, TrustType trustType, String append) {
 
-		super();
+		
 
 		if (append == null) append = SEPUri.APPEND_NONE;
 
@@ -110,7 +110,7 @@ public class AuthorityResolutionService :Service {
 
 	public static bool isInstance(Service service) {
 
-		if (service instanceof ForwardingService) return(true);
+		if (service is ForwardingService) return(true);
 
 		List serviceTypes = service.getTypes();
 

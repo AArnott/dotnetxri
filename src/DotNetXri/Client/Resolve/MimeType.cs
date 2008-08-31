@@ -51,7 +51,7 @@ public class MimeType : Comparable {
 	protected String original = null;
 
 	/**
-	 * Creates a MimeType object
+	 * Creates a MimeType obj
 	 */
 	protected MimeType(String type, HashMap params, String original) {
 		this.type = type;
@@ -60,7 +60,7 @@ public class MimeType : Comparable {
 	}
 
 	/**
-	 * Creates a MimeType object with no params.
+	 * Creates a MimeType obj with no params.
 	 * @param type all-lowercase string with no leading or trailing whitespace.
 	 */
 	public MimeType(String type) {
@@ -88,7 +88,7 @@ public class MimeType : Comparable {
 	}
 	
 	/**
-	 * Compares the content of this object with the candidate. Both must have the same type and same parameter values.
+	 * Compares the content of this obj with the candidate. Both must have the same type and same parameter values.
 	 * @param m
 	 * @return
 	 */
@@ -226,7 +226,7 @@ public class MimeType : Comparable {
 			String v2 = (String)m.params.get(k);
 			
 			if (v1 == null) {
-				// key does not exist in this object's params
+				// key does not exist in this obj's params
 				return false;
 			}
 			
@@ -240,7 +240,7 @@ public class MimeType : Comparable {
 	/**
 	 * Parses a HTTP Accept or Content-Type header value into the type and params components
 	 * @param typeStr
-	 * @return Returns a new <code>MimeType</code> object.
+	 * @return Returns a new <code>MimeType</code> obj.
 	 */
 	public static MimeType parse(String typeStr) {
 		if (typeStr == null)

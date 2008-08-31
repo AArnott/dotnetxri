@@ -6,12 +6,10 @@ import org.w3c.dom.Element;
 
 public class LocalID :SimpleXMLElement{
 
-  public LocalID(){
-	  super(Tags.TAG_LOCALID);
+  public LocalID(): base(Tags.TAG_LOCALID) {
   }
   
-  public LocalID(String localidString){
-	  super(Tags.TAG_LOCALID);
+  public LocalID(String localidString): base(Tags.TAG_LOCALID) {
 	  setValue(localidString);
   }
   
@@ -20,12 +18,11 @@ public class LocalID :SimpleXMLElement{
    * Constructor()
    ****************************************************************************
    */ /**
-   *  This method constructs the object from DOM.  It does not keep a
+   *  This method constructs the obj from DOM.  It does not keep a
    * copy of the DOM around.  Whitespace information is lost in this process.
    */
    public LocalID(Element oElem) throws URISyntaxException
-   {
-	   super(Tags.TAG_LOCALID);
+   : base(Tags.TAG_LOCALID) {
        fromXML(oElem);
 		
 		// make sure that the priority (if present) is valid (vommits exception if invalid)

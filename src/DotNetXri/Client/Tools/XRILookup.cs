@@ -45,35 +45,35 @@ import org.openxri.xml.*;
 public class XRILookup {
     
     // program results
-    final private static int SUCCESS                        = 0;
-    final private static int FAILURE                        = 1;
+    private const int SUCCESS                        = 0;
+    private const int FAILURE                        = 1;
     
     // program commands as command line args
-    final private static String CMD_HELP                    = "help";
+    private const String CMD_HELP                    = "help";
     
     // options as command line args
-    final private static String OPT_ROOT_EQUALS_URI         = "-root_equals_auth";
-    final private static String OPT_ROOT_AT_URI             = "-root_at_auth";
-    final private static String OPT_ROOT_BANG_URI           = "-root_bang_auth";
-    final private static String OPT_PROXY_URI               = "-proxy";
-    final private static String OPT_RES_MEDIA               = "-xrd-r";
-    final private static String OPT_RES_TYPE                = "-xrd-t";
-    final private static String OPT_MEDIA_TYPE              = "-xrd-m";
-    final private static String OPT_TRUST_TYPE              = "-trust";
-    final private static String OPT_FOLLOW_REFS             = "-refs";
-    final private static String OPT_SEP                     = "-sep";
-    final private static String OPT_VERBOSE                 = "-verbose";
-    final private static String OPT_CHECK_ROOTS             = "-check_roots";
-    final private static String OPT_ROOT_FILE               = "-roots";
+    private const String OPT_ROOT_EQUALS_URI         = "-root_equals_auth";
+    private const String OPT_ROOT_AT_URI             = "-root_at_auth";
+    private const String OPT_ROOT_BANG_URI           = "-root_bang_auth";
+    private const String OPT_PROXY_URI               = "-proxy";
+    private const String OPT_RES_MEDIA               = "-xrd-r";
+    private const String OPT_RES_TYPE                = "-xrd-t";
+    private const String OPT_MEDIA_TYPE              = "-xrd-m";
+    private const String OPT_TRUST_TYPE              = "-trust";
+    private const String OPT_FOLLOW_REFS             = "-refs";
+    private const String OPT_SEP                     = "-sep";
+    private const String OPT_VERBOSE                 = "-verbose";
+    private const String OPT_CHECK_ROOTS             = "-check_roots";
+    private const String OPT_ROOT_FILE               = "-roots";
     
-    final private static String ROOT_DEF_EQ_URI   = "http://equal.xri.net";
-    final private static String ROOT_DEF_AT_URI   = "http://at.xri.net";
-    final private static String ROOT_DEF_BANG_URI = "http://bang.xri.net";
-    final private static String PROXY_URI         = "http://xri.net";
-    final private static String RES_MEDIA         = "application/xrds+xml";
-    final private static String TRUST_TYPE        = "none";
-    final private static bool FOLLOW_REFS       = true;
-    final private static bool SEP_SELECT        = false;
+    private const String ROOT_DEF_EQ_URI   = "http://equal.xri.net";
+    private const String ROOT_DEF_AT_URI   = "http://at.xri.net";
+    private const String ROOT_DEF_BANG_URI = "http://bang.xri.net";
+    private const String PROXY_URI         = "http://xri.net";
+    private const String RES_MEDIA         = "application/xrds+xml";
+    private const String TRUST_TYPE        = "none";
+    private const bool FOLLOW_REFS       = true;
+    private const bool SEP_SELECT        = false;
     
     // data argument variable
     private String msTargetXRI;
@@ -712,7 +712,7 @@ public class XRILookup {
     */ /**
     * Scans list of command-line arguments, setting member variables for 
     * the data argument, and all options. 
-    * @param oResolver- resolver object into which roots are set
+    * @param oResolver- resolver obj into which roots are set
     * @param sFilename- filename containing lines of <root auth><whitespace><auth service url> 
     */
     protected void setRootsFromFile(Resolver resolver, String filename) throws FileNotFoundException, IOException

@@ -35,7 +35,7 @@ public class SEPUri : Serializable
 	private String  append;
 
 	/**
-	 * Creates an <code>EppXriURI</code> object
+	 * Creates an <code>EppXriURI</code> obj
 	 */
 	public SEPUri()
 		throws URISyntaxException
@@ -44,7 +44,7 @@ public class SEPUri : Serializable
 	}
 
 	/**
-	 * Creates an <code>EppXriURI</code> object with a URI
+	 * Creates an <code>EppXriURI</code> obj with a URI
 	 */
 	public SEPUri( String uri )
 		throws URISyntaxException
@@ -53,7 +53,7 @@ public class SEPUri : Serializable
 	}
 
 	/**
-	 * Creates an <code>EppXriURI</code> object with a URI and a priority value
+	 * Creates an <code>EppXriURI</code> obj with a URI and a priority value
 	 */
 	public SEPUri( String uri, int priority )
 		throws URISyntaxException
@@ -62,7 +62,7 @@ public class SEPUri : Serializable
 	}
 
 	/**
-	 * Creates an <code>EppXriURI</code> object with a URI, a priority value and an append value.
+	 * Creates an <code>EppXriURI</code> obj with a URI, a priority value and an append value.
 	 */
 	public SEPUri( String uri, Integer priority, String append )
 	 	throws URISyntaxException
@@ -125,7 +125,7 @@ public class SEPUri : Serializable
 	}
 
 	/**
-	 * Sets the priority value for this URI. This method accepts a null object reference to indicate
+	 * Sets the priority value for this URI. This method accepts a null obj reference to indicate
 	 * the absence of the attribute.
 	 */
 	public void setPriority( Integer priority )
@@ -150,12 +150,12 @@ public class SEPUri : Serializable
 	}
 
 	/**
-         * Converts the <code>EppXriURI</code> object into an XML element
+         * Converts the <code>EppXriURI</code> obj into an XML element
          *
-         * @param doc the XML <code>Document</code> object
-         * @param tag the tag/element name for the <code>EppXriURI</code> object
+         * @param doc the XML <code>Document</code> obj
+         * @param tag the tag/element name for the <code>EppXriURI</code> obj
          *
-         * @return an <code>Element</code> object
+         * @return an <code>Element</code> obj
          */
 	public Element toXML( Document doc, String tag )
 	{
@@ -177,14 +177,14 @@ public class SEPUri : Serializable
 	}
 
 	/**
-	 * Converts an XML element into an <code>EppXriURI</code> object.
+	 * Converts an XML element into an <code>EppXriURI</code> obj.
 	 * The caller of this method must make sure that the root node is of
 	 * the EPP XRI uriAddType or uriInfType.
 	 *
-	 * @param root root node for an <code>EppXriURI</code> object in
+	 * @param root root node for an <code>EppXriURI</code> obj in
 	 *             XML format
 	 *
-	 * @return an <code>EppXriURI</code> object, or null if the node is
+	 * @return an <code>EppXriURI</code> obj, or null if the node is
 	 *         invalid
 	 */
 	public static SEPUri fromXML( Node root )
@@ -227,7 +227,7 @@ public class SEPUri : Serializable
     	try {
     		return new SEPUri((uri == null)? null : uri.toString(), (priority == null)? null: priority, append );
     	}catch ( URISyntaxException synException){
-    		soLog.error("couldn't clone the SEPUri object: "+uri);
+    		soLog.error("couldn't clone the SEPUri obj: "+uri);
     		return null;
     	}
     }

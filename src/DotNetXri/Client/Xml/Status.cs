@@ -70,23 +70,20 @@ public class Status :SimpleXMLElement{
 	public const String CID_FAILED   = "failed";
 	
 	
-	public Status(Status s) {
-		super(s);
+	public Status(Status s) : base(s) {
 	}
 	
 	public Status() {
 		this(Tags.TAG_STATUS);
 	}
 	
-	public Status(String code) {
-		super(Tags.TAG_STATUS);
+	public Status(String code) : base(Tags.TAG_STATUS) {
 		setCode(code);
 		setCID(CID_OFF);
 		setCEID(CID_OFF);
 	}	
 	
-	public Status(String code, String text) {
-		super(Tags.TAG_STATUS, text);
+	public Status(String code, String text) : base(Tags.TAG_STATUS, text) {
 		setCode(code);
 	}
 	

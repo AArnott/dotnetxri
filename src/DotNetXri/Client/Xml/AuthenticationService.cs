@@ -30,7 +30,7 @@ public class AuthenticationService :org.openxri.xml.Service {
 	 */
 	public AuthenticationService(URI[] authenticationPages, String providerID, String delegate, bool useLoginPath) {
 		
-		super();
+		
 		
 		/*
 		 * According to the Authentication Service specification, the ProviderID of the Authentication Service 
@@ -140,7 +140,7 @@ public class AuthenticationService :org.openxri.xml.Service {
 
 	public static bool isInstance(Service service) {
 		
-		if (service instanceof ForwardingService) return(true);
+		if (service is ForwardingService) return(true);
 		
 		List serviceTypes = service.getTypes();
 		
