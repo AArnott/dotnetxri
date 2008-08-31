@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
 */
-package org.openxri.resolve;
+namespace DotNetXri.Client.Resolve {
 
 import java.net.URI;
 import javax.net.ssl.SSLSocketFactory;
@@ -126,3 +126,4 @@ public interface ResolveInterface
     public void setLookaheadMode(bool bVal);
 
 } // Interface: ResolveInterface
+}

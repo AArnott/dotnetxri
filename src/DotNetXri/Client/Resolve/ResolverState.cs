@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
 */
-package org.openxri.resolve;
+namespace DotNetXri.Client.Resolve {
 
 import java.net.URI;
 import java.util.ArrayList;
@@ -251,4 +251,5 @@ public class ResolverState
     	
     }
 
+}
 }

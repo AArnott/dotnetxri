@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.openxri.resolve;
+namespace DotNetXri.Client.Resolve {
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -2221,4 +2221,5 @@ public class Resolver :BaseFetcher {
 		this.proxyURI = proxyURI;
 	}
 
+}
 }

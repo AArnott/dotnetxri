@@ -14,8 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
 */
-package org.openxri.saml;
-
+namespace DotNetXri.Client.Saml {
 import java.text.ParseException;
 import java.util.Date;
 
@@ -251,3 +250,4 @@ public class Conditions
     } // setNotBefore()
 
 } // Class: Conditions
+}

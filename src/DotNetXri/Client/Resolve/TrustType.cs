@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.openxri.resolve;
+namespace DotNetXri.Client.Resolve {
 
 import java.io.Serializable;
 
@@ -113,4 +113,5 @@ public class TrustType : Serializable {
 	public String toString() {
 		return getType();
 	}
+}
 }

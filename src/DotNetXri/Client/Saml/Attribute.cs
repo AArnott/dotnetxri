@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
 */
-package org.openxri.saml;
+namespace DotNetXri.Client.Saml {
 
 import org.apache.xerces.dom.DocumentImpl;
 import org.openxri.util.DOMUtils;
@@ -229,3 +229,4 @@ public class Attribute
     } // dump()
 
 } // Class: Attribute
+}

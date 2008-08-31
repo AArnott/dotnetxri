@@ -1,4 +1,4 @@
-package org.openxri.resolve;
+namespace DotNetXri.Client.Resolve {
 import java.util.*;
 
 import org.openxri.XRIAbsolutePath;
@@ -713,4 +713,4 @@ public class SEPSelector {
 
 	
 	
-}
+}}

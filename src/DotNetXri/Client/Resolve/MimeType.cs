@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.openxri.resolve;
+namespace DotNetXri.Client.Resolve {
 
 import java.util.Comparator;
 import java.util.HashMap;
@@ -372,4 +372,5 @@ public class MimeType : Comparable {
 		}
 	}
 
+}
 }

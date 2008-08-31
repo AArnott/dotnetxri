@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
 */
-package org.openxri.tools.xritracert;
+namespace DotNetXri.Client.Tools {
 
 import java.net.URL;
 import java.net.URLConnection;
@@ -552,14 +552,15 @@ public class XRITraceRt {
      { 
          if (iStatus == FAILURE)
          {
-             System.err.print(sOutput);
+             Logger.Error(sOutput);
          }
          else
          {
-             System.out.print(sOutput);
+             Logger.Info(sOutput);
          }
          System.exit(iStatus);
          
      } // exit()
 
 } // Class: XRITractRt
+}

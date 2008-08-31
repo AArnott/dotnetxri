@@ -423,13 +423,13 @@ public class Displayer : Visitor
 
   public Object visit_StringValue(Parser.StringValue value)
   {
-    System.out.print(value.spelling);
+    Logger.Info(value.spelling);
     return null;
   }
 
   public Object visit_NumericValue(Parser.NumericValue value)
   {
-    System.out.print(value.spelling);
+    Logger.Info(value.spelling);
     return null;
   }
 

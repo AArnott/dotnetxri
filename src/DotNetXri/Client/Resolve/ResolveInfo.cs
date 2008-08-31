@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
 */
-package org.openxri.resolve;
+namespace DotNetXri.Client.Resolve {
 
 import java.util.Iterator;
 import java.util.Vector;
@@ -177,3 +177,4 @@ public class ResolveInfo
     } // getChainIterator()
 
 } // Class: ResolveInfo
+}

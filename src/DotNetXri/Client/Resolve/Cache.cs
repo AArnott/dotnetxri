@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
 */
-package org.openxri.resolve;
+namespace DotNetXri.Client.Resolve {
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -723,3 +723,4 @@ class CacheResult
     } // Constructor()
 
 } // Class: CacheResult
+}

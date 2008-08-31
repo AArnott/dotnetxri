@@ -751,13 +751,13 @@ public class XmlDisplayer : Visitor
 
   public Object visit_StringValue(Parser.StringValue value)
   {
-    System.out.print(value.spelling);
+    Logger.Info(value.spelling);
     return Boolean.TRUE;
   }
 
   public Object visit_NumericValue(Parser.NumericValue value)
   {
-    System.out.print(value.spelling);
+    Logger.Info(value.spelling);
     return Boolean.TRUE;
   }
 
