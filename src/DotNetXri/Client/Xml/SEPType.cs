@@ -2,7 +2,7 @@ package org.openxri.xml;
 
 import org.w3c.dom.Node;
 
-public class SEPType extends SEPElement
+public class SEPType :SEPElement
 {
 	/**
 	 * Creates a default <code>EppXriServiceEndpointType</code> object
@@ -61,7 +61,7 @@ public class SEPType extends SEPElement
 		return toString(Tags.TAG_TYPE);
 	}
 
-	public boolean match(String match){
+	public bool match(String match){
 		if(getValue() != null && (getValue().equals(match)))
 				return true;
 		return false;

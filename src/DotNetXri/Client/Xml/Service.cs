@@ -48,7 +48,7 @@ import org.xml.sax.InputSource;
  * @author =wil
  * @author =peacekeeper
  */
-public class Service implements Cloneable, Serializable
+public class Service : Cloneable, Serializable
 {
 	private static org.apache.commons.logging.Log soLog =
 		org.apache.commons.logging.LogFactory.getLog(Service.class.getName());
@@ -328,7 +328,7 @@ public class Service implements Cloneable, Serializable
 	 * types associated with a service.
 	 * @deprecated
 	 */
-	public boolean matchType(String sVal)
+	public bool matchType(String sVal)
 	{
 		for (int i = 0; i < getNumTypes(); i++) {
 			SEPType type = (SEPType)getTypeAt(i);
@@ -547,11 +547,11 @@ public class Service implements Cloneable, Serializable
 	 * @return -- Boolean - -True if the String could be Successfully Parsed and Stored, Else it will return false
 	 *
 	 */
-	public boolean setOtherTagValues(String sTag, String sTagValue)
+	public bool setOtherTagValues(String sTag, String sTagValue)
 	{
 		String xmlStr =
 			"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + sTagValue;
-		boolean returnValue = false;
+		bool returnValue = false;
 
 		try
 		{
@@ -648,7 +648,7 @@ public class Service implements Cloneable, Serializable
 	 * @param doc - The document to use for generating DOM
 	 * @param wantFiltered - If true, the URIs will be sorted according to priority
 	 */
-	public Node toDOM(Document doc, boolean wantFiltered)
+	public Node toDOM(Document doc, bool wantFiltered)
 	{
 		Element elem =
 			//name space tag is not required any more
@@ -1012,7 +1012,7 @@ public class Service implements Cloneable, Serializable
 	
 
 
-	public boolean equals(Object o) {
+	public bool equals(Object o) {
 
 		if (! (o instanceof Service)) return(false);
 		

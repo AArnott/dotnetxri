@@ -4,7 +4,7 @@ import java.io.UnsupportedEncodingException;
 
 import junit.framework.TestCase;
 
-public class IRIUtilsTest extends TestCase
+public class IRIUtilsTest :TestCase
 {
 
 	/*

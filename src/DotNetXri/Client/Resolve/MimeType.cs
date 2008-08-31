@@ -19,26 +19,26 @@ import org.openxri.resolve.exception.IllegalTrustTypeException;
  * @author wtan
  *
  */
-public class MimeType implements Comparable {
+public class MimeType : Comparable {
 
-	public static final String PARAM_SEP          = "sep";
-	public static final String PARAM_REFS         = "refs";
-	public static final String PARAM_HTTPS        = "https";
-	public static final String PARAM_SAML         = "saml";
-	public static final String PARAM_CID          = "cid";
-	public static final String PARAM_URIC         = "uric";
-	public static final String PARAM_NO_DEFAULT_T = "nodefault_t";
-	public static final String PARAM_NO_DEFAULT_P = "nodefault_p";
-	public static final String PARAM_NO_DEFAULT_M = "nodefault_m";
+	public const String PARAM_SEP          = "sep";
+	public const String PARAM_REFS         = "refs";
+	public const String PARAM_HTTPS        = "https";
+	public const String PARAM_SAML         = "saml";
+	public const String PARAM_CID          = "cid";
+	public const String PARAM_URIC         = "uric";
+	public const String PARAM_NO_DEFAULT_T = "nodefault_t";
+	public const String PARAM_NO_DEFAULT_P = "nodefault_p";
+	public const String PARAM_NO_DEFAULT_M = "nodefault_m";
 
 	/**
 	 * @deprecated
 	 */
-	public static final String PARAM_TRUST        = "trust";
+	public const String PARAM_TRUST        = "trust";
 
-	public static final String XRDS_XML = "application/xrds+xml";
-	public static final String XRD_XML  = "application/xrd+xml";
-	public static final String URI_LIST = "text/uri-list";
+	public const String XRDS_XML = "application/xrds+xml";
+	public const String XRD_XML  = "application/xrd+xml";
+	public const String URI_LIST = "text/uri-list";
 	
 	
 	// mime type
@@ -92,7 +92,7 @@ public class MimeType implements Comparable {
 	 * @param m
 	 * @return
 	 */
-	public boolean equals(MimeType m) {
+	public bool equals(MimeType m) {
 		if (!type.equals(m.type))
 			return false;
 
@@ -165,7 +165,7 @@ public class MimeType implements Comparable {
 	}
 
 
-	public boolean equals(Object o)
+	public bool equals(Object o)
 	{
 		return this.equals((MimeType)o);
 	}
@@ -198,7 +198,7 @@ public class MimeType implements Comparable {
 	 * Tests to see if this <code>MimeType</code> has the same type as the simple type
 	 * <code>mtype</code>. If this <code>MimeType</code> has sub-parameters, they are ignored.
 	 */
-	public boolean isType(String mtype) {
+	public bool isType(String mtype) {
 		return type.equals(mtype.toLowerCase());
 	}
 	
@@ -209,7 +209,7 @@ public class MimeType implements Comparable {
 	 * @param m
 	 * @return
 	 */
-	public boolean isSuperSetOf(MimeType m) {
+	public bool isSuperSetOf(MimeType m) {
 		if (!type.equals(m.type))
 			return false;
 
@@ -264,7 +264,7 @@ public class MimeType implements Comparable {
 		return new MimeType(typeVal, params, typeStr);
 	}
 
-	public boolean isValidXriResMediaType()
+	public bool isValidXriResMediaType()
 	{
 		return isXriResMediaType(type);
 	}
@@ -301,7 +301,7 @@ public class MimeType implements Comparable {
 	}
 	
 	
-	private static boolean isXriResMediaType(String v)
+	private static bool isXriResMediaType(String v)
 	{
 		return (v.equals(XRDS_XML)
 				|| v.equals(XRD_XML)

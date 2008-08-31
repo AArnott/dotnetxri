@@ -1,21 +1,5 @@
-package org.openxri.xri3.impl;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import org.openxri.xri3.XRIPath;
-import org.openxri.xri3.XRISegment;
-import org.openxri.xri3.impl.parser.ParserException;
-import org.openxri.xri3.impl.parser.Rule;
-import org.openxri.xri3.impl.parser.Parser.xri_path;
-import org.openxri.xri3.impl.parser.Parser.xri_path_abempty;
-import org.openxri.xri3.impl.parser.Parser.xri_path_abs;
-import org.openxri.xri3.impl.parser.Parser.xri_path_noscheme;
-import org.openxri.xri3.impl.parser.Parser.xri_segment;
-import org.openxri.xri3.impl.parser.Parser.xri_segment_nc;
-import org.openxri.xri3.impl.parser.Parser.xri_segment_nz;
-
-public class XRI3Path extends XRI3SyntaxComponent implements XRIPath {
+namespace DotNetXri.Syntax.Xri3.Impl {
+public class XRI3Path :XRI3SyntaxComponent, XRIPath {
 
 	private static final long serialVersionUID = 482492757184837341L;
 
@@ -144,7 +128,7 @@ public class XRI3Path extends XRI3SyntaxComponent implements XRIPath {
 		return((XRISegment) this.segments.get(this.segments.size() - 1));
 	}
 
-	public boolean startsWith(XRISegment[] segments) {
+	public bool startsWith(XRISegment[] segments) {
 
 		if (this.segments.size() < segments.length) return(false);
 
@@ -155,4 +139,5 @@ public class XRI3Path extends XRI3SyntaxComponent implements XRIPath {
 
 		return(true);
 	}
+}
 }

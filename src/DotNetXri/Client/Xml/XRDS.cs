@@ -38,7 +38,7 @@ import org.w3c.dom.Node;
 * resolution.
 * @author =chetan
 */
-public class XRDS implements Serializable
+public class XRDS : Serializable
 {
     private Vector moXRDs = new Vector();
     
@@ -64,7 +64,7 @@ public class XRDS implements Serializable
     * @param bKeepXRIDDOMs - Whether or not the XRDS should keep
     * a copy of their DOM after construction.
     */
-    public XRDS(Element oElem, boolean bKeepXRIDDOMs)
+    public XRDS(Element oElem, bool bKeepXRIDDOMs)
     	throws URISyntaxException, ParseException
     {
         fromDOM(oElem, bKeepXRIDDOMs);
@@ -179,7 +179,7 @@ public class XRDS implements Serializable
     	 return null;
      } // getDescriptorAt()
 
-     public boolean isXRDSAt(int n) {
+     public bool isXRDSAt(int n) {
     	 Object o = moXRDs.get(n);
     	 
     	 if ( o == null) return false;
@@ -189,7 +189,7 @@ public class XRDS implements Serializable
     	 return false;
      }
      
-     public boolean isXRDAt(int n) {
+     public bool isXRDAt(int n) {
     	 Object o = moXRDs.get(n);
     	 
     	 if ( o == null) return false;
@@ -221,7 +221,7 @@ public class XRDS implements Serializable
     * @param bKeepXRIDDOMs - Whether or not the XRDS should keep
     * a copy of their DOM after construction.
     */
-    public void fromDOM(Element oElem, boolean bKeepXRIDDOMs)
+    public void fromDOM(Element oElem, bool bKeepXRIDDOMs)
     	throws ParseException, URISyntaxException
     {
         reset();

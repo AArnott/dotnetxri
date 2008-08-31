@@ -1,20 +1,5 @@
-package org.openxri.xri3.impl;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import org.openxri.xri3.XRISegment;
-import org.openxri.xri3.XRISubSegment;
-import org.openxri.xri3.impl.parser.ParserException;
-import org.openxri.xri3.impl.parser.Rule;
-import org.openxri.xri3.impl.parser.Parser.rel_subseg;
-import org.openxri.xri3.impl.parser.Parser.rel_subseg_nc;
-import org.openxri.xri3.impl.parser.Parser.subseg;
-import org.openxri.xri3.impl.parser.Parser.xri_segment;
-import org.openxri.xri3.impl.parser.Parser.xri_segment_nc;
-import org.openxri.xri3.impl.parser.Parser.xri_segment_nz;
-
-public class XRI3Segment extends XRI3SyntaxComponent implements XRISegment {
+namespace DotNetXri.Syntax.Xri3.Impl {
+public class XRI3Segment :XRI3SyntaxComponent, XRISegment {
 
 	private static final long serialVersionUID = 8461242564541252885L;
 
@@ -176,7 +161,7 @@ public class XRI3Segment extends XRI3SyntaxComponent implements XRISegment {
 		return((XRISubSegment) this.subSegments.get(this.subSegments.size() - 1));
 	}
 
-	public boolean startsWith(XRISubSegment[] subSegments) {
+	public bool startsWith(XRISubSegment[] subSegments) {
 
 		if (this.subSegments.size() < subSegments.length) return(false);
 
@@ -187,4 +172,5 @@ public class XRI3Segment extends XRI3SyntaxComponent implements XRISegment {
 
 		return(true);
 	}
+}
 }

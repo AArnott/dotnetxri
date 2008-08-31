@@ -4,7 +4,7 @@ package org.openxri.xri3.impl.parser;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class Displayer implements Visitor
+public class Displayer : Visitor
 {
   public void visit(Rule rule)
   {

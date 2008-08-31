@@ -16,7 +16,7 @@ public class PartialResolutionException :XRIResolutionException {
 	private XRDS xrds = null;
 	
 	/**
-	 * Constructs an object of this class. 
+	 * Constructs an obj of this class. 
 	 * @param msg Error message
 	 * @param xrds The partial resolution results
 	 */

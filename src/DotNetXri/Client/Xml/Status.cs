@@ -22,52 +22,52 @@ package org.openxri.xml;
  * @author =wil
  * @see org.openxri.xml.ServerStatus
  */
-public class Status extends SimpleXMLElement{
+public class Status :SimpleXMLElement{
 
-	public static final String SUCCESS					= "100";
-	public static final String PERM_FAIL				= "200";
-	public static final String NOT_IMPLEMENTED			= "201"; 
-	public static final String LIMIT_EXCEEDED			= "202"; 
-	public static final String INVALID_INPUT			= "210"; 
-	public static final String INVALID_QXRI				= "211"; 
-	public static final String INVALID_OUTPUT_FORMAT	= "212";
-	public static final String INVALID_SEP_TYPE			= "213";
-	public static final String INVALID_SEP_MEDIA_TYPE	= "214"; 
-	public static final String UNKNOWN_ROOT				= "215"; 
-	public static final String AUTH_RES_ERROR			= "220"; 
-	public static final String AUTH_RES_NOT_FOUND		= "221"; 
-	public static final String QUERY_NOT_FOUND			= "222";
-	public static final String UNEXPECTED_XRD			= "223";
-	public static final String INACTIVE					= "224";
-	public static final String TRUSTED_RES_ERROR		= "230"; 
-	public static final String HTTPS_RES_NOT_FOUND		= "231"; 
-	public static final String SAML_RES_NOT_FOUND		= "232"; 
-	public static final String HTTPS_SAML_RES_NOT_FOUND	= "233"; 
-	public static final String UNVERIFIED_SIGNATURE		= "234";
-	public static final String SEP_SELECTION_ERROR		= "240"; 
-	public static final String SEP_NOT_FOUND			= "241";
-	public static final String REDIRECT_ERROR			= "250";
-	public static final String INVALID_REDIRECT			= "251";
-	public static final String INVALID_HTTPS_REDIRECT	= "252";
-	public static final String REDIRECT_VERIFY_FAILED	= "253";
-	public static final String REF_ERROR				= "260";
-	public static final String INVALID_REF				= "261";
-	public static final String REF_NOT_FOLLOWED			= "262"; // used to be 101
-	public static final String TEMPORARY_FAIL			= "300"; 
-	public static final String TIMEOUT_ERROR			= "301";
-	public static final String NETWORK_ERROR			= "320";
-	public static final String UNEXPECTED_RESPONSE		= "321"; 
-	public static final String INVALID_XRDS				= "322";
+	public const String SUCCESS					= "100";
+	public const String PERM_FAIL				= "200";
+	public const String NOT_IMPLEMENTED			= "201"; 
+	public const String LIMIT_EXCEEDED			= "202"; 
+	public const String INVALID_INPUT			= "210"; 
+	public const String INVALID_QXRI				= "211"; 
+	public const String INVALID_OUTPUT_FORMAT	= "212";
+	public const String INVALID_SEP_TYPE			= "213";
+	public const String INVALID_SEP_MEDIA_TYPE	= "214"; 
+	public const String UNKNOWN_ROOT				= "215"; 
+	public const String AUTH_RES_ERROR			= "220"; 
+	public const String AUTH_RES_NOT_FOUND		= "221"; 
+	public const String QUERY_NOT_FOUND			= "222";
+	public const String UNEXPECTED_XRD			= "223";
+	public const String INACTIVE					= "224";
+	public const String TRUSTED_RES_ERROR		= "230"; 
+	public const String HTTPS_RES_NOT_FOUND		= "231"; 
+	public const String SAML_RES_NOT_FOUND		= "232"; 
+	public const String HTTPS_SAML_RES_NOT_FOUND	= "233"; 
+	public const String UNVERIFIED_SIGNATURE		= "234";
+	public const String SEP_SELECTION_ERROR		= "240"; 
+	public const String SEP_NOT_FOUND			= "241";
+	public const String REDIRECT_ERROR			= "250";
+	public const String INVALID_REDIRECT			= "251";
+	public const String INVALID_HTTPS_REDIRECT	= "252";
+	public const String REDIRECT_VERIFY_FAILED	= "253";
+	public const String REF_ERROR				= "260";
+	public const String INVALID_REF				= "261";
+	public const String REF_NOT_FOLLOWED			= "262"; // used to be 101
+	public const String TEMPORARY_FAIL			= "300"; 
+	public const String TIMEOUT_ERROR			= "301";
+	public const String NETWORK_ERROR			= "320";
+	public const String UNEXPECTED_RESPONSE		= "321"; 
+	public const String INVALID_XRDS				= "322";
 
 	// aliases
-	public static final String INVALID_RESPONSE = INVALID_XRDS;
-	public static final String INVALID_RES_MEDIA_TYPE = INVALID_OUTPUT_FORMAT;
+	public const String INVALID_RESPONSE = INVALID_XRDS;
+	public const String INVALID_RES_MEDIA_TYPE = INVALID_OUTPUT_FORMAT;
 
 	
-	public static final String CID_ABSENT   = "absent";
-	public static final String CID_OFF      = "off";
-	public static final String CID_VERIFIED = "verified";
-	public static final String CID_FAILED   = "failed";
+	public const String CID_ABSENT   = "absent";
+	public const String CID_OFF      = "off";
+	public const String CID_VERIFIED = "verified";
+	public const String CID_FAILED   = "failed";
 	
 	
 	public Status(Status s) {

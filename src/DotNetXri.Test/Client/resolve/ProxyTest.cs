@@ -43,7 +43,7 @@ import org.openxri.xml.XRDS;
 * @author =chetan
 */
 public class ProxyTest
-    extends TestCase
+    :TestCase
 {
     /*
     ****************************************************************************
@@ -80,7 +80,7 @@ public class ProxyTest
     *
     */
     class TestResolver
-        extends Resolver
+        :Resolver
     {
         /*
         ************************************************************************
@@ -159,7 +159,7 @@ public class ProxyTest
         }
         catch (Exception e)
         {
-        	if (e instanceof PartialResolutionException) {
+        	if (e is PartialResolutionException) {
         		String stat1 = null, stat2 = null, stat3 = null;
             	PartialResolutionException pe = (PartialResolutionException)e;
             	System.err.println(pe.getPartialXRDS().toString());
@@ -209,7 +209,7 @@ public class ProxyTest
         }
         catch (Exception e)
         {
-        	if (e instanceof PartialResolutionException) {
+        	if (e is PartialResolutionException) {
         		PartialResolutionException pe = (PartialResolutionException)e;
         		String stat = null;
         		try {

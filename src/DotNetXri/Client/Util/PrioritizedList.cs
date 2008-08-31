@@ -9,10 +9,10 @@ import java.util.TreeMap;
 import org.openxri.xml.Service;
 
 
-public class PrioritizedList implements Serializable {
+public class PrioritizedList : Serializable {
 
 	public static final int POLICY_RANDOMIZE=1;
-	public static final String PRIORITY_NULL = "null";
+	public const String PRIORITY_NULL = "null";
 
 	//contains priority values int the same numerical order
 	private TreeMap sortedList = new TreeMap(new Item()); 
@@ -85,10 +85,10 @@ public class PrioritizedList implements Serializable {
 	}
 
 	/* internal data structure & comparator for sorting */
-	private class Item implements Comparator, Serializable {
+	private class Item : Comparator, Serializable {
 
 		String priority = PrioritizedList.PRIORITY_NULL; // lowest priority (infinite value)
-		boolean policyExecuted = false;
+		bool policyExecuted = false;
 		ArrayList objects = new ArrayList();
 
 		public int compare(Object a, Object b){
@@ -116,7 +116,7 @@ public class PrioritizedList implements Serializable {
 		}
 	}
 
-	public boolean equals(Object o) {
+	public bool equals(Object o) {
 
 		PrioritizedList other = (PrioritizedList) o;
 

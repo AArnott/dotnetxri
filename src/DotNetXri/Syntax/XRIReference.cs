@@ -13,38 +13,40 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
 */
-package org.openxri;
+namespace DotNetXri.Syntax {
 
+	/*
+	********************************************************************************
+	* Interface: XRIReference
+	********************************************************************************
+	*/
+	/**
+ * This interface is implemented by all valid XRIReference classes.
+ *
+ * @author =chetan
+ */
 
-/*
-********************************************************************************
-* Interface: XRIReference
-********************************************************************************
-*/ /**
-* This interface is implemented by all valid XRIReference classes.
-*
-* @author =chetan
-*/
+	// TBD: implement this class
+	public interface XRIReference {
+		/*
+		****************************************************************************
+		* getAuthorityPath()
+		****************************************************************************
+		*/
+		/**
+	 * Returns the AuthorityPath component of this XRI Reference
+	 */
+		AuthorityPath getAuthorityPath();
 
-// TBD: implement this class
-public interface XRIReference
-{
-    /*
-    ****************************************************************************
-    * getAuthorityPath()
-    ****************************************************************************
-    */ /**
-    * Returns the AuthorityPath component of this XRI Reference
-    */
-    AuthorityPath getAuthorityPath();
+		/*
+		****************************************************************************
+		* getXRIPath()
+		****************************************************************************
+		*/
+		/**
+	 *Returns the XRI Path component of this XRI Reference
+	 */
+		XRIPath getXRIPath();
 
-    /*
-    ****************************************************************************
-    * getXRIPath()
-    ****************************************************************************
-    */ /**
-    *Returns the XRI Path component of this XRI Reference
-    */
-    XRIPath getXRIPath();
-
-} // Interface: XRIReference
+	} // Interface: XRIReference
+}

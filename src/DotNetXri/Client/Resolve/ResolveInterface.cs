@@ -45,7 +45,7 @@ public interface ResolveInterface
     * Throws exceptions upon errors while talking to servers.
     */
     public XRD resolveAuthToXRD(
-        String qxri, String trustType, boolean followRefs)
+        String qxri, String trustType, bool followRefs)
         throws XRIParseException, XRIResolutionException;
 
 
@@ -114,7 +114,7 @@ public interface ResolveInterface
     */ /**
     * Returns true if lookahead mode is enabled
     */
-    public boolean isLookaheadMode();
+    public bool isLookaheadMode();
 
     /*
     ****************************************************************************
@@ -123,6 +123,6 @@ public interface ResolveInterface
     */ /**
     * Sets lookahead mode
     */
-    public void setLookaheadMode(boolean bVal);
+    public void setLookaheadMode(bool bVal);
 
 } // Interface: ResolveInterface

@@ -1,17 +1,6 @@
-package org.openxri.xri3.impl;
+namespace DotNetXri.Syntax.Xri3.Impl {
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.openxri.xri3.XRIAuthority;
-import org.openxri.xri3.XRISubSegment;
-import org.openxri.xri3.impl.parser.ParserException;
-import org.openxri.xri3.impl.parser.Rule;
-import org.openxri.xri3.impl.parser.Parser.global_subseg;
-import org.openxri.xri3.impl.parser.Parser.subseg;
-import org.openxri.xri3.impl.parser.Parser.xri_authority;
-
-public class XRI3Authority extends XRI3SyntaxComponent implements XRIAuthority {
+public class XRI3Authority :XRI3SyntaxComponent, XRIAuthority {
 
 	private static final long serialVersionUID = -3281614016180358848L;
 
@@ -51,22 +40,22 @@ public class XRI3Authority extends XRI3SyntaxComponent implements XRIAuthority {
 
 		this.reset();
 
-		Object object = this.rule;	// xri_authority
+		Object obj = this.rule;	// xri_authority
 
 		// read global_subseg from xri_authority
 
-		List list_xri_authority = ((xri_authority) object).rules;
+		List list_xri_authority = ((xri_authority) obj).rules;
 		if (list_xri_authority.size() < 1) return;
-		object = list_xri_authority.get(0);	// global_subseg
-		this.subSegments.add(new XRI3SubSegment((global_subseg) object));
+		obj = list_xri_authority.get(0);	// global_subseg
+		this.subSegments.add(new XRI3SubSegment((global_subseg) obj));
 
 		// read subsegs from xri_authority
 
 		if (list_xri_authority.size() < 2) return;
 		for (int i=1; i<list_xri_authority.size(); i++) {
 
-			object = list_xri_authority.get(i);	// subseg
-			this.subSegments.add(new XRI3SubSegment((subseg) object));
+			obj = list_xri_authority.get(i);	// subseg
+			this.subSegments.add(new XRI3SubSegment((subseg) obj));
 		}
 	}
 
@@ -104,7 +93,7 @@ public class XRI3Authority extends XRI3SyntaxComponent implements XRIAuthority {
 		return((XRISubSegment) this.subSegments.get(this.subSegments.size() - 1));
 	}
 
-	public boolean startsWith(XRISubSegment[] subSegments) {
+	public bool startsWith(XRISubSegment[] subSegments) {
 
 		if (this.subSegments.size() < subSegments.length) return(false);
 
@@ -115,4 +104,5 @@ public class XRI3Authority extends XRI3SyntaxComponent implements XRIAuthority {
 
 		return(true);
 	}
+}
 }

@@ -36,7 +36,7 @@ public class ResolveChain
     private String msXRI = null;
 
     // were all segments resolved?
-    private boolean mbResolvedAll = false;
+    private bool mbResolvedAll = false;
 
     // ordered vector of descriptors used/obtained during resolve
     private XRDS moXRIDescriptors = new XRDS();
@@ -77,7 +77,7 @@ public class ResolveChain
     */ /**
     * Was the XRI resolved to its completion?
     */
-    public boolean resolvedAll()
+    public bool resolvedAll()
     {
         return mbResolvedAll;
 

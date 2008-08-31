@@ -1,9 +1,5 @@
-package org.openxri.xri3.impl;
-
-import org.openxri.xri3.XRISyntaxComponent;
-import org.openxri.xri3.impl.parser.Rule;
-
-public abstract class XRI3SyntaxComponent implements XRISyntaxComponent {
+namespace DotNetXri.Syntax.Xri3.Impl {
+public abstract class XRI3SyntaxComponent : XRISyntaxComponent {
 
 	public abstract Rule getParserObject();
 
@@ -34,7 +30,7 @@ public abstract class XRI3SyntaxComponent implements XRISyntaxComponent {
 		return(this_spelling.compareTo(obj_spelling));
 	}
 
-	public boolean equals(Object obj) {
+	public bool equals(Object obj) {
 
 		if (obj == this) return(true);
 		if (obj == null) return(false);
@@ -60,4 +56,5 @@ public abstract class XRI3SyntaxComponent implements XRISyntaxComponent {
 
 		return(this.getParserObject().spelling);
 	}
+}
 }

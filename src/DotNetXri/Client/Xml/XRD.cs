@@ -59,10 +59,10 @@ import org.xml.sax.SAXException;
  * @author =chetan
  * @author =wil
  */
-public class XRD implements Cloneable, Serializable
+public class XRD : Cloneable, Serializable
 {
 	
-	public static final String CURRENT_VERSION = "2.0";
+	public const String CURRENT_VERSION = "2.0";
 	
 	private static org.apache.commons.logging.Log soLog =
 		org.apache.commons.logging.LogFactory.getLog(
@@ -226,7 +226,7 @@ public class XRD implements Cloneable, Serializable
 	 * @param oElem - The DOM to create the object from
 	 * @param bKeepDOM - If true, will keep a copy of the DOM with the object
 	 */
-	public XRD(Element oElem, boolean bKeepDOM) throws URISyntaxException, ParseException
+	public XRD(Element oElem, bool bKeepDOM) throws URISyntaxException, ParseException
 	{
 		if (bKeepDOM) {
 			setDOM(oElem);
@@ -240,7 +240,7 @@ public class XRD implements Cloneable, Serializable
 	/**
 	 * Constructs XRD from a String
 	 */
-	public static XRD parseXRD (String xmlStr, boolean bKeepDOM)
+	public static XRD parseXRD (String xmlStr, bool bKeepDOM)
 	throws URISyntaxException, ParseException
 	{
 		InputStream oIn = new ByteArrayInputStream(xmlStr.getBytes());
@@ -401,7 +401,7 @@ public class XRD implements Cloneable, Serializable
 	 * signature.
 	 * @param bOmitXMLDeclaration - whether or not to omit the XML preamble
 	 */
-	public String serializeDOM(boolean bIndent, boolean bOmitXMLDeclaration)
+	public String serializeDOM(bool bIndent, bool bOmitXMLDeclaration)
 	{
 		getDOM();
 		return DOMUtils.toString(moElem, bIndent, bOmitXMLDeclaration);
@@ -483,7 +483,7 @@ public class XRD implements Cloneable, Serializable
 	 * @param doc - The document to use for generating DOM
 	 * @param wantFiltered - Get sorted+filtered Refs and Services
 	 */
-	public Element toDOM(Document doc, boolean wantFiltered)
+	public Element toDOM(Document doc, bool wantFiltered)
 	{
 		if (doc == null)
 			return null;
@@ -651,11 +651,11 @@ public class XRD implements Cloneable, Serializable
 	 * @return -- Boolean - -True if the String could be Successfully Parsed and Stored, Else it will return false
 	 *
 	 */
-	public boolean setOtherTagValues(String sTag, String sTagValue)
+	public bool setOtherTagValues(String sTag, String sTagValue)
 	{
 		String xmlStr =
 			"<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + sTagValue;
-		boolean returnValue = false;
+		bool returnValue = false;
 		
 		try {
 			InputStream oIn = new ByteArrayInputStream(xmlStr.getBytes());
@@ -1180,7 +1180,7 @@ public class XRD implements Cloneable, Serializable
 		}
 		
 		// check that the transforms are ok
-		boolean bEnvelopedFound = false;
+		bool bEnvelopedFound = false;
 		Transforms oTransforms = oRef.getTransforms();
 		for (int i = 0; i < oTransforms.getLength(); i++)
 		{
@@ -1220,7 +1220,7 @@ public class XRD implements Cloneable, Serializable
 	/**
 	 * Checks if this XRD is valid based on the optional Expires element
 	 */
-	public boolean isValid()
+	public bool isValid()
 	{
 		// check to make sure the descriptor is not expired
 		if ((expires !=null && expires.getDate() != null) && (expires.getDate().before(new Date())))

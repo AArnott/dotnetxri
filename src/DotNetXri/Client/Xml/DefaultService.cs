@@ -9,7 +9,7 @@ import java.util.Vector;
  * This is a service that matches a resolution request without service type, media type and path.
  * @author =peacekeeper
  */
-public class DefaultService extends Service {
+public class DefaultService :Service {
 
 	/**
 	 * Constructs a new default service endpoint for use in an authority. Nothing will be appended to them.
@@ -65,11 +65,11 @@ public class DefaultService extends Service {
 		this(new URI[] { page }, null);
 	}
 
-	public static boolean isInstance(Service service) {
+	public static bool isInstance(Service service) {
 
 		if (service instanceof DefaultService) return(true);
 
-		boolean mediaTypeNull = false, serviceTypeNull = false, pathNull = false;
+		bool mediaTypeNull = false, serviceTypeNull = false, pathNull = false;
 
 		List mediaTypes = service.getMediaTypes();
 		List serviceTypes = service.getTypes();

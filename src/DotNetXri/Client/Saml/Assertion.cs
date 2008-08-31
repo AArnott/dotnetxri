@@ -283,7 +283,7 @@ public class Assertion
     * Returns true of the assertion is valid.  Checks validity period in
     * conditions and required fields and attributes
     */
-    public boolean isValid()
+    public bool isValid()
     {
         if (
             (msIssueInstant.equals("")) || (msXmlID.equals("")) ||

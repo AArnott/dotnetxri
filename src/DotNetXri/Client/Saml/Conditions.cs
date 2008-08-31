@@ -157,7 +157,7 @@ public class Conditions
     * Returns true if the current time is within the notBefore and NotOnOrAfter
     * attributes.
     */
-    public boolean isValid()
+    public bool isValid()
     {
         Date oNow = new Date();
         if ((moNotBefore != null) && (oNow.before(moNotBefore)))

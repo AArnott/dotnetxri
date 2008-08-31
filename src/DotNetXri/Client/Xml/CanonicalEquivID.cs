@@ -4,7 +4,7 @@ import java.net.URISyntaxException;
 
 import org.w3c.dom.Element;
 
-public class CanonicalEquivID extends SimpleXMLElement {
+public class CanonicalEquivID :SimpleXMLElement {
 
 	public CanonicalEquivID(CanonicalEquivID ceid) {
 		super(ceid);

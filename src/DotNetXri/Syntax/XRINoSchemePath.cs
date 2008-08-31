@@ -13,8 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
 */
-package org.openxri;
-
+namespace DotNetXri.Syntax {
 
 
 /*
@@ -23,13 +22,12 @@ package org.openxri;
 ********************************************************************************
 */ /**
 * This class provides a strong typing for a XRINoSchemePath.  Any
-* object of this class that appears outside of the package is a valid
+* obj of this class that appears outside of the package is a valid
 * XRINoSchemePath.
 *
 * @author =chetan
 */
-public class XRINoSchemePath
-    extends XRIPath
+public class XRINoSchemePath : XRIPath
 {
     /*
     ****************************************************************************
@@ -38,9 +36,8 @@ public class XRINoSchemePath
     */ /**
     * Constructs RelativePath from a String
     */
-    public XRINoSchemePath(String sXRI)
+    public XRINoSchemePath(String sXRI) : base(sXRI)
     {
-        super(sXRI);
         mbAllowColon = false;
         parse();
 
@@ -64,11 +61,11 @@ public class XRINoSchemePath
     * doScan()
     ****************************************************************************
     */ /**
-    * Parses the input stream into the object
+    * Parses the input stream into the obj
     * @param oStream The input stream to scan from
-    * @return  boolean True if part of the Stream was consumed into the object
+    * @return  bool True if part of the Stream was consumed into the obj
     */
-    boolean doScan(ParseStream oStream)
+    bool doScan(ParseStream oStream)
     {
         // NOTE: A RelativePath can be empty
         if (oStream.empty())
@@ -84,3 +81,4 @@ public class XRINoSchemePath
     } // doScan()
 
 } // Class: XRINoSchemePath
+}

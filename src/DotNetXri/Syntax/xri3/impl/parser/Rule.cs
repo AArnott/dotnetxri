@@ -24,7 +24,7 @@ public abstract class Rule
     return spelling;
   }
 
-  public boolean equals(Object object)
+  public bool equals(Object object)
   {
     return object instanceof Rule && spelling.equals(((Rule)object).spelling);
   }

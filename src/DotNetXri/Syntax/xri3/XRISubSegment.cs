@@ -1,19 +1,19 @@
-package org.openxri.xri3;
+namespace DotNetXri.Syntax.Xri3 {
+	public interface XRISubSegment : XRISyntaxComponent {
 
-public interface XRISubSegment extends XRISyntaxComponent {
+		public bool hasGCS();
+		public bool hasLCS();
+		public bool hasLiteral();
+		public bool hasXRef();
 
-	public boolean hasGCS();
-	public boolean hasLCS();
-	public boolean hasLiteral();
-	public boolean hasXRef();
+		public char getGCS();
+		public char getLCS();
+		public XRILiteral getLiteral();
+		public XRIXRef getXRef();
 
-	public Character getGCS();
-	public Character getLCS();
-	public XRILiteral getLiteral();
-	public XRIXRef getXRef();
-
-	public boolean isGlobal();
-	public boolean isLocal();
-	public boolean isPersistent();
-	public boolean isReassignable();
+		public bool isGlobal();
+		public bool isLocal();
+		public bool isPersistent();
+		public bool isReassignable();
+	}
 }

@@ -1,30 +1,6 @@
-package org.openxri.xri3.impl;
+namespace DotNetXri.Syntax.Xri3.Impl {
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import org.openxri.xri3.XRI;
-import org.openxri.xri3.XRIAuthority;
-import org.openxri.xri3.XRIFragment;
-import org.openxri.xri3.XRIPath;
-import org.openxri.xri3.XRIQuery;
-import org.openxri.xri3.XRIReference;
-import org.openxri.xri3.XRISyntaxComponent;
-import org.openxri.xri3.impl.parser.ParserException;
-import org.openxri.xri3.impl.parser.Rule;
-import org.openxri.xri3.impl.parser.Parser.StringValue;
-import org.openxri.xri3.impl.parser.Parser.ifragment;
-import org.openxri.xri3.impl.parser.Parser.iquery;
-import org.openxri.xri3.impl.parser.Parser.xri;
-import org.openxri.xri3.impl.parser.Parser.xri_authority;
-import org.openxri.xri3.impl.parser.Parser.xri_hier_part;
-import org.openxri.xri3.impl.parser.Parser.xri_noscheme;
-import org.openxri.xri3.impl.parser.Parser.xri_path_abempty;
-import org.openxri.xri3.impl.parser.Parser.xri_scheme;
-
-public class XRI3 extends XRI3SyntaxComponent implements XRI {
+public class XRI3 :XRI3SyntaxComponent, XRI {
 
 	private static final long serialVersionUID = 1556756335913091713L;
 	
@@ -161,7 +137,7 @@ public class XRI3 extends XRI3SyntaxComponent implements XRI {
 		this.read();
 	}
 
-	public XRI3(Character gcs, String uri) throws ParserException {
+	public XRI3(char gcs, String uri) throws ParserException {
 
 		StringBuffer buffer = new StringBuffer();
 
@@ -277,27 +253,27 @@ public class XRI3 extends XRI3SyntaxComponent implements XRI {
 		return(this.rule);
 	}
 
-	public boolean hasScheme() {
+	public bool hasScheme() {
 
 		return(this.scheme != null);
 	}
 
-	public boolean hasAuthority() {
+	public bool hasAuthority() {
 
 		return(this.authority != null);
 	}
 
-	public boolean hasPath() {
+	public bool hasPath() {
 
 		return(this.path != null);
 	}
 
-	public boolean hasQuery() {
+	public bool hasQuery() {
 
 		return(this.query != null);
 	}
 
-	public boolean hasFragment() {
+	public bool hasFragment() {
 
 		return(this.fragment != null);
 	}
@@ -327,7 +303,7 @@ public class XRI3 extends XRI3SyntaxComponent implements XRI {
 		return(this.fragment);
 	}
 
-	public boolean isIName() {
+	public bool isIName() {
 
 		List subSegments = this.authority.getSubSegments();
 
@@ -358,7 +334,7 @@ public class XRI3 extends XRI3SyntaxComponent implements XRI {
 		return(true);
 	}
 	
-	public boolean isINumber() {
+	public bool isINumber() {
 
 		List subSegments = this.authority.getSubSegments();
 
@@ -373,7 +349,7 @@ public class XRI3 extends XRI3SyntaxComponent implements XRI {
 		return(true);
 	}
 
-	public boolean isReserved() {
+	public bool isReserved() {
 		
 		String spelling = this.authority.toString();
 		
@@ -418,7 +394,7 @@ public class XRI3 extends XRI3SyntaxComponent implements XRI {
 		return(iri.toString());
 	}
 
-	public boolean isValidXRIReference() {
+	public bool isValidXRIReference() {
 
 		XRIReference xriReference;
 
@@ -443,7 +419,7 @@ public class XRI3 extends XRI3SyntaxComponent implements XRI {
 		return(new XRI3Reference(this.toString()));
 	}
 
-	public boolean startsWith(XRI xri) {
+	public bool startsWith(XRI xri) {
 
 		if (xri.getAuthority() == null) return(true);
 		if (xri.getAuthority() != null && this.getAuthority() == null) return(false);
@@ -465,4 +441,5 @@ public class XRI3 extends XRI3SyntaxComponent implements XRI {
 
 		return(true);
 	}
+}
 }

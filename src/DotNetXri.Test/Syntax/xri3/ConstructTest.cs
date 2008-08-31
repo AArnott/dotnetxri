@@ -8,7 +8,7 @@ import org.openxri.xri3.impl.XRI3Constants;
 import org.openxri.xri3.impl.XRI3Reference;
 import org.openxri.xri3.impl.XRI3SubSegment;
 
-public class ConstructTest extends TestCase {
+public class ConstructTest :TestCase {
 
 	public ConstructTest(String name) {
 

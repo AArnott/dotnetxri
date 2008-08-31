@@ -68,7 +68,7 @@ public class ResolveInfo
     */ /**
     * Was the XRI resolved to its completion?
     */
-    public boolean resolvedAll()
+    public bool resolvedAll()
     {
         return getLastChain().resolvedAll();
 

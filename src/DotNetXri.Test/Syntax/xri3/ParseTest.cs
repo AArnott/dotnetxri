@@ -7,7 +7,7 @@ import org.openxri.xri3.impl.XRI3Authority;
 import org.openxri.xri3.impl.XRI3Constants;
 import org.openxri.xri3.impl.XRI3SubSegment;
 
-public class ParseTest extends TestCase {
+public class ParseTest :TestCase {
 
 	public ParseTest(String name) {
 

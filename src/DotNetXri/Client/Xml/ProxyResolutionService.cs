@@ -11,15 +11,15 @@ import org.openxri.resolve.TrustType;
  * This is Proxy Resolution Service.
  * @author =peacekeeper
  */
-public class ProxyResolutionService extends Service {
+public class ProxyResolutionService :Service {
 
-	public static final String SERVICE_TYPE = "xri://$res*proxy*($v*2.0)";
-	public static final String[] SERVICE_MEDIA_TYPES = new String[] {
+	public const String SERVICE_TYPE = "xri://$res*proxy*($v*2.0)";
+	public const String[] SERVICE_MEDIA_TYPES = new String[] {
 		"application/xrds+xml", "application/xrd+xml", "text/uri-list" };
 
-	public static final String TRUST_TYPE_SEPARATOR = ";";
-	public static final String REFS_SEPARATOR = ";";
-	public static final String SEP_SEPARATOR = ";";
+	public const String TRUST_TYPE_SEPARATOR = ";";
+	public const String REFS_SEPARATOR = ";";
+	public const String SEP_SEPARATOR = ";";
 
 	public static final Integer URI_PRIORITY_HTTPS = new Integer(1);
 	public static final Integer URI_PRIORITY_DEFAULT = new Integer(2);
@@ -119,7 +119,7 @@ public class ProxyResolutionService extends Service {
 		this(new URI[] { proxy }, null, null, null, null);
 	}
 
-	public static boolean isInstance(Service service) {
+	public static bool isInstance(Service service) {
 		
 		if (service instanceof ForwardingService) return(true);
 		

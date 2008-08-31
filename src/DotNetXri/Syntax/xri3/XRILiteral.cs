@@ -1,6 +1,6 @@
-package org.openxri.xri3;
+namespace DotNetXri.Syntax.Xri3 {
+	public interface XRILiteral : XRISyntaxComponent {
 
-public interface XRILiteral extends XRISyntaxComponent {
-
-	public String getValue();
+		public String getValue();
+	}
 }

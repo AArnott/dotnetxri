@@ -22,7 +22,7 @@ package org.openxri.xml;
  * @author =wil
  * @see org.openxri.xml.XRDType
  */
-public class XRDType extends SimpleXMLElement
+public class XRDType :SimpleXMLElement
 {
 	public XRDType(XRDType s) {
 		super(s);

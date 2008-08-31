@@ -13,11 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
 */
-package org.openxri;
-
-import java.util.Iterator;
-import java.util.Vector;
-
+namespace DotNetXri.Syntax {
 
 /*
 ********************************************************************************
@@ -25,16 +21,15 @@ import java.util.Vector;
 ********************************************************************************
 */ /**
 * This base class provides a strong typing for a XRI Path.  Any
-* object of this class that appears outside of the package is a valid
+* obj of this class that appears outside of the package is a valid
 * XRI Path.
 *
 * @author =chetan
 */
-public abstract class XRIPath
-    extends Parsable
+public abstract class XRIPath : Parsable
 {
     Vector moSegments = new Vector();
-    boolean mbAllowColon = true;
+    bool mbAllowColon = true;
 
     /*
     ****************************************************************************
@@ -116,15 +111,15 @@ public abstract class XRIPath
     void scanXRISegments(ParseStream oPathStream)
     {
         // sets whether colons are allowed
-        boolean bAllowColon = mbAllowColon;
+        bool bAllowColon = mbAllowColon;
 
         // loop through the XRI segments as long as we are consuming something
-        boolean bConsumed = true;
+        bool bConsumed = true;
         while (!oPathStream.empty() && bConsumed)
         {
             bConsumed = false;
             ParseStream oStream = oPathStream.begin();
-            boolean bStartsWithSlash = (oStream.getData().charAt(0) == '/');
+            bool bStartsWithSlash = (oStream.getData().charAt(0) == '/');
 
             // if this is the first segment, it must not start with slash
             if ((bStartsWithSlash) && (moSegments.size() == 0))
@@ -197,4 +192,5 @@ public abstract class XRIPath
     	return IRIUtils.IRItoURI(toIRINormalForm());
     }
 
+}
 }

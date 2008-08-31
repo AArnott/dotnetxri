@@ -1,10 +1,10 @@
-package org.openxri.xri3;
+namespace DotNetXri.Syntax.Xri3 {
+	public interface XRIXRef : XRISyntaxComponent {
 
-public interface XRIXRef extends XRISyntaxComponent {
+		public bool hasXRIReference();
+		public bool hasIRI();
 
-	public boolean hasXRIReference();
-	public boolean hasIRI();
-
-	public XRIReference getXRIReference();
-	public String getIRI();
+		public XRIReference getXRIReference();
+		public String getIRI();
+	}
 }

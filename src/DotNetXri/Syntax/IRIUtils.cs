@@ -1,4 +1,4 @@
-package org.openxri;
+namespace DotNetXri.Syntax {
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -21,11 +21,11 @@ public class IRIUtils
 		-1, 10, 11, 12, 13, 14, 15, -1, -1, -1, -1, -1, -1, -1, -1, -1  // 40-4F
 	};
 	
-	private static final String RFC3986_GEN_DELIMS = ":/?#[]@";
-	private static final String RFC3986_SUB_DELIMS = "!$&'()*+,;=";
-	private static final String RFC3986_RESERVED = RFC3986_GEN_DELIMS + RFC3986_SUB_DELIMS;
-	private static final String ALPHA_LOWER = "abcdefghijklmnopqrstuvwxyz";
-	private static final String ALPHA = ALPHA_LOWER + ALPHA_LOWER.toUpperCase();
+	private const String RFC3986_GEN_DELIMS = ":/?#[]@";
+	private const String RFC3986_SUB_DELIMS = "!$&'()*+,;=";
+	private const String RFC3986_RESERVED = RFC3986_GEN_DELIMS + RFC3986_SUB_DELIMS;
+	private const String ALPHA_LOWER = "abcdefghijklmnopqrstuvwxyz";
+	private const String ALPHA = ALPHA_LOWER + ALPHA_LOWER.toUpperCase();
 	
 	// utf8 byte types
 	private static final int end = 0;
@@ -47,7 +47,7 @@ public class IRIUtils
 	private static final int subdl = 3;
 	private static final int slash = 4;
 
-	// private static final String URICHARS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~/%:[]@?#!$&'()*,;=+";
+	// private const String URICHARS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~/%:[]@?#!$&'()*,;=+";
 	private static final int[] URICHARS = {
 		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, // 00-0F
 		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, // 10-1F
@@ -256,12 +256,12 @@ public class IRIUtils
 	}
 	
 	
-	protected static boolean isUCSCharOrIPrivate(int cp)
+	protected static bool isUCSCharOrIPrivate(int cp)
 	{
 		return (isUCSChar(cp) || isIPrivate(cp));
 	}
 	
-	protected static boolean isUCSChar(int cp)
+	protected static bool isUCSChar(int cp)
 	{
 		if ((cp >= 0xA0 && cp <= 0xD7FF) ||
 				(cp >= 0xF900 && cp <= 0xFDCF) ||
@@ -284,7 +284,7 @@ public class IRIUtils
 		return false;
 	}
 	
-	protected static boolean isIPrivate(int cp)
+	protected static bool isIPrivate(int cp)
 	{
 		if ((cp >= 0xE000 && cp <= 0xF8FF) ||
 				(cp >= 0xF0000 && cp <= 0xFFFFD) ||
@@ -302,7 +302,7 @@ public class IRIUtils
 	 * @param inXref
 	 * @return
 	 */
-	public static String XRItoIRI(String s, boolean inXref)
+	public static String XRItoIRI(String s, bool inXref)
 	{
 		StringBuffer sb = new StringBuffer();
 		
@@ -476,8 +476,8 @@ public class IRIUtils
 		if (s.charAt(index) != '%')
 			return null;
 		
-		int c1 = (int)Character.toUpperCase(s.charAt(index + 1));
-		int c2 = (int)Character.toUpperCase(s.charAt(index + 2));
+		int c1 = (int)char.toUpperCase(s.charAt(index + 1));
+		int c2 = (int)char.toUpperCase(s.charAt(index + 2));
 
 		if (c1 >= HEXCHARS.length || HEXCHARS[c1] == -1 ||
 				c2 >= HEXCHARS.length || HEXCHARS[c2] == -1)
@@ -502,8 +502,8 @@ public class IRIUtils
 		if (s.charAt(index) != '%')
 			return -1;
 		
-		int c1 = (int)Character.toUpperCase(s.charAt(index + 1));
-		int c2 = (int)Character.toUpperCase(s.charAt(index + 2));
+		int c1 = (int)char.toUpperCase(s.charAt(index + 1));
+		int c2 = (int)char.toUpperCase(s.charAt(index + 2));
 		int c1val, c2val;
 
 		if (c1 >= HEXCHARS.length || c2 >= HEXCHARS.length)
@@ -518,7 +518,7 @@ public class IRIUtils
 		return c1val * 16 + c2val;
 	}
 	
-	private static boolean isPercentEncoded(String s, int index)
+	private static bool isPercentEncoded(String s, int index)
 	{
 		// make sure the string is long enough
 		if (s.length() < index + 3)
@@ -527,8 +527,8 @@ public class IRIUtils
 		if (s.charAt(index) != '%')
 			return false;
 
-		int c1 = (int)Character.toUpperCase(s.charAt(index + 1));
-		int c2 = (int)Character.toUpperCase(s.charAt(index + 2));
+		int c1 = (int)char.toUpperCase(s.charAt(index + 1));
+		int c2 = (int)char.toUpperCase(s.charAt(index + 2));
 
 		if (c1 >= HEXCHARS.length || c2 >= HEXCHARS.length)
 			return false; // invalid hex chars
@@ -541,7 +541,7 @@ public class IRIUtils
 	 * @param s
 	 * @return true if any of (LRM, RLM, LRE, RLE, LRO, RLO, or PDF) exists in <code>s</code>
 	 */
-	private static boolean hasBiDiChar(String s)
+	private static bool hasBiDiChar(String s)
 	{
 		int cp;
 		for (int i = 0; i < s.length(); i += UTF16.getCharCount(cp)) {
@@ -558,4 +558,5 @@ public class IRIUtils
 		}
 		return false;
 	}
+}
 }

@@ -1,27 +1,5 @@
-package org.openxri.xri3.impl;
-
-import java.util.List;
-
-import org.openxri.xri3.XRI;
-import org.openxri.xri3.XRIAuthority;
-import org.openxri.xri3.XRIFragment;
-import org.openxri.xri3.XRIPath;
-import org.openxri.xri3.XRIQuery;
-import org.openxri.xri3.XRIReference;
-import org.openxri.xri3.XRISyntaxComponent;
-import org.openxri.xri3.impl.parser.ParserException;
-import org.openxri.xri3.impl.parser.Rule;
-import org.openxri.xri3.impl.parser.Parser.ifragment;
-import org.openxri.xri3.impl.parser.Parser.ipath_empty;
-import org.openxri.xri3.impl.parser.Parser.iquery;
-import org.openxri.xri3.impl.parser.Parser.relative_xri_part;
-import org.openxri.xri3.impl.parser.Parser.relative_xri_ref;
-import org.openxri.xri3.impl.parser.Parser.xri;
-import org.openxri.xri3.impl.parser.Parser.xri_path_abs;
-import org.openxri.xri3.impl.parser.Parser.xri_path_noscheme;
-import org.openxri.xri3.impl.parser.Parser.xri_reference;
-
-public class XRI3Reference extends XRI3SyntaxComponent implements XRIReference {
+namespace DotNetXri.Syntax.Xri3.Impl {
+public class XRI3Reference :XRI3SyntaxComponent, XRIReference {
 
 	private static final long serialVersionUID = 4191016969141944835L;
 
@@ -143,35 +121,35 @@ public class XRI3Reference extends XRI3SyntaxComponent implements XRIReference {
 		return(this.rule);
 	}
 
-	public boolean hasScheme() {
+	public bool hasScheme() {
 
 		if (this.xri != null) return(this.xri.hasScheme());
 
 		return(false);
 	}
 
-	public boolean hasAuthority() {
+	public bool hasAuthority() {
 
 		if (this.xri != null) return(this.xri.hasAuthority());
 
 		return(false);
 	}
 
-	public boolean hasPath() {
+	public bool hasPath() {
 
 		if (this.xri != null) return(this.xri.hasPath());
 
 		return(this.path != null);
 	}
 
-	public boolean hasQuery() {
+	public bool hasQuery() {
 
 		if (this.xri != null) return(this.xri.hasQuery());
 
 		return(this.query != null);
 	}
 
-	public boolean hasFragment() {
+	public bool hasFragment() {
 
 		if (this.xri != null) return(this.xri.hasFragment());
 
@@ -220,7 +198,7 @@ public class XRI3Reference extends XRI3SyntaxComponent implements XRIReference {
 		return(super.toIRINormalForm());
 	}
 
-	public boolean isValidXRI() {
+	public bool isValidXRI() {
 
 		XRI xri;
 		
@@ -244,4 +222,5 @@ public class XRI3Reference extends XRI3SyntaxComponent implements XRIReference {
 
 		return(new XRI3(this.toString()));
 	}
+}
 }

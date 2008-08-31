@@ -63,8 +63,8 @@ public class XRITraceRt {
     private String msTargetXRI;
     
     // option variables
-    private boolean mbIsVerbose;
-    private boolean mbDontOutputHeader;
+    private bool mbIsVerbose;
+    private bool mbDontOutputHeader;
     private String msRootEqualsURI;
     private String msRootAtURI;
     
@@ -195,7 +195,7 @@ public class XRITraceRt {
         
         // TODO: trusted resolution is currently not supported
         TrustType trustType = new TrustType(TrustType.TRUST_NONE);
-        boolean followRefs = true;
+        bool followRefs = true;
         
         // note: See also Resolver.resolve
         // resolver.setLookaheadMode(true);
@@ -469,7 +469,7 @@ public class XRITraceRt {
      * Returns true if the given argument string is an option. This is currently
      * defined as beginning with a dash character.
      */
-     private boolean isOption(String sArg)
+     private bool isOption(String sArg)
      {
          return sArg.charAt(0) == '-';
          

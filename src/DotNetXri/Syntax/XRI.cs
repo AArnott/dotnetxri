@@ -13,10 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
 */
-package org.openxri;
-
-import java.io.UnsupportedEncodingException;
-
+namespace DotNetXri.Syntax {
 
 /**
  * This class provides a strong typing for a XRI.  Any
@@ -27,14 +24,13 @@ import java.io.UnsupportedEncodingException;
  * @author =chetan
  */
 public class XRI
-    extends Parsable
-    implements XRIReference
+    :Parsable, XRIReference
 {
-    public static final String PDELIM_S = "!";
-    public static final String RDELIM_S = "*";
+    public const String PDELIM_S = "!";
+    public const String RDELIM_S = "*";
     public static final char PDELIM = '!';
     public static final char RDELIM = '*';
-    public static final String XRI_SCHEME = "xri://";
+    public const String XRI_SCHEME = "xri://";
     public static final int XRI_SCHEME_LENGTH = XRI_SCHEME.length();
     
     AuthorityPath moAuthorityPath = null;
@@ -223,9 +219,9 @@ public class XRI
 
     /**
      *  returns returns true if the XRI is absolute
-     * @return boolean returns true if the XRI is absolute
+     * @return bool returns true if the XRI is absolute
      */
-    public boolean isAbsolute()
+    public bool isAbsolute()
     {
         parse();
         return (moAuthorityPath != null);
@@ -234,9 +230,9 @@ public class XRI
     
     /**
      *  returns returns true if the XRI is relative
-     * @return boolean returns true if the XRI is relative
+     * @return bool returns true if the XRI is relative
      */
-    public boolean isRelative()
+    public bool isRelative()
     {
         return !isAbsolute();
 
@@ -282,7 +278,7 @@ public class XRI
     }
 
     
-    public String toString(boolean wantScheme, boolean caseFoldAuthority)
+    public String toString(bool wantScheme, bool caseFoldAuthority)
     {
     	StringBuffer sb = new StringBuffer();
     	
@@ -315,7 +311,7 @@ public class XRI
     }
 
     
-    public boolean equals(XRI x)
+    public bool equals(XRI x)
     {
     	return toString(false, true).equals(x.toString(false, true));
     }
@@ -361,9 +357,9 @@ public class XRI
     /**
      * Parses the input stream into the object
      * @param oStream The input stream to scan from
-     * @return  boolean True if part of the Stream was consumed into the object
+     * @return  bool True if part of the Stream was consumed into the object
      */
-    boolean doScan(ParseStream oStream)
+    bool doScan(ParseStream oStream)
     {
         moAuthorityPath = scanSchemeAuthority(oStream);
         if (moAuthorityPath == null)
@@ -422,4 +418,5 @@ public class XRI
 		return fragment;
 	}
 
+}
 }

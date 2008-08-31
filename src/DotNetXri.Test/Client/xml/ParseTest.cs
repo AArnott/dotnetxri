@@ -34,7 +34,7 @@ import junit.textui.TestRunner;
 * Window>Preferences>Java>Code Generation>Code and Comments
 */
 public class ParseTest
-    extends TestCase
+    :TestCase
 {
     /*
     ****************************************************************************

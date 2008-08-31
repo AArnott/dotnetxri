@@ -11,12 +11,12 @@ import org.openxri.resolve.exception.IllegalTrustTypeException;
  * @author wtan
  *
  */
-public class TrustType implements Serializable {
-	public static final String TRUST_NONE       = "none";
-	public static final String TRUST_SAML       = "saml";
-	public static final String TRUST_HTTPS      = "https";
-	public static final String TRUST_SAML_HTTPS = "saml+https";
-	public static final String TRUST            = "trust";
+public class TrustType : Serializable {
+	public const String TRUST_NONE       = "none";
+	public const String TRUST_SAML       = "saml";
+	public const String TRUST_HTTPS      = "https";
+	public const String TRUST_SAML_HTTPS = "saml+https";
+	public const String TRUST            = "trust";
 	
 	protected String type = TRUST_NONE;
 	
@@ -54,7 +54,7 @@ public class TrustType implements Serializable {
 		return MimeType.PARAM_HTTPS + "=" + https + ";" + MimeType.PARAM_SAML + "=" + saml;
 	}
 	
-	public void setParameterPair(boolean isHttps, boolean isSaml) {
+	public void setParameterPair(bool isHttps, bool isSaml) {
 		if (isHttps) {
 			if (isSaml)
 				type = TRUST_SAML_HTTPS;
@@ -89,7 +89,7 @@ public class TrustType implements Serializable {
 	/**
 	 * @return Returns <code>true</code> if the type is <code>https</code> or <code>saml+https</code>, <code>false</code> otherwise. 
 	 */
-	public boolean isHTTPS()
+	public bool isHTTPS()
 	{
 		return (type.equals(TRUST_HTTPS) || type.equals(TRUST_SAML_HTTPS));
 	}
@@ -97,7 +97,7 @@ public class TrustType implements Serializable {
 	/**
 	 * @return Returns <code>true</code> if the type is <code>saml</code> or <code>saml+https</code>, <code>false</code> otherwise.
 	 */
-	public boolean isSAML()
+	public bool isSAML()
 	{
 		return (type.equals(TRUST_SAML) || type.equals(TRUST_SAML_HTTPS));
 	}
@@ -106,7 +106,7 @@ public class TrustType implements Serializable {
 	 * Compares with a String representation of the trust type.
 	 * @param trustType
 	 */
-	public boolean equals(String trustType) {
+	public bool equals(String trustType) {
 		return this.type.equalsIgnoreCase(trustType);
 	}
 	

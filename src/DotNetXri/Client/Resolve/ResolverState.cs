@@ -196,7 +196,7 @@ public class ResolverState
      *        the regular cache.
 	 * @deprecated
      */
-    public Cache getCache(boolean bTrusted)
+    public Cache getCache(bool bTrusted)
     {
         return (bTrusted == true) ? moBasicCache : moTrustedCache;
 

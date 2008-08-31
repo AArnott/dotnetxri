@@ -72,26 +72,26 @@ public class XRILookup {
     final private static String PROXY_URI         = "http://xri.net";
     final private static String RES_MEDIA         = "application/xrds+xml";
     final private static String TRUST_TYPE        = "none";
-    final private static boolean FOLLOW_REFS       = true;
-    final private static boolean SEP_SELECT        = false;
+    final private static bool FOLLOW_REFS       = true;
+    final private static bool SEP_SELECT        = false;
     
     // data argument variable
     private String msTargetXRI;
     
     // option variables
-    private boolean mbIsVerbose;
+    private bool mbIsVerbose;
     private String msRootEqualsURI;
     private String msRootAtURI;
     private String msRootBangURI;
     private String msProxyURI;
-    private boolean mbCheckRoots;
+    private bool mbCheckRoots;
     private String msRootFile;
     private String xrdR = RES_MEDIA;
     private String xrdT = null;
     private String xrdM = null;
     private TrustType trustType = new TrustType();
-    private boolean followRefs = FOLLOW_REFS;
-    private boolean doSEP = SEP_SELECT;
+    private bool followRefs = FOLLOW_REFS;
+    private bool doSEP = SEP_SELECT;
     
     /*
     ****************************************************************************
@@ -606,7 +606,7 @@ public class XRILookup {
      * Returns true if the given argument string is an option. This is currently
      * defined as beginning with a dash character.
      */
-     private boolean isOption(String sArg)
+     private bool isOption(String sArg)
      {
          return sArg.charAt(0) == '-';
          

@@ -1,11 +1,5 @@
-package org.openxri.xri3.impl;
-
-import org.openxri.xri3.XRIQuery;
-import org.openxri.xri3.impl.parser.ParserException;
-import org.openxri.xri3.impl.parser.Rule;
-import org.openxri.xri3.impl.parser.Parser.iquery;
-
-public class XRI3Query extends XRI3SyntaxComponent implements XRIQuery {
+namespace DotNetXri.Syntax.Xri3.Impl {
+	public class XRI3Query :XRI3SyntaxComponent, XRIQuery {
 
 	private static final long serialVersionUID = 8838957773108506171L;
 
@@ -48,4 +42,5 @@ public class XRI3Query extends XRI3SyntaxComponent implements XRIQuery {
 		
 		return(this.value);
 	}
+}
 }

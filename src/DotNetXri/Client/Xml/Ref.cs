@@ -4,7 +4,7 @@ import java.net.URISyntaxException;
 
 import org.w3c.dom.Element;
 
-public class Ref extends SimpleXMLElement {
+public class Ref :SimpleXMLElement {
 
 	public Ref() {
 		super(Tags.TAG_REF);

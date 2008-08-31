@@ -1,14 +1,12 @@
-package org.openxri.xri3;
+namespace DotNetXri.Syntax.Xri3 {
+	public interface XRISegment : XRISyntaxComponent {
 
-import java.util.List;
+		public List getSubSegments();
+		public int getNumSubSegments();
+		public XRISubSegment getSubSegment(int i);
+		public XRISubSegment getFirstSubSegment();
+		public XRISubSegment getLastSubSegment();
 
-public interface XRISegment extends XRISyntaxComponent {
-
-	public List getSubSegments();
-	public int getNumSubSegments();
-	public XRISubSegment getSubSegment(int i);
-	public XRISubSegment getFirstSubSegment();
-	public XRISubSegment getLastSubSegment();
-
-	public boolean startsWith(XRISubSegment[] subSegments);
+		public bool startsWith(XRISubSegment[] subSegments);
+	}
 }

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.openxri;
+namespace DotNetXri.Syntax {
 
 
 /*
@@ -26,11 +26,11 @@ package org.openxri;
  *
  * @author =chetan
  */
-public abstract class Parsable implements Comparable
+public abstract class Parsable : IComparable
 {
 	String msValue = null;
-	boolean mbParsed = false;
-	boolean mbParseResult = false;
+	bool mbParsed = false;
+	bool mbParseResult = false;
 
 	/*
 	 ****************************************************************************
@@ -50,7 +50,7 @@ public abstract class Parsable implements Comparable
 	 * Constructor()
 	 ****************************************************************************
 	 */ /**
-	 * Constructs Parsable object from a String
+	 * Constructs Parsable obj from a String
 	 */
 	Parsable(String sValue)
 	{
@@ -76,7 +76,7 @@ public abstract class Parsable implements Comparable
 	 * toString()
 	 ****************************************************************************
 	 */ /**
-	 * Outputs the object according to the XRI Syntax defined for this object
+	 * Outputs the obj according to the XRI Syntax defined for this obj
 	 */
 	public String toString()
 	{
@@ -93,7 +93,7 @@ public abstract class Parsable implements Comparable
 	 *
 	 * @throws XRIParseException
 	 *             Thrown if entire value could not be parsed into the
-	 *             object
+	 *             obj
 	 */
 	void parse()
 	{
@@ -129,13 +129,13 @@ public abstract class Parsable implements Comparable
 	 * scan()
 	 ****************************************************************************
 	 */ /**
-	 * Scans the stream for parts that can be parsed into the object
+	 * Scans the stream for parts that can be parsed into the obj
 	 *
 	 * @param oParseStream The input stream to read from
-	 * @return boolean Returns true if all or part of the stream could be
-	 *         parsed into the object
+	 * @return bool Returns true if all or part of the stream could be
+	 *         parsed into the obj
 	 */
-	boolean scan(ParseStream oParseStream)
+	bool scan(ParseStream oParseStream)
 	{
 		if (oParseStream == null)
 		{
@@ -160,20 +160,20 @@ public abstract class Parsable implements Comparable
 	 * doScan()
 	 ****************************************************************************
 	 */ /**
-	 * Scans the stream for parts that can be parsed into the object
+	 * Scans the stream for parts that can be parsed into the obj
 	 * @param oParseStream The input stream to read from
-	 * @return boolean Returns true if all or part of the stream could be
-	 *         parsed into the object
+	 * @return bool Returns true if all or part of the stream could be
+	 *         parsed into the obj
 	 */
-	abstract boolean doScan(ParseStream oParseStream);
+	abstract bool doScan(ParseStream oParseStream);
 
 	/*
 	 ****************************************************************************
 	 * setParsedValue()
 	 ****************************************************************************
 	 */ /**
-	 * Sets the parsed value for the object
-	 * @param sValue The value to set the object to
+	 * Sets the parsed value for the obj
+	 * @param sValue The value to set the obj to
 	 */
 	void setParsedValue(String sValue)
 	{
@@ -191,11 +191,11 @@ public abstract class Parsable implements Comparable
 
 	} // setParsedValue()
 
-	public boolean equals(Object object) {
+	public bool equals(Object obj) {
 
-		if (object == null || ! (object instanceof Parsable)) return(false);
+		if (obj == null || ! (obj is Parsable)) return(false);
 
-		Parsable other = (Parsable) object;
+		Parsable other = (Parsable) obj;
 
 		if (this.msValue == null && other.msValue != null) return(false);
 		if (this.msValue != null && other.msValue == null) return(false);
@@ -209,12 +209,13 @@ public abstract class Parsable implements Comparable
 		return(this.msValue == null ? 0 : this.msValue.hashCode());
 	}
 
-	public int compareTo(Object object) {
+	public int compareTo(Object obj) {
 
-		Parsable other = (Parsable) object;
+		Parsable other = (Parsable) obj;
 
-		if (object == null || this.msValue == null || other.msValue == null) throw new NullPointerException();
+		if (obj == null || this.msValue == null || other.msValue == null) throw new NullPointerException();
 
 		return(this.msValue.compareTo(other.msValue));
 	}
 } // Class: Parsable
+}

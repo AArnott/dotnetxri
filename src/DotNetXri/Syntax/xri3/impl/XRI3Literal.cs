@@ -1,12 +1,5 @@
-package org.openxri.xri3.impl;
-
-import org.openxri.xri3.XRILiteral;
-import org.openxri.xri3.impl.parser.ParserException;
-import org.openxri.xri3.impl.parser.Rule;
-import org.openxri.xri3.impl.parser.Parser.literal;
-import org.openxri.xri3.impl.parser.Parser.literal_nc;
-
-public class XRI3Literal extends XRI3SyntaxComponent implements XRILiteral {
+namespace DotNetXri.Syntax.Xri3.Impl {
+public class XRI3Literal :XRI3SyntaxComponent, XRILiteral {
 
 	private static final long serialVersionUID = -2070825542439606624L;
 
@@ -57,4 +50,5 @@ public class XRI3Literal extends XRI3SyntaxComponent implements XRILiteral {
 		
 		return(this.value);
 	}
+}
 }

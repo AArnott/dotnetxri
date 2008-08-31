@@ -17,20 +17,20 @@ public class SEPSelector {
 		ArrayList sepOut = new ArrayList();
 		ArrayList defaultSepOut = new ArrayList(n);
 		
-		final boolean noDefaultType = flags.isNoDefaultT();
-		final boolean noDefaultPath = flags.isNoDefaultP();
-		final boolean noDefaultMediaType = flags.isNoDefaultM();
+		final bool noDefaultType = flags.isNoDefaultT();
+		final bool noDefaultPath = flags.isNoDefaultP();
+		final bool noDefaultMediaType = flags.isNoDefaultM();
 		
 		// every SEP has each of the flags
-		boolean positiveType[]      = new boolean[n];
-		boolean positivePath[]      = new boolean[n];
-		boolean positiveMediaType[] = new boolean[n];
-		boolean defaultType[]       = new boolean[n];
-		boolean defaultPath[]       = new boolean[n];
-		boolean defaultMediaType[]  = new boolean[n];
-		boolean presentType[]       = new boolean[n];
-		boolean presentPath[]       = new boolean[n];
-		boolean presentMediaType[]  = new boolean[n];
+		bool positiveType[]      = new bool[n];
+		bool positivePath[]      = new bool[n];
+		bool positiveMediaType[] = new bool[n];
+		bool defaultType[]       = new bool[n];
+		bool defaultPath[]       = new bool[n];
+		bool defaultMediaType[]  = new bool[n];
+		bool presentType[]       = new bool[n];
+		bool presentPath[]       = new bool[n];
+		bool presentMediaType[]  = new bool[n];
 		
 		log.trace("select type='" + inType + "' mtype='" + inMediaType + "' path='" + inPath + "' len(SEPs)=" + n);
 		
@@ -43,7 +43,7 @@ public class SEPSelector {
 			log.trace("SEPSelector.select SEP[" + i + "] = " + sep);
 
 			// flag to continue main loop from SEL loop
-			boolean sepDone = false;
+			bool sepDone = false;
 			
 			/// do Type SELs
 			sepDone = false;
@@ -214,7 +214,7 @@ public class SEPSelector {
 	}
     
     
-    public static boolean isDefaultMatch(SEPElement sel)
+    public static bool isDefaultMatch(SEPElement sel)
     {
     	String m = sel.getMatch();
     	return (m != null && m.equals(SEPElement.MATCH_ATTR_DEFAULT));
@@ -222,7 +222,7 @@ public class SEPSelector {
     
 
     /* This method is used to match the element of the service */
-	private static boolean matchSEL(SEPElement element, String inValue)
+	private static bool matchSEL(SEPElement element, String inValue)
 	{
 		String matchAttr =  element.getMatch();
 		String selVal = element.getValue();
@@ -267,11 +267,11 @@ public class SEPSelector {
 
 
 	
-	public static boolean matchType (String selType, String inType) {
+	public static bool matchType (String selType, String inType) {
 		return inType.equals(selType);
 	}
 	
-	public static boolean matchPath (String selPath, String inPath) {		
+	public static bool matchPath (String selPath, String inPath) {		
 		// XXX use Unicode caseless matching
 		if (inPath.equalsIgnoreCase(selPath))
 			return true;
@@ -294,7 +294,7 @@ public class SEPSelector {
 	}
 	
 	
-	public static boolean matchMediaType (String selMediaType, String inMediaType) {
+	public static bool matchMediaType (String selMediaType, String inMediaType) {
 		MimeType candidateMimeType = MimeType.parse(inMediaType);
 		MimeType critMimeType = MimeType.parse(selMediaType);
 		return critMimeType.equals(candidateMimeType);
@@ -308,9 +308,9 @@ public class SEPSelector {
 	private String matchTypeValue = null;
 	private String matchMediaTypeValue = null;
 	private String matchPathValue = null;
-	private boolean matchedNonDefaultType = false;
-	private boolean matchedNonDefaultMediaType = false;
-	private boolean matchedNonDefaultPath = false;
+	private bool matchedNonDefaultType = false;
+	private bool matchedNonDefaultMediaType = false;
+	private bool matchedNonDefaultPath = false;
 	
 	// cloned copies of seps, these are changed for, why cloned
 	// because in the phase 1 of matching of classes asumes the 
@@ -358,7 +358,7 @@ public class SEPSelector {
 	}
 	
 	
-	private boolean applyMatchingRules(){
+	private bool applyMatchingRules(){
 		try {
 			for(int i=0; i < seps.size(); i++ ){
 				
@@ -402,7 +402,7 @@ public class SEPSelector {
 				// anytime we find an element that has match="none", we will 
 				// skip the service entirely.
 				// Should be optimized and merged into one of the loops below
-				boolean foundMatchNone = false;
+				bool foundMatchNone = false;
 				for (int j =0; j < elements.size(); j++) {
 					SEPElement element = (SEPElement) elements.get(j);
 					if(element.getMatch() != null && element.getMatch().equals(SEPElement.MATCH_ATTR_NONE)){
@@ -482,7 +482,7 @@ public class SEPSelector {
 	
 	
 	
-	private boolean removeMatchDefaults()
+	private bool removeMatchDefaults()
 	{
 		for (int i =0; i< matchedPhase1List.size(); i++){
 			Service sep =(Service)matchedPhase1List.get(i);
@@ -528,7 +528,7 @@ public class SEPSelector {
 	}
 	
 	
-	private boolean applySelectionRules()
+	private bool applySelectionRules()
 	{
 		for(int i =0; i< matchedPhase1List.size(); i++){
 			Service sep =(Service)matchedPhase1List.get(i);
@@ -553,7 +553,7 @@ public class SEPSelector {
 	 * We assume all the service elements met the criteria and filtered
 	 * as per the matching rules applied before applying select criteria
 	 */
-	private boolean canBeSelected(Service service){
+	private bool canBeSelected(Service service){
 	    Vector elements = new Vector();
 	    
 	    elements.addAll(service.getTypes());
@@ -568,10 +568,10 @@ public class SEPSelector {
 		 * Rule 3 - case when select is false
 		 * ie.e AND operation => at least one matchTypeValue, mediatype & matchPathValue must match
 		 */
-		boolean typeMatched = false;
-		boolean mediaTypeMatched = false;
-		boolean pathMatched = false;
-		boolean selectService = false;
+		bool typeMatched = false;
+		bool mediaTypeMatched = false;
+		bool pathMatched = false;
+		bool selectService = false;
 		
 		for(int i =0; i < elements.size(); i++){
 			SEPElement element = (SEPElement) elements.get(i);
@@ -602,7 +602,7 @@ public class SEPSelector {
 	}
 
 	/* This method is used to match the element of the service */
-	private boolean match(SEPElement element){
+	private bool match(SEPElement element){
 		String elementMatch =  element.getMatch();
 		String elementValue = element.getValue();
 		
@@ -650,7 +650,7 @@ public class SEPSelector {
 	}
 
 	
-	public boolean matchContent (SEPElement candidate) {
+	public bool matchContent (SEPElement candidate) {
 		if (candidate instanceof SEPType) {
 			return matchContent((SEPType)candidate);
 		}
@@ -663,11 +663,11 @@ public class SEPSelector {
 		return false;
 	}
 	
-	public boolean matchContent (SEPType type) {
+	public bool matchContent (SEPType type) {
 		return this.matchTypeValue.equals(type.getValue());
 	}
 	
-	public boolean matchContent (SEPPath path) {
+	public bool matchContent (SEPPath path) {
 		String xrdPath = trimPath(path.getValue());
 		String inputPath = trimPath(this.matchPathValue);
 		
@@ -685,7 +685,7 @@ public class SEPSelector {
 	}
 	
 	
-	public boolean matchContent (SEPMediaType mtype) {
+	public bool matchContent (SEPMediaType mtype) {
 		MimeType candidateMimeType = MimeType.parse(mtype.getValue());
 		MimeType critMimeType = MimeType.parse(this.matchMediaTypeValue);
 		return critMimeType.equals(candidateMimeType);

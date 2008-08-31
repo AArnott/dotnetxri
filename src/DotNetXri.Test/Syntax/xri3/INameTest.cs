@@ -4,7 +4,7 @@ import junit.framework.TestCase;
 
 import org.openxri.xri3.impl.XRI3;
 
-public class INameTest extends TestCase {
+public class INameTest :TestCase {
 
 	public INameTest(String name) {
 

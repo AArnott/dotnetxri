@@ -34,79 +34,79 @@ public class Tags
 	 * name space constants & meta for xri service resolution
 	 * section 2.1.2 of 18th March2006 V2.0 wd10,XRI resolution document.
 	*/
-	public static final String SERVICE_AUTH_RES = "xri://$res*auth*($v*2.0)";
+	public const String SERVICE_AUTH_RES = "xri://$res*auth*($v*2.0)";
 	
-	public static final String NS_XML = "http://www.w3.org/XML/1998/namespace";
-    public static final String NS_XMLNS = "http://www.w3.org/2000/xmlns/";
+	public const String NS_XML = "http://www.w3.org/XML/1998/namespace";
+    public const String NS_XMLNS = "http://www.w3.org/2000/xmlns/";
     
     /* XRI resoultion tag & attrribute constants */
-    public static final String TAG_QUERY = "Query";
-    public static final String TAG_STATUS = "Status";
-    public static final String TAG_SERVERSTATUS = "ServerStatus";
-    public static final String ATTR_CODE = "code";
-    public static final String TAG_LOCALID ="LocalID";
-    public static final String TAG_CANONICALID = "CanonicalID";
-    public static final String TAG_EQUIVID = "EquivID";
-    public static final String TAG_CANONICALEQUIVID = "CanonicalEquivID";
-    public static final String TAG_REF = "Ref";
-    public static final String TAG_REDIRECT = "Redirect";
-    public static final String TAG_EXPIRES = "Expires";
-    public static final String TAG_SERVICE = "Service";
-//    public static final String TAG_AUTHORITY = "Authority";
-//    public static final String TAG_INTERNAL = "Internal";
-//    public static final String TAG_EXTERNAL = "External";
-    public static final String TAG_URI = "URI";
-    public static final String ATTR_PRIORITY = "priority";
-    public static final String ATTR_APPEND = "append";
-    public static final String TAG_MEDIATYPE = "MediaType";
-    public static final String TAG_PATH = "Path";
-    public static final String TAG_TYPE = "Type";
-    public static final String TAG_PROVIDERID = "ProviderID";
-    public static final String TAG_XRD = "XRD";
-    //public static final String ATTR_XMLID = "xml:id";
-    public static final String ATTR_ID_LOW = "id";
-    public static final String ATTR_ID_CAP = "ID";
-    public static final String ATTR_IDREF = "idRef";
-    public static final String ATTR_XRD_VERSION = "version";
-    public static final String TAG_XRDS = "XRDS";
+    public const String TAG_QUERY = "Query";
+    public const String TAG_STATUS = "Status";
+    public const String TAG_SERVERSTATUS = "ServerStatus";
+    public const String ATTR_CODE = "code";
+    public const String TAG_LOCALID ="LocalID";
+    public const String TAG_CANONICALID = "CanonicalID";
+    public const String TAG_EQUIVID = "EquivID";
+    public const String TAG_CANONICALEQUIVID = "CanonicalEquivID";
+    public const String TAG_REF = "Ref";
+    public const String TAG_REDIRECT = "Redirect";
+    public const String TAG_EXPIRES = "Expires";
+    public const String TAG_SERVICE = "Service";
+//    public const String TAG_AUTHORITY = "Authority";
+//    public const String TAG_INTERNAL = "Internal";
+//    public const String TAG_EXTERNAL = "External";
+    public const String TAG_URI = "URI";
+    public const String ATTR_PRIORITY = "priority";
+    public const String ATTR_APPEND = "append";
+    public const String TAG_MEDIATYPE = "MediaType";
+    public const String TAG_PATH = "Path";
+    public const String TAG_TYPE = "Type";
+    public const String TAG_PROVIDERID = "ProviderID";
+    public const String TAG_XRD = "XRD";
+    //public const String ATTR_XMLID = "xml:id";
+    public const String ATTR_ID_LOW = "id";
+    public const String ATTR_ID_CAP = "ID";
+    public const String ATTR_IDREF = "idRef";
+    public const String ATTR_XRD_VERSION = "version";
+    public const String TAG_XRDS = "XRDS";
 
-    public static final String ATTR_CID  = "cid";
-    public static final String ATTR_CEID  = "ceid";
+    public const String ATTR_CID  = "cid";
+    public const String ATTR_CEID  = "ceid";
     
-    public static final String ATTR_XMLNS = "xmlns";
-    public static final String NS_XRD_V2 = "xri://$xrd*($v*2.0)";
-    public static final String NS_XRDS ="xri://$xrds";
-    public static final String ATTR_REF="ref";
-    public static final String ATTR_REDIRECT="redirect";
-    public static final String XMLNS_XRDS = "xmlns:xrds";
+    public const String ATTR_XMLNS = "xmlns";
+    public const String NS_XRD_V2 = "xri://$xrd*($v*2.0)";
+    public const String NS_XRDS ="xri://$xrds";
+    public const String ATTR_REF="ref";
+    public const String ATTR_REDIRECT="redirect";
+    public const String XMLNS_XRDS = "xmlns:xrds";
 
-    public static final String NS_SAML = "urn:oasis:names:tc:SAML:2.0:assertion";
-    public static final String XMLNS_NS_SAML = "xmlns=\"" + NS_SAML + "\"";
-    public static final String TAG_ASSERTION = "Assertion";
-    public static final String TAG_ISSUER = "Issuer";
-    public static final String TAG_SUBJECT = "Subject";
-    public static final String TAG_CONDITIONS = "Conditions";
-    public static final String TAG_ATTRIBUTESTATEMENT = "AttributeStatement";
-    public static final String TAG_ATTRIBUTE = "Attribute";
-    public static final String TAG_ATTRIBUTEVALUE = "AttributeValue";
-    public static final String TAG_NAMEID = "NameID";
-    public static final String ATTR_NAME = "Name";
-    public static final String ATTR_NAMEQUALIFIER = "NameQualifier";
-    public static final String ATTR_NOTBEFORE = "NotBefore";
-    public static final String ATTR_NOTONORAFTER = "NotOnOrAfter";
-    public static final String ATTR_ISSUEINSTANT = "IssueInstant";
-    public static final String ATTR_VERSION = "Version";
+    public const String NS_SAML = "urn:oasis:names:tc:SAML:2.0:assertion";
+    public const String XMLNS_NS_SAML = "xmlns=\"" + NS_SAML + "\"";
+    public const String TAG_ASSERTION = "Assertion";
+    public const String TAG_ISSUER = "Issuer";
+    public const String TAG_SUBJECT = "Subject";
+    public const String TAG_CONDITIONS = "Conditions";
+    public const String TAG_ATTRIBUTESTATEMENT = "AttributeStatement";
+    public const String TAG_ATTRIBUTE = "Attribute";
+    public const String TAG_ATTRIBUTEVALUE = "AttributeValue";
+    public const String TAG_NAMEID = "NameID";
+    public const String ATTR_NAME = "Name";
+    public const String ATTR_NAMEQUALIFIER = "NameQualifier";
+    public const String ATTR_NOTBEFORE = "NotBefore";
+    public const String ATTR_NOTONORAFTER = "NotOnOrAfter";
+    public const String ATTR_ISSUEINSTANT = "IssueInstant";
+    public const String ATTR_VERSION = "Version";
 
-    public static final String NS_XMLDSIG = Constants.SignatureSpecNS;
+    public const String NS_XMLDSIG = Constants.SignatureSpecNS;
 
-    public static final String TAG_KEYINFO = Constants._TAG_KEYINFO;
-    public static final String TAG_SIGNATURE = Constants._TAG_SIGNATURE;
+    public const String TAG_KEYINFO = Constants._TAG_KEYINFO;
+    public const String TAG_SIGNATURE = Constants._TAG_SIGNATURE;
 
-    public static final String CONTENT_TYPE_XRDS = "application/xrds+xml";
-    public static final String CONTENT_TYPE_XRD ="application/xrd+xml";
-    public static final String CONTENT_TYPE_URILIST = "text/uri-list";
+    public const String CONTENT_TYPE_XRDS = "application/xrds+xml";
+    public const String CONTENT_TYPE_XRD ="application/xrd+xml";
+    public const String CONTENT_TYPE_URILIST = "text/uri-list";
     
-    public static final String HEADER_ACCEPT = "Accept";
-    public static final String HEADER_UA = "User-Agent";
+    public const String HEADER_ACCEPT = "Accept";
+    public const String HEADER_UA = "User-Agent";
 
 } // Class: Tags

@@ -18,7 +18,7 @@ public class SampleResolver {
 
 	public static Resolver setupResolver()
 	{
-	  // instantiate a Resolver object
+	  // instantiate a Resolver obj
 	  Resolver resolver = new Resolver();
 
 	  // configure roots
@@ -30,7 +30,7 @@ public class SampleResolver {
 	  return resolver;
 	}
 
-//	 creates an XRD object that contains an authority resolution service endpoint with the given URI
+//	 creates an XRD obj that contains an authority resolution service endpoint with the given URI
 	public static XRD createAuthRoot(String uri)
 	{
 	  XRD xrd = new XRD();

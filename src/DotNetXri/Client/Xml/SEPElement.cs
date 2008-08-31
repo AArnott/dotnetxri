@@ -8,7 +8,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
-public abstract class SEPElement implements Cloneable, Serializable {
+public abstract class SEPElement : Cloneable, Serializable {
 
     protected static org.apache.commons.logging.Log soLog =
         org.apache.commons.logging.LogFactory.getLog(
@@ -19,31 +19,31 @@ public abstract class SEPElement implements Cloneable, Serializable {
 	 * value is null. This is an alias for <code>MATCH_ATTR_CONTENT</code>
 	 * as defined in xri-resolution-v2.0-wd-10-ed-08.
 	 */  
-	public static final String MATCH_ATTR_DEFAULT  = "default";
-	public static final String MATCH_ATTR_ANY      = "any";
-	public static final String MATCH_ATTR_NON_NULL = "non-null";
-	public static final String MATCH_ATTR_NULL     = "null";
+	public const String MATCH_ATTR_DEFAULT  = "default";
+	public const String MATCH_ATTR_ANY      = "any";
+	public const String MATCH_ATTR_NON_NULL = "non-null";
+	public const String MATCH_ATTR_NULL     = "null";
 	
 	/**
 	 * @deprecated
 	 */
-	public static final String MATCH_ATTR_CONTENT  = "content";
+	public const String MATCH_ATTR_CONTENT  = "content";
 
 	/**
 	 * @deprecated
 	 */
-	public static final String MATCH_ATTR_NONE     = "none";
+	public const String MATCH_ATTR_NONE     = "none";
 
 
-	public static final String  SELECT_ATTR_TRUE  = "true";
-	public static final String  SELECT_ATTR_FALSE = "false";
+	public const String  SELECT_ATTR_TRUE  = "true";
+	public const String  SELECT_ATTR_FALSE = "false";
 
 	/**
 	 * Default value of the select attribute is FALSE if it was omitted
 	 * in the parent element.
 	 */
-	public static final String  DEFAULT_SELECT_ATTR = SELECT_ATTR_FALSE;
-	public static final boolean DEFAULT_SELECT_ATTR_BOOL = false;
+	public const String  DEFAULT_SELECT_ATTR = SELECT_ATTR_FALSE;
+	public static final bool DEFAULT_SELECT_ATTR_BOOL = false;
 
 	private String  match; // null or one of the MATCH_ATTR_* constants
 	private Boolean select;
@@ -86,7 +86,7 @@ public abstract class SEPElement implements Cloneable, Serializable {
 	/**
 	 * Gets the "select" attribute of this Type/MediaType/Path rule
 	 */
-	public boolean getSelect()
+	public bool getSelect()
 	{
 		if ( this.select != null )
 		{
@@ -101,7 +101,7 @@ public abstract class SEPElement implements Cloneable, Serializable {
 	/**
 	 * Sets the "select" attribute of this Type/MediaType/Path rule
 	 */
-	public void setSelect( boolean select )
+	public void setSelect( bool select )
 	{
 		this.select = Boolean.valueOf(select);
 	}
@@ -190,7 +190,7 @@ public abstract class SEPElement implements Cloneable, Serializable {
     	return super.clone();
     }
 
-	public boolean equals(Object o) {
+	public bool equals(Object o) {
 
 		SEPElement other = (SEPElement) o;
 

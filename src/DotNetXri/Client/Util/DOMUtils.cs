@@ -133,7 +133,7 @@ public class DOMUtils
     *  Checks if an element matches the given namespace and tag
     *
     */
-    public static boolean isElementNamed(
+    public static bool isElementNamed(
         Element oElem, String sNS, String sTag)
     {
         // bail if no elem
@@ -143,7 +143,7 @@ public class DOMUtils
         }
 
         // match the namespace
-        boolean bMatch =
+        bool bMatch =
             (sNS == null) ? (oElem.getNamespaceURI() == null)
                           : sNS.equals(oElem.getNamespaceURI());
         if (bMatch)
@@ -212,7 +212,7 @@ public class DOMUtils
     * @param bOmitXMLDeclaration - Whether or not to omit the XML preamble
     */
     public static String toString(
-        Element oElt, boolean bIndent, boolean bOmitXMLDeclaration)
+        Element oElt, bool bIndent, bool bOmitXMLDeclaration)
     {
         OutputFormat oFormat = new OutputFormat("XML", "UTF-8", bIndent);
         oFormat.setOmitXMLDeclaration(bOmitXMLDeclaration);

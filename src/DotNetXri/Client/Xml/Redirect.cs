@@ -4,7 +4,7 @@ import java.net.URISyntaxException;
 
 import org.w3c.dom.Element;
 
-public class Redirect extends SimpleXMLElement {
+public class Redirect :SimpleXMLElement {
 
 	public Redirect() {
 		super(Tags.TAG_REDIRECT);

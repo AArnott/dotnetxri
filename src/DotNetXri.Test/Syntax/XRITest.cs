@@ -40,7 +40,7 @@ import org.openxri.XRISegment;
 * Window>Preferences>Java>Code Generation>Code and Comments
 */
 public class XRITest
-    extends TestCase
+    :TestCase
 {
     /*
     ****************************************************************************
@@ -83,7 +83,7 @@ public class XRITest
         public String msVal;
         public int mnNumAuthSubs;
         public int mnNumRelativeSegments;
-        public boolean mbAbsolute;
+        public bool mbAbsolute;
 
         /*
         ************************************************************************
@@ -94,7 +94,7 @@ public class XRITest
         */
         public XriTestCase(
             String sVal, int nNumAuthSubs, int nNumRelativeSegments,
-            boolean bAbsolute)
+            bool bAbsolute)
         {
             msVal = sVal;
             mnNumAuthSubs = nNumAuthSubs;
@@ -510,7 +510,7 @@ public class XRITest
     */ /**
     *
     */
-    private void checkXRI(String sXRI, boolean bAbsolute)
+    private void checkXRI(String sXRI, bool bAbsolute)
     {
         XRIReference oXRI = null;
         if (bAbsolute)
@@ -559,7 +559,7 @@ public class XRITest
     */
     private void checkXRI(
         String sXRI, int nNumAuthSub, int nNumRelativeSegments,
-        boolean bAbsolute)
+        bool bAbsolute)
     {
         XRIReference oXRI = null;
         if (bAbsolute)
@@ -579,7 +579,7 @@ public class XRITest
         }
 
         int nNum = 0;
-        if (oXRI.getAuthorityPath() instanceof XRIAuthority)
+        if (oXRI.getAuthorityPath() is XRIAuthority)
         {
             nNum = ((XRIAuthority) oXRI.getAuthorityPath()).getNumSubSegments();
         }

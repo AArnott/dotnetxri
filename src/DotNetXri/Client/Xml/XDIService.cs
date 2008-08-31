@@ -8,10 +8,10 @@ import java.util.List;
  * This is an XDI Service.
  * @author =peacekeeper
  */
-public class XDIService extends Service {
+public class XDIService :Service {
 
-	public static final String SERVICE_TYPE = "xri://$xdi!($v!1)";
-	public static final String SERVICE_PATH = "($context)!($xdi)!($card)!($v!1) ";
+	public const String SERVICE_TYPE = "xri://$xdi!($v!1)";
+	public const String SERVICE_PATH = "($context)!($xdi)!($card)!($v!1) ";
 
 	/**
 	 * Constructs a new XDI Service endpoint for use in an authority.
@@ -133,7 +133,7 @@ public class XDIService extends Service {
 		this(new Ref[] { xdiRef }, null);
 	}
 
-	public static boolean isInstance(Service service) {
+	public static bool isInstance(Service service) {
 		
 		if (service instanceof XDIService) return(true);
 		

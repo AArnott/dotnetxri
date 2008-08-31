@@ -3,7 +3,7 @@ package org.openxri.xml;
 import org.w3c.dom.Node;
 
 
-public class SEPMediaType extends SEPElement
+public class SEPMediaType :SEPElement
 {
 
 	/**

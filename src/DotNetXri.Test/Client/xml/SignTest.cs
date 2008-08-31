@@ -38,7 +38,7 @@ import org.openxri.saml.Subject;
 * Tests signing and verifying the XRI Descriptor
 */
 public class SignTest
-    extends TestCase
+    :TestCase
 {
     /*
     ****************************************************************************

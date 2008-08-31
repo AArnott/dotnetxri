@@ -4,7 +4,7 @@ import java.net.URISyntaxException;
 
 import org.w3c.dom.Element;
 
-public class CanonicalID extends SimpleXMLElement{
+public class CanonicalID :SimpleXMLElement{
 
 	public CanonicalID() {
 		super(Tags.TAG_CANONICALID);

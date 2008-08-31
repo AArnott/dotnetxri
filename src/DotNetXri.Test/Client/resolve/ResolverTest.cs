@@ -37,7 +37,7 @@ import org.openxri.xml.XRDS;
 
 
 public class ResolverTest
-	extends TestCase
+	:TestCase
 {
 	public static void main(String[] oArgs)
 	{
@@ -227,7 +227,7 @@ public class ResolverTest
 
 	public static Resolver setupResolver()
 	{
-	  // instantiate a Resolver object
+	  // instantiate a Resolver obj
 	  Resolver resolver = new Resolver();
 
 	  // configure roots

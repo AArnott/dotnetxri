@@ -55,8 +55,8 @@ public class IO
     */
     public static HttpURLConnection getConnectionToURI(
         URI oURI, String sMethod, Map oReqProperties,
-        SSLSocketFactory oSSLFactory, boolean bFollowRedirects,
-        boolean bUseCaches)
+        SSLSocketFactory oSSLFactory, bool bFollowRedirects,
+        bool bUseCaches)
         throws IOException
     {
         if ((sMethod == null) || (sMethod.equals("")))
@@ -138,7 +138,7 @@ public class IO
     */
     public static HttpURLConnection getConnectionToURI(
         URI oURI, String sMethod, Map oReqProperties,
-        SSLSocketFactory oSSLFactory, int nFollowRedirects, boolean bUseCaches)
+        SSLSocketFactory oSSLFactory, int nFollowRedirects, bool bUseCaches)
         throws IOException
     {
         URI oNextURI = oURI;

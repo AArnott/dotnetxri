@@ -13,93 +13,91 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
 */
-package org.openxri;
+namespace DotNetXri.Syntax {
 
 
-/*
-********************************************************************************
-* Class: XRIParseException
-********************************************************************************
-*/ /**
-* This class is used to indicate a parsing failure of an XRI syntax element.
-* @author =chetan
-*/
-public class XRIParseException
-    extends java.lang.RuntimeException
-{
-    private Exception moEx = null;
+	/*
+	********************************************************************************
+	* Class: XRIParseException
+	********************************************************************************
+	*/
+	/**
+ * This class is used to indicate a parsing failure of an XRI syntax element.
+ * @author =chetan
+ */
+	public class XRIParseException : java.lang.RuntimeException {
+		private Exception moEx = null;
 
-    /*
-    ****************************************************************************
-    * Constructor()
-    ****************************************************************************
-    */ /**
-    *Constructs a XRIParseException with a default message
-    */
-    public XRIParseException()
-    {
-        super("Invalid XRI");
+		/*
+		****************************************************************************
+		* Constructor()
+		****************************************************************************
+		*/
+		/**
+	 *Constructs a XRIParseException with a default message
+	 */
+		public XRIParseException()
+			: base("Invalid XRI") {
+		} // Constructor()
 
-    } // Constructor()
+		/*
+		****************************************************************************
+		* Constructor()
+		****************************************************************************
+		*/
+		/**
+	 *Constructs a XRIParseException with the provided message
+	 */
+		public XRIParseException(String sMsg) {
+			super(sMsg);
 
-    /*
-    ****************************************************************************
-    * Constructor()
-    ****************************************************************************
-    */ /**
-    *Constructs a XRIParseException with the provided message
-    */
-    public XRIParseException(String sMsg)
-    {
-        super(sMsg);
+		} // Constructor()
 
-    } // Constructor()
+		/*
+		****************************************************************************
+		* Constructor()
+		****************************************************************************
+		*/
+		/**
+	 *Constructs a XRIParseException with the provided message and
+	 *based off of the provided Exception
+	 */
+		public XRIParseException(String sMsg, Exception oEx) {
+			super(sMsg);
+			moEx = oEx;
 
-    /*
-    ****************************************************************************
-    * Constructor()
-    ****************************************************************************
-    */ /**
-    *Constructs a XRIParseException with the provided message and
-    *based off of the provided Exception
-    */
-    public XRIParseException(String sMsg, Exception oEx)
-    {
-        super(sMsg);
-        moEx = oEx;
+		} // Constructor()
 
-    } // Constructor()
+		/*
+		****************************************************************************
+		* dump()
+		****************************************************************************
+		*/
+		/**
+	 * Prints the stack trace for the exception and the exception it is based
+	 * upon to standard out.
+	 */
+		public void dump() {
+			if (moEx != null) {
+				moEx.printStackTrace();
+			}
 
-    /*
-    ****************************************************************************
-    * dump()
-    ****************************************************************************
-    */ /**
-    * Prints the stack trace for the exception and the exception it is based
-    * upon to standard out.
-    */
-    public void dump()
-    {
-        if (moEx != null)
-        {
-            moEx.printStackTrace();
-        }
+			printStackTrace();
 
-        printStackTrace();
+		} // dump()
 
-    } // dump()
+		/*
+		****************************************************************************
+		* toString()
+		****************************************************************************
+		*/
+		/**
+	 * Provides String representation of the exception
+	 */
+		public String toString() {
+			return super.toString();
 
-    /*
-    ****************************************************************************
-    * toString()
-    ****************************************************************************
-    */ /**
-    * Provides String representation of the exception
-    */
-    public String toString()
-    {
-        return super.toString();
+		} // toString()
 
-    } // toString()
-
-} // Class: XRIParseException
+	} // Class: XRIParseException
+}

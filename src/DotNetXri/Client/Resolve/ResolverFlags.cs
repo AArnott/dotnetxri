@@ -32,14 +32,14 @@ import org.openxri.xml.XRD;
  */
 public class ResolverFlags
 {
-	private boolean https; // HTTPS trusted resolution?
-	private boolean saml;  // SAML trusted resolution? 
-	private boolean refs;  // follow refs?
-	private boolean noDefaultT; // default SEP type matching?
-	private boolean noDefaultP; // default SEP path matching?
-	private boolean noDefaultM; // default SEP mediatype matching?
-	private boolean uric;  // construct URI on XRD output?
-	private boolean cid;   // do CID verification?
+	private bool https; // HTTPS trusted resolution?
+	private bool saml;  // SAML trusted resolution? 
+	private bool refs;  // follow refs?
+	private bool noDefaultT; // default SEP type matching?
+	private bool noDefaultP; // default SEP path matching?
+	private bool noDefaultM; // default SEP mediatype matching?
+	private bool uric;  // construct URI on XRD output?
+	private bool cid;   // do CID verification?
 
     /**
      * Constructor
@@ -74,7 +74,7 @@ public class ResolverFlags
     /**
      * Constructor that provides compatibility with old trustType and followRefs interface
      */
-    public ResolverFlags(TrustType trustType, boolean followRefs)
+    public ResolverFlags(TrustType trustType, bool followRefs)
     {
     	this();
 		setHttps(trustType.isHTTPS());
@@ -118,112 +118,112 @@ public class ResolverFlags
 	/**
 	 * @return the https
 	 */
-	public boolean isHttps() {
+	public bool isHttps() {
 		return https;
 	}
 
 	/**
 	 * @param https the https to set
 	 */
-	public void setHttps(boolean https) {
+	public void setHttps(bool https) {
 		this.https = https;
 	}
 
 	/**
 	 * @return the saml
 	 */
-	public boolean isSaml() {
+	public bool isSaml() {
 		return saml;
 	}
 
 	/**
 	 * @param saml the saml to set
 	 */
-	public void setSaml(boolean saml) {
+	public void setSaml(bool saml) {
 		this.saml = saml;
 	}
 
 	/**
 	 * @return the refs
 	 */
-	public boolean isRefs() {
+	public bool isRefs() {
 		return refs;
 	}
 
 	/**
 	 * @param refs the refs to set
 	 */
-	public void setRefs(boolean refs) {
+	public void setRefs(bool refs) {
 		this.refs = refs;
 	}
 
 	/**
 	 * @return the noDefaultT
 	 */
-	public boolean isNoDefaultT() {
+	public bool isNoDefaultT() {
 		return noDefaultT;
 	}
 
 	/**
 	 * @param noDefaultT the noDefaultT to set
 	 */
-	public void setNoDefaultT(boolean noDefaultT) {
+	public void setNoDefaultT(bool noDefaultT) {
 		this.noDefaultT = noDefaultT;
 	}
 
 	/**
 	 * @return the noDefaultP
 	 */
-	public boolean isNoDefaultP() {
+	public bool isNoDefaultP() {
 		return noDefaultP;
 	}
 
 	/**
 	 * @param noDefaultP the noDefaultP to set
 	 */
-	public void setNoDefaultP(boolean noDefaultP) {
+	public void setNoDefaultP(bool noDefaultP) {
 		this.noDefaultP = noDefaultP;
 	}
 
 	/**
 	 * @return the noDefaultM
 	 */
-	public boolean isNoDefaultM() {
+	public bool isNoDefaultM() {
 		return noDefaultM;
 	}
 
 	/**
 	 * @param noDefaultM the noDefaultM to set
 	 */
-	public void setNoDefaultM(boolean noDefaultM) {
+	public void setNoDefaultM(bool noDefaultM) {
 		this.noDefaultM = noDefaultM;
 	}
 
 	/**
 	 * @return the uric
 	 */
-	public boolean isUric() {
+	public bool isUric() {
 		return uric;
 	}
 
 	/**
 	 * @param uric the uric to set
 	 */
-	public void setUric(boolean uric) {
+	public void setUric(bool uric) {
 		this.uric = uric;
 	}
 
 	/**
 	 * @return the cid
 	 */
-	public boolean isCid() {
+	public bool isCid() {
 		return cid;
 	}
 
 	/**
 	 * @param cid the cid to set
 	 */
-	public void setCid(boolean cid) {
+	public void setCid(bool cid) {
 		this.cid = cid;
 	}
 	

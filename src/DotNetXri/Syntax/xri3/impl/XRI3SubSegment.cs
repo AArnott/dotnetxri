@@ -1,31 +1,12 @@
-package org.openxri.xri3.impl;
-
-import java.util.List;
-
-import org.openxri.xri3.XRILiteral;
-import org.openxri.xri3.XRISubSegment;
-import org.openxri.xri3.XRIXRef;
-import org.openxri.xri3.impl.parser.ParserException;
-import org.openxri.xri3.impl.parser.Rule;
-import org.openxri.xri3.impl.parser.Parser.gcs_char;
-import org.openxri.xri3.impl.parser.Parser.global_subseg;
-import org.openxri.xri3.impl.parser.Parser.lcs_char;
-import org.openxri.xri3.impl.parser.Parser.literal;
-import org.openxri.xri3.impl.parser.Parser.literal_nc;
-import org.openxri.xri3.impl.parser.Parser.local_subseg;
-import org.openxri.xri3.impl.parser.Parser.rel_subseg;
-import org.openxri.xri3.impl.parser.Parser.rel_subseg_nc;
-import org.openxri.xri3.impl.parser.Parser.subseg;
-import org.openxri.xri3.impl.parser.Parser.xref;
-
-public class XRI3SubSegment extends XRI3SyntaxComponent implements XRISubSegment {
+namespace DotNetXri.Syntax.Xri3.Impl {
+public class XRI3SubSegment :XRI3SyntaxComponent, XRISubSegment {
 
 	private static final long serialVersionUID = 821195692608034080L;
 
 	private Rule rule;
 
-	private Character gcs;
-	private Character lcs;
+	private char gcs;
+	private char lcs;
 	private XRI3Literal literal;
 	private XRI3XRef xref;
 
@@ -35,7 +16,7 @@ public class XRI3SubSegment extends XRI3SyntaxComponent implements XRISubSegment
 		this.read();
 	}
 
-	public XRI3SubSegment(Character gcs, XRISubSegment localSubSegment) throws ParserException {
+	public XRI3SubSegment(char gcs, XRISubSegment localSubSegment) throws ParserException {
 
 		StringBuffer buffer = new StringBuffer();
 
@@ -46,7 +27,7 @@ public class XRI3SubSegment extends XRI3SyntaxComponent implements XRISubSegment
 		this.read();
 	}
 
-	public XRI3SubSegment(Character cs, String uri) throws ParserException {
+	public XRI3SubSegment(char cs, String uri) throws ParserException {
 
 		StringBuffer buffer = new StringBuffer();
 
@@ -99,7 +80,7 @@ public class XRI3SubSegment extends XRI3SyntaxComponent implements XRISubSegment
 			List list_global_subseg = ((global_subseg) object).rules;
 			if (list_global_subseg.size() < 1) return;
 			object = list_global_subseg.get(0);	// gcs_char
-			this.gcs = new Character(((gcs_char) object).spelling.charAt(0));
+			this.gcs = new char(((gcs_char) object).spelling.charAt(0));
 
 			// read rel_subseg or local_subseg from global_subseg
 
@@ -116,7 +97,7 @@ public class XRI3SubSegment extends XRI3SyntaxComponent implements XRISubSegment
 			List list_local_subseg = ((local_subseg) object).rules;
 			if (list_local_subseg.size() < 1) return;
 			object = list_local_subseg.get(0);	// lcs_char
-			this.lcs = new Character(((lcs_char) object).spelling.charAt(0));
+			this.lcs = new char(((lcs_char) object).spelling.charAt(0));
 
 			// read rel_subseg from local_subseg
 
@@ -167,32 +148,32 @@ public class XRI3SubSegment extends XRI3SyntaxComponent implements XRISubSegment
 		return(this.rule);
 	}
 
-	public boolean hasGCS() {
+	public bool hasGCS() {
 
 		return(this.gcs != null);
 	}
 
-	public boolean hasLCS() {
+	public bool hasLCS() {
 
 		return(this.lcs != null);
 	}
 
-	public boolean hasLiteral() {
+	public bool hasLiteral() {
 
 		return(this.literal != null);
 	}
 
-	public boolean hasXRef() {
+	public bool hasXRef() {
 
 		return(this.xref != null);
 	}
 
-	public Character getGCS() {
+	public char getGCS() {
 
 		return(this.gcs);
 	}
 
-	public Character getLCS() {
+	public char getLCS() {
 
 		return(this.lcs);
 	}
@@ -207,23 +188,24 @@ public class XRI3SubSegment extends XRI3SyntaxComponent implements XRISubSegment
 		return(this.xref);
 	}
 
-	public boolean isGlobal() {
+	public bool isGlobal() {
 
 		return(this.hasGCS());
 	}
 
-	public boolean isLocal() {
+	public bool isLocal() {
 
 		return(this.hasLCS() && ! this.hasGCS());
 	}
 
-	public boolean isPersistent() {
+	public bool isPersistent() {
 
 		return(this.hasLCS() && this.getLCS().equals(XRI3Constants.LCS_BANG));
 	}
 
-	public boolean isReassignable() {
+	public bool isReassignable() {
 
 		return((this.hasGCS() && ! this.hasLCS()) || (this.hasLCS() && this.getLCS().equals(XRI3Constants.LCS_STAR)));
 	}
+}
 }

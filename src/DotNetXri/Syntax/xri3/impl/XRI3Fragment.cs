@@ -1,11 +1,6 @@
-package org.openxri.xri3.impl;
+namespace DotNetXri.Syntax.Xri3.Impl {
 
-import org.openxri.xri3.XRIFragment;
-import org.openxri.xri3.impl.parser.ParserException;
-import org.openxri.xri3.impl.parser.Rule;
-import org.openxri.xri3.impl.parser.Parser.ifragment;
-
-public class XRI3Fragment extends XRI3SyntaxComponent implements XRIFragment {
+public class XRI3Fragment :XRI3SyntaxComponent, XRIFragment {
 
 	private static final long serialVersionUID = 5034503145058610708L;
 
@@ -48,4 +43,5 @@ public class XRI3Fragment extends XRI3SyntaxComponent implements XRIFragment {
 		
 		return(this.value);
 	}
+}
 }

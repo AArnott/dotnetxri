@@ -13,11 +13,11 @@ import java.util.List;
  * It is REQUIRED that at least one HTTPS URI is used with an Authentication Service.
  * @author =peacekeeper
  */
-public class AuthenticationService extends org.openxri.xml.Service {
+public class AuthenticationService :org.openxri.xml.Service {
 
-	public static final String SERVICE_TYPE1 = "http://openid.net/signon/1.0";
-	public static final String SERVICE_TYPE2 = "http://specs.openid.net/auth/2.0/signon";
-	public static final String LOGIN_PATH = "(+login)";
+	public const String SERVICE_TYPE1 = "http://openid.net/signon/1.0";
+	public const String SERVICE_TYPE2 = "http://specs.openid.net/auth/2.0/signon";
+	public const String LOGIN_PATH = "(+login)";
 	public static final Integer URI_PRIORITY_HTTPS = new Integer(1);
 	public static final Integer URI_PRIORITY_DEFAULT = new Integer(2);
 
@@ -28,7 +28,7 @@ public class AuthenticationService extends org.openxri.xml.Service {
 	 * @param delegate - The identity to use for authenticating at the OpenID IdP; null if the XRI itself is to be used.
 	 * @param useLoginPath - Whether the Authentication Service implementation responds to the OPTIONAL (+login) path.
 	 */
-	public AuthenticationService(URI[] authenticationPages, String providerID, String delegate, boolean useLoginPath) {
+	public AuthenticationService(URI[] authenticationPages, String providerID, String delegate, bool useLoginPath) {
 		
 		super();
 		
@@ -103,7 +103,7 @@ public class AuthenticationService extends org.openxri.xml.Service {
 		}
 	}
 
-	public AuthenticationService(URI authenticationPage, String providerID, String delegate, boolean useLoginPath) {
+	public AuthenticationService(URI authenticationPage, String providerID, String delegate, bool useLoginPath) {
 		
 		this(new URI[] { authenticationPage }, providerID, delegate, useLoginPath);
 	}
@@ -138,7 +138,7 @@ public class AuthenticationService extends org.openxri.xml.Service {
 		this(new URI[] { authenticationPage }, null, null, true);
 	}
 
-	public static boolean isInstance(Service service) {
+	public static bool isInstance(Service service) {
 		
 		if (service instanceof ForwardingService) return(true);
 		

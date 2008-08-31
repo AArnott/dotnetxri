@@ -11,14 +11,14 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 
-public class SEPUri implements Serializable
+public class SEPUri : Serializable
 {
-	public static final String APPEND_LOCAL     = "local";
-	public static final String APPEND_AUTHORITY = "authority";
-	public static final String APPEND_PATH      = "path";
-	public static final String APPEND_QUERY     = "query";
-	public static final String APPEND_QXRI      = "qxri";
-	public static final String APPEND_NONE      = "none";
+	public const String APPEND_LOCAL     = "local";
+	public const String APPEND_AUTHORITY = "authority";
+	public const String APPEND_PATH      = "path";
+	public const String APPEND_QUERY     = "query";
+	public const String APPEND_QXRI      = "qxri";
+	public const String APPEND_NONE      = "none";
 
 	 protected static org.apache.commons.logging.Log soLog =
 	        org.apache.commons.logging.LogFactory.getLog(
@@ -27,7 +27,7 @@ public class SEPUri implements Serializable
 	 * If the "append" attribute is not present, its default value
 	 * is <code>APPEND_LOCAL</code>.
 	 */
-	public static final String DEFAULT_APPEND   = APPEND_LOCAL;
+	public const String DEFAULT_APPEND   = APPEND_LOCAL;
 
 
 	private URI     uri;

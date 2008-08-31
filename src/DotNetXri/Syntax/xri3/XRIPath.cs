@@ -1,14 +1,12 @@
-package org.openxri.xri3;
+namespace DotNetXri.Syntax.Xri3 {
+	public interface XRIPath : XRISyntaxComponent {
 
-import java.util.List;
+		public List getSegments();
+		public int getNumSegments();
+		public XRISegment getSegment(int i);
+		public XRISegment getFirstSegment();
+		public XRISegment getLastSegment();
 
-public interface XRIPath extends XRISyntaxComponent {
-
-	public List getSegments();
-	public int getNumSegments();
-	public XRISegment getSegment(int i);
-	public XRISegment getFirstSegment();
-	public XRISegment getLastSegment();
-
-	public boolean startsWith(XRISegment[] segments);
+		public bool startsWith(XRISegment[] segments);
+	}
 }

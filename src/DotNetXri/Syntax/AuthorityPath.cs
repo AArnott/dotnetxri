@@ -13,103 +13,101 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
 */
-package org.openxri;
+namespace DotNetXri.Syntax {
 
 
-/*
-********************************************************************************
-* Class: AuthorityPath
-********************************************************************************
-*/ /**
-* This class provides a base class for all types of AuthorityPath elements
-*
-* @author =chetan
-*/
-public abstract class AuthorityPath
-    extends Parsable
-{
-    /*
-    ****************************************************************************
-    * Constructor()
-    ****************************************************************************
-    */ /**
-    * Protected Constructor used by package only
-    */
-    AuthorityPath()
-    {
-        super();
+	/*
+	********************************************************************************
+	* Class: AuthorityPath
+	********************************************************************************
+	*/
+	/**
+ * This class provides a base class for all types of AuthorityPath elements
+ *
+ * @author =chetan
+ */
+	public abstract class AuthorityPath
+		: Parsable {
+		/*
+		****************************************************************************
+		* Constructor()
+		****************************************************************************
+		*/
+		/**
+	 * Protected Constructor used by package only
+	 */
+		AuthorityPath() {
+			super();
 
-    } // Constructor()
+		} // Constructor()
 
-    /*
-    ****************************************************************************
-    * Constructor()
-    ****************************************************************************
-    */ /**
-    * Constructs AuthorityPath from a String
-    */
-    AuthorityPath(String sPath)
-    {
-        super(sPath);
+		/*
+		****************************************************************************
+		* Constructor()
+		****************************************************************************
+		*/
+		/**
+	 * Constructs AuthorityPath from a String
+	 */
+		AuthorityPath(String sPath) {
+			super(sPath);
 
-    } // Constructor()
+		} // Constructor()
 
-    /*
-    ****************************************************************************
-    * buildAuthorityPath()
-    ****************************************************************************
-    */ /**
-    * Static method to build the correct AuthorityPath object from a String
-    */
-    public static AuthorityPath buildAuthorityPath(String sPath)
-    {
-        ParseStream oStream = new ParseStream(sPath);
-        AuthorityPath oPath = scanAuthority(oStream);
+		/*
+		****************************************************************************
+		* buildAuthorityPath()
+		****************************************************************************
+		*/
+		/**
+	 * Static method to build the correct AuthorityPath obj from a String
+	 */
+		public static AuthorityPath buildAuthorityPath(String sPath) {
+			ParseStream oStream = new ParseStream(sPath);
+			AuthorityPath oPath = scanAuthority(oStream);
 
-        // only return the path if the entire stream was consumed
-        return (oStream.getData().length() == 0) ? oPath : null;
+			// only return the path if the entire stream was consumed
+			return (oStream.getData().length() == 0) ? oPath : null;
 
-    } // buildAuthorityPath()
+		} // buildAuthorityPath()
 
-    /*
-    ****************************************************************************
-    * scanAuthority()
-    ****************************************************************************
-    */ /**
-    *
-    */
-    static AuthorityPath scanAuthority(ParseStream oParseStream)
-    {
-        GCSAuthority oGCSAuthority = new GCSAuthority();
-        if (oGCSAuthority.scan(oParseStream))
-        {
-            return oGCSAuthority;
-        }
+		/*
+		****************************************************************************
+		* scanAuthority()
+		****************************************************************************
+		*/
+		/**
+	 *
+	 */
+		static AuthorityPath scanAuthority(ParseStream oParseStream) {
+			GCSAuthority oGCSAuthority = new GCSAuthority();
+			if (oGCSAuthority.scan(oParseStream)) {
+				return oGCSAuthority;
+			}
 
-        XRefAuthority oXRefAuthority = new XRefAuthority();
-        if (oXRefAuthority.scan(oParseStream))
-        {
-            return oXRefAuthority;
-        }
+			XRefAuthority oXRefAuthority = new XRefAuthority();
+			if (oXRefAuthority.scan(oParseStream)) {
+				return oXRefAuthority;
+			}
 
-        IRIAuthority oIRIAuthority = new IRIAuthority();
-        if (oIRIAuthority.scan(oParseStream))
-        {
-            return oIRIAuthority;
-        }
+			IRIAuthority oIRIAuthority = new IRIAuthority();
+			if (oIRIAuthority.scan(oParseStream)) {
+				return oIRIAuthority;
+			}
 
-        return null;
+			return null;
 
-    } // scanAuthority()
+		} // scanAuthority()
 
-    /**
-     *  Serializes the authority into IRI-normal form
-     */
-    public abstract String toIRINormalForm();
+		/**
+		 *  Serializes the authority into IRI-normal form
+		 */
+		public abstract String toIRINormalForm();
 
-    /**
-     *  Serializes the authority into URI-normal form
-     */
-    public abstract String toURINormalForm();
+		/**
+		 *  Serializes the authority into URI-normal form
+		 */
+		public abstract String toURINormalForm();
 
+	}
 }

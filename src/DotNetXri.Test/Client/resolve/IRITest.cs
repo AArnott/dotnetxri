@@ -41,7 +41,7 @@ import org.openxri.xml.XRDS;
 * @author =chetan
 */
 public class IRITest
-    extends TestCase
+    :TestCase
 {
     /*
     ****************************************************************************
@@ -78,7 +78,7 @@ public class IRITest
     *
     */
     class IRIResolver
-        extends Resolver
+        :Resolver
     {
 
         protected InputStream getDataFromURI(URI oURI, String query, ResolverFlags flags, ResolverState state)
@@ -123,7 +123,7 @@ public class IRITest
         catch (Exception oEx)
         {
         	oEx.printStackTrace();
-        	if (oEx instanceof PartialResolutionException) {
+        	if (oEx is PartialResolutionException) {
         		System.err.println("Partial = " + ((PartialResolutionException)oEx).getPartialXRDS());
         	}
         	System.err.println("Resolver state = " + state);

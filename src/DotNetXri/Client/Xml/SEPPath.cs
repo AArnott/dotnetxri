@@ -3,7 +3,7 @@ package org.openxri.xml;
 import org.w3c.dom.Node;
 
 
-public class SEPPath extends SEPElement
+public class SEPPath :SEPElement
 {
 
 	/**

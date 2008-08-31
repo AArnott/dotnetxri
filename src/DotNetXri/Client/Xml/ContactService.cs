@@ -12,10 +12,10 @@ import java.util.List;
  * e.g. 'contact.my-i-broker.com'
  * @author =peacekeeper
  */
-public class ContactService extends Service {
+public class ContactService :Service {
 
-	public static final String SERVICE_TYPE = "xri://+i-service*(+contact)*($v*1.0)";
-	public static final String CONTACT_PATH = "(+contact)";
+	public const String SERVICE_TYPE = "xri://+i-service*(+contact)*($v*1.0)";
+	public const String CONTACT_PATH = "(+contact)";
 
 	/**
 	 * Constructs a new Contact Service endpoint for use in an authority.
@@ -23,7 +23,7 @@ public class ContactService extends Service {
 	 * @param providerID - The global i-number of the I-Broker providing this Contact Service.
 	 * @param makeDefault - Whether to make the Contact Service the default service.
 	 */
-	public ContactService(URI[] contactPages, String providerID, boolean makeDefault) {
+	public ContactService(URI[] contactPages, String providerID, bool makeDefault) {
 		
 		super();
 		
@@ -68,7 +68,7 @@ public class ContactService extends Service {
 		}
 	}
 	
-	public ContactService(URI contactPage, String providerID, boolean makeDefault) {
+	public ContactService(URI contactPage, String providerID, bool makeDefault) {
 	
 		this(new URI[] { contactPage }, providerID, makeDefault);
 	}
@@ -93,7 +93,7 @@ public class ContactService extends Service {
 		this(new URI[] { contactPage }, null, true);
 	}
 
-	public static boolean isInstance(Service service) {
+	public static bool isInstance(Service service) {
 		
 		if (service instanceof ForwardingService) return(true);
 		

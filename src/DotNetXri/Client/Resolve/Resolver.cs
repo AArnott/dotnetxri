@@ -68,7 +68,7 @@ import org.xml.sax.SAXException;
  * @author wtan
  *
  */
-public class Resolver extends BaseFetcher {
+public class Resolver :BaseFetcher {
 
 	private static org.apache.commons.logging.Log log
 		= org.apache.commons.logging.LogFactory.getLog(Resolver.class.getName());
@@ -228,7 +228,7 @@ public class Resolver extends BaseFetcher {
 	/**
 	 * @deprecated
 	 */
-	public XRDS resolveAuthToXRDS(String qxri, TrustType trustType, boolean followRefs) 
+	public XRDS resolveAuthToXRDS(String qxri, TrustType trustType, bool followRefs) 
 			throws PartialResolutionException
 	{
 		return resolveAuthToXRDS(qxri, trustType, followRefs, new ResolverState());
@@ -237,7 +237,7 @@ public class Resolver extends BaseFetcher {
 	/**
 	 * @deprecated
 	 */
-	public XRDS resolveAuthToXRDS(String qxri, TrustType trustType, boolean followRefs, ResolverState state)
+	public XRDS resolveAuthToXRDS(String qxri, TrustType trustType, bool followRefs, ResolverState state)
 			throws PartialResolutionException
 	{
 		XRI xri = parseAbsoluteQXRIOrError(qxri);
@@ -247,7 +247,7 @@ public class Resolver extends BaseFetcher {
 	/**
 	 * @deprecated
 	 */
-	public XRDS resolveAuthToXRDS(XRI qxri, TrustType trustType, boolean followRefs)
+	public XRDS resolveAuthToXRDS(XRI qxri, TrustType trustType, bool followRefs)
 			throws PartialResolutionException
 	{
 		return resolveAuthToXRDS(qxri, trustType, followRefs, new ResolverState());
@@ -257,7 +257,7 @@ public class Resolver extends BaseFetcher {
 	 * @deprecated
 	 */
 	public XRDS resolveAuthToXRDS(XRI qxri, TrustType trustType,
-			boolean followRefs, ResolverState state)
+			bool followRefs, ResolverState state)
 			throws PartialResolutionException {
 		ResolverFlags f = new ResolverFlags(trustType, followRefs);
 		return resolveAuthToXRDS(qxri, f, state);
@@ -267,7 +267,7 @@ public class Resolver extends BaseFetcher {
 	 * @deprecated
 	 */
 	public XRD resolveAuthToXRD(String qxri, TrustType trustType,
-			boolean followRefs) throws PartialResolutionException {
+			bool followRefs) throws PartialResolutionException {
 		return resolveAuthToXRD(qxri, trustType, followRefs,
 				new ResolverState());
 	}
@@ -276,7 +276,7 @@ public class Resolver extends BaseFetcher {
 	 * @deprecated
 	 */
 	public XRD resolveAuthToXRD(String qxri, TrustType trustType,
-			boolean followRefs, ResolverState state)
+			bool followRefs, ResolverState state)
 			throws PartialResolutionException {
 		log.trace("resolveAuthToXRD(s'" + qxri + "', trustType=" + trustType
 				+ ", followRefs=" + followRefs + ")");
@@ -288,7 +288,7 @@ public class Resolver extends BaseFetcher {
 	 * @deprecated
 	 */
 	public XRD resolveAuthToXRD(XRI qxri, TrustType trustType,
-			boolean followRefs) throws PartialResolutionException {
+			bool followRefs) throws PartialResolutionException {
 		return resolveAuthToXRD(qxri, trustType, followRefs,
 				new ResolverState());
 	}
@@ -297,7 +297,7 @@ public class Resolver extends BaseFetcher {
 	 * @deprecated
 	 */
 	public XRD resolveAuthToXRD(XRI qxri, TrustType trustType,
-			boolean followRefs, ResolverState state)
+			bool followRefs, ResolverState state)
 			throws PartialResolutionException {
 		log.trace("resolveAuthToXRD('" + qxri + "', trustType=" + trustType
 				+ ", followRefs=" + followRefs + ")");
@@ -310,7 +310,7 @@ public class Resolver extends BaseFetcher {
 	 * @deprecated
 	 */
 	public XRDS resolveSEPToXRDS(String qxri, TrustType trustType,
-			String sepType, String sepMediaType, boolean followRefs)
+			String sepType, String sepMediaType, bool followRefs)
 			throws PartialResolutionException {
 		return resolveSEPToXRDS(qxri, trustType, sepType, sepMediaType,
 				followRefs, new ResolverState());
@@ -320,7 +320,7 @@ public class Resolver extends BaseFetcher {
 	 * @deprecated
 	 */
 	public XRDS resolveSEPToXRDS(String qxri, TrustType trustType,
-			String sepType, String sepMediaType, boolean followRefs,
+			String sepType, String sepMediaType, bool followRefs,
 			ResolverState state) throws PartialResolutionException {
 		log.trace("resolveSEPToXRDS(s'" + qxri + "', trustType=" + trustType
 				+ ", sepType=" + sepType + ", sepMediaType=" + sepMediaType
@@ -335,7 +335,7 @@ public class Resolver extends BaseFetcher {
 	 * @deprecated
 	 */
 	public XRDS resolveSEPToXRDS(XRI qxri, TrustType trustType, String sepType,
-			String sepMediaType, boolean followRefs)
+			String sepMediaType, bool followRefs)
 			throws PartialResolutionException {
 		return resolveSEPToXRDS(qxri, trustType, sepType, sepMediaType,
 				followRefs, new ResolverState());
@@ -345,7 +345,7 @@ public class Resolver extends BaseFetcher {
 	 * @deprecated
 	 */
 	public XRDS resolveSEPToXRDS(XRI qxri, TrustType trustType, String sepType,
-			String sepMediaType, boolean followRefs, ResolverState state)
+			String sepMediaType, bool followRefs, ResolverState state)
 			throws PartialResolutionException {
 		log.trace("resolveSEPToXRDS('" + qxri + "', trustType=" + trustType
 				+ ", sepType=" + sepType + ", sepMediaType=" + sepMediaType
@@ -359,7 +359,7 @@ public class Resolver extends BaseFetcher {
 	 * @deprecated
 	 */
 	public XRD resolveSEPToXRD(String qxri, TrustType trustType,
-			String sepType, String sepMediaType, boolean followRefs)
+			String sepType, String sepMediaType, bool followRefs)
 			throws PartialResolutionException {
 		return resolveSEPToXRD(qxri, trustType, sepType, sepMediaType,
 				followRefs, new ResolverState());
@@ -369,7 +369,7 @@ public class Resolver extends BaseFetcher {
 	 * @deprecated
 	 */
 	public XRD resolveSEPToXRD(String qxri, TrustType trustType,
-			String sepType, String sepMediaType, boolean followRefs,
+			String sepType, String sepMediaType, bool followRefs,
 			ResolverState state) throws PartialResolutionException {
 		log.trace("resolveSEPToXRD(s'" + qxri + "', trustType=" + trustType
 				+ ", sepType=" + sepType + ", sepMediaType=" + sepMediaType
@@ -384,7 +384,7 @@ public class Resolver extends BaseFetcher {
 	 * @deprecated
 	 */
 	public XRD resolveSEPToXRD(XRI qxri, TrustType trustType, String sepType,
-			String sepMediaType, boolean followRefs)
+			String sepMediaType, bool followRefs)
 			throws PartialResolutionException {
 		return resolveSEPToXRD(qxri, trustType, sepType, sepMediaType,
 				followRefs, new ResolverState());
@@ -394,7 +394,7 @@ public class Resolver extends BaseFetcher {
 	 * @deprecated
 	 */
 	public XRD resolveSEPToXRD(XRI qxri, TrustType trustType, String sepType,
-			String sepMediaType, boolean followRefs, ResolverState state)
+			String sepMediaType, bool followRefs, ResolverState state)
 			throws PartialResolutionException {
 		log.trace("resolveSEPToXRD('" + qxri + "', trustType=" + trustType
 				+ ", sepType=" + sepType + ", sepMediaType=" + sepMediaType
@@ -409,7 +409,7 @@ public class Resolver extends BaseFetcher {
 	 * @deprecated
 	 */
 	public ArrayList resolveSEPToURIList(String qxri, TrustType trustType,
-			String sepType, String sepMediaType, boolean followRefs)
+			String sepType, String sepMediaType, bool followRefs)
 			throws PartialResolutionException {
 		return resolveSEPToURIList(qxri, trustType, sepType, sepMediaType,
 				followRefs, new ResolverState());
@@ -419,7 +419,7 @@ public class Resolver extends BaseFetcher {
 	 * @deprecated
 	 */
 	public ArrayList resolveSEPToURIList(String qxri, TrustType trustType,
-			String sepType, String sepMediaType, boolean followRefs,
+			String sepType, String sepMediaType, bool followRefs,
 			ResolverState state) throws PartialResolutionException {
 		log.trace("resolveSEPToURIList(s'" + qxri + "', trustType=" + trustType
 				+ ", sepType=" + sepType + ", sepMediaType=" + sepMediaType
@@ -434,7 +434,7 @@ public class Resolver extends BaseFetcher {
 	 * @deprecated
 	 */
 	public ArrayList resolveSEPToURIList(XRI qxri, TrustType trustType,
-			String sepType, String sepMediaType, boolean followRefs)
+			String sepType, String sepMediaType, bool followRefs)
 			throws PartialResolutionException {
 		return resolveSEPToURIList(qxri, trustType, sepType, sepMediaType,
 				followRefs, new ResolverState());
@@ -444,7 +444,7 @@ public class Resolver extends BaseFetcher {
 	 * @deprecated
 	 */
 	public ArrayList resolveSEPToURIList(XRI qxri, TrustType trustType,
-			String sepType, String sepMediaType, boolean followRefs,
+			String sepType, String sepMediaType, bool followRefs,
 			ResolverState state) throws PartialResolutionException {
 		ResolverFlags f = new ResolverFlags(trustType, followRefs);
 		return resolveSEPToURIList(qxri, sepType, sepMediaType, f, state);
@@ -454,7 +454,7 @@ public class Resolver extends BaseFetcher {
 	 * @deprecated
 	 */
 	public String resolveSEPToTextURIList(String qxri, TrustType trustType,
-			String sepType, String sepMediaType, boolean followRefs)
+			String sepType, String sepMediaType, bool followRefs)
 			throws PartialResolutionException {
 		return resolveSEPToTextURIList(qxri, trustType, sepType, sepMediaType,
 				followRefs, new ResolverState());
@@ -464,7 +464,7 @@ public class Resolver extends BaseFetcher {
 	 * @deprecated
 	 */
 	public String resolveSEPToTextURIList(String qxri, TrustType trustType,
-			String sepType, String sepMediaType, boolean followRefs,
+			String sepType, String sepMediaType, bool followRefs,
 			ResolverState state) throws PartialResolutionException {
 		ResolverFlags f = new ResolverFlags(trustType, followRefs);
 		XRI xri = parseAbsoluteQXRIOrError(qxri);
@@ -629,7 +629,7 @@ public class Resolver extends BaseFetcher {
 	
 
 	protected XRDS resolveViaProxy(XRI qxri, String serviceType,
-			String serviceMediaType, boolean sepSelect, ResolverFlags flags,
+			String serviceMediaType, bool sepSelect, ResolverFlags flags,
 			ResolverState state) throws PartialResolutionException {
 		log.trace("resolveViaProxy('" + qxri + ", serviceType=" + serviceType
 				+ ", serviceMediaType=" + serviceMediaType + ", flags: "
@@ -883,7 +883,7 @@ public class Resolver extends BaseFetcher {
 			LocalID l = xrd.getLocalIDAt(i);
 			
 			// search for it in parent
-			boolean found = false;
+			bool found = false;
 			for (int j = 0; j < parent.getNumLocalIDs(); j++) {
 				if (verifySynonymElement(l, parent.getLocalIDAt(j))) {
 					found = true;
@@ -900,7 +900,7 @@ public class Resolver extends BaseFetcher {
 			EquivID e = xrd.getEquivIDAt(i);
 			
 			// search for it in parent
-			boolean found = false;
+			bool found = false;
 			for (int j = 0; j < parent.getNumEquivIDs(); j++) {
 				if (verifySynonymElement(e, parent.getEquivIDAt(j))) {
 					found = true;
@@ -917,7 +917,7 @@ public class Resolver extends BaseFetcher {
 	}
 	
 	
-	private boolean verifySynonymElement(SimpleXMLElement e1, SimpleXMLElement e2)
+	private bool verifySynonymElement(SimpleXMLElement e1, SimpleXMLElement e2)
 	{
 		try {
 			XRI x1 = XRI.fromURINormalForm(e1.getValue());				
@@ -1134,7 +1134,7 @@ public class Resolver extends BaseFetcher {
 				//       in the final XRD
 				
 				/*
-			    boolean valid = isTrustedDescriptor(segment.getSubSegmentAt(d), xrd, parentService);
+			    bool valid = isTrustedDescriptor(segment.getSubSegmentAt(d), xrd, parentService);
 
 			    // bail if the descriptor is not valid
 			    if (!valid) {
@@ -1244,7 +1244,7 @@ public class Resolver extends BaseFetcher {
 	 * @param parent
 	 * @param segment
 	 * @param flags
-	 * @return boolean <code>true</code> if the given segment is completely resolved.
+	 * @return bool <code>true</code> if the given segment is completely resolved.
 	 */
 	public XRDS resolveAuthSegment(XRI qxri, XRD parent, XRISegment segment,
 			ResolverFlags flags, ResolverState state)
@@ -1255,7 +1255,7 @@ public class Resolver extends BaseFetcher {
 		XRDS xrdsOut = new XRDS();
 		XRDS tmpXRDS = null;
 		CanonicalID parentCID = null;
-		boolean authResComplete = false;
+		bool authResComplete = false;
 		ResolverFlags currentFlags = null; // this is only for overriding by HttpsBypassAuthority settings
 
 		String parentXRI = ((XRIAuthority)qxri.getAuthorityPath()).getRootAuthority();
@@ -1407,7 +1407,7 @@ public class Resolver extends BaseFetcher {
 
 	
 	
-    protected boolean isTrustedDescriptor(XRISubSegment subseg, XRD xrd, Service parentService) {
+    protected bool isTrustedDescriptor(XRISubSegment subseg, XRD xrd, Service parentService) {
 		// Descriptor must provide an XML ID for SAML assertion validation
 		String sXMLID = xrd.getXmlID();
 		if ((sXMLID == null) || (sXMLID.length() == 0)) {
@@ -2164,7 +2164,7 @@ public class Resolver extends BaseFetcher {
 	 * @param auth - authority to query
 	 * @return true if authority is configured, false otherwise.
 	 */
-	public boolean hasAuthority(String auth) {
+	public bool hasAuthority(String auth) {
 		return root.containsKey(auth);
 	}
 
@@ -2199,7 +2199,7 @@ public class Resolver extends BaseFetcher {
 	/**
 	 * Tests to see if resolving names at the given authority can bypass HTTPS while satisfying the https=true requirement.
 	 */
-	public boolean isHttpsBypassAuthority(String auth) {
+	public bool isHttpsBypassAuthority(String auth) {
 		if (needNoHttps.containsKey(auth.toLowerCase())) {
 			return true;
 		}

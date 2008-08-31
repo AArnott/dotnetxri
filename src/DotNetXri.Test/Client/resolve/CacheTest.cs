@@ -40,7 +40,7 @@ import junit.textui.TestRunner;
 * Window>Preferences>Java>Code Generation>Code and Comments
 */
 public class CacheTest
-    extends TestCase
+    :TestCase
 {
     /*
     ****************************************************************************
@@ -199,7 +199,7 @@ public class CacheTest
     *
     */
     class StuffPruneThread
-        extends Thread
+        :Thread
     {
         private Random moRand = null;
 
@@ -240,7 +240,7 @@ public class CacheTest
             for (int i = 0; i < 1000; i++)
             {
                 int x = moRand.nextInt(oCases.length);
-                boolean bStuff = moRand.nextBoolean();
+                bool bStuff = moRand.nextBoolean();
                 XRIAuthority oAuth =
                     (XRIAuthority) AuthorityPath.buildAuthorityPath(oCases[x]);
 

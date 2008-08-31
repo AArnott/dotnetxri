@@ -137,7 +137,7 @@ public class Cache
     * @param bPartial specifies whether or not to return partial hits
     * found for the authority to the end of the vector
     */
-    CachedValue find(XRIAuthority oAuth, boolean bPartial)
+    CachedValue find(XRIAuthority oAuth, bool bPartial)
     {
         return find(oAuth, bPartial, false, null);
 
@@ -156,7 +156,7 @@ public class Cache
     * found for the authority to the end of the vector
     */
     CachedValue find(
-        XRIAuthority oAuth, boolean bPartial, boolean bCompleteChain,
+        XRIAuthority oAuth, bool bPartial, bool bCompleteChain,
         Vector oCachedDescriptors)
     {
         CacheNode oNode =
@@ -173,7 +173,7 @@ public class Cache
     *
     */
     private CacheNode findNode(
-        XRIAuthority oAuth, boolean bPartial, boolean bCompleteChain,
+        XRIAuthority oAuth, bool bPartial, bool bCompleteChain,
         Vector oCachedDescriptors)
     {
         // get the Node for the community root
@@ -312,7 +312,7 @@ public class Cache
     * Removes the Authority and all subsegments registered underneath it from
     * the cache.
     */
-    synchronized boolean prune(XRIAuthority oAuth)
+    synchronized bool prune(XRIAuthority oAuth)
     {
         CacheNode oNode = findNode(oAuth, false, false, null);
         return (oNode == null) ? false : oNode.removeSelf(true);
@@ -493,7 +493,7 @@ class CacheNode
     * @param bRemoveFromParent - Whether or not to remove the node from its parent
     * Only used in recursion as an optimization.
     */
-    boolean removeSelf(boolean bRemoveFromParent)
+    bool removeSelf(bool bRemoveFromParent)
     {
         if (moParent == null)
         {
@@ -539,7 +539,7 @@ class CacheNode
     * cache, in the order of the subsegments.
     */
     CacheResult find(
-        XRIAuthority oAuth, int nNextSubsegment, boolean bCompleteChain,
+        XRIAuthority oAuth, int nNextSubsegment, bool bCompleteChain,
         Vector oCachedDescriptors)
     {
         // if there are no new subsegments to get, just return "this", we are done

@@ -12,15 +12,15 @@ import java.util.List;
  * e.g. 'forwarding.my-i-broker.com'
  * @author =peacekeeper
  */
-public class ForwardingService extends Service {
+public class ForwardingService :Service {
 
-	public static final String SERVICE_TYPE = "xri://+i-service*(+forwarding)*($v*1.0)";
-	public static final String INDEX_PATH = "(+index)";
+	public const String SERVICE_TYPE = "xri://+i-service*(+forwarding)*($v*1.0)";
+	public const String INDEX_PATH = "(+index)";
 
-	public static final String[] RECOMMENDED_PERSONAL_DICTIONARY =
+	public const String[] RECOMMENDED_PERSONAL_DICTIONARY =
 	{ "+blog", "+call", "+chat", "+email", "+home", "+links", "+photos", "+resume", "+songs", "+work" };
 
-	public static final String[] RECOMMENDED_ORGANIZATIONAL_DICTIONARY =
+	public const String[] RECOMMENDED_ORGANIZATIONAL_DICTIONARY =
 	{ "+about", "+account", "+blog", "+call", "+chat", "+customer.service", "+email", "+home", "+investor.relations", "+links" };
 
 	/**
@@ -30,7 +30,7 @@ public class ForwardingService extends Service {
 	 * @param makeDefault - Whether to make the Forwarding Service the default service.
 	 * @param useIndexPath - Whether the Forwarding Service implementation responds to the OPTIONAL (+index) path.
 	 */
-	public ForwardingService(URI[] forwardingPages, String providerID, boolean makeDefault, boolean useIndexPath) {
+	public ForwardingService(URI[] forwardingPages, String providerID, bool makeDefault, bool useIndexPath) {
 
 		super();
 
@@ -76,17 +76,17 @@ public class ForwardingService extends Service {
 		}
 	}
 
-	public ForwardingService(URI forwardingPage, String providerID, boolean makeDefault, boolean useIndexPath) {
+	public ForwardingService(URI forwardingPage, String providerID, bool makeDefault, bool useIndexPath) {
 
 		this(new URI[] { forwardingPage }, providerID, makeDefault, useIndexPath);
 	}
 
-	public ForwardingService(URI[] forwardingPages, String providerID, boolean makeDefault) {
+	public ForwardingService(URI[] forwardingPages, String providerID, bool makeDefault) {
 
 		this(forwardingPages, providerID, makeDefault, true);
 	}
 
-	public ForwardingService(URI forwardingPage, String providerID, boolean makeDefault) {
+	public ForwardingService(URI forwardingPage, String providerID, bool makeDefault) {
 
 		this(new URI[] { forwardingPage }, providerID, makeDefault, true);
 	}
@@ -111,7 +111,7 @@ public class ForwardingService extends Service {
 		this(new URI[] { forwardingPage }, null, true, true);
 	}
 
-	public static boolean isInstance(Service service) {
+	public static bool isInstance(Service service) {
 
 		if (service instanceof ForwardingService) return(true);
 

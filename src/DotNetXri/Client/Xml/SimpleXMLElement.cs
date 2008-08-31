@@ -11,7 +11,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
-public abstract class SimpleXMLElement implements Cloneable, Serializable {
+public abstract class SimpleXMLElement : Cloneable, Serializable {
 
 	private String value = null;
 	private String tag = null;
@@ -157,7 +157,7 @@ public abstract class SimpleXMLElement implements Cloneable, Serializable {
 		return(super.clone());
 	}
 
-	public boolean equals(Object o) {
+	public bool equals(Object o) {
 
 		SimpleXMLElement other = (SimpleXMLElement) o;
 

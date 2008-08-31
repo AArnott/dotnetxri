@@ -1,6 +1,6 @@
 package org.openxri.xml;
 
-public class Query extends SimpleXMLElement{
+public class Query :SimpleXMLElement{
 	
   public Query(String queryString){
 	  super(Tags.TAG_QUERY);

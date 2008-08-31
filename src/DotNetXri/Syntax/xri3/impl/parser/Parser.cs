@@ -18,7 +18,7 @@ public class Parser
   {
     Properties arguments = new Properties();
     String error = "";
-    boolean ok = args.length > 0;
+    bool ok = args.length > 0;
 
     if (ok)
     {
@@ -170,7 +170,7 @@ public class Parser
   private String text;
   private int    index = 0;
 
-  private boolean trace = false;
+  private bool trace = false;
   private int level = 0;
   private int error = -1;
   private Stack callStack = new Stack();
@@ -216,7 +216,7 @@ public class Parser
     }
   }
 
-  private void pop(String function, boolean result, int length)
+  private void pop(String function, bool result, int length)
   {
     callStack.pop();
     if (trace)
@@ -373,7 +373,7 @@ public class Parser
   {
     push("xri");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -387,7 +387,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -414,7 +414,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -449,7 +449,7 @@ public class Parser
   {
     push("xri-scheme");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -463,7 +463,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -478,7 +478,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -513,7 +513,7 @@ public class Parser
   {
     push("xri-noscheme");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -527,7 +527,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -542,7 +542,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -555,7 +555,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -570,7 +570,7 @@ public class Parser
                 }
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -596,7 +596,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -609,7 +609,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -624,7 +624,7 @@ public class Parser
                 }
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -670,7 +670,7 @@ public class Parser
   {
     push("xri-reference");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -684,7 +684,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -711,7 +711,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -746,7 +746,7 @@ public class Parser
   {
     push("relative-xri-ref");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -760,7 +760,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -775,7 +775,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -788,7 +788,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -803,7 +803,7 @@ public class Parser
                 }
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -829,7 +829,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -842,7 +842,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -857,7 +857,7 @@ public class Parser
                 }
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -903,7 +903,7 @@ public class Parser
   {
     push("relative-xri-part");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -917,7 +917,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -944,7 +944,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -971,7 +971,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -1006,7 +1006,7 @@ public class Parser
   {
     push("xri-hier-part");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -1020,7 +1020,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -1035,7 +1035,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -1070,7 +1070,7 @@ public class Parser
   {
     push("xri-authority");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -1084,7 +1084,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -1099,7 +1099,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           while (f1)
           {
@@ -1134,7 +1134,7 @@ public class Parser
   {
     push("subseg");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -1148,7 +1148,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -1175,7 +1175,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -1210,7 +1210,7 @@ public class Parser
   {
     push("global-subseg");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -1224,7 +1224,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -1239,7 +1239,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -1252,7 +1252,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -1279,7 +1279,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -1325,7 +1325,7 @@ public class Parser
   {
     push("local-subseg");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -1339,7 +1339,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -1354,7 +1354,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -1367,7 +1367,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -1413,7 +1413,7 @@ public class Parser
   {
     push("gcs-char");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -1427,7 +1427,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -1454,7 +1454,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -1481,7 +1481,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -1508,7 +1508,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -1543,7 +1543,7 @@ public class Parser
   {
     push("lcs-char");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -1557,7 +1557,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -1584,7 +1584,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -1619,7 +1619,7 @@ public class Parser
   {
     push("rel-subseg");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -1633,7 +1633,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -1660,7 +1660,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -1695,7 +1695,7 @@ public class Parser
   {
     push("rel-subseg-nc");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -1709,7 +1709,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -1736,7 +1736,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -1771,7 +1771,7 @@ public class Parser
   {
     push("literal");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -1785,7 +1785,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -1829,7 +1829,7 @@ public class Parser
   {
     push("literal-nc");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -1843,7 +1843,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -1887,7 +1887,7 @@ public class Parser
   {
     push("xref");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -1901,7 +1901,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -1928,7 +1928,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -1955,7 +1955,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -1990,7 +1990,7 @@ public class Parser
   {
     push("xref-empty");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -2004,7 +2004,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -2039,7 +2039,7 @@ public class Parser
   {
     push("xref-xri-reference");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -2053,7 +2053,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -2068,7 +2068,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -2083,7 +2083,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -2118,7 +2118,7 @@ public class Parser
   {
     push("xref-IRI");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -2132,7 +2132,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -2147,7 +2147,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -2162,7 +2162,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -2197,7 +2197,7 @@ public class Parser
   {
     push("xref-value");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -2211,7 +2211,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -2238,7 +2238,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -2273,7 +2273,7 @@ public class Parser
   {
     push("xri-path");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -2287,7 +2287,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -2314,7 +2314,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -2341,7 +2341,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -2368,7 +2368,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -2403,7 +2403,7 @@ public class Parser
   {
     push("xri-path-abempty");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -2417,7 +2417,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           while (f1)
           {
@@ -2430,7 +2430,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -2445,7 +2445,7 @@ public class Parser
                 }
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -2491,7 +2491,7 @@ public class Parser
   {
     push("xri-path-abs");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -2505,7 +2505,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -2520,7 +2520,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -2533,7 +2533,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -2548,7 +2548,7 @@ public class Parser
                 }
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   while (f2)
                   {
@@ -2561,7 +2561,7 @@ public class Parser
                         decoded = true;
                         if (decoded)
                         {
-                          boolean f3 = true;
+                          bool f3 = true;
                           int c3 = 0;
                           for (int i3 = 0; i3 < 1 && f3; i3++)
                           {
@@ -2576,7 +2576,7 @@ public class Parser
                         }
                         if (decoded)
                         {
-                          boolean f3 = true;
+                          bool f3 = true;
                           int c3 = 0;
                           for (int i3 = 0; i3 < 1 && f3; i3++)
                           {
@@ -2633,7 +2633,7 @@ public class Parser
   {
     push("xri-path-noscheme");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -2647,7 +2647,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -2662,7 +2662,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           while (f1)
           {
@@ -2675,7 +2675,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -2690,7 +2690,7 @@ public class Parser
                 }
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -2736,7 +2736,7 @@ public class Parser
   {
     push("xri-segment");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -2750,7 +2750,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -2763,7 +2763,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -2789,7 +2789,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           while (f1)
           {
@@ -2824,7 +2824,7 @@ public class Parser
   {
     push("xri-segment-nz");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -2838,7 +2838,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -2851,7 +2851,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -2878,7 +2878,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -2904,7 +2904,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           while (f1)
           {
@@ -2939,7 +2939,7 @@ public class Parser
   {
     push("xri-segment-nc");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -2953,7 +2953,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -2966,7 +2966,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -2993,7 +2993,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -3019,7 +3019,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           while (f1)
           {
@@ -3054,7 +3054,7 @@ public class Parser
   {
     push("xri-pchar");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -3068,7 +3068,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -3095,7 +3095,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -3122,7 +3122,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -3149,7 +3149,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -3184,7 +3184,7 @@ public class Parser
   {
     push("xri-pchar-nc");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -3198,7 +3198,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -3225,7 +3225,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -3252,7 +3252,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -3287,7 +3287,7 @@ public class Parser
   {
     push("xri-reserved");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -3301,7 +3301,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -3328,7 +3328,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -3363,7 +3363,7 @@ public class Parser
   {
     push("xri-gen-delims");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -3377,7 +3377,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -3404,7 +3404,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -3431,7 +3431,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -3458,7 +3458,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -3485,7 +3485,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -3512,7 +3512,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -3539,7 +3539,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -3566,7 +3566,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -3593,7 +3593,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -3620,7 +3620,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -3655,7 +3655,7 @@ public class Parser
   {
     push("xri-sub-delims");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -3669,7 +3669,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -3696,7 +3696,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -3723,7 +3723,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -3750,7 +3750,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -3785,7 +3785,7 @@ public class Parser
   {
     push("IRI");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -3799,7 +3799,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -3814,7 +3814,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -3829,7 +3829,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -3844,7 +3844,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -3857,7 +3857,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -3872,7 +3872,7 @@ public class Parser
                 }
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -3898,7 +3898,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -3911,7 +3911,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -3926,7 +3926,7 @@ public class Parser
                 }
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -3972,7 +3972,7 @@ public class Parser
   {
     push("scheme");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -3986,7 +3986,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -4001,7 +4001,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           while (f1)
           {
@@ -4014,7 +4014,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -4041,7 +4041,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -4068,7 +4068,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -4095,7 +4095,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -4122,7 +4122,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -4168,7 +4168,7 @@ public class Parser
   {
     push("ihier-part");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -4182,7 +4182,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -4197,7 +4197,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -4212,7 +4212,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -4239,7 +4239,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -4266,7 +4266,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -4293,7 +4293,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -4328,7 +4328,7 @@ public class Parser
   {
     push("iauthority");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -4342,7 +4342,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -4355,7 +4355,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -4370,7 +4370,7 @@ public class Parser
                 }
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -4396,7 +4396,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -4411,7 +4411,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -4424,7 +4424,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -4439,7 +4439,7 @@ public class Parser
                 }
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -4485,7 +4485,7 @@ public class Parser
   {
     push("iuserinfo");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -4499,7 +4499,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           while (f1)
           {
@@ -4512,7 +4512,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -4539,7 +4539,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -4566,7 +4566,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -4593,7 +4593,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -4639,7 +4639,7 @@ public class Parser
   {
     push("ihost");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -4653,7 +4653,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -4680,7 +4680,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -4707,7 +4707,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -4742,7 +4742,7 @@ public class Parser
   {
     push("IP-literal");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -4756,7 +4756,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -4771,7 +4771,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -4784,7 +4784,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -4811,7 +4811,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -4837,7 +4837,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -4872,7 +4872,7 @@ public class Parser
   {
     push("IPvFuture");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -4886,7 +4886,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -4901,7 +4901,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -4925,7 +4925,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -4940,7 +4940,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -4953,7 +4953,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -4980,7 +4980,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -5007,7 +5007,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -5040,7 +5040,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -5067,7 +5067,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -5094,7 +5094,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -5140,7 +5140,7 @@ public class Parser
   {
     push("IPv6address");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -5154,7 +5154,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 6 && f1; i1++)
           {
@@ -5167,7 +5167,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -5182,7 +5182,7 @@ public class Parser
                 }
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -5208,7 +5208,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -5235,7 +5235,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -5250,7 +5250,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 5 && f1; i1++)
           {
@@ -5263,7 +5263,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -5278,7 +5278,7 @@ public class Parser
                 }
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -5304,7 +5304,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -5331,7 +5331,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -5344,7 +5344,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -5370,7 +5370,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -5385,7 +5385,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 4 && f1; i1++)
           {
@@ -5398,7 +5398,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -5413,7 +5413,7 @@ public class Parser
                 }
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -5439,7 +5439,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -5466,7 +5466,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -5479,7 +5479,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -5492,7 +5492,7 @@ public class Parser
                         decoded = true;
                         if (decoded)
                         {
-                          boolean f3 = true;
+                          bool f3 = true;
                           int c3 = 0;
                           for (int i3 = 0; i3 < 1 && f3; i3++)
                           {
@@ -5507,7 +5507,7 @@ public class Parser
                         }
                         if (decoded)
                         {
-                          boolean f3 = true;
+                          bool f3 = true;
                           int c3 = 0;
                           for (int i3 = 0; i3 < 1 && f3; i3++)
                           {
@@ -5533,7 +5533,7 @@ public class Parser
                 }
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -5559,7 +5559,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -5574,7 +5574,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 3 && f1; i1++)
           {
@@ -5587,7 +5587,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -5602,7 +5602,7 @@ public class Parser
                 }
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -5628,7 +5628,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -5655,7 +5655,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -5668,7 +5668,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 2 && f2; i2++)
                   {
@@ -5681,7 +5681,7 @@ public class Parser
                         decoded = true;
                         if (decoded)
                         {
-                          boolean f3 = true;
+                          bool f3 = true;
                           int c3 = 0;
                           for (int i3 = 0; i3 < 1 && f3; i3++)
                           {
@@ -5696,7 +5696,7 @@ public class Parser
                         }
                         if (decoded)
                         {
-                          boolean f3 = true;
+                          bool f3 = true;
                           int c3 = 0;
                           for (int i3 = 0; i3 < 1 && f3; i3++)
                           {
@@ -5722,7 +5722,7 @@ public class Parser
                 }
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -5748,7 +5748,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -5763,7 +5763,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 2 && f1; i1++)
           {
@@ -5776,7 +5776,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -5791,7 +5791,7 @@ public class Parser
                 }
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -5817,7 +5817,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -5844,7 +5844,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -5857,7 +5857,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 3 && f2; i2++)
                   {
@@ -5870,7 +5870,7 @@ public class Parser
                         decoded = true;
                         if (decoded)
                         {
-                          boolean f3 = true;
+                          bool f3 = true;
                           int c3 = 0;
                           for (int i3 = 0; i3 < 1 && f3; i3++)
                           {
@@ -5885,7 +5885,7 @@ public class Parser
                         }
                         if (decoded)
                         {
-                          boolean f3 = true;
+                          bool f3 = true;
                           int c3 = 0;
                           for (int i3 = 0; i3 < 1 && f3; i3++)
                           {
@@ -5911,7 +5911,7 @@ public class Parser
                 }
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -5937,7 +5937,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -5952,7 +5952,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -5967,7 +5967,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -5982,7 +5982,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -6009,7 +6009,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -6022,7 +6022,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 4 && f2; i2++)
                   {
@@ -6035,7 +6035,7 @@ public class Parser
                         decoded = true;
                         if (decoded)
                         {
-                          boolean f3 = true;
+                          bool f3 = true;
                           int c3 = 0;
                           for (int i3 = 0; i3 < 1 && f3; i3++)
                           {
@@ -6050,7 +6050,7 @@ public class Parser
                         }
                         if (decoded)
                         {
-                          boolean f3 = true;
+                          bool f3 = true;
                           int c3 = 0;
                           for (int i3 = 0; i3 < 1 && f3; i3++)
                           {
@@ -6076,7 +6076,7 @@ public class Parser
                 }
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -6102,7 +6102,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -6117,7 +6117,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -6144,7 +6144,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -6157,7 +6157,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 5 && f2; i2++)
                   {
@@ -6170,7 +6170,7 @@ public class Parser
                         decoded = true;
                         if (decoded)
                         {
-                          boolean f3 = true;
+                          bool f3 = true;
                           int c3 = 0;
                           for (int i3 = 0; i3 < 1 && f3; i3++)
                           {
@@ -6185,7 +6185,7 @@ public class Parser
                         }
                         if (decoded)
                         {
-                          boolean f3 = true;
+                          bool f3 = true;
                           int c3 = 0;
                           for (int i3 = 0; i3 < 1 && f3; i3++)
                           {
@@ -6211,7 +6211,7 @@ public class Parser
                 }
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -6237,7 +6237,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -6252,7 +6252,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -6279,7 +6279,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -6292,7 +6292,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 6 && f2; i2++)
                   {
@@ -6305,7 +6305,7 @@ public class Parser
                         decoded = true;
                         if (decoded)
                         {
-                          boolean f3 = true;
+                          bool f3 = true;
                           int c3 = 0;
                           for (int i3 = 0; i3 < 1 && f3; i3++)
                           {
@@ -6320,7 +6320,7 @@ public class Parser
                         }
                         if (decoded)
                         {
-                          boolean f3 = true;
+                          bool f3 = true;
                           int c3 = 0;
                           for (int i3 = 0; i3 < 1 && f3; i3++)
                           {
@@ -6346,7 +6346,7 @@ public class Parser
                 }
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -6372,7 +6372,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -6407,7 +6407,7 @@ public class Parser
   {
     push("ls32");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -6421,7 +6421,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -6434,7 +6434,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -6449,7 +6449,7 @@ public class Parser
                 }
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -6464,7 +6464,7 @@ public class Parser
                 }
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -6502,7 +6502,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -6537,7 +6537,7 @@ public class Parser
   {
     push("h16");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -6551,7 +6551,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -6595,7 +6595,7 @@ public class Parser
   {
     push("IPv4address");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -6609,7 +6609,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -6624,7 +6624,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -6639,7 +6639,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -6654,7 +6654,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -6669,7 +6669,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -6684,7 +6684,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -6699,7 +6699,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -6734,7 +6734,7 @@ public class Parser
   {
     push("dec-octet");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -6748,7 +6748,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -6775,7 +6775,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -6790,7 +6790,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -6817,7 +6817,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -6832,7 +6832,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 2 && f1; i1++)
           {
@@ -6859,7 +6859,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -6874,7 +6874,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -6889,7 +6889,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -6916,7 +6916,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -6931,7 +6931,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -6966,7 +6966,7 @@ public class Parser
   {
     push("ireg-name");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -6980,7 +6980,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           while (f1)
           {
@@ -6993,7 +6993,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -7020,7 +7020,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -7047,7 +7047,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -7093,7 +7093,7 @@ public class Parser
   {
     push("port");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -7107,7 +7107,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           while (f1)
           {
@@ -7142,7 +7142,7 @@ public class Parser
   {
     push("ipath-abempty");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -7156,7 +7156,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           while (f1)
           {
@@ -7169,7 +7169,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -7184,7 +7184,7 @@ public class Parser
                 }
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -7230,7 +7230,7 @@ public class Parser
   {
     push("ipath-abs");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -7244,7 +7244,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -7259,7 +7259,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -7272,7 +7272,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -7287,7 +7287,7 @@ public class Parser
                 }
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   while (f2)
                   {
@@ -7300,7 +7300,7 @@ public class Parser
                         decoded = true;
                         if (decoded)
                         {
-                          boolean f3 = true;
+                          bool f3 = true;
                           int c3 = 0;
                           for (int i3 = 0; i3 < 1 && f3; i3++)
                           {
@@ -7315,7 +7315,7 @@ public class Parser
                         }
                         if (decoded)
                         {
-                          boolean f3 = true;
+                          bool f3 = true;
                           int c3 = 0;
                           for (int i3 = 0; i3 < 1 && f3; i3++)
                           {
@@ -7372,7 +7372,7 @@ public class Parser
   {
     push("ipath-rootless");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -7386,7 +7386,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -7401,7 +7401,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           while (f1)
           {
@@ -7414,7 +7414,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -7429,7 +7429,7 @@ public class Parser
                 }
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -7475,7 +7475,7 @@ public class Parser
   {
     push("ipath-empty");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -7489,7 +7489,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -7524,7 +7524,7 @@ public class Parser
   {
     push("isegment");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -7538,7 +7538,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           while (f1)
           {
@@ -7573,7 +7573,7 @@ public class Parser
   {
     push("isegment-nz");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -7587,7 +7587,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -7631,7 +7631,7 @@ public class Parser
   {
     push("iquery");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -7645,7 +7645,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           while (f1)
           {
@@ -7658,7 +7658,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -7685,7 +7685,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -7712,7 +7712,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -7739,7 +7739,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -7785,7 +7785,7 @@ public class Parser
   {
     push("iprivate");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -7799,7 +7799,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -7834,7 +7834,7 @@ public class Parser
   {
     push("ifragment");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -7848,7 +7848,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           while (f1)
           {
@@ -7861,7 +7861,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -7888,7 +7888,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -7915,7 +7915,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -7961,7 +7961,7 @@ public class Parser
   {
     push("ipchar");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -7975,7 +7975,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -8002,7 +8002,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -8029,7 +8029,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -8056,7 +8056,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -8083,7 +8083,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -8118,7 +8118,7 @@ public class Parser
   {
     push("iunreserved");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -8132,7 +8132,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -8159,7 +8159,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -8186,7 +8186,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -8213,7 +8213,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -8240,7 +8240,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -8267,7 +8267,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -8294,7 +8294,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -8329,7 +8329,7 @@ public class Parser
   {
     push("pct-encoded");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -8343,7 +8343,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -8358,7 +8358,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -8373,7 +8373,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -8408,7 +8408,7 @@ public class Parser
   {
     push("ucschar");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -8422,7 +8422,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -8449,7 +8449,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -8476,7 +8476,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -8511,7 +8511,7 @@ public class Parser
   {
     push("reserved");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -8525,7 +8525,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -8552,7 +8552,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -8587,7 +8587,7 @@ public class Parser
   {
     push("gen-delims");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -8601,7 +8601,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -8628,7 +8628,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -8655,7 +8655,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -8682,7 +8682,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -8709,7 +8709,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -8736,7 +8736,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -8763,7 +8763,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -8798,7 +8798,7 @@ public class Parser
   {
     push("sub-delims");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -8812,7 +8812,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -8839,7 +8839,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -8866,7 +8866,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -8893,7 +8893,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -8920,7 +8920,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -8947,7 +8947,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -8974,7 +8974,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -9001,7 +9001,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -9028,7 +9028,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -9063,7 +9063,7 @@ public class Parser
   {
     push("unreserved");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -9077,7 +9077,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -9104,7 +9104,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -9131,7 +9131,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -9158,7 +9158,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -9185,7 +9185,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -9212,7 +9212,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -9247,7 +9247,7 @@ public class Parser
   {
     push("ALPHA");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -9261,7 +9261,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -9288,7 +9288,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -9323,7 +9323,7 @@ public class Parser
   {
     push("BIT");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -9337,7 +9337,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -9364,7 +9364,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -9399,7 +9399,7 @@ public class Parser
   {
     push("CHAR");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -9413,7 +9413,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -9448,7 +9448,7 @@ public class Parser
   {
     push("CR");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -9462,7 +9462,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -9497,7 +9497,7 @@ public class Parser
   {
     push("CRLF");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -9511,7 +9511,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -9526,7 +9526,7 @@ public class Parser
         }
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -9561,7 +9561,7 @@ public class Parser
   {
     push("CTL");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -9575,7 +9575,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -9602,7 +9602,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -9637,7 +9637,7 @@ public class Parser
   {
     push("DIGIT");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -9651,7 +9651,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -9686,7 +9686,7 @@ public class Parser
   {
     push("DQUOTE");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -9700,7 +9700,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -9735,7 +9735,7 @@ public class Parser
   {
     push("HEXDIG");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -9749,7 +9749,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -9776,7 +9776,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -9803,7 +9803,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -9830,7 +9830,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -9857,7 +9857,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -9884,7 +9884,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -9911,7 +9911,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -9946,7 +9946,7 @@ public class Parser
   {
     push("HTAB");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -9960,7 +9960,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -9995,7 +9995,7 @@ public class Parser
   {
     push("LF");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -10009,7 +10009,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -10044,7 +10044,7 @@ public class Parser
   {
     push("LWSP");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -10058,7 +10058,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           while (f1)
           {
@@ -10071,7 +10071,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -10098,7 +10098,7 @@ public class Parser
                 decoded = true;
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -10113,7 +10113,7 @@ public class Parser
                 }
                 if (decoded)
                 {
-                  boolean f2 = true;
+                  bool f2 = true;
                   int c2 = 0;
                   for (int i2 = 0; i2 < 1 && f2; i2++)
                   {
@@ -10159,7 +10159,7 @@ public class Parser
   {
     push("OCTET");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -10173,7 +10173,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -10208,7 +10208,7 @@ public class Parser
   {
     push("SP");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -10222,7 +10222,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -10257,7 +10257,7 @@ public class Parser
   {
     push("VCHAR");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -10271,7 +10271,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -10306,7 +10306,7 @@ public class Parser
   {
     push("WSP");
 
-    boolean decoded = true;
+    bool decoded = true;
     int s0 = index;
     ArrayList e0 = new ArrayList();
     Rule rule;
@@ -10320,7 +10320,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -10347,7 +10347,7 @@ public class Parser
         decoded = true;
         if (decoded)
         {
-          boolean f1 = true;
+          bool f1 = true;
           int c1 = 0;
           for (int i1 = 0; i1 < 1 && f1; i1++)
           {
@@ -10378,7 +10378,7 @@ public class Parser
     return (WSP)rule;
   }
 
-  public class StringValue extends Rule
+  public class StringValue :Rule
   {
     public StringValue(String spelling, ArrayList rules)
     {
@@ -10395,7 +10395,7 @@ public class Parser
   {
     push("*StringValue", regex);
 
-    boolean decoded = true;
+    bool decoded = true;
     int start = index;
 
     StringValue stringValue = null;
@@ -10415,7 +10415,7 @@ public class Parser
     return stringValue;
   }
 
-  public class NumericValue extends Rule
+  public class NumericValue :Rule
   {
     public NumericValue(String spelling, ArrayList rules)
     {
@@ -10432,7 +10432,7 @@ public class Parser
   {
     push("*NumericValue", spelling, regex);
 
-    boolean decoded = true;
+    bool decoded = true;
     int start = index;
 
     NumericValue numericValue = null;
@@ -10457,7 +10457,7 @@ public class Parser
    * ---------------------------------------------------------------------------
    */
 
-  static final public class xri extends Rule
+  static final public class xri :Rule
   {
     private xri(String spelling, ArrayList rules)
     {
@@ -10475,7 +10475,7 @@ public class Parser
     }
   }
 
-  static final public class xri_scheme extends Rule
+  static final public class xri_scheme :Rule
   {
     private xri_scheme(String spelling, ArrayList rules)
     {
@@ -10493,7 +10493,7 @@ public class Parser
     }
   }
 
-  static final public class xri_noscheme extends Rule
+  static final public class xri_noscheme :Rule
   {
     private xri_noscheme(String spelling, ArrayList rules)
     {
@@ -10511,7 +10511,7 @@ public class Parser
     }
   }
 
-  static final public class xri_reference extends Rule
+  static final public class xri_reference :Rule
   {
     private xri_reference(String spelling, ArrayList rules)
     {
@@ -10529,7 +10529,7 @@ public class Parser
     }
   }
 
-  static final public class relative_xri_ref extends Rule
+  static final public class relative_xri_ref :Rule
   {
     private relative_xri_ref(String spelling, ArrayList rules)
     {
@@ -10547,7 +10547,7 @@ public class Parser
     }
   }
 
-  static final public class relative_xri_part extends Rule
+  static final public class relative_xri_part :Rule
   {
     private relative_xri_part(String spelling, ArrayList rules)
     {
@@ -10565,7 +10565,7 @@ public class Parser
     }
   }
 
-  static final public class xri_hier_part extends Rule
+  static final public class xri_hier_part :Rule
   {
     private xri_hier_part(String spelling, ArrayList rules)
     {
@@ -10583,7 +10583,7 @@ public class Parser
     }
   }
 
-  static final public class xri_authority extends Rule
+  static final public class xri_authority :Rule
   {
     private xri_authority(String spelling, ArrayList rules)
     {
@@ -10601,7 +10601,7 @@ public class Parser
     }
   }
 
-  static final public class subseg extends Rule
+  static final public class subseg :Rule
   {
     private subseg(String spelling, ArrayList rules)
     {
@@ -10619,7 +10619,7 @@ public class Parser
     }
   }
 
-  static final public class global_subseg extends Rule
+  static final public class global_subseg :Rule
   {
     private global_subseg(String spelling, ArrayList rules)
     {
@@ -10637,7 +10637,7 @@ public class Parser
     }
   }
 
-  static final public class local_subseg extends Rule
+  static final public class local_subseg :Rule
   {
     private local_subseg(String spelling, ArrayList rules)
     {
@@ -10655,7 +10655,7 @@ public class Parser
     }
   }
 
-  static final public class gcs_char extends Rule
+  static final public class gcs_char :Rule
   {
     private gcs_char(String spelling, ArrayList rules)
     {
@@ -10673,7 +10673,7 @@ public class Parser
     }
   }
 
-  static final public class lcs_char extends Rule
+  static final public class lcs_char :Rule
   {
     private lcs_char(String spelling, ArrayList rules)
     {
@@ -10691,7 +10691,7 @@ public class Parser
     }
   }
 
-  static final public class rel_subseg extends Rule
+  static final public class rel_subseg :Rule
   {
     private rel_subseg(String spelling, ArrayList rules)
     {
@@ -10709,7 +10709,7 @@ public class Parser
     }
   }
 
-  static final public class rel_subseg_nc extends Rule
+  static final public class rel_subseg_nc :Rule
   {
     private rel_subseg_nc(String spelling, ArrayList rules)
     {
@@ -10727,7 +10727,7 @@ public class Parser
     }
   }
 
-  static final public class literal extends Rule
+  static final public class literal :Rule
   {
     private literal(String spelling, ArrayList rules)
     {
@@ -10745,7 +10745,7 @@ public class Parser
     }
   }
 
-  static final public class literal_nc extends Rule
+  static final public class literal_nc :Rule
   {
     private literal_nc(String spelling, ArrayList rules)
     {
@@ -10763,7 +10763,7 @@ public class Parser
     }
   }
 
-  static final public class xref extends Rule
+  static final public class xref :Rule
   {
     private xref(String spelling, ArrayList rules)
     {
@@ -10781,7 +10781,7 @@ public class Parser
     }
   }
 
-  static final public class xref_empty extends Rule
+  static final public class xref_empty :Rule
   {
     private xref_empty(String spelling, ArrayList rules)
     {
@@ -10799,7 +10799,7 @@ public class Parser
     }
   }
 
-  static final public class xref_xri_reference extends Rule
+  static final public class xref_xri_reference :Rule
   {
     private xref_xri_reference(String spelling, ArrayList rules)
     {
@@ -10817,7 +10817,7 @@ public class Parser
     }
   }
 
-  static final public class xref_IRI extends Rule
+  static final public class xref_IRI :Rule
   {
     private xref_IRI(String spelling, ArrayList rules)
     {
@@ -10835,7 +10835,7 @@ public class Parser
     }
   }
 
-  static final public class xref_value extends Rule
+  static final public class xref_value :Rule
   {
     private xref_value(String spelling, ArrayList rules)
     {
@@ -10853,7 +10853,7 @@ public class Parser
     }
   }
 
-  static final public class xri_path extends Rule
+  static final public class xri_path :Rule
   {
     private xri_path(String spelling, ArrayList rules)
     {
@@ -10871,7 +10871,7 @@ public class Parser
     }
   }
 
-  static final public class xri_path_abempty extends Rule
+  static final public class xri_path_abempty :Rule
   {
     private xri_path_abempty(String spelling, ArrayList rules)
     {
@@ -10889,7 +10889,7 @@ public class Parser
     }
   }
 
-  static final public class xri_path_abs extends Rule
+  static final public class xri_path_abs :Rule
   {
     private xri_path_abs(String spelling, ArrayList rules)
     {
@@ -10907,7 +10907,7 @@ public class Parser
     }
   }
 
-  static final public class xri_path_noscheme extends Rule
+  static final public class xri_path_noscheme :Rule
   {
     private xri_path_noscheme(String spelling, ArrayList rules)
     {
@@ -10925,7 +10925,7 @@ public class Parser
     }
   }
 
-  static final public class xri_segment extends Rule
+  static final public class xri_segment :Rule
   {
     private xri_segment(String spelling, ArrayList rules)
     {
@@ -10943,7 +10943,7 @@ public class Parser
     }
   }
 
-  static final public class xri_segment_nz extends Rule
+  static final public class xri_segment_nz :Rule
   {
     private xri_segment_nz(String spelling, ArrayList rules)
     {
@@ -10961,7 +10961,7 @@ public class Parser
     }
   }
 
-  static final public class xri_segment_nc extends Rule
+  static final public class xri_segment_nc :Rule
   {
     private xri_segment_nc(String spelling, ArrayList rules)
     {
@@ -10979,7 +10979,7 @@ public class Parser
     }
   }
 
-  static final public class xri_pchar extends Rule
+  static final public class xri_pchar :Rule
   {
     private xri_pchar(String spelling, ArrayList rules)
     {
@@ -10997,7 +10997,7 @@ public class Parser
     }
   }
 
-  static final public class xri_pchar_nc extends Rule
+  static final public class xri_pchar_nc :Rule
   {
     private xri_pchar_nc(String spelling, ArrayList rules)
     {
@@ -11015,7 +11015,7 @@ public class Parser
     }
   }
 
-  static final public class xri_reserved extends Rule
+  static final public class xri_reserved :Rule
   {
     private xri_reserved(String spelling, ArrayList rules)
     {
@@ -11033,7 +11033,7 @@ public class Parser
     }
   }
 
-  static final public class xri_gen_delims extends Rule
+  static final public class xri_gen_delims :Rule
   {
     private xri_gen_delims(String spelling, ArrayList rules)
     {
@@ -11051,7 +11051,7 @@ public class Parser
     }
   }
 
-  static final public class xri_sub_delims extends Rule
+  static final public class xri_sub_delims :Rule
   {
     private xri_sub_delims(String spelling, ArrayList rules)
     {
@@ -11069,7 +11069,7 @@ public class Parser
     }
   }
 
-  static final public class IRI extends Rule
+  static final public class IRI :Rule
   {
     private IRI(String spelling, ArrayList rules)
     {
@@ -11087,7 +11087,7 @@ public class Parser
     }
   }
 
-  static final public class scheme extends Rule
+  static final public class scheme :Rule
   {
     private scheme(String spelling, ArrayList rules)
     {
@@ -11105,7 +11105,7 @@ public class Parser
     }
   }
 
-  static final public class ihier_part extends Rule
+  static final public class ihier_part :Rule
   {
     private ihier_part(String spelling, ArrayList rules)
     {
@@ -11123,7 +11123,7 @@ public class Parser
     }
   }
 
-  static final public class iauthority extends Rule
+  static final public class iauthority :Rule
   {
     private iauthority(String spelling, ArrayList rules)
     {
@@ -11141,7 +11141,7 @@ public class Parser
     }
   }
 
-  static final public class iuserinfo extends Rule
+  static final public class iuserinfo :Rule
   {
     private iuserinfo(String spelling, ArrayList rules)
     {
@@ -11159,7 +11159,7 @@ public class Parser
     }
   }
 
-  static final public class ihost extends Rule
+  static final public class ihost :Rule
   {
     private ihost(String spelling, ArrayList rules)
     {
@@ -11177,7 +11177,7 @@ public class Parser
     }
   }
 
-  static final public class IP_literal extends Rule
+  static final public class IP_literal :Rule
   {
     private IP_literal(String spelling, ArrayList rules)
     {
@@ -11195,7 +11195,7 @@ public class Parser
     }
   }
 
-  static final public class IPvFuture extends Rule
+  static final public class IPvFuture :Rule
   {
     private IPvFuture(String spelling, ArrayList rules)
     {
@@ -11213,7 +11213,7 @@ public class Parser
     }
   }
 
-  static final public class IPv6address extends Rule
+  static final public class IPv6address :Rule
   {
     private IPv6address(String spelling, ArrayList rules)
     {
@@ -11231,7 +11231,7 @@ public class Parser
     }
   }
 
-  static final public class ls32 extends Rule
+  static final public class ls32 :Rule
   {
     private ls32(String spelling, ArrayList rules)
     {
@@ -11249,7 +11249,7 @@ public class Parser
     }
   }
 
-  static final public class h16 extends Rule
+  static final public class h16 :Rule
   {
     private h16(String spelling, ArrayList rules)
     {
@@ -11267,7 +11267,7 @@ public class Parser
     }
   }
 
-  static final public class IPv4address extends Rule
+  static final public class IPv4address :Rule
   {
     private IPv4address(String spelling, ArrayList rules)
     {
@@ -11285,7 +11285,7 @@ public class Parser
     }
   }
 
-  static final public class dec_octet extends Rule
+  static final public class dec_octet :Rule
   {
     private dec_octet(String spelling, ArrayList rules)
     {
@@ -11303,7 +11303,7 @@ public class Parser
     }
   }
 
-  static final public class ireg_name extends Rule
+  static final public class ireg_name :Rule
   {
     private ireg_name(String spelling, ArrayList rules)
     {
@@ -11321,7 +11321,7 @@ public class Parser
     }
   }
 
-  static final public class port extends Rule
+  static final public class port :Rule
   {
     private port(String spelling, ArrayList rules)
     {
@@ -11339,7 +11339,7 @@ public class Parser
     }
   }
 
-  static final public class ipath_abempty extends Rule
+  static final public class ipath_abempty :Rule
   {
     private ipath_abempty(String spelling, ArrayList rules)
     {
@@ -11357,7 +11357,7 @@ public class Parser
     }
   }
 
-  static final public class ipath_abs extends Rule
+  static final public class ipath_abs :Rule
   {
     private ipath_abs(String spelling, ArrayList rules)
     {
@@ -11375,7 +11375,7 @@ public class Parser
     }
   }
 
-  static final public class ipath_rootless extends Rule
+  static final public class ipath_rootless :Rule
   {
     private ipath_rootless(String spelling, ArrayList rules)
     {
@@ -11393,7 +11393,7 @@ public class Parser
     }
   }
 
-  static final public class ipath_empty extends Rule
+  static final public class ipath_empty :Rule
   {
     private ipath_empty(String spelling, ArrayList rules)
     {
@@ -11411,7 +11411,7 @@ public class Parser
     }
   }
 
-  static final public class isegment extends Rule
+  static final public class isegment :Rule
   {
     private isegment(String spelling, ArrayList rules)
     {
@@ -11429,7 +11429,7 @@ public class Parser
     }
   }
 
-  static final public class isegment_nz extends Rule
+  static final public class isegment_nz :Rule
   {
     private isegment_nz(String spelling, ArrayList rules)
     {
@@ -11447,7 +11447,7 @@ public class Parser
     }
   }
 
-  static final public class iquery extends Rule
+  static final public class iquery :Rule
   {
     private iquery(String spelling, ArrayList rules)
     {
@@ -11465,7 +11465,7 @@ public class Parser
     }
   }
 
-  static final public class iprivate extends Rule
+  static final public class iprivate :Rule
   {
     private iprivate(String spelling, ArrayList rules)
     {
@@ -11483,7 +11483,7 @@ public class Parser
     }
   }
 
-  static final public class ifragment extends Rule
+  static final public class ifragment :Rule
   {
     private ifragment(String spelling, ArrayList rules)
     {
@@ -11501,7 +11501,7 @@ public class Parser
     }
   }
 
-  static final public class ipchar extends Rule
+  static final public class ipchar :Rule
   {
     private ipchar(String spelling, ArrayList rules)
     {
@@ -11519,7 +11519,7 @@ public class Parser
     }
   }
 
-  static final public class iunreserved extends Rule
+  static final public class iunreserved :Rule
   {
     private iunreserved(String spelling, ArrayList rules)
     {
@@ -11537,7 +11537,7 @@ public class Parser
     }
   }
 
-  static final public class pct_encoded extends Rule
+  static final public class pct_encoded :Rule
   {
     private pct_encoded(String spelling, ArrayList rules)
     {
@@ -11555,7 +11555,7 @@ public class Parser
     }
   }
 
-  static final public class ucschar extends Rule
+  static final public class ucschar :Rule
   {
     private ucschar(String spelling, ArrayList rules)
     {
@@ -11573,7 +11573,7 @@ public class Parser
     }
   }
 
-  static final public class reserved extends Rule
+  static final public class reserved :Rule
   {
     private reserved(String spelling, ArrayList rules)
     {
@@ -11591,7 +11591,7 @@ public class Parser
     }
   }
 
-  static final public class gen_delims extends Rule
+  static final public class gen_delims :Rule
   {
     private gen_delims(String spelling, ArrayList rules)
     {
@@ -11609,7 +11609,7 @@ public class Parser
     }
   }
 
-  static final public class sub_delims extends Rule
+  static final public class sub_delims :Rule
   {
     private sub_delims(String spelling, ArrayList rules)
     {
@@ -11627,7 +11627,7 @@ public class Parser
     }
   }
 
-  static final public class unreserved extends Rule
+  static final public class unreserved :Rule
   {
     private unreserved(String spelling, ArrayList rules)
     {
@@ -11645,7 +11645,7 @@ public class Parser
     }
   }
 
-  static final public class ALPHA extends Rule
+  static final public class ALPHA :Rule
   {
     private ALPHA(String spelling, ArrayList rules)
     {
@@ -11663,7 +11663,7 @@ public class Parser
     }
   }
 
-  static final public class BIT extends Rule
+  static final public class BIT :Rule
   {
     private BIT(String spelling, ArrayList rules)
     {
@@ -11681,7 +11681,7 @@ public class Parser
     }
   }
 
-  static final public class CHAR extends Rule
+  static final public class CHAR :Rule
   {
     private CHAR(String spelling, ArrayList rules)
     {
@@ -11699,7 +11699,7 @@ public class Parser
     }
   }
 
-  static final public class CR extends Rule
+  static final public class CR :Rule
   {
     private CR(String spelling, ArrayList rules)
     {
@@ -11717,7 +11717,7 @@ public class Parser
     }
   }
 
-  static final public class CRLF extends Rule
+  static final public class CRLF :Rule
   {
     private CRLF(String spelling, ArrayList rules)
     {
@@ -11735,7 +11735,7 @@ public class Parser
     }
   }
 
-  static final public class CTL extends Rule
+  static final public class CTL :Rule
   {
     private CTL(String spelling, ArrayList rules)
     {
@@ -11753,7 +11753,7 @@ public class Parser
     }
   }
 
-  static final public class DIGIT extends Rule
+  static final public class DIGIT :Rule
   {
     private DIGIT(String spelling, ArrayList rules)
     {
@@ -11771,7 +11771,7 @@ public class Parser
     }
   }
 
-  static final public class DQUOTE extends Rule
+  static final public class DQUOTE :Rule
   {
     private DQUOTE(String spelling, ArrayList rules)
     {
@@ -11789,7 +11789,7 @@ public class Parser
     }
   }
 
-  static final public class HEXDIG extends Rule
+  static final public class HEXDIG :Rule
   {
     private HEXDIG(String spelling, ArrayList rules)
     {
@@ -11807,7 +11807,7 @@ public class Parser
     }
   }
 
-  static final public class HTAB extends Rule
+  static final public class HTAB :Rule
   {
     private HTAB(String spelling, ArrayList rules)
     {
@@ -11825,7 +11825,7 @@ public class Parser
     }
   }
 
-  static final public class LF extends Rule
+  static final public class LF :Rule
   {
     private LF(String spelling, ArrayList rules)
     {
@@ -11843,7 +11843,7 @@ public class Parser
     }
   }
 
-  static final public class LWSP extends Rule
+  static final public class LWSP :Rule
   {
     private LWSP(String spelling, ArrayList rules)
     {
@@ -11861,7 +11861,7 @@ public class Parser
     }
   }
 
-  static final public class OCTET extends Rule
+  static final public class OCTET :Rule
   {
     private OCTET(String spelling, ArrayList rules)
     {
@@ -11879,7 +11879,7 @@ public class Parser
     }
   }
 
-  static final public class SP extends Rule
+  static final public class SP :Rule
   {
     private SP(String spelling, ArrayList rules)
     {
@@ -11897,7 +11897,7 @@ public class Parser
     }
   }
 
-  static final public class VCHAR extends Rule
+  static final public class VCHAR :Rule
   {
     private VCHAR(String spelling, ArrayList rules)
     {
@@ -11915,7 +11915,7 @@ public class Parser
     }
   }
 
-  static final public class WSP extends Rule
+  static final public class WSP :Rule
   {
     private WSP(String spelling, ArrayList rules)
     {

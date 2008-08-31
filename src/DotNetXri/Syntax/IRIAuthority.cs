@@ -13,13 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
 */
-package org.openxri;
-
-import java.net.InetAddress;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.UnknownHostException;
-
+namespace DotNetXri.Syntax {
 
 /*
 ********************************************************************************
@@ -27,14 +21,14 @@ import java.net.UnknownHostException;
 ********************************************************************************
 */ /**
 * This class provides a strong typing for a IRI Authority.  Any
-* object of this class that appears outside of the package is a valid
+* obj of this class that appears outside of the package is a valid
 * IRI Authority.  It currently only accepts IRI Authorities that serve as IP
 * Addresses or appear to be valid host names
 *
 * @author =chetan
 */
 public class IRIAuthority
-    extends AuthorityPath
+    :AuthorityPath
 {
     private URI moURI = null;
 
@@ -111,9 +105,9 @@ public class IRIAuthority
     */ /**
     * Scans the Stream for a valid IRI-Authority
     */
-    boolean doScan(ParseStream oStream)
+    bool doScan(ParseStream oStream)
     {
-        boolean bVal = false;
+        bool bVal = false;
         int n = scanChars(oStream.getData());
         String sData = oStream.getData().substring(0, n);
         try
@@ -123,7 +117,7 @@ public class IRIAuthority
             if ((sHost != null) && (sHost.length() > 0))
             {
                 char cFirst = sHost.charAt(0);
-                boolean bCheckIP = Character.isDigit(cFirst) ||
+                bool bCheckIP = char.isDigit(cFirst) ||
                     (cFirst == '[');
                 bVal = bCheckIP ? verifyIP(sHost) : verifyDNS(sHost);
             }
@@ -150,7 +144,7 @@ public class IRIAuthority
     * @param host
     * @return
     */
-    private boolean verifyDNS(String sHost)
+    private bool verifyDNS(String sHost)
     {
         // TODO Auto-generated method stub
         return true;
@@ -164,7 +158,7 @@ public class IRIAuthority
     */ /**
     *
     */
-    private boolean verifyIP(String sIP)
+    private bool verifyIP(String sIP)
     {
         try
         {
@@ -230,4 +224,5 @@ public class IRIAuthority
         return IRIUtils.IRItoURI(toIRINormalForm());
     }
 
+}
 }

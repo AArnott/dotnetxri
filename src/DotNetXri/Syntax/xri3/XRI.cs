@@ -1,25 +1,26 @@
-package org.openxri.xri3;
+namespace DotNetXri.Syntax.Xri3 {
 
-public interface XRI extends XRISyntaxComponent {
+	public interface XRI : XRISyntaxComponent {
 
-	public boolean hasScheme();
-	public boolean hasAuthority();
-	public boolean hasPath();
-	public boolean hasQuery();
-	public boolean hasFragment();
+		public bool hasScheme();
+		public bool hasAuthority();
+		public bool hasPath();
+		public bool hasQuery();
+		public bool hasFragment();
 
-	public String getScheme();
-	public XRIAuthority getAuthority();
-	public XRIPath getPath();
-	public XRIQuery getQuery();
-	public XRIFragment getFragment();
+		public String getScheme();
+		public XRIAuthority getAuthority();
+		public XRIPath getPath();
+		public XRIQuery getQuery();
+		public XRIFragment getFragment();
 
-	public boolean isIName();
-	public boolean isINumber();
-	public boolean isReserved();
+		public bool isIName();
+		public bool isINumber();
+		public bool isReserved();
 
-	public boolean isValidXRIReference();
-	public XRIReference toXRIReference();
+		public bool isValidXRIReference();
+		public XRIReference toXRIReference();
 
-	public boolean startsWith(XRI xri);
+		public bool startsWith(XRI xri);
+	}
 }

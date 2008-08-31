@@ -1,6 +1,6 @@
 package org.openxri.xml;
 
-public class ProviderID extends SimpleXMLElement{
+public class ProviderID :SimpleXMLElement{
 	
 	public ProviderID(ProviderID p) {
 		super(p);

@@ -13,10 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
 */
-package org.openxri;
-
-import com.ibm.icu.text.UnicodeSet;
-
+namespace DotNetXri.Syntax {
 
 /*
 ********************************************************************************
@@ -34,10 +31,10 @@ public class Characters
 	public static final UnicodeSet XRI_PCHAR;
 	
 
-    public static final String XRI_SUB_DELIMS = "&;,'";
-    public static final String SUB_DELIMS = "!$&'()*+,;=";
+    public const String XRI_SUB_DELIMS = "&;,'";
+    public const String SUB_DELIMS = "!$&'()*+,;=";
 
-    static {
+    static Characters() {
     	UCSCHAR = new UnicodeSet();
     	UCSCHAR.add(0xA0, 0xD7FF);
     	UCSCHAR.add(0xF900, 0xFDCF);
@@ -81,7 +78,7 @@ public class Characters
      * Determines if this character is a valid xri-pchar
      * @param c The char to examine
      */
-    public static boolean isPChar(int c)
+    public static bool isPChar(int c)
     {
     	return XRI_PCHAR.contains(c);
     }
@@ -92,7 +89,7 @@ public class Characters
      * Note: This does not check for pct-encoded characters
      * @param c The char to examine
      */
-    public static boolean isIPChar(int c)
+    public static bool isIPChar(int c)
     {
     	return IPCHAR.contains(c);
     }
@@ -104,7 +101,7 @@ public class Characters
      * @param i - the index of char c in String s
      * @return true if c is escaped
      */
-    static boolean isEscaped(int c, String s, int i)
+    static bool isEscaped(int c, String s, int i)
     {
         if (c == '%')
         {
@@ -114,8 +111,8 @@ public class Characters
                 char hex2 = s.charAt(i + 2);
 
                 if (
-                    (Character.digit(hex1, 16) != -1) &&
-                    (Character.digit(hex2, 16) != -1))
+                    (char.digit(hex1, 16) != -1) &&
+                    (char.digit(hex2, 16) != -1))
                 {
                     return true;
                 }
@@ -126,4 +123,5 @@ public class Characters
 
     }
 
+}
 }

@@ -4,7 +4,7 @@ import java.net.URISyntaxException;
 
 import org.w3c.dom.Element;
 
-public class EquivID extends SimpleXMLElement {
+public class EquivID :SimpleXMLElement {
 
 	public EquivID() {
 		super(Tags.TAG_EQUIVID);

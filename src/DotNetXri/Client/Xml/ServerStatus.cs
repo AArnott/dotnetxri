@@ -22,7 +22,7 @@ package org.openxri.xml;
  * @author =wil
  * @see org.openxri.xml.Status
  */
-public class ServerStatus extends SimpleXMLElement
+public class ServerStatus :SimpleXMLElement
 {
 	public ServerStatus(ServerStatus s) {
 		super(s);

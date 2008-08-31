@@ -10,11 +10,11 @@ import org.openxri.resolve.TrustType;
  * This is an Authority Resolution 2.0 Service.
  * @author =peacekeeper
  */
-public class AuthorityResolutionService extends Service {
+public class AuthorityResolutionService :Service {
 
-	public static final String SERVICE_TYPE = "xri://$res*auth*($v*2.0)";
-	public static final String SERVICE_MEDIA_TYPE = "application/xrds+xml";
-	public static final String TRUST_TYPE_SEPARATOR = ";";
+	public const String SERVICE_TYPE = "xri://$res*auth*($v*2.0)";
+	public const String SERVICE_MEDIA_TYPE = "application/xrds+xml";
+	public const String TRUST_TYPE_SEPARATOR = ";";
 
 	public static final Integer URI_PRIORITY_HTTPS = new Integer(1);
 	public static final Integer URI_PRIORITY_DEFAULT = new Integer(2);
@@ -108,7 +108,7 @@ public class AuthorityResolutionService extends Service {
 		this(new URI[] { resolver }, null, null, null);
 	}
 
-	public static boolean isInstance(Service service) {
+	public static bool isInstance(Service service) {
 
 		if (service instanceof ForwardingService) return(true);
 

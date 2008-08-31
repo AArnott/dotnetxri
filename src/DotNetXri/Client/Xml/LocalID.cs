@@ -4,7 +4,7 @@ import java.net.URISyntaxException;
 
 import org.w3c.dom.Element;
 
-public class LocalID extends SimpleXMLElement{
+public class LocalID :SimpleXMLElement{
 
   public LocalID(){
 	  super(Tags.TAG_LOCALID);

@@ -36,7 +36,7 @@ import org.w3c.dom.Node;
 */
 public class DOM3Utils
 {
-    private static boolean sbHasDOM3Support = false;
+    private static bool sbHasDOM3Support = false;
 
     static
     {
@@ -58,7 +58,7 @@ public class DOM3Utils
     */ /**
     * Returns true iF DOM3 is available at runtime
     */
-    public static boolean hasDOM3Support()
+    public static bool hasDOM3Support()
     {
         return sbHasDOM3Support;
 
@@ -71,7 +71,7 @@ public class DOM3Utils
      */ /**
      * Returns true if specified Document is backed by Xerces
      */
-    public static boolean isXercesDocument(Document oDoc)
+    public static bool isXercesDocument(Document oDoc)
     {
         return oDoc.getClass().getName().startsWith("org.apache.xerces.dom");
     }

@@ -4,7 +4,7 @@ import java.util.Date;
 
 import org.openxri.util.DOMUtils;
 
-public class Expires extends SimpleXMLElement{
+public class Expires :SimpleXMLElement{
 	private Date expires = null;
 	
 	public Expires (Expires e) {

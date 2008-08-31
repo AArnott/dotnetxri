@@ -1,11 +1,9 @@
-package org.openxri.xri3.impl;
+namespace DotNetXri.Syntax.Xri3.Impl {
+	public class XRI3Util {
 
-import org.openxri.xri3.impl.parser.Parser;
+		public static Parser getParser() {
 
-public class XRI3Util {
-	
-	public static Parser getParser() {
-		
-		return(new Parser());
+			return (new Parser());
+		}
 	}
 }
