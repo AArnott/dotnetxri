@@ -66,6 +66,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Client\Http\BaseFetcher.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="Loggers\ILog.cs" />
     <Compile Include="Loggers\Log4NetLogger.cs" />
@@ -85,6 +86,135 @@
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Client\Resolve\Cache.cs" />
+    <Compile Include="Client\Resolve\exception\AuthResNotFoundException.cs" />
+    <Compile Include="Client\Resolve\exception\BadAuthorityException.cs" />
+    <Compile Include="Client\Resolve\exception\IllegalTrustTypeException.cs" />
+    <Compile Include="Client\Resolve\exception\InvalidAuthorityURIException.cs" />
+    <Compile Include="Client\Resolve\exception\LimitExceededException.cs" />
+    <Compile Include="Client\Resolve\exception\NoInitialDescriptorException.cs" />
+    <Compile Include="Client\Resolve\exception\PartialResolutionException.cs" />
+    <Compile Include="Client\Resolve\exception\RefNotFollowedException.cs" />
+    <Compile Include="Client\Resolve\exception\XRDErrorStatusException.cs" />
+    <Compile Include="Client\Resolve\exception\XRIResolutionException.cs" />
+    <Compile Include="Client\Resolve\MimeType.cs" />
+    <Compile Include="Client\Resolve\ResolveChain.cs" />
+    <Compile Include="Client\Resolve\ResolveInfo.cs" />
+    <Compile Include="Client\Resolve\ResolveInterface.cs" />
+    <Compile Include="Client\Resolve\Resolver.cs" />
+    <Compile Include="Client\Resolve\ResolverFlags.cs" />
+    <Compile Include="Client\Resolve\ResolverState.cs" />
+    <Compile Include="Client\Resolve\SEPSelector.cs" />
+    <Compile Include="Client\Resolve\TrustType.cs" />
+    <Compile Include="Client\Saml\Assertion.cs" />
+    <Compile Include="Client\Saml\Attribute.cs" />
+    <Compile Include="Client\Saml\AttributeStatement.cs" />
+    <Compile Include="Client\Saml\Conditions.cs" />
+    <Compile Include="Client\Saml\NameID.cs" />
+    <Compile Include="Client\Saml\Subject.cs" />
+    <Compile Include="Client\Tools\XRILookup.cs" />
+    <Compile Include="Client\Tools\XRITraceRt.cs" />
+    <Compile Include="Client\Util\DOM3Utils.cs" />
+    <Compile Include="Client\Util\DOMUtils.cs" />
+    <Compile Include="Client\Util\IO.cs" />
+    <Compile Include="Client\Util\PrioritizedList.cs" />
+    <Compile Include="Client\Util\URLUtils.cs" />
+    <Compile Include="Client\Util\XMLUtils.cs" />
+    <Compile Include="Client\Xml\AuthenticationService.cs" />
+    <Compile Include="Client\Xml\AuthorityResolutionService.cs" />
+    <Compile Include="Client\Xml\CanonicalEquivID.cs" />
+    <Compile Include="Client\Xml\CanonicalID.cs" />
+    <Compile Include="Client\Xml\ContactService.cs" />
+    <Compile Include="Client\Xml\DefaultService.cs" />
+    <Compile Include="Client\Xml\EquivID.cs" />
+    <Compile Include="Client\Xml\Expires.cs" />
+    <Compile Include="Client\Xml\ForwardingService.cs" />
+    <Compile Include="Client\Xml\LocalID.cs" />
+    <Compile Include="Client\Xml\ProviderID.cs" />
+    <Compile Include="Client\Xml\ProxyResolutionService.cs" />
+    <Compile Include="Client\Xml\Query.cs" />
+    <Compile Include="Client\Xml\Redirect.cs" />
+    <Compile Include="Client\Xml\Ref.cs" />
+    <Compile Include="Client\Xml\SEPElement.cs" />
+    <Compile Include="Client\Xml\SEPMediaType.cs" />
+    <Compile Include="Client\Xml\SEPPath.cs" />
+    <Compile Include="Client\Xml\SEPType.cs" />
+    <Compile Include="Client\Xml\SEPUri.cs" />
+    <Compile Include="Client\Xml\ServerStatus.cs" />
+    <Compile Include="Client\Xml\Service.cs" />
+    <Compile Include="Client\Xml\SimpleXMLElement.cs" />
+    <Compile Include="Client\Xml\Status.cs" />
+    <Compile Include="Client\Xml\Tags.cs" />
+    <Compile Include="Client\Xml\XDIService.cs" />
+    <Compile Include="Client\Xml\XRD.cs" />
+    <Compile Include="Client\Xml\XRDS.cs" />
+    <Compile Include="Client\Xml\XRDType.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Syntax\AuthorityPath.cs" />
+    <Content Include="Syntax\Characters.cs" />
+    <Content Include="Syntax\GCSAuthority.cs" />
+    <Content Include="Syntax\IRIAuthority.cs" />
+    <Content Include="Syntax\IRIUtils.cs" />
+    <Content Include="Syntax\Parsable.cs" />
+    <Content Include="Syntax\ParseStream.cs" />
+    <Content Include="Syntax\RelativeXRI.cs" />
+    <Content Include="Syntax\XRef.cs" />
+    <Content Include="Syntax\XRefAuthority.cs" />
+    <Content Include="Syntax\XRI.cs" />
+    <Content Include="Syntax\xri3\impl\IRIUtils.cs" />
+    <Content Include="Syntax\xri3\impl\package.html" />
+    <Content Include="Syntax\xri3\impl\parser\Displayer.cs" />
+    <Content Include="Syntax\xri3\impl\parser\package.html" />
+    <Content Include="Syntax\xri3\impl\parser\Parser.cs" />
+    <Content Include="Syntax\xri3\impl\parser\ParserException.cs" />
+    <Content Include="Syntax\xri3\impl\parser\Rule.cs" />
+    <Content Include="Syntax\xri3\impl\parser\Visitor.cs" />
+    <Content Include="Syntax\xri3\impl\parser\XmlDisplayer.cs" />
+    <Content Include="Syntax\xri3\impl\tutorial\package.html" />
+    <Content Include="Syntax\xri3\impl\tutorial\Tutorial1.cs" />
+    <Content Include="Syntax\xri3\impl\tutorial\Tutorial2.cs" />
+    <Content Include="Syntax\xri3\impl\tutorial\Tutorial3.cs" />
+    <Content Include="Syntax\xri3\impl\XRI3.cs" />
+    <Content Include="Syntax\xri3\impl\XRI3Authority.cs" />
+    <Content Include="Syntax\xri3\impl\XRI3Constants.cs" />
+    <Content Include="Syntax\xri3\impl\XRI3Fragment.cs" />
+    <Content Include="Syntax\xri3\impl\XRI3Literal.cs" />
+    <Content Include="Syntax\xri3\impl\XRI3Path.cs" />
+    <Content Include="Syntax\xri3\impl\XRI3Query.cs" />
+    <Content Include="Syntax\xri3\impl\XRI3Reference.cs" />
+    <Content Include="Syntax\xri3\impl\XRI3Segment.cs" />
+    <Content Include="Syntax\xri3\impl\XRI3SubSegment.cs" />
+    <Content Include="Syntax\xri3\impl\XRI3SyntaxComponent.cs" />
+    <Content Include="Syntax\xri3\impl\XRI3Util.cs" />
+    <Content Include="Syntax\xri3\impl\XRI3XRef.cs" />
+    <Content Include="Syntax\xri3\package.html" />
+    <Content Include="Syntax\xri3\XRI.cs" />
+    <Content Include="Syntax\xri3\XRIAuthority.cs" />
+    <Content Include="Syntax\xri3\XRIFragment.cs" />
+    <Content Include="Syntax\xri3\XRILiteral.cs" />
+    <Content Include="Syntax\xri3\XRIPath.cs" />
+    <Content Include="Syntax\xri3\XRIQuery.cs" />
+    <Content Include="Syntax\xri3\XRIReference.cs" />
+    <Content Include="Syntax\xri3\XRISegment.cs" />
+    <Content Include="Syntax\xri3\XRISubSegment.cs" />
+    <Content Include="Syntax\xri3\XRISyntaxComponent.cs" />
+    <Content Include="Syntax\xri3\XRIXRef.cs" />
+    <Content Include="Syntax\XRIAbsolutePath.cs" />
+    <Content Include="Syntax\XRIAuthority.cs" />
+    <Content Include="Syntax\XRIFragment.cs" />
+    <Content Include="Syntax\XRINoSchemePath.cs" />
+    <Content Include="Syntax\XRIParseException.cs" />
+    <Content Include="Syntax\XRIPath.cs" />
+    <Content Include="Syntax\XRIQuery.cs" />
+    <Content Include="Syntax\XRIReference.cs" />
+    <Content Include="Syntax\XRISegment.cs" />
+    <Content Include="Syntax\XRISubSegment.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Server\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\tools\DotNetXri.Versioning.targets" />

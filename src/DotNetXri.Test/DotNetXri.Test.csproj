@@ -70,6 +70,20 @@
   <ItemGroup>
     <EmbeddedResource Include="Logging.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Client\resolve\CacheTest.cs" />
+    <Content Include="Client\resolve\IRITest.cs" />
+    <Content Include="Client\resolve\ProxyTest.cs" />
+    <Content Include="Client\resolve\ResolverTest.cs" />
+    <Content Include="Client\resolve\SampleResolver.cs" />
+    <Content Include="Client\xml\ParseTest.cs" />
+    <Content Include="Client\xml\SignTest.cs" />
+    <Content Include="Syntax\IRIUtilsTest.cs" />
+    <Content Include="Syntax\xri3\ConstructTest.cs" />
+    <Content Include="Syntax\xri3\INameTest.cs" />
+    <Content Include="Syntax\xri3\ParseTest.cs" />
+    <Content Include="Syntax\XRITest.cs" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\tools\DotNetXri.Versioning.targets" />
 </Project>
