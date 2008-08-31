@@ -3,7 +3,7 @@ using System.Globalization;
 using System.IO;
 using System.Reflection;
 
-namespace YOURLIBNAME.Loggers {
+namespace DotNetXri.Loggers {
 	class Log4NetLogger : ILog {
 		private log4net.ILog log4netLogger;
 
@@ -33,7 +33,7 @@ namespace YOURLIBNAME.Loggers {
 		/// Creates the log4net.LogManager.  Call ONLY once log4net.dll is known to be present.
 		/// </summary>
 		static ILog createLogger() {
-			return new Log4NetLogger(log4net.LogManager.GetLogger("YOURLIBNAME"));
+			return new Log4NetLogger(log4net.LogManager.GetLogger("DotNetXri"));
 		}
 
 		#region ILog Members

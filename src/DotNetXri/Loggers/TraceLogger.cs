@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Security;
 using System.Security.Permissions;
 
-namespace YOURLIBNAME.Loggers {
+namespace DotNetXri.Loggers {
 	class TraceLogger : ILog {
 		TraceSwitch traceSwitch = new TraceSwitch("OpenID", "OpenID Trace Switch");
 

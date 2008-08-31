@@ -1,10 +1,10 @@
 using System;
 using System.Globalization;
-using YOURLIBNAME.Loggers;
+using DotNetXri.Loggers;
 
-namespace YOURLIBNAME {
+namespace DotNetXri {
 	/// <summary>
-	/// A general logger for the entire YOURLIBNAME library.
+	/// A general logger for the entire DotNetXri library.
 	/// </summary>
 	/// <remarks>
 	/// Because this logger is intended for use with non-localized strings, the

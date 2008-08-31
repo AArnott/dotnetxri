@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
 using System.Reflection;
 
-namespace YOURLIBNAME {
+namespace DotNetXri {
 	class Util {
 		public static string LibraryVersion {
 			get {

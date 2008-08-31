@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace YOURLIBNAME.Loggers {
+namespace DotNetXri.Loggers {
 	class NoOpLogger : ILog {
 
 		/// <summary>

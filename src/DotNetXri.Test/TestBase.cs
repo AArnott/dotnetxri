@@ -2,9 +2,9 @@
 using log4net;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace YOURLIBNAME.Test {
+namespace DotNetXri.Test {
 	public class TestBase {
-		internal readonly static ILog Logger = LogManager.GetLogger("YOURLIBNAME.Test");
+		internal readonly static ILog Logger = LogManager.GetLogger("DotNetXri.Test");
 
 		/// <summary>
 		/// Gets or sets the test context which provides
@@ -14,7 +14,7 @@ namespace YOURLIBNAME.Test {
 
 		[TestInitialize]
 		public virtual void SetUp() {
-			log4net.Config.XmlConfigurator.Configure(Assembly.GetExecutingAssembly().GetManifestResourceStream("YOURLIBNAME.Test.Logging.config"));
+			log4net.Config.XmlConfigurator.Configure(Assembly.GetExecutingAssembly().GetManifestResourceStream("DotNetXri.Test.Logging.config"));
 		}
 
 		[TestCleanup]
