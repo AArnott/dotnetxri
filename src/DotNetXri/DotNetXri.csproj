@@ -89,16 +89,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Client\Resolve\Cache.cs" />
-    <Compile Include="Client\Resolve\exception\AuthResNotFoundException.cs" />
-    <Compile Include="Client\Resolve\exception\BadAuthorityException.cs" />
-    <Compile Include="Client\Resolve\exception\IllegalTrustTypeException.cs" />
-    <Compile Include="Client\Resolve\exception\InvalidAuthorityURIException.cs" />
-    <Compile Include="Client\Resolve\exception\LimitExceededException.cs" />
-    <Compile Include="Client\Resolve\exception\NoInitialDescriptorException.cs" />
-    <Compile Include="Client\Resolve\exception\PartialResolutionException.cs" />
-    <Compile Include="Client\Resolve\exception\RefNotFollowedException.cs" />
-    <Compile Include="Client\Resolve\exception\XRDErrorStatusException.cs" />
-    <Compile Include="Client\Resolve\exception\XRIResolutionException.cs" />
+    <Compile Include="Client\Resolve\Exception\AuthResNotFoundException.cs" />
+    <Compile Include="Client\Resolve\Exception\BadAuthorityException.cs" />
+    <Compile Include="Client\Resolve\Exception\IllegalTrustTypeException.cs" />
+    <Compile Include="Client\Resolve\Exception\InvalidAuthorityURIException.cs" />
+    <Compile Include="Client\Resolve\Exception\LimitExceededException.cs" />
+    <Compile Include="Client\Resolve\Exception\NoInitialDescriptorException.cs" />
+    <Compile Include="Client\Resolve\Exception\PartialResolutionException.cs" />
+    <Compile Include="Client\Resolve\Exception\RefNotFollowedException.cs" />
+    <Compile Include="Client\Resolve\Exception\XRDErrorStatusException.cs" />
+    <Compile Include="Client\Resolve\Exception\XRIResolutionException.cs" />
     <Compile Include="Client\Resolve\MimeType.cs" />
     <Compile Include="Client\Resolve\ResolveChain.cs" />
     <Compile Include="Client\Resolve\ResolveInfo.cs" />
