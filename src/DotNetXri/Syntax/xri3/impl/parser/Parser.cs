@@ -54,8 +54,8 @@ public class Parser
 
     if (!ok)
     {
-      System.out.println("error: " + error);
-      System.out.println("usage: Parser [-rule rulename] [-trace] <-file file | -string string> [-visitor visitor]");
+      System.Console.WriteLine("error: " + error);
+      System.Console.WriteLine("usage: Parser [-rule rulename] [-trace] <-file file | -string string> [-visitor visitor]");
     }
     else
     {
@@ -81,27 +81,27 @@ public class Parser
       }
       catch (IllegalArgumentException e)
       {
-        System.out.println("argument error: " + e.getMessage());
+        System.Console.WriteLine("argument error: " + e.getMessage());
       }
       catch (IOException e)
       {
-        System.out.println("io error: " + e.getMessage());
+        System.Console.WriteLine("io error: " + e.getMessage());
       }
       catch (ParserException e)
       {
-        System.out.println("parser error: " + e.getMessage());
+        System.Console.WriteLine("parser error: " + e.getMessage());
       }
       catch (ClassNotFoundException e)
       {
-        System.out.println("visitor error: class not found - " + e.getMessage());
+        System.Console.WriteLine("visitor error: class not found - " + e.getMessage());
       }
       catch (IllegalAccessException e)
       {
-        System.out.println("visitor error: illegal access - " + e.getMessage());
+        System.Console.WriteLine("visitor error: illegal access - " + e.getMessage());
       }
       catch (InstantiationException e)
       {
-        System.out.println("visitor error: instantiation failure - " + e.getMessage());
+        System.Console.WriteLine("visitor error: instantiation failure - " + e.getMessage());
       }
     }
   }
@@ -191,8 +191,8 @@ public class Parser
     callStack.push(function);
     if (trace)
     {
-      System.out.println("-> " + ++level + ": " + function + "()");
-      System.out.println(index + ": " + text.substring(index, index + 10 > text.length() ? text.length() : index + 10).replaceAll("[^\\p{Print}]", " "));
+      System.Console.WriteLine("-> " + ++level + ": " + function + "()");
+      System.Console.WriteLine(index + ": " + text.substring(index, index + 10 > text.length() ? text.length() : index + 10).replaceAll("[^\\p{Print}]", " "));
     }
   }
 
@@ -201,8 +201,8 @@ public class Parser
     callStack.push(function);
     if (trace)
     {
-      System.out.println("-> " + ++level + ": " + function + "(" + regex + ")");
-      System.out.println(index + ": " + text.substring(index, index + 10 > text.length() ? text.length() : index + 10).replaceAll("[^\\p{Print}]", " "));
+      System.Console.WriteLine("-> " + ++level + ": " + function + "(" + regex + ")");
+      System.Console.WriteLine(index + ": " + text.substring(index, index + 10 > text.length() ? text.length() : index + 10).replaceAll("[^\\p{Print}]", " "));
     }
   }
 
@@ -211,8 +211,8 @@ public class Parser
     callStack.push(function);
     if (trace)
     {
-      System.out.println("-> " + ++level + ": " + function + "(" + spelling + ", " + regex + ")");
-      System.out.println(index + ": " + text.substring(index, index + 10 > text.length() ? text.length() : index + 10).replaceAll("[^\\p{Print}]", " "));
+      System.Console.WriteLine("-> " + ++level + ": " + function + "(" + spelling + ", " + regex + ")");
+      System.Console.WriteLine(index + ": " + text.substring(index, index + 10 > text.length() ? text.length() : index + 10).replaceAll("[^\\p{Print}]", " "));
     }
   }
 
@@ -221,7 +221,7 @@ public class Parser
     callStack.pop();
     if (trace)
     {
-      System.out.println("<- " + level-- + ": " + function + "(" + (result ? "true," : "false,") + length + ")");
+      System.Console.WriteLine("<- " + level-- + ": " + function + "(" + (result ? "true," : "false,") + length + ")");
     }
     if (!result)
     {

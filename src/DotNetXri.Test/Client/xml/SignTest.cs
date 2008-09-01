@@ -117,12 +117,12 @@ public class SignTest
             oXRID.sign(oKP.getPrivate());
             oXRID.verifySignature(oKP.getPublic());
             String sXRID = oXRID.serializeDOM(false, true);
-            System.out.println("OLD XRD: " + sXRID);
+            System.Console.WriteLine("OLD XRD: " + sXRID);
 
             XRD oNewXRID =
                 XRD.parseXRD(sXRID, true);
             String sNewXRID = oNewXRID.serializeDOM(false, true);
-            System.out.println("NEW XRD: " + sNewXRID);
+            System.Console.WriteLine("NEW XRD: " + sNewXRID);
             assertTrue(
                 "Unable to reconstruct DOM correctly", sXRID.equals(sNewXRID));
             oNewXRID.verifySignature(oKP.getPublic());

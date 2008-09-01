@@ -87,7 +87,7 @@ public class ResolverTest
 			
 			ResolverFlags flags = new ResolverFlags();
 			XRDS xrds = resolver.resolveAuthToXRDS(xri, flags, new ResolverState());
-			// System.out.println(xrds);
+			// System.Console.WriteLine(xrds);
 
 			assertTrue("Expected 5 XRDs", xrds.getNumChildren() == 5);
 			assertTrue("subseg[3] should be *0003-badcid", xrds.getDescriptorAt(3).getQuery().equals("*0003-badcid"));
@@ -143,7 +143,7 @@ public class ResolverTest
 			
 			ResolverFlags flags = new ResolverFlags();
 			XRDS xrds = resolver.resolveSEPToXRDS(xri, null, null, flags, new ResolverState());
-			System.out.println(xrds);
+			System.Console.WriteLine(xrds);
 			assertTrue("There should be 8 child elements", xrds.getNumChildren() == 8);
 			assertTrue("The first child should be an XRD element", xrds.isXRDAt(0));
 			assertTrue("The second child should be an XRD element", xrds.isXRDAt(1));
@@ -200,7 +200,7 @@ public class ResolverTest
 			result = resolver.constructURI(sepURI, "qxri", new XRI(qxri));
 			assertTrue("Invalid constructed URI for append=qxri '" + result
 					+ "'", result.equals(sepURI.toString() + "@a*b*c/d/e?f=g"));
-			System.out.println("result = " + result);
+			System.Console.WriteLine("result = " + result);
 		} catch (Exception oEx) {
 			fail("Got wrong exception while trying to resolve IRI " + oEx);
 		}

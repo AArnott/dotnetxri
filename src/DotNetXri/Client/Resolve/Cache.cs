@@ -328,12 +328,12 @@ public class Cache
     */
     synchronized void dump()
     {
-        System.out.println("Num nodes = " + mnNodes);
+        System.Console.WriteLine("Num nodes = " + mnNodes);
         CacheNode oNode = moRootNode.moNext;
         int i = 1;
         while (oNode != moRootNode)
         {
-            System.out.println("#" + i + "\t" + oNode.msSubsegment);
+            System.Console.WriteLine("#" + i + "\t" + oNode.msSubsegment);
             oNode = oNode.moNext;
             i++;
         }

@@ -20,17 +20,17 @@ public class Tutorial1 {
 		XRIAuthority xriAuthority = xri.getAuthority();
 		XRIPath xriPath = xri.getPath();
 
-		System.out.println("Resolving XRI " + xri.toString());
-		System.out.println("Listing " + xriAuthority.getNumSubSegments() + " subsegments...");
+		System.Console.WriteLine("Resolving XRI " + xri.toString());
+		System.Console.WriteLine("Listing " + xriAuthority.getNumSubSegments() + " subsegments...");
 
 		for (int i=0; i<xriAuthority.getNumSubSegments(); i++) {
 
 			XRISubSegment subSegment = xriAuthority.getSubSegment(i);
-			System.out.println("Subsegment #" + i + ": " + subSegment.toString());
-			System.out.println("  Global: " + subSegment.isGlobal());
-			System.out.println("  Local: " + subSegment.isLocal());
+			System.Console.WriteLine("Subsegment #" + i + ": " + subSegment.toString());
+			System.Console.WriteLine("  Global: " + subSegment.isGlobal());
+			System.Console.WriteLine("  Local: " + subSegment.isLocal());
 		}
 
-		System.out.println("Path: " + xriPath.toString());
+		System.Console.WriteLine("Path: " + xriPath.toString());
 	}
 }

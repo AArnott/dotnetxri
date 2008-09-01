@@ -20,10 +20,10 @@ public class Tutorial3 {
 		XRIAuthority xriAuthority = xri.getAuthority();
 		XRIPath xriPath = xri.getPath();
 
-		System.out.println("Checking XDI address " + xri.toString());
+		System.Console.WriteLine("Checking XDI address " + xri.toString());
 		
-		System.out.println("XDI Subject: " + xriAuthority.toString());
-		System.out.println("XDI Predicate: " + xriPath.getSegment(0).toString());
-		System.out.println("XDI Reference: " + xriPath.getSegment(1).toString());
+		System.Console.WriteLine("XDI Subject: " + xriAuthority.toString());
+		System.Console.WriteLine("XDI Predicate: " + xriPath.getSegment(0).toString());
+		System.Console.WriteLine("XDI Reference: " + xriPath.getSegment(1).toString());
 	}
 }
