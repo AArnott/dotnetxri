@@ -43,7 +43,7 @@ public abstract class SEPElement : Cloneable, Serializable {
 	 * in the parent element.
 	 */
 	public const String  DEFAULT_SELECT_ATTR = SELECT_ATTR_FALSE;
-	public static final bool DEFAULT_SELECT_ATTR_BOOL = false;
+	public const bool DEFAULT_SELECT_ATTR_BOOL = false;
 
 	private String  match; // null or one of the MATCH_ATTR_* constants
 	private Boolean select;

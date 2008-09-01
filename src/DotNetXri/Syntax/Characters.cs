@@ -25,10 +25,10 @@ namespace DotNetXri.Syntax {
 */
 public class Characters
 {
-	public static final UnicodeSet UCSCHAR;
-	public static final UnicodeSet IUNRESERVED;
-	public static final UnicodeSet IPCHAR;
-	public static final UnicodeSet XRI_PCHAR;
+	public const UnicodeSet UCSCHAR;
+	public const UnicodeSet IUNRESERVED;
+	public const UnicodeSet IPCHAR;
+	public const UnicodeSet XRI_PCHAR;
 	
 
     public const String XRI_SUB_DELIMS = "&;,'";

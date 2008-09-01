@@ -21,8 +21,8 @@ public class ProxyResolutionService :Service {
 	public const String REFS_SEPARATOR = ";";
 	public const String SEP_SEPARATOR = ";";
 
-	public static final Integer URI_PRIORITY_HTTPS = new Integer(1);
-	public static final Integer URI_PRIORITY_DEFAULT = new Integer(2);
+	public const Integer URI_PRIORITY_HTTPS = new Integer(1);
+	public const Integer URI_PRIORITY_DEFAULT = new Integer(2);
 
 	/**
 	 * Constructs a new Proxy Resolution endpoint.

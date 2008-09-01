@@ -11,24 +11,24 @@ public class XRI3Constants {
 	public const String XREF_START = "(";
 	public const String XREF_END = ")";
 
-	public static final XRI3 XRI_NULL = new XRI3("$null");
+	public const XRI3 XRI_NULL = new XRI3("$null");
 	
-	public static final char GCS_EQUALS = new char('='); 
-	public static final char GCS_AT = new char('@'); 
-	public static final char GCS_PLUS = new char('+'); 
-	public static final char GCS_DOLLAR = new char('$'); 
+	public const char GCS_EQUALS = new char('='); 
+	public const char GCS_AT = new char('@'); 
+	public const char GCS_PLUS = new char('+'); 
+	public const char GCS_DOLLAR = new char('$'); 
 
-	public static final char LCS_STAR = new char('*'); 
-	public static final char LCS_BANG = new char('!'); 
+	public const char LCS_STAR = new char('*'); 
+	public const char LCS_BANG = new char('!'); 
 
-	public static final char[] GCS_ARRAY = new char[] {
+	public const char[] GCS_ARRAY = new char[] {
 		GCS_EQUALS,
 		GCS_AT,
 		GCS_PLUS,
 		GCS_DOLLAR
 	};
 
-	public static final char[] LCS_ARRAY = new char[] {
+	public const char[] LCS_ARRAY = new char[] {
 		LCS_STAR,
 		LCS_BANG
 	};

@@ -16,8 +16,8 @@ public class AuthorityResolutionService :Service {
 	public const String SERVICE_MEDIA_TYPE = "application/xrds+xml";
 	public const String TRUST_TYPE_SEPARATOR = ";";
 
-	public static final Integer URI_PRIORITY_HTTPS = new Integer(1);
-	public static final Integer URI_PRIORITY_DEFAULT = new Integer(2);
+	public const Integer URI_PRIORITY_HTTPS = new Integer(1);
+	public const Integer URI_PRIORITY_DEFAULT = new Integer(2);
 
 	/**
 	 * Constructs a new Authority Resolution 2.0 endpoint.
