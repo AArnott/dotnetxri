@@ -330,45 +330,45 @@ public class MimeType : Comparable {
 		MimeType m7 = MimeType.parse(          "text/plain;trust=https;refs=true;refs=false");
 
 		if (!m1.equals(m2)) {
-			System.Console.WriteLine("m1.equals(m2) = " + m1.equals(m2));
-			System.Console.WriteLine("m1 = " + m1.toNormalizedString());
-			System.Console.WriteLine("m2 = " + m2.toNormalizedString());			
+			Logger.Info("m1.equals(m2) = " + m1.equals(m2));
+			Logger.Info("m1 = " + m1.toNormalizedString());
+			Logger.Info("m2 = " + m2.toNormalizedString());			
 		}
 		
 		if (!m1.isSuperSetOf(m2)) {
-			System.Console.WriteLine("m1.isSuperSetOf(m2) = " + m1.isSuperSetOf(m2));
-			System.Console.WriteLine("m1 = " + m1.toNormalizedString());
-			System.Console.WriteLine("m2 = " + m2.toNormalizedString());			
+			Logger.Info("m1.isSuperSetOf(m2) = " + m1.isSuperSetOf(m2));
+			Logger.Info("m1 = " + m1.toNormalizedString());
+			Logger.Info("m2 = " + m2.toNormalizedString());			
 		}
 
 		if (!m4.isSuperSetOf(m3)) {
-			System.Console.WriteLine("m4.isSuperSetOf(m3) = " + m4.isSuperSetOf(m3));
-			System.Console.WriteLine("m4 = " + m4.toNormalizedString());
-			System.Console.WriteLine("m3 = " + m3.toNormalizedString());			
+			Logger.Info("m4.isSuperSetOf(m3) = " + m4.isSuperSetOf(m3));
+			Logger.Info("m4 = " + m4.toNormalizedString());
+			Logger.Info("m3 = " + m3.toNormalizedString());			
 		}
 
 		if (m2.equals(m5)) {
-			System.Console.WriteLine("m2.isSuperSetOf(m5) = " + m2.isSuperSetOf(m5));
-			System.Console.WriteLine("m2 = " + m2.toNormalizedString());
-			System.Console.WriteLine("m5 = " + m5.toNormalizedString());			
+			Logger.Info("m2.isSuperSetOf(m5) = " + m2.isSuperSetOf(m5));
+			Logger.Info("m2 = " + m2.toNormalizedString());
+			Logger.Info("m5 = " + m5.toNormalizedString());			
 		}
 
 		if (m1.isSuperSetOf(m5)) {
-			System.Console.WriteLine("m1.isSuperSetOf(m5) = " + m1.isSuperSetOf(m5));
-			System.Console.WriteLine("m1 = " + m1.toNormalizedString());
-			System.Console.WriteLine("m5 = " + m5.toNormalizedString());			
+			Logger.Info("m1.isSuperSetOf(m5) = " + m1.isSuperSetOf(m5));
+			Logger.Info("m1 = " + m1.toNormalizedString());
+			Logger.Info("m5 = " + m5.toNormalizedString());			
 		}
 
 		if (!m6.isSuperSetOf(m5)) {
-			System.Console.WriteLine("m6.isSuperSetOf(m5) = " + m6.isSuperSetOf(m5));
-			System.Console.WriteLine("m6 = " + m6.toNormalizedString());
-			System.Console.WriteLine("m5 = " + m5.toNormalizedString());			
+			Logger.Info("m6.isSuperSetOf(m5) = " + m6.isSuperSetOf(m5));
+			Logger.Info("m6 = " + m6.toNormalizedString());
+			Logger.Info("m5 = " + m5.toNormalizedString());			
 		}
 
 		if (m6.isSuperSetOf(m7)) {
-			System.Console.WriteLine("m6.isSuperSetOf(m7) = " + m6.isSuperSetOf(m7));
-			System.Console.WriteLine("m6 = " + m6.toNormalizedString());
-			System.Console.WriteLine("m7 = " + m7.toNormalizedString());			
+			Logger.Info("m6.isSuperSetOf(m7) = " + m6.isSuperSetOf(m7));
+			Logger.Info("m6 = " + m6.toNormalizedString());
+			Logger.Info("m7 = " + m7.toNormalizedString());			
 		}
 	}
 

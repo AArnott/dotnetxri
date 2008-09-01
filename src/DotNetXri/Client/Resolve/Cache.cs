@@ -328,12 +328,12 @@ public class Cache
     */
     synchronized void dump()
     {
-        System.Console.WriteLine("Num nodes = " + mnNodes);
+        Logger.Info("Num nodes = " + mnNodes);
         CacheNode oNode = moRootNode.moNext;
         int i = 1;
         while (oNode != moRootNode)
         {
-            System.Console.WriteLine("#" + i + "\t" + oNode.msSubsegment);
+            Logger.Info("#" + i + "\t" + oNode.msSubsegment);
             oNode = oNode.moNext;
             i++;
         }

@@ -16,11 +16,11 @@ public class Tutorial2 {
 		XRI xri = new XRI3("+name");
 		XRIReference xriReference = new XRI3Reference("+first");
 
-		System.Console.WriteLine("Got XRI " + xri.toString());
-		System.Console.WriteLine("Got XRI reference " + xriReference.toString());
+		Logger.Info("Got XRI " + xri.toString());
+		Logger.Info("Got XRI reference " + xriReference.toString());
 
 		XRI xriNew = new XRI3(xri, xriReference);
 		
-		System.Console.WriteLine("Constructed new XRI " + xriNew.toString());
+		Logger.Info("Constructed new XRI " + xriNew.toString());
 	}
 }

@@ -35,7 +35,7 @@ public class ConstructTest :TestCase {
 		assertEquals(xri2.getAuthority().getSubSegment(0).getLiteral(), "name");
 		assertEquals(xri2.getAuthority().getSubSegment(1), "+first");
 		assertEquals(xri2.getAuthority().getSubSegment(1).getLiteral(), "first");
-		System.Console.WriteLine(Long.toString(System.currentTimeMillis() - time) + " ms");
+		Logger.Info(Long.toString(System.currentTimeMillis() - time) + " ms");
 
 		character = new Character('=');
 		string = new String("http://markus.openid.net");
@@ -51,7 +51,7 @@ public class ConstructTest :TestCase {
 		assertTrue(xri1.getAuthority().getSubSegment(0).getXRef().hasIRI());
 		assertEquals(xri1.getAuthority().getSubSegment(0).getXRef().getXRIReference(), null);
 		assertEquals(xri1.getAuthority().getSubSegment(0).getXRef().getIRI(), "http://markus.openid.net");
-		System.Console.WriteLine(Long.toString(System.currentTimeMillis() - time) + " ms");
+		Logger.Info(Long.toString(System.currentTimeMillis() - time) + " ms");
 
 		xriAuthority1 = new XRI3Authority("=!B7BD.2A1D.1040.58CD");
 		xriSubSegment1 = new XRI3SubSegment("!2000");
@@ -66,7 +66,7 @@ public class ConstructTest :TestCase {
 		assertEquals(xriAuthority2.getSubSegment(1).getGCS(), null);
 		assertEquals(xriAuthority2.getSubSegment(1).getLCS(), XRI3Constants.LCS_BANG);
 		assertEquals(xriAuthority2.getSubSegment(1).getLiteral(), "2000");
-		System.Console.WriteLine(Long.toString(System.currentTimeMillis() - time) + " ms");
+		Logger.Info(Long.toString(System.currentTimeMillis() - time) + " ms");
 
 		character = new Character('=');
 		xriSubSegment1 = new XRI3SubSegment("!B7BD.2A1D.1040.58CD");
@@ -76,6 +76,6 @@ public class ConstructTest :TestCase {
 		assertEquals(xriSubSegment2.getGCS(), XRI3Constants.GCS_EQUALS);
 		assertEquals(xriSubSegment2.getLCS(), XRI3Constants.LCS_BANG);
 		assertEquals(xriSubSegment2.getLiteral(), "B7BD.2A1D.1040.58CD");
-		System.Console.WriteLine(Long.toString(System.currentTimeMillis() - time) + " ms");
+		Logger.Info(Long.toString(System.currentTimeMillis() - time) + " ms");
 	}
 }

@@ -33,7 +33,7 @@ public class ParseTest :TestCase {
 		assertFalse(xri.hasFragment());
 		assertTrue(xri.isIName());
 		assertFalse(xri.isINumber());
-		System.Console.WriteLine(Long.toString(System.currentTimeMillis() - time) + " ms");
+		Logger.Info(Long.toString(System.currentTimeMillis() - time) + " ms");
 
 		xri = new XRI3("xri:@cordance");
 		assertEquals(xri.getScheme(), "xri:");
@@ -49,7 +49,7 @@ public class ParseTest :TestCase {
 		assertFalse(xri.hasFragment());
 		assertTrue(xri.isIName());
 		assertFalse(xri.isINumber());
-		System.Console.WriteLine(Long.toString(System.currentTimeMillis() - time) + " ms");
+		Logger.Info(Long.toString(System.currentTimeMillis() - time) + " ms");
 
 		xri = new XRI3("@cordance*drummond");
 		assertEquals(xri.getAuthority().getNumSubSegments(), 2);
@@ -76,7 +76,7 @@ public class ParseTest :TestCase {
 		assertFalse(xri.hasFragment());
 		assertTrue(xri.isIName());
 		assertFalse(xri.isINumber());
-		System.Console.WriteLine(Long.toString(System.currentTimeMillis() - time) + " ms");
+		Logger.Info(Long.toString(System.currentTimeMillis() - time) + " ms");
 
 		xri = new XRI3("@cordance/+hr");
 		assertEquals(xri.getAuthority().getNumSubSegments(), 1);
@@ -90,7 +90,7 @@ public class ParseTest :TestCase {
 		assertFalse(xri.getPath().getSegment(0).getSubSegment(0).hasXRef());
 		assertEquals(xri.getPath().getSegment(0).getSubSegment(0).getLiteral(), "hr");
 		assertEquals(xri.getPath().getSegment(0).getSubSegment(0).getXRef(), null);
-		System.Console.WriteLine(Long.toString(System.currentTimeMillis() - time) + " ms");
+		Logger.Info(Long.toString(System.currentTimeMillis() - time) + " ms");
 
 		xri = new XRI3("@cordance/(+hr)");
 		assertEquals(xri.getAuthority().getNumSubSegments(), 1);
@@ -104,7 +104,7 @@ public class ParseTest :TestCase {
 		assertTrue(xri.getPath().getSegment(0).getSubSegment(0).hasXRef());
 		assertEquals(xri.getPath().getSegment(0).getSubSegment(0).getLiteral(), null);
 		assertEquals(xri.getPath().getSegment(0).getSubSegment(0).getXRef(), "(+hr)");
-		System.Console.WriteLine(Long.toString(System.currentTimeMillis() - time) + " ms");
+		Logger.Info(Long.toString(System.currentTimeMillis() - time) + " ms");
 
 		xri = new XRI3("@cordance/documentation/xri?page=overview#introduction");
 		assertEquals(xri.getAuthority().getNumSubSegments(), 1);
@@ -126,7 +126,7 @@ public class ParseTest :TestCase {
 		assertEquals(xri.getFragment(), "introduction");
 		assertTrue(xri.isIName());
 		assertFalse(xri.isINumber());
-		System.Console.WriteLine(Long.toString(System.currentTimeMillis() - time) + " ms");
+		Logger.Info(Long.toString(System.currentTimeMillis() - time) + " ms");
 
 		xri = new XRI3("+!123");
 		assertEquals(xri.getAuthority().getNumSubSegments(), 1);
@@ -135,7 +135,7 @@ public class ParseTest :TestCase {
 		assertEquals(xri.getAuthority().getSubSegment(0).getLiteral(), "123");
 		assertFalse(xri.isIName());
 		assertTrue(xri.isINumber());
-		System.Console.WriteLine(Long.toString(System.currentTimeMillis() - time) + " ms");
+		Logger.Info(Long.toString(System.currentTimeMillis() - time) + " ms");
 
 		xri = new XRI3("=!B7BD.2A1D.1040.58CD!2000");
 		assertEquals(xri.getAuthority().getNumSubSegments(), 2);
@@ -153,7 +153,7 @@ public class ParseTest :TestCase {
 		assertTrue(xri.getAuthority().getSubSegment(1).isPersistent());
 		assertFalse(xri.isIName());
 		assertTrue(xri.isINumber());
-		System.Console.WriteLine(Long.toString(System.currentTimeMillis() - time) + " ms");
+		Logger.Info(Long.toString(System.currentTimeMillis() - time) + " ms");
 
 		xri = new XRI3("+person");
 		assertEquals(xri.getAuthority().getNumSubSegments(), 1);
@@ -162,7 +162,7 @@ public class ParseTest :TestCase {
 		assertEquals(xri.getAuthority().getSubSegment(0).getLiteral(), "person");
 		assertTrue(xri.isIName());
 		assertFalse(xri.isINumber());
-		System.Console.WriteLine(Long.toString(System.currentTimeMillis() - time) + " ms");
+		Logger.Info(Long.toString(System.currentTimeMillis() - time) + " ms");
 
 		xri = new XRI3("+person+name");
 		assertEquals(xri.getAuthority().getNumSubSegments(), 2);
@@ -174,7 +174,7 @@ public class ParseTest :TestCase {
 		assertEquals(xri.getAuthority().getSubSegment(1).getLiteral(), "name");
 		assertTrue(xri.isIName());
 		assertFalse(xri.isINumber());
-		System.Console.WriteLine(Long.toString(System.currentTimeMillis() - time) + " ms");
+		Logger.Info(Long.toString(System.currentTimeMillis() - time) + " ms");
 
 		xri = new XRI3("+person+address+street");
 		assertEquals(xri.getAuthority().getNumSubSegments(), 3);
@@ -189,7 +189,7 @@ public class ParseTest :TestCase {
 		assertEquals(xri.getAuthority().getSubSegment(2).getLiteral(), "street");
 		assertTrue(xri.isIName());
 		assertFalse(xri.isINumber());
-		System.Console.WriteLine(Long.toString(System.currentTimeMillis() - time) + " ms");
+		Logger.Info(Long.toString(System.currentTimeMillis() - time) + " ms");
 
 		xri = new XRI3("+person/$has/+name");
 		assertEquals(xri.getAuthority().getNumSubSegments(), 1);
@@ -210,7 +210,7 @@ public class ParseTest :TestCase {
 		assertFalse(xri.hasFragment());
 		assertTrue(xri.isIName());
 		assertFalse(xri.isINumber());
-		System.Console.WriteLine(Long.toString(System.currentTimeMillis() - time) + " ms");
+		Logger.Info(Long.toString(System.currentTimeMillis() - time) + " ms");
 
 		xri = new XRI3("=markus/$is$a/+person");
 		assertEquals(xri.getAuthority().getNumSubSegments(), 1);
@@ -234,7 +234,7 @@ public class ParseTest :TestCase {
 		assertFalse(xri.hasFragment());
 		assertTrue(xri.isIName());
 		assertFalse(xri.isINumber());
-		System.Console.WriteLine(Long.toString(System.currentTimeMillis() - time) + " ms");
+		Logger.Info(Long.toString(System.currentTimeMillis() - time) + " ms");
 
 		xri = new XRI3("+!15+!16$v!3");
 		assertEquals(xri.getAuthority().getNumSubSegments(), 4);
@@ -262,7 +262,7 @@ public class ParseTest :TestCase {
 		assertTrue(xri.getAuthority().getSubSegment(3).isLocal());
 		assertFalse(xri.getAuthority().getSubSegment(3).isReassignable());
 		assertTrue(xri.getAuthority().getSubSegment(3).isPersistent());
-		System.Console.WriteLine(Long.toString(System.currentTimeMillis() - time) + " ms");
+		Logger.Info(Long.toString(System.currentTimeMillis() - time) + " ms");
 
 		xri = new XRI3("$type*mime+text");
 		assertEquals(xri.getAuthority().getNumSubSegments(), 3);
@@ -277,7 +277,7 @@ public class ParseTest :TestCase {
 		assertEquals(xri.getAuthority().getSubSegment(2).getLiteral(), "text");
 		assertTrue(xri.isIName());
 		assertFalse(xri.isINumber());
-		System.Console.WriteLine(Long.toString(System.currentTimeMillis() - time) + " ms");
+		Logger.Info(Long.toString(System.currentTimeMillis() - time) + " ms");
 
 		xri = new XRI3("$is$type+(http://schemas.xmlsoap.org)");
 		assertEquals(xri.getAuthority().getNumSubSegments(), 3);
@@ -297,22 +297,22 @@ public class ParseTest :TestCase {
 		assertFalse(xri.getAuthority().getSubSegment(2).getXRef().hasXRIReference());
 		assertTrue(xri.getAuthority().getSubSegment(2).getXRef().hasIRI());
 		assertEquals(xri.getAuthority().getSubSegment(2).getXRef().getIRI(), "http://schemas.xmlsoap.org");
-		System.Console.WriteLine(Long.toString(System.currentTimeMillis() - time) + " ms");
+		Logger.Info(Long.toString(System.currentTimeMillis() - time) + " ms");
 		
 		xri = new XRI3("=markus+(http://test#f)?query");
 		assertTrue(xri.hasQuery());
 		assertFalse(xri.hasFragment());
-		System.Console.WriteLine(Long.toString(System.currentTimeMillis() - time) + " ms");
+		Logger.Info(Long.toString(System.currentTimeMillis() - time) + " ms");
 		
 		xri = new XRI3("=markus+(http://test?q)#fragment");
 		assertFalse(xri.hasQuery());
 		assertTrue(xri.hasFragment());
-		System.Console.WriteLine(Long.toString(System.currentTimeMillis() - time) + " ms");
+		Logger.Info(Long.toString(System.currentTimeMillis() - time) + " ms");
 		
 		xri = new XRI3("=markus?query#fragment");
 		assertTrue(xri.hasQuery());
 		assertTrue(xri.hasFragment());
-		System.Console.WriteLine(Long.toString(System.currentTimeMillis() - time) + " ms");
+		Logger.Info(Long.toString(System.currentTimeMillis() - time) + " ms");
 	}
 
 	public void testXRI3Authority() throws Exception {
@@ -347,7 +347,7 @@ public class ParseTest :TestCase {
 		assertTrue(authority.getSubSegment(3).isLocal());
 		assertFalse(authority.getSubSegment(3).isReassignable());
 		assertTrue(authority.getSubSegment(3).isPersistent());
-		System.Console.WriteLine(Long.toString(System.currentTimeMillis() - time) + " ms");
+		Logger.Info(Long.toString(System.currentTimeMillis() - time) + " ms");
 	}
 
 	public void testXRI3SubSegment() throws Exception {
@@ -364,7 +364,7 @@ public class ParseTest :TestCase {
 		assertTrue(subSegment.isReassignable());
 		assertFalse(subSegment.isPersistent());
 		assertEquals(subSegment.getLiteral(), "earth");
-		System.Console.WriteLine(Long.toString(System.currentTimeMillis() - time) + " ms");
+		Logger.Info(Long.toString(System.currentTimeMillis() - time) + " ms");
 
 		subSegment = new XRI3SubSegment("@free");
 		assertTrue(subSegment.hasGCS());
@@ -374,7 +374,7 @@ public class ParseTest :TestCase {
 		assertTrue(subSegment.isReassignable());
 		assertFalse(subSegment.isPersistent());
 		assertEquals(subSegment.getLiteral(), "free");
-		System.Console.WriteLine(Long.toString(System.currentTimeMillis() - time) + " ms");
+		Logger.Info(Long.toString(System.currentTimeMillis() - time) + " ms");
 
 		subSegment = new XRI3SubSegment("+!16");
 		assertTrue(subSegment.hasGCS());
@@ -384,7 +384,7 @@ public class ParseTest :TestCase {
 		assertFalse(subSegment.isReassignable());
 		assertTrue(subSegment.isPersistent());
 		assertEquals(subSegment.getLiteral(), "16");
-		System.Console.WriteLine(Long.toString(System.currentTimeMillis() - time) + " ms");
+		Logger.Info(Long.toString(System.currentTimeMillis() - time) + " ms");
 
 		subSegment = new XRI3SubSegment("!canonical");
 		assertFalse(subSegment.hasGCS());
@@ -394,7 +394,7 @@ public class ParseTest :TestCase {
 		assertFalse(subSegment.isReassignable());
 		assertTrue(subSegment.isPersistent());
 		assertEquals(subSegment.getLiteral(), "canonical");
-		System.Console.WriteLine(Long.toString(System.currentTimeMillis() - time) + " ms");
+		Logger.Info(Long.toString(System.currentTimeMillis() - time) + " ms");
 
 		subSegment = new XRI3SubSegment("+(@free*earth*moon)");
 		assertEquals(subSegment.getGCS(), XRI3Constants.GCS_PLUS);
@@ -406,7 +406,7 @@ public class ParseTest :TestCase {
 		assertFalse(subSegment.getXRef().hasIRI());
 		assertEquals(subSegment.getXRef().getXRIReference(), "@free*earth*moon");
 		assertEquals(subSegment.getXRef().getXRIReference().getAuthority().getNumSubSegments(), 3);
-		System.Console.WriteLine(Long.toString(System.currentTimeMillis() - time) + " ms");
+		Logger.Info(Long.toString(System.currentTimeMillis() - time) + " ms");
 
 		subSegment = new XRI3SubSegment("+(http://schemas.xmlsoap.org)");
 		assertEquals(subSegment.getGCS(), XRI3Constants.GCS_PLUS);
@@ -417,6 +417,6 @@ public class ParseTest :TestCase {
 		assertFalse(subSegment.getXRef().hasXRIReference());
 		assertTrue(subSegment.getXRef().hasIRI());
 		assertEquals(subSegment.getXRef().getIRI(), "http://schemas.xmlsoap.org");
-		System.Console.WriteLine(Long.toString(System.currentTimeMillis() - time) + " ms");
+		Logger.Info(Long.toString(System.currentTimeMillis() - time) + " ms");
 	}
 }

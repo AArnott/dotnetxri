@@ -160,7 +160,7 @@ public class XRITest
             }
         }
 
-        System.Console.WriteLine("Valid Relative XRIs tested successfully");
+        Logger.Info("Valid Relative XRIs tested successfully");
 
     } // testRelativeXRIs()
 
@@ -306,7 +306,7 @@ public class XRITest
             }
         }
 
-        System.Console.WriteLine("Valid Absolute XRIs tested successfully");
+        Logger.Info("Valid Absolute XRIs tested successfully");
 
     } // testAbsoluteXRIs()
 
@@ -344,7 +344,7 @@ public class XRITest
             }
         }
 
-        System.Console.WriteLine("Invalid Relative XRIs tested successfully");
+        Logger.Info("Invalid Relative XRIs tested successfully");
 
     } // testInvalidRelativeXRIs()
 
@@ -394,7 +394,7 @@ public class XRITest
             }
         }
 
-        System.Console.WriteLine("Invalid Absolute XRIs tested successfully");
+        Logger.Info("Invalid Absolute XRIs tested successfully");
 
     } // testInvalidAbsoluteXRIs()
 
@@ -441,7 +441,7 @@ public class XRITest
                     "\": " + oEx, false);
             }
         }
-        System.Console.WriteLine("Valid XRI Segments tested successfully");
+        Logger.Info("Valid XRI Segments tested successfully");
 
     } // testXRISegments()
 
@@ -499,7 +499,7 @@ public class XRITest
             }
         }
 
-        System.Console.WriteLine("Invalid XRI Segments tested successfully");
+        Logger.Info("Invalid XRI Segments tested successfully");
 
     } // testInvalidXRISegments()
 
@@ -772,7 +772,7 @@ public class XRITest
             }
         }
 
-        System.Console.WriteLine("Valid URIs conversion tested successfully");
+        Logger.Info("Valid URIs conversion tested successfully");
 
     }
 
@@ -815,7 +815,7 @@ public class XRITest
         assertTrue(
             "Failed XRISegment::getRemainder", oSegment.getRemainder(4) == null);
 
-        System.Console.WriteLine("Utility methods tested successfully");
+        Logger.Info("Utility methods tested successfully");
 
     } // testUtilMethods()
 

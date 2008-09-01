@@ -180,7 +180,7 @@ public class ParseTest
             assertTrue(
                 "Incorrect # for External", oDesc.getNumRefs() == 1);
 
-            System.Console.WriteLine(oDesc.toString());
+            Logger.Info(oDesc.toString());
         }
         catch (Exception e)
         {
@@ -273,7 +273,7 @@ public class ParseTest
 
             assertNotNull(oDesc.getSAMLAssertion());
 
-            System.Console.WriteLine(oDesc.toString());
+            Logger.Info(oDesc.toString());
         }
         catch (Exception e)
         {
