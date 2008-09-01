@@ -1,28 +1,43 @@
-/**
- * 
- */
-package org.openxri.resolve.exception;
-
-
-/**
- * @author wtan
+/*
+ * Copyright 2005 OpenXRI Foundation
+ * Subsequently ported and altered by Andrew Arnott and Troels Thomsen
  *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
-public class RefNotFollowedException :XRIResolutionException {
-	protected String unresolved = null;
 
-	/**
-	 * @param unresolved
-	 * @param sMsg
-	 */
-	public RefNotFollowedException(String unresolved, String sMsg) :base (sMsg + " (" + unresolved + ")") {
-		this.unresolved = unresolved;
-	}
-	
-	/**
-	 * @param unresolved
-	 */
-	public RefNotFollowedException(String unresolved) : base("Ref not followed while unresolved segment exists: " + unresolved) {
-		this.unresolved = unresolved;
+namespace DotNetXri.Client.Resolve.Exception
+{
+	public class RefNotFollowedException : XRIResolutionException
+	{
+		protected string unresolved = null;
+
+		/**
+		 * @param unresolved
+		 * @param sMsg
+		 */
+		public RefNotFollowedException(string unresolved, string message)
+			: base(message + " (" + unresolved + ")")
+		{
+			this.unresolved = unresolved;
+		}
+
+		/**
+		 * @param unresolved
+		 */
+		public RefNotFollowedException(string unresolved)
+			: base("Ref not followed while unresolved segment exists: " + unresolved)
+		{
+			this.unresolved = unresolved;
+		}
 	}
 }

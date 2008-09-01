@@ -1,6 +1,6 @@
 /*
  * Copyright 2005 OpenXRI Foundation
- * Subsequently ported and altered by Andrew Arnott
+ * Subsequently ported and altered by Andrew Arnott and Troels Thomsen
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,75 +13,52 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
-// This package
-package org.openxri.resolve.exception;
+ */
 
-
-/*
-********************************************************************************
-* Class: XRIResolutionException
-********************************************************************************
-*/ /**
-* Base class for exceptions thrown during XRI Resolution
-* @author chandra
-*/
-public class XRIResolutionException
-    :java.lang.Exception
+namespace DotNetXri.Client.Resolve.Exception
 {
-    private Exception moEx = null;
-    private String status = null;
+	/// <summary>
+	/// Base class for exceptions thrown during XRI Resolution
+	/// </summary>
+	public class XRIResolutionException : System.Exception
+	{
+		private System.Exception moEx = null;
+		private string status = null;
 
-    /*
-    ****************************************************************************
-    * Constructor()
-    ****************************************************************************
-    */ /**
-    * Constructs an exception with the given message
-    */
-    public XRIResolutionException(String sMsg)
-    : base(sMsg) {
+		/// <summary>
+		/// Constructs an exception with the given message.
+		/// </summary>
+		/// <param name="message"></param>
+		public XRIResolutionException(string message)
+			: base(message)
+		{ }
 
-    } // Constructor()
+		/// <summary>
+		/// Constructs an exception with the given message and underlying exception.
+		/// </summary>
+		/// <param name="message"></param>
+		/// <param name="exception"></param>
+		public XRIResolutionException(string message, System.Exception exception)
+			: base(message)
+		{
+			moEx = exception;
 
-    /*
-    ****************************************************************************
-    * Constructor()
-    ****************************************************************************
-    */ /**
-    * Constructs an exception with the given message and underlying exception
-    */
-    public XRIResolutionException(String sMsg, Exception oEx)
-    : base(sMsg) {
-        moEx = oEx;
+		}
 
-    } // Constructor()
+		public XRIResolutionException(string statusCode, string message)
+			: base(message)
+		{
+			status = statusCode;
+		}
 
-    public XRIResolutionException(String statusCode, String sMsg)
-    : base(sMsg) {
-    	status = statusCode;
-    }
-    /*
-    ****************************************************************************
-    * printUnderlyingStackTrace()
-    ****************************************************************************
-    */ /**
-    * Prints out the underlying exception
-    */
-    public void printUnderlyingStackTrace()
-    {
-        if (moEx != null)
-        {
-            moEx.printStackTrace();
-        }
+		/// <summary>
+		/// Returns the status.
+		/// </summary>
+		/// <returns></returns>
+		public string getStatus()
+		{
+			return status;
+		}
 
-    } // printUnderlyingStackTrace()
-
-	/**
-	 * @return Returns the status.
-	 */
-	public String getStatus() {
-		return status;
 	}
-
-} // Class: XRIResolutionException
+}

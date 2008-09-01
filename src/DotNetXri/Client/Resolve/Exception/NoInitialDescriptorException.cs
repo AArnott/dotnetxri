@@ -1,6 +1,6 @@
 /*
  * Copyright 2005 OpenXRI Foundation
- * Subsequently ported and altered by Andrew Arnott
+ * Subsequently ported and altered by Andrew Arnott and Troels Thomsen
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,65 +13,30 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
-// This package
-package org.openxri.resolve.exception;
+ */
 
-
-
-/*
-********************************************************************************
-* Class: NoInitialDescriptorException
-********************************************************************************
-*/ /**
-* Exception thrown when an initial descriptor could not be found for the
-* community.
-* @author chandra
-*/
-public class NoInitialDescriptorException
-    :XRIResolutionException
+namespace DotNetXri.Client.Resolve.Exception
 {
-    private String msXRI = null;
+	/// <summary>
+	/// Exception thrown when an initial descriptor could not be found for the
+	/// community.
+	/// </summary>
+	public class NoInitialDescriptorException : XRIResolutionException
+	{
+		public string XRI
+		{
+			private set;
+			get;
+		}
 
-    /*
-    ****************************************************************************
-    * Constructor()
-    ****************************************************************************
-    */ /**
-    * Constructor
-    * @param sXRI - The XRI that had no community configured
-    */
-    public NoInitialDescriptorException(String sXRI)
-    : base("No global authority server found for XRI " + sXRI) {
-
-        msXRI = sXRI;
-
-    } // Constructor()
-
-    /*
-    ****************************************************************************
-    * getXRI()
-    ****************************************************************************
-    */ /**
-    *
-    */
-    public String getXRI()
-    {
-        return msXRI;
-
-    } // getXRI()
-
-    /*
-    ****************************************************************************
-    * toString()
-    ****************************************************************************
-    */ /**
-    *
-    */
-    public String toString()
-    {
-        return base.toString();
-
-    } // toString()
-
-} // Class: NoInitialDescriptorException
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="xri">The XRI that had no community configured</param>
+		public NoInitialDescriptorException(string xri)
+			: base("No global authority server found for XRI " + xri)
+		{
+			XRI = xri;
+		}
+	}
+}

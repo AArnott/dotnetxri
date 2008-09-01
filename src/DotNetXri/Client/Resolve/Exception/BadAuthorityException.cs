@@ -1,6 +1,6 @@
 /*
  * Copyright 2005 OpenXRI Foundation
- * Subsequently ported and altered by Andrew Arnott
+ * Subsequently ported and altered by Andrew Arnott and Troels Thomsen
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,63 +13,27 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
-// This package
-package org.openxri.resolve.exception;
+ */
 
-
-
-/*
-********************************************************************************
-* Class: BadAuthorityException
-********************************************************************************
-*/ /**
-* Exception thrown when a XRI being resolved does not have an authority path
-* or has an unsupported authority path type
-* @author chandra
-*/
-public class BadAuthorityException
-    :XRIResolutionException
+namespace DotNetXri.Client.Resolve.Exception
 {
-    private String msXRI = null;
+	/// <summary>
+	/// Exception thrown when a XRI being resolved does not have an authority path
+	/// or has an unsupported authority path type
+	/// </summary>
+	public class BadAuthorityException : XRIResolutionException
+	{
+		public string XRI
+		{
+			get;
+			private set;
+		}
 
-    /*
-    ****************************************************************************
-    * Constructor()
-    ****************************************************************************
-    */ /**
-    *
-    */
-    public BadAuthorityException(String sXRI):  base("Missing global authority symbol in XRI " + sXRI) {
+		public BadAuthorityException(string xri)
+			: base("Missing global authority symbol in XRI " + xri)
+		{
 
-        msXRI = sXRI;
-
-    } // Constructor()
-
-    /*
-    ****************************************************************************
-    * getXRI()
-    ****************************************************************************
-    */ /**
-    *
-    */
-    public String getXRI()
-    {
-        return msXRI;
-
-    } // getXRI()
-
-    /*
-    ****************************************************************************
-    * toString()
-    ****************************************************************************
-    */ /**
-    *
-    */
-    public String toString()
-    {
-        return base.toString();
-
-    } // toString()
-
-} // Class: BadAuthorityException
+			XRI = xri;
+		}
+	}
+}

@@ -1,6 +1,6 @@
 /*
  * Copyright 2005 OpenXRI Foundation
- * Subsequently ported and altered by Andrew Arnott
+ * Subsequently ported and altered by Andrew Arnott and Troels Thomsen
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,59 +13,22 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
-// This package
-package org.openxri.resolve.exception;
+ */
 
-
-
-/*
-********************************************************************************
-* Class: InvalidAuthorityURIException
-********************************************************************************
-*/ /**
-* Exception thrown when a URI obtained through XRIAuthority is invalid
-* or when the URL built to send a request us invalid.
-* @author chandra
-*/
-public class InvalidAuthorityURIException
-    :XRIResolutionException
+namespace DotNetXri.Client.Resolve.Exception
 {
-    /*
-    ****************************************************************************
-    * Constructor()
-    ****************************************************************************
-    */ /**
-    * Constructor
-    */
-    public InvalidAuthorityURIException(String sMsg)
-    : base(sMsg) {
+	/// <summary>
+	/// Exception thrown when a URI obtained through XRIAuthority is invalid
+	/// or when the URL built to send a request us invalid.
+	/// </summary>
+	public class InvalidAuthorityURIException : XRIResolutionException
+	{
+		public InvalidAuthorityURIException(string message)
+			: base(message)
+		{ }
 
-    } // Constructor()
-
-    /*
-    ****************************************************************************
-    * Constructor()
-    ****************************************************************************
-    */ /**
-    * Constructor
-    */
-    public InvalidAuthorityURIException(String sMsg, Exception oEx)
-    : base(sMsg, oEx) {
-
-    } // Constructor()
-
-    /*
-    ****************************************************************************
-    * toString()
-    ****************************************************************************
-    */ /**
-    *
-    */
-    public String toString()
-    {
-        return base.toString();
-
-    } // toString()
-
-} // Class: InvalidAuthorityURIException
+		public InvalidAuthorityURIException(string message, System.Exception exception)
+			: base(message, exception)
+		{ }
+	}
+}
