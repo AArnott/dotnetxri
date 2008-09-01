@@ -1,9 +1,9 @@
 namespace DotNetXri.Client.Resolve {
-import java.util.*;
+using java.util.*;
 
-import org.openxri.XRIAbsolutePath;
-import org.openxri.XRIParseException;
-import org.openxri.xml.*;
+using org.openxri.XRIAbsolutePath;
+using org.openxri.XRIParseException;
+using org.openxri.xml.*;
 
 public class SEPSelector {
 

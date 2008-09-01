@@ -15,18 +15,18 @@
 */
 package org.openxri;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
-import junit.textui.TestRunner;
-import java.util.Iterator;
-import java.util.Vector;
-import org.openxri.RelativeXRI;
-import org.openxri.XRI;
-import org.openxri.XRIAuthority;
-import org.openxri.XRIParseException;
-import org.openxri.XRIReference;
-import org.openxri.XRISegment;
+using junit.framework.Test;
+using junit.framework.TestCase;
+using junit.framework.TestSuite;
+using junit.textui.TestRunner;
+using java.util.Iterator;
+using java.util.Vector;
+using org.openxri.RelativeXRI;
+using org.openxri.XRI;
+using org.openxri.XRIAuthority;
+using org.openxri.XRIParseException;
+using org.openxri.XRIReference;
+using org.openxri.XRISegment;
 
 
 /*

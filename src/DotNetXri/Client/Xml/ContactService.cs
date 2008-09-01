@@ -1,8 +1,8 @@
 package org.openxri.xml;
 
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.List;
+using java.net.URI;
+using java.net.URISyntaxException;
+using java.util.List;
 
 /**
  * This is a Contact Service as described by "Contact Service v1.0 Working Draft 05, 7 September 2006

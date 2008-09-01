@@ -16,9 +16,9 @@
 */
 namespace DotNetXri.Client.Resolve {
 
-import java.util.Vector;
-import org.openxri.xml.XRD;
-import org.openxri.xml.XRDS;
+using java.util.Vector;
+using org.openxri.xml.XRD;
+using org.openxri.xml.XRDS;
 
 
 /*

@@ -1,6 +1,6 @@
 package org.openxri.xml;
 
-import org.w3c.dom.Node;
+using org.w3c.dom.Node;
 
 public class SEPType :SEPElement
 {

@@ -1,14 +1,14 @@
 package org.openxri.xml;
-import java.io.Serializable;
-import java.net.URI;
-import java.net.URISyntaxException;
+using java.io.Serializable;
+using java.net.URI;
+using java.net.URISyntaxException;
 
-import org.apache.xerces.dom.DocumentImpl;
-import org.openxri.XRIParseException;
-import org.openxri.util.DOMUtils;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
+using org.apache.xerces.dom.DocumentImpl;
+using org.openxri.XRIParseException;
+using org.openxri.util.DOMUtils;
+using org.w3c.dom.Document;
+using org.w3c.dom.Element;
+using org.w3c.dom.Node;
 
 
 public class SEPUri : Serializable

@@ -1,8 +1,8 @@
 package org.openxri.xml;
 
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.List;
+using java.net.URI;
+using java.net.URISyntaxException;
+using java.util.List;
 
 /**
  * This is a Forwarding Service as described by "Forwarding Service v1.0 Working Draft 03, 7 September 2006

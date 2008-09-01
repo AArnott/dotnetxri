@@ -15,21 +15,21 @@
 */
 package org.openxri.resolve;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.net.URI;
+using java.io.ByteArrayInputStream;
+using java.io.InputStream;
+using java.net.URI;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
-import junit.textui.TestRunner;
+using junit.framework.Test;
+using junit.framework.TestCase;
+using junit.framework.TestSuite;
+using junit.textui.TestRunner;
 
-import org.openxri.XRI;
-import org.openxri.resolve.exception.PartialResolutionException;
-import org.openxri.resolve.exception.XRIResolutionException;
-import org.openxri.xml.Ref;
-import org.openxri.xml.XRD;
-import org.openxri.xml.XRDS;
+using org.openxri.XRI;
+using org.openxri.resolve.exception.PartialResolutionException;
+using org.openxri.resolve.exception.XRIResolutionException;
+using org.openxri.xml.Ref;
+using org.openxri.xml.XRD;
+using org.openxri.xml.XRDS;
 
 
 /*

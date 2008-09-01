@@ -1,11 +1,11 @@
 package org.openxri.xml;
 
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.List;
-import java.util.Vector;
+using java.net.URI;
+using java.net.URISyntaxException;
+using java.util.List;
+using java.util.Vector;
 
-import org.openxri.resolve.TrustType;
+using org.openxri.resolve.TrustType;
 
 /**
  * This is Proxy Resolution Service.

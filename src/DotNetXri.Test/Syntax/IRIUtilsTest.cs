@@ -1,8 +1,8 @@
 package org.openxri;
 
-import java.io.UnsupportedEncodingException;
+using java.io.UnsupportedEncodingException;
 
-import junit.framework.TestCase;
+using junit.framework.TestCase;
 
 public class IRIUtilsTest :TestCase
 {

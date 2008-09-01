@@ -1,10 +1,10 @@
 package org.openxri.resolve;
 
-import java.util.ArrayList;
+using java.util.ArrayList;
 
-import org.openxri.resolve.*;
-import org.openxri.resolve.exception.*;
-import org.openxri.xml.*;
+using org.openxri.resolve.*;
+using org.openxri.resolve.exception.*;
+using org.openxri.xml.*;
 
 public class SampleResolver {
 

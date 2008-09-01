@@ -1,8 +1,8 @@
 package org.openxri.xml;
 
-import java.net.URISyntaxException;
+using java.net.URISyntaxException;
 
-import org.w3c.dom.Element;
+using org.w3c.dom.Element;
 
 public class Redirect :SimpleXMLElement {
 

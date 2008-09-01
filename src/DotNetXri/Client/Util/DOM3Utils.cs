@@ -16,13 +16,13 @@
 */
 package org.openxri.util;
 
-import java.lang.reflect.InvocationTargetException;
+using java.lang.reflect.InvocationTargetException;
 
-import org.apache.xerces.dom.DocumentImpl;
-import org.w3c.dom.Attr;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
+using org.apache.xerces.dom.DocumentImpl;
+using org.w3c.dom.Attr;
+using org.w3c.dom.Document;
+using org.w3c.dom.Element;
+using org.w3c.dom.Node;
 
 
 /*

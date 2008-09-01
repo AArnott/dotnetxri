@@ -16,20 +16,20 @@
 */
 namespace DotNetXri.Client.Tools {
 
-import java.net.URL;
-import java.net.URLConnection;
-import java.io.FileReader;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import org.openxri.resolve.MimeType;
-import org.openxri.resolve.Resolver;
-import org.openxri.resolve.ResolverState;
-import org.openxri.resolve.TrustType;
-import org.openxri.resolve.exception.IllegalTrustTypeException;
-import org.openxri.resolve.exception.PartialResolutionException;
-import org.openxri.resolve.exception.XRIResolutionException;
-import org.openxri.xml.*;
+using java.net.URL;
+using java.net.URLConnection;
+using java.io.FileReader;
+using java.io.BufferedReader;
+using java.io.FileNotFoundException;
+using java.io.IOException;
+using org.openxri.resolve.MimeType;
+using org.openxri.resolve.Resolver;
+using org.openxri.resolve.ResolverState;
+using org.openxri.resolve.TrustType;
+using org.openxri.resolve.exception.IllegalTrustTypeException;
+using org.openxri.resolve.exception.PartialResolutionException;
+using org.openxri.resolve.exception.XRIResolutionException;
+using org.openxri.xml.*;
 
 /*
 ********************************************************************************

@@ -1,8 +1,8 @@
 package org.openxri.xml;
 
-import java.util.Date;
+using java.util.Date;
 
-import org.openxri.util.DOMUtils;
+using org.openxri.util.DOMUtils;
 
 public class Expires :SimpleXMLElement{
 	private Date expires = null;

@@ -16,28 +16,28 @@
  */
 package org.openxri.xml;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.io.Serializable;
-import java.net.URISyntaxException;
-import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Vector;
+using java.io.ByteArrayInputStream;
+using java.io.InputStream;
+using java.io.Serializable;
+using java.net.URISyntaxException;
+using java.text.ParseException;
+using java.util.ArrayList;
+using java.util.HashMap;
+using java.util.Iterator;
+using java.util.List;
+using java.util.Vector;
 
-import org.apache.xerces.dom.DocumentImpl;
-import org.apache.xerces.parsers.DOMParser;
-import org.apache.xml.security.exceptions.XMLSecurityException;
-import org.apache.xml.security.keys.KeyInfo;
-import org.openxri.XRIParseException;
-import org.openxri.util.DOMUtils;
-import org.openxri.util.PrioritizedList;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.xml.sax.InputSource;
+using org.apache.xerces.dom.DocumentImpl;
+using org.apache.xerces.parsers.DOMParser;
+using org.apache.xml.security.exceptions.XMLSecurityException;
+using org.apache.xml.security.keys.KeyInfo;
+using org.openxri.XRIParseException;
+using org.openxri.util.DOMUtils;
+using org.openxri.util.PrioritizedList;
+using org.w3c.dom.Document;
+using org.w3c.dom.Element;
+using org.w3c.dom.Node;
+using org.xml.sax.InputSource;
 
 
 /**

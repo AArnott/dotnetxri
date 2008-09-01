@@ -15,13 +15,13 @@
  * limitations under the License.
 */
 namespace DotNetXri.Client.Saml {
-import org.apache.xerces.dom.DocumentImpl;
-import org.apache.xml.security.signature.XMLSignature;
-import org.openxri.util.DOMUtils;
-import org.openxri.xml.Tags;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
+using org.apache.xerces.dom.DocumentImpl;
+using org.apache.xml.security.signature.XMLSignature;
+using org.openxri.util.DOMUtils;
+using org.openxri.xml.Tags;
+using org.w3c.dom.Document;
+using org.w3c.dom.Element;
+using org.w3c.dom.Node;
 
 
 /*

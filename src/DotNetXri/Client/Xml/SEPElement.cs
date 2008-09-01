@@ -1,12 +1,12 @@
 package org.openxri.xml;
 
-import java.io.Serializable;
+using java.io.Serializable;
 
-import org.apache.xerces.dom.DocumentImpl;
-import org.openxri.util.DOMUtils;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
+using org.apache.xerces.dom.DocumentImpl;
+using org.openxri.util.DOMUtils;
+using org.w3c.dom.Document;
+using org.w3c.dom.Element;
+using org.w3c.dom.Node;
 
 public abstract class SEPElement : Cloneable, Serializable {
 

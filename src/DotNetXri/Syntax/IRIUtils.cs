@@ -1,9 +1,9 @@
 namespace DotNetXri.Syntax {
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import com.ibm.icu.lang.UCharacter;
-import com.ibm.icu.text.UTF16;
+using java.io.UnsupportedEncodingException;
+using java.net.URLEncoder;
+using com.ibm.icu.lang.UCharacter;
+using com.ibm.icu.text.UTF16;
 
 
 /**

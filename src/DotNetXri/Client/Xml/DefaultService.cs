@@ -1,9 +1,9 @@
 package org.openxri.xml;
 
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.List;
-import java.util.Vector;
+using java.net.URI;
+using java.net.URISyntaxException;
+using java.util.List;
+using java.util.Vector;
 
 /**
  * This is a service that matches a resolution request without service type, media type and path.

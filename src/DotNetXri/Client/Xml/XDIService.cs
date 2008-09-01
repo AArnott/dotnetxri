@@ -1,8 +1,8 @@
 package org.openxri.xml;
 
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.List;
+using java.net.URI;
+using java.net.URISyntaxException;
+using java.util.List;
 
 /**
  * This is an XDI Service.

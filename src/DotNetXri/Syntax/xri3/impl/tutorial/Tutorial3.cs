@@ -1,9 +1,9 @@
 package org.openxri.xri3.impl.tutorial;
 
-import org.openxri.xri3.XRI;
-import org.openxri.xri3.XRIAuthority;
-import org.openxri.xri3.XRIPath;
-import org.openxri.xri3.impl.XRI3;
+using org.openxri.xri3.XRI;
+using org.openxri.xri3.XRIAuthority;
+using org.openxri.xri3.XRIPath;
+using org.openxri.xri3.impl.XRI3;
 
 public class Tutorial3 {
 

@@ -15,17 +15,17 @@
 */
 package org.openxri.xml;
 
-import java.security.KeyPair;
-import java.security.KeyPairGenerator;
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
-import junit.textui.TestRunner;
-import org.openxri.saml.Assertion;
-import org.openxri.saml.Attribute;
-import org.openxri.saml.AttributeStatement;
-import org.openxri.saml.NameID;
-import org.openxri.saml.Subject;
+using java.security.KeyPair;
+using java.security.KeyPairGenerator;
+using junit.framework.Test;
+using junit.framework.TestCase;
+using junit.framework.TestSuite;
+using junit.textui.TestRunner;
+using org.openxri.saml.Assertion;
+using org.openxri.saml.Attribute;
+using org.openxri.saml.AttributeStatement;
+using org.openxri.saml.NameID;
+using org.openxri.saml.Subject;
 
 
 /*

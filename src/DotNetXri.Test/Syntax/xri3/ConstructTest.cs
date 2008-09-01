@@ -1,12 +1,12 @@
 package org.openxri.xri3;
 
-import junit.framework.TestCase;
+using junit.framework.TestCase;
 
-import org.openxri.xri3.impl.XRI3;
-import org.openxri.xri3.impl.XRI3Authority;
-import org.openxri.xri3.impl.XRI3Constants;
-import org.openxri.xri3.impl.XRI3Reference;
-import org.openxri.xri3.impl.XRI3SubSegment;
+using org.openxri.xri3.impl.XRI3;
+using org.openxri.xri3.impl.XRI3Authority;
+using org.openxri.xri3.impl.XRI3Constants;
+using org.openxri.xri3.impl.XRI3Reference;
+using org.openxri.xri3.impl.XRI3SubSegment;
 
 public class ConstructTest :TestCase {
 

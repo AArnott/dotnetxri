@@ -16,7 +16,7 @@
 */
 package org.openxri.util;
 
-import org.doomdark.uuid.UUIDGenerator;
+using org.doomdark.uuid.UUIDGenerator;
 
 
 /*

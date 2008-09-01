@@ -16,20 +16,20 @@
 */
 package org.openxri.util;
 
-import java.io.StringWriter;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.TimeZone;
+using java.io.StringWriter;
+using java.text.ParseException;
+using java.text.SimpleDateFormat;
+using java.util.Date;
+using java.util.TimeZone;
 
-import org.apache.xerces.dom.TextImpl;
-import org.apache.xerces.parsers.DOMParser;
-import org.apache.xml.serialize.OutputFormat;
-import org.apache.xml.serialize.XMLSerializer;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.w3c.dom.Document;
+using org.apache.xerces.dom.TextImpl;
+using org.apache.xerces.parsers.DOMParser;
+using org.apache.xml.serialize.OutputFormat;
+using org.apache.xml.serialize.XMLSerializer;
+using org.w3c.dom.Element;
+using org.w3c.dom.Node;
+using org.w3c.dom.NodeList;
+using org.w3c.dom.Document;
 
 
 /*

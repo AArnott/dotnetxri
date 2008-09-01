@@ -15,18 +15,18 @@
 */
 package org.openxri.resolve;
 
-import java.util.Random;
-import org.openxri.AuthorityPath;
-import org.openxri.GCSAuthority;
-import org.openxri.XRIAuthority;
-import org.openxri.resolve.Cache;
-import org.openxri.xml.Service;
-import org.openxri.xml.Tags;
-import org.openxri.xml.XRD;
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
-import junit.textui.TestRunner;
+using java.util.Random;
+using org.openxri.AuthorityPath;
+using org.openxri.GCSAuthority;
+using org.openxri.XRIAuthority;
+using org.openxri.resolve.Cache;
+using org.openxri.xml.Service;
+using org.openxri.xml.Tags;
+using org.openxri.xml.XRD;
+using junit.framework.Test;
+using junit.framework.TestCase;
+using junit.framework.TestSuite;
+using junit.textui.TestRunner;
 
 
 /*

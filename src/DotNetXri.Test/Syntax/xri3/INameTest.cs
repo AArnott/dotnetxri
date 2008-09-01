@@ -1,8 +1,8 @@
 package org.openxri.xri3;
 
-import junit.framework.TestCase;
+using junit.framework.TestCase;
 
-import org.openxri.xri3.impl.XRI3;
+using org.openxri.xri3.impl.XRI3;
 
 public class INameTest :TestCase {
 

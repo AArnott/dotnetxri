@@ -16,15 +16,15 @@
 */
 package org.openxri.util;
 
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
-import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLSocketFactory;
+using java.io.IOException;
+using java.net.HttpURLConnection;
+using java.net.URI;
+using java.net.URISyntaxException;
+using java.util.Iterator;
+using java.util.Map;
+using java.util.Set;
+using javax.net.ssl.HttpsURLConnection;
+using javax.net.ssl.SSLSocketFactory;
 
 
 /*

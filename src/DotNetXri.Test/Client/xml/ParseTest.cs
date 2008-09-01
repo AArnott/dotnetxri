@@ -15,12 +15,12 @@
 */
 package org.openxri.xml;
 
-import org.openxri.xml.Service;
-import org.openxri.xml.XRD;
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
-import junit.textui.TestRunner;
+using org.openxri.xml.Service;
+using org.openxri.xml.XRD;
+using junit.framework.Test;
+using junit.framework.TestCase;
+using junit.framework.TestSuite;
+using junit.textui.TestRunner;
 
 
 /*

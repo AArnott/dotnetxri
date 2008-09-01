@@ -3,12 +3,12 @@
  */
 namespace DotNetXri.Client.Resolve {
 
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Set;
+using java.util.Comparator;
+using java.util.HashMap;
+using java.util.Iterator;
+using java.util.Set;
 
-import org.openxri.resolve.exception.IllegalTrustTypeException;
+using org.openxri.resolve.exception.IllegalTrustTypeException;
 
 /**
  * Encapsulates a media type in XRI Resolution.

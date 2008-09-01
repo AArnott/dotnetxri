@@ -3,9 +3,9 @@
  */
 namespace DotNetXri.Client.Resolve {
 
-import java.io.Serializable;
+using java.io.Serializable;
 
-import org.openxri.resolve.exception.IllegalTrustTypeException;
+using org.openxri.resolve.exception.IllegalTrustTypeException;
 
 /**
  * @author wtan

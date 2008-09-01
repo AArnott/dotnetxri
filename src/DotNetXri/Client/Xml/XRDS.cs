@@ -16,17 +16,17 @@
 */
 package org.openxri.xml;
 
-import java.io.Serializable;
-import java.net.URISyntaxException;
-import java.text.ParseException;
-import java.util.Vector;
+using java.io.Serializable;
+using java.net.URISyntaxException;
+using java.text.ParseException;
+using java.util.Vector;
 
-import org.apache.xerces.dom.DocumentImpl;
-import org.openxri.util.DOMUtils;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NamedNodeMap;
-import org.w3c.dom.Node;
+using org.apache.xerces.dom.DocumentImpl;
+using org.openxri.util.DOMUtils;
+using org.w3c.dom.Document;
+using org.w3c.dom.Element;
+using org.w3c.dom.NamedNodeMap;
+using org.w3c.dom.Node;
 
 
 /*

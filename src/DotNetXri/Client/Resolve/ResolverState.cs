@@ -16,13 +16,13 @@
 */
 namespace DotNetXri.Client.Resolve {
 
-import java.net.URI;
-import java.util.ArrayList;
+using java.net.URI;
+using java.util.ArrayList;
 
-import org.openxri.GCSAuthority;
-import org.openxri.XRI;
-import org.openxri.XRIAuthority;
-import org.openxri.xml.XRD;
+using org.openxri.GCSAuthority;
+using org.openxri.XRI;
+using org.openxri.XRIAuthority;
+using org.openxri.xml.XRD;
 
 
 /**

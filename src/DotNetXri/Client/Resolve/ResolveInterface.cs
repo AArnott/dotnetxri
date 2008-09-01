@@ -16,11 +16,11 @@
 */
 namespace DotNetXri.Client.Resolve {
 
-import java.net.URI;
-import javax.net.ssl.SSLSocketFactory;
-import org.openxri.XRIParseException;
-import org.openxri.resolve.exception.XRIResolutionException;
-import org.openxri.xml.XRD;
+using java.net.URI;
+using javax.net.ssl.SSLSocketFactory;
+using org.openxri.XRIParseException;
+using org.openxri.resolve.exception.XRIResolutionException;
+using org.openxri.xml.XRD;
 
 
 /*

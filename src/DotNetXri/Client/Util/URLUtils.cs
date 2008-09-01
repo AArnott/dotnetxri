@@ -3,10 +3,10 @@
  */
 package org.openxri.util;
 
-import java.io.ByteArrayOutputStream;
-import java.io.UnsupportedEncodingException;
+using java.io.ByteArrayOutputStream;
+using java.io.UnsupportedEncodingException;
 
-import org.openxri.IRIUtils;
+using org.openxri.IRIUtils;
 
 /**
  * @author =wil

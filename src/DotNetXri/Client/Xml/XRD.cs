@@ -16,40 +16,40 @@
  */
 package org.openxri.xml;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.Serializable;
-import java.net.URISyntaxException;
-import java.security.PrivateKey;
-import java.security.PublicKey;
-import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Vector;
+using java.io.ByteArrayInputStream;
+using java.io.IOException;
+using java.io.InputStream;
+using java.io.Serializable;
+using java.net.URISyntaxException;
+using java.security.PrivateKey;
+using java.security.PublicKey;
+using java.text.ParseException;
+using java.util.ArrayList;
+using java.util.Collection;
+using java.util.Date;
+using java.util.HashMap;
+using java.util.Iterator;
+using java.util.Vector;
 
-import org.apache.xerces.dom.DocumentImpl;
-import org.apache.xerces.parsers.DOMParser;
-import org.apache.xml.security.c14n.Canonicalizer;
-import org.apache.xml.security.exceptions.XMLSecurityException;
-import org.apache.xml.security.signature.Reference;
-import org.apache.xml.security.signature.SignedInfo;
-import org.apache.xml.security.signature.XMLSignature;
-import org.apache.xml.security.transforms.Transforms;
-import org.openxri.XRIParseException;
-import org.openxri.resolve.exception.XRIResolutionException;
-import org.openxri.saml.Assertion;
-import org.openxri.util.DOM3Utils;
-import org.openxri.util.DOMUtils;
-import org.openxri.util.PrioritizedList;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
+using org.apache.xerces.dom.DocumentImpl;
+using org.apache.xerces.parsers.DOMParser;
+using org.apache.xml.security.c14n.Canonicalizer;
+using org.apache.xml.security.exceptions.XMLSecurityException;
+using org.apache.xml.security.signature.Reference;
+using org.apache.xml.security.signature.SignedInfo;
+using org.apache.xml.security.signature.XMLSignature;
+using org.apache.xml.security.transforms.Transforms;
+using org.openxri.XRIParseException;
+using org.openxri.resolve.exception.XRIResolutionException;
+using org.openxri.saml.Assertion;
+using org.openxri.util.DOM3Utils;
+using org.openxri.util.DOMUtils;
+using org.openxri.util.PrioritizedList;
+using org.w3c.dom.Document;
+using org.w3c.dom.Element;
+using org.w3c.dom.Node;
+using org.xml.sax.InputSource;
+using org.xml.sax.SAXException;
 
 
 /**

@@ -1,10 +1,10 @@
 package org.openxri.xml;
 
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.List;
+using java.net.URI;
+using java.net.URISyntaxException;
+using java.util.List;
 
-import org.openxri.resolve.TrustType;
+using org.openxri.resolve.TrustType;
 
 /**
  * This is an Authority Resolution 2.0 Service.

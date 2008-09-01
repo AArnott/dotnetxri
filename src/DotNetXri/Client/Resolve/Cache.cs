@@ -16,15 +16,15 @@
 */
 namespace DotNetXri.Client.Resolve {
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Vector;
-import org.openxri.XRISubSegment;
-import org.openxri.XRIAuthority;
-import org.openxri.xml.XRD;
-import org.openxri.xml.XRDS;
+using java.util.Collections;
+using java.util.HashMap;
+using java.util.Iterator;
+using java.util.Map;
+using java.util.Vector;
+using org.openxri.XRISubSegment;
+using org.openxri.XRIAuthority;
+using org.openxri.xml.XRD;
+using org.openxri.xml.XRDS;
 
 
 /*

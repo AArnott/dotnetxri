@@ -16,9 +16,9 @@
 */
 namespace DotNetXri.Client.Resolve {
 
-import java.util.Iterator;
-import java.util.Vector;
-import org.openxri.xml.XRD;
+using java.util.Iterator;
+using java.util.Vector;
+using org.openxri.xml.XRD;
 
 
 /*

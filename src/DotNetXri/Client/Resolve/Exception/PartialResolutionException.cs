@@ -3,8 +3,8 @@
  */
 package org.openxri.resolve.exception;
 
-import org.openxri.xml.XRD;
-import org.openxri.xml.XRDS;
+using org.openxri.xml.XRD;
+using org.openxri.xml.XRDS;
 
 /**
  * This exception is thrown by the top level XRI resolution APIs to indicate

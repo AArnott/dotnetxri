@@ -16,20 +16,20 @@
 */
 namespace DotNetXri.Client.Tools {
 
-import java.net.URL;
-import java.net.URLConnection;
-import java.util.Iterator;
+using java.net.URL;
+using java.net.URLConnection;
+using java.util.Iterator;
 
-import org.openxri.XRI;
-import org.openxri.resolve.ResolveChain;
-import org.openxri.resolve.ResolveInfo;
-import org.openxri.resolve.Resolver;
-import org.openxri.resolve.TrustType;
-import org.openxri.resolve.exception.XRIResolutionException;
-import org.openxri.xml.Service;
-import org.openxri.xml.Tags;
-import org.openxri.xml.XRD;
-import org.openxri.xml.XRDS;
+using org.openxri.XRI;
+using org.openxri.resolve.ResolveChain;
+using org.openxri.resolve.ResolveInfo;
+using org.openxri.resolve.Resolver;
+using org.openxri.resolve.TrustType;
+using org.openxri.resolve.exception.XRIResolutionException;
+using org.openxri.xml.Service;
+using org.openxri.xml.Tags;
+using org.openxri.xml.XRD;
+using org.openxri.xml.XRDS;
 
 /*
 ********************************************************************************
