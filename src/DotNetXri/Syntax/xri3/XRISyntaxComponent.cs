@@ -20,7 +20,7 @@ using System;
 namespace DotNetXri.Syntax.Xri3
 {
 	[Serializable]
-	public interface XRISyntaxComponent : IComparable
+	public interface XRISyntaxComponent : ICloneable, IComparable
 	{
 		public string toURINormalForm();
 		public string toIRINormalForm();
