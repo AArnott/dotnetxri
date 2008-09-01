@@ -13,13 +13,13 @@ public class XRI3Constants {
 
 	public const XRI3 XRI_NULL = new XRI3("$null");
 	
-	public const char GCS_EQUALS = new char('='); 
-	public const char GCS_AT = new char('@'); 
-	public const char GCS_PLUS = new char('+'); 
-	public const char GCS_DOLLAR = new char('$'); 
+	public const char GCS_EQUALS = '=';
+	public const char GCS_AT = '@';
+	public const char GCS_PLUS = '+';
+	public const char GCS_DOLLAR = '$'; 
 
-	public const char LCS_STAR = new char('*'); 
-	public const char LCS_BANG = new char('!'); 
+	public const char LCS_STAR = '*'; 
+	public const char LCS_BANG = '!'; 
 
 	public const char[] GCS_ARRAY = new char[] {
 		GCS_EQUALS,

@@ -11,7 +11,7 @@ using org.openxri.xml.Service;
 
 public class PrioritizedList : Serializable {
 
-	public static final int POLICY_RANDOMIZE=1;
+	public const int POLICY_RANDOMIZE=1;
 	public const String PRIORITY_NULL = "null";
 
 	//contains priority values int the same numerical order

@@ -28,10 +28,10 @@ public class XRI
 {
     public const String PDELIM_S = "!";
     public const String RDELIM_S = "*";
-    public static final char PDELIM = '!';
-    public static final char RDELIM = '*';
+    public const char PDELIM = '!';
+    public const char RDELIM = '*';
     public const String XRI_SCHEME = "xri://";
-    public static final int XRI_SCHEME_LENGTH = XRI_SCHEME.length();
+    public const int XRI_SCHEME_LENGTH = XRI_SCHEME.length();
     
     AuthorityPath moAuthorityPath = null;
     XRIAbsolutePath moAbsolutePath = null;

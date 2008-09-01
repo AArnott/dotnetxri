@@ -18,8 +18,8 @@ public class AuthenticationService :org.openxri.xml.Service {
 	public const String SERVICE_TYPE1 = "http://openid.net/signon/1.0";
 	public const String SERVICE_TYPE2 = "http://specs.openid.net/auth/2.0/signon";
 	public const String LOGIN_PATH = "(+login)";
-	public static final Integer URI_PRIORITY_HTTPS = new Integer(1);
-	public static final Integer URI_PRIORITY_DEFAULT = new Integer(2);
+	public const Integer URI_PRIORITY_HTTPS = new Integer(1);
+	public const Integer URI_PRIORITY_DEFAULT = new Integer(2);
 
 	/**
 	 * Constructs a new Authentication endpoint for use in an authority.
