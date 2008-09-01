@@ -1,3 +1,5 @@
+using System.Text;
+
 namespace DotNetXri.Syntax.Xri3.Impl {
 public class XRI3SubSegment :XRI3SyntaxComponent, XRISubSegment {
 
@@ -18,7 +20,7 @@ public class XRI3SubSegment :XRI3SyntaxComponent, XRISubSegment {
 
 	public XRI3SubSegment(char gcs, XRISubSegment localSubSegment) throws ParserException {
 
-		StringBuffer buffer = new StringBuffer();
+		StringBuilder buffer = new StringBuilder();
 
 		buffer.append(gcs);
 		buffer.append(localSubSegment.toString());
@@ -29,7 +31,7 @@ public class XRI3SubSegment :XRI3SyntaxComponent, XRISubSegment {
 
 	public XRI3SubSegment(char cs, String uri) throws ParserException {
 
-		StringBuffer buffer = new StringBuffer();
+		StringBuilder buffer = new StringBuilder();
 
 		buffer.append(cs.toString());
 		buffer.append(XRI3Constants.XREF_START);

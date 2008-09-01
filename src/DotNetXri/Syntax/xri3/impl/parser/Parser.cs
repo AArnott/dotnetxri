@@ -1,3 +1,5 @@
+using System.Text;
+
 package org.openxri.xri3.impl.parser;
 
 
@@ -134,7 +136,7 @@ public class Parser
       throw new IllegalArgumentException("null input stream");
 
     int ch = 0;
-    StringBuffer out = new StringBuffer();
+    StringBuilder out = new StringBuilder();
     while ((ch = in.read()) != -1)
       out.append((char)ch);
 
@@ -153,7 +155,7 @@ public class Parser
 
     BufferedReader in = new BufferedReader(new FileReader(file));
     int ch = 0;
-    StringBuffer out = new StringBuffer();
+    StringBuilder out = new StringBuilder();
     while ((ch = in.read()) != -1)
       out.append((char)ch);
 
@@ -337,7 +339,7 @@ public class Parser
     if (rule == null)
     {
       String marker = "                              ";
-      StringBuffer errorBuffer = new StringBuffer();
+      StringBuilder errorBuffer = new StringBuilder();
       int start = (error < 30) ? 0: error - 30;
       int end = (text.length() < error + 30) ? text.length() : error + 30;
 
@@ -355,7 +357,7 @@ public class Parser
     if (text.length() > index)
     {
       String marker = "                              ";
-      StringBuffer errorBuffer = new StringBuffer();
+      StringBuilder errorBuffer = new StringBuilder();
       int start = (index < 30) ? 0: index - 30;
       int end = (text.length() < index + 30) ? text.length(): index + 30;
 

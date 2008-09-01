@@ -1,3 +1,5 @@
+using System.Text;
+
 namespace DotNetXri.Syntax.Xri3.Impl {
 
 public class XRI3 :XRI3SyntaxComponent, XRI {
@@ -117,7 +119,7 @@ public class XRI3 :XRI3SyntaxComponent, XRI {
 
 	public XRI3(XRI xri, XRISyntaxComponent xriPart) throws ParserException {
 
-		StringBuffer buffer = new StringBuffer();
+		StringBuilder buffer = new StringBuilder();
 
 		buffer.append(xri.toString());
 		buffer.append(xriPart.toString());
@@ -128,7 +130,7 @@ public class XRI3 :XRI3SyntaxComponent, XRI {
 
 	public XRI3(XRI xri, String xriPart) throws ParserException {
 
-		StringBuffer buffer = new StringBuffer();
+		StringBuilder buffer = new StringBuilder();
 
 		buffer.append(xri.toString());
 		buffer.append(xriPart);
@@ -139,7 +141,7 @@ public class XRI3 :XRI3SyntaxComponent, XRI {
 
 	public XRI3(char gcs, String uri) throws ParserException {
 
-		StringBuffer buffer = new StringBuffer();
+		StringBuilder buffer = new StringBuilder();
 
 		buffer.append(gcs.toString());
 		buffer.append(XRI3Constants.XREF_START);
@@ -358,7 +360,7 @@ public class XRI3 :XRI3SyntaxComponent, XRI {
 
 	public String toIRINormalForm() {
 
-		StringBuffer iri = new StringBuffer();
+		StringBuilder iri = new StringBuilder();
 
 		// authority
 

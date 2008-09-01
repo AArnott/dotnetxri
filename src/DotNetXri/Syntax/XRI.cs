@@ -13,6 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
 */
+
+using System.Text;
+
 namespace DotNetXri.Syntax {
 
 /**
@@ -279,7 +282,7 @@ public class XRI
     
     public String toString(bool wantScheme, bool caseFoldAuthority)
     {
-    	StringBuffer sb = new StringBuffer();
+    	StringBuilder sb = new StringBuilder();
     	
     	if (moAuthorityPath != null) {
         	if (wantScheme) {

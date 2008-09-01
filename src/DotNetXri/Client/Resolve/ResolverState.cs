@@ -14,6 +14,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
 */
+
+using System.Text;
+
 namespace DotNetXri.Client.Resolve {
 
 using java.net.URI;
@@ -122,7 +125,7 @@ public class ResolverState
 	
 	public String toString()
 	{
-		StringBuffer sb = new StringBuffer();
+		StringBuilder sb = new StringBuilder();
 		
 		sb.append("NumRequests=" + numRequests + ", numRefsFollowed=" + numRefsFollowed + ", numBytesReceived=" + numBytesReceived + "\n");
 		for (int i = 0; i < getNumSteps(); i++) {
@@ -155,7 +158,7 @@ public class ResolverState
 		
 		public String toString()
 		{
-			StringBuffer sb = new StringBuffer();
+			StringBuilder sb = new StringBuilder();
 			sb.append("QXRI=");
 			sb.append(qxri);
 			sb.append(", trust=");

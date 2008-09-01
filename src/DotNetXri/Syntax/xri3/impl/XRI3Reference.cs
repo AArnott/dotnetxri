@@ -1,3 +1,5 @@
+using System.Text;
+
 namespace DotNetXri.Syntax.Xri3.Impl {
 public class XRI3Reference :XRI3SyntaxComponent, XRIReference {
 
@@ -18,7 +20,7 @@ public class XRI3Reference :XRI3SyntaxComponent, XRIReference {
 
 	public XRI3Reference(XRIReference xriReference, XRISyntaxComponent xriPart) throws ParserException {
 
-		StringBuffer buffer = new StringBuffer();
+		StringBuilder buffer = new StringBuilder();
 
 		buffer.append(xriReference.toString());
 		buffer.append(xriPart.toString());
@@ -29,7 +31,7 @@ public class XRI3Reference :XRI3SyntaxComponent, XRIReference {
 
 	public XRI3Reference(XRIReference xriReference, String xriPart) throws ParserException {
 
-		StringBuffer buffer = new StringBuffer();
+		StringBuilder buffer = new StringBuilder();
 
 		buffer.append(xriReference.toString());
 		buffer.append(xriPart);

@@ -1,3 +1,5 @@
+using System.Text;
+
 namespace DotNetXri.Client.Resolve {
 using java.util.*;
 
@@ -698,7 +700,7 @@ public class SEPSelector {
 	 * @return
 	 */
 	private String trimPath(String path) {
-		StringBuffer sb = new StringBuffer(path.trim());
+		StringBuilder sb = new StringBuilder(path.trim());
 		
 		while (sb.length() > 0) {
 			char last = sb.charAt(sb.length() - 1);

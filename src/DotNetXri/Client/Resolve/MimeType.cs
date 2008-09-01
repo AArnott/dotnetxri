@@ -1,6 +1,9 @@
 /**
  * 
  */
+
+using System.Text;
+
 namespace DotNetXri.Client.Resolve {
 
 using java.util.Comparator;
@@ -287,7 +290,7 @@ public class MimeType : Comparable {
 	 * @return Returns the normalized string suitable for use in Accept and Content-Type headers.
 	 */
 	public String toNormalizedString() {
-		StringBuffer sb = new StringBuffer(type);
+		StringBuilder sb = new StringBuilder(type);
 		Iterator ki = params.keySet().iterator();
 		while (ki.hasNext()) {
 			String key = (String)ki.next();

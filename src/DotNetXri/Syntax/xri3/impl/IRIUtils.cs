@@ -1,3 +1,5 @@
+using System.Text;
+
 namespace DotNetXri.Syntax.Xri3.Impl {
 
 
@@ -91,7 +93,7 @@ public class IRIUtils
 	
 	public static String IRItoXRI(String iri)
 	{
-		StringBuffer sb = new StringBuffer();
+		StringBuilder sb = new StringBuilder();
 		
 		int cp;
 		for (int i = 0; i < iri.length(); i += UTF16.getCharCount(cp)) {
@@ -225,7 +227,7 @@ public class IRIUtils
 	public static String IRItoURI(String iri)
 	{
 		int iriLen = iri.length();
-		StringBuffer sb = new StringBuffer(iriLen * 2);
+		StringBuilder sb = new StringBuilder(iriLen * 2);
 		
 		int cp;
 		for (int i = 0; i < iriLen; i += UTF16.getCharCount(cp)) {
@@ -299,7 +301,7 @@ public class IRIUtils
 	 */
 	public static String XRItoIRI(String s, bool inXref)
 	{
-		StringBuffer sb = new StringBuffer();
+		StringBuilder sb = new StringBuilder();
 		
 		for (int i = 0; i < s.length(); i++) {
 			char c = s.charAt(i);

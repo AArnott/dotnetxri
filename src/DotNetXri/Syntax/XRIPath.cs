@@ -13,6 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
 */
+
+using System.Text;
+
 namespace DotNetXri.Syntax {
 
 /*
@@ -163,7 +166,7 @@ public abstract class XRIPath : Parsable
      */
     public String toIRINormalForm()
     {
-        StringBuffer sValue = new StringBuffer();
+        StringBuilder sValue = new StringBuilder();
 
         Iterator oIt = moSegments.iterator();
         if (oIt.hasNext())

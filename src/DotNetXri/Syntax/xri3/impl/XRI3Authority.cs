@@ -1,3 +1,5 @@
+using System.Text;
+
 namespace DotNetXri.Syntax.Xri3.Impl {
 
 public class XRI3Authority :XRI3SyntaxComponent, XRIAuthority {
@@ -16,7 +18,7 @@ public class XRI3Authority :XRI3SyntaxComponent, XRIAuthority {
 
 	public XRI3Authority(XRIAuthority xriAuthority, XRISubSegment xriSubSegment) throws ParserException {
 
-		StringBuffer buffer = new StringBuffer();
+		StringBuilder buffer = new StringBuilder();
 
 		buffer.append(xriAuthority.toString());
 		buffer.append(xriSubSegment.toString());

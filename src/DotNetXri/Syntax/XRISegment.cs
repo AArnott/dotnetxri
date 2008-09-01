@@ -13,6 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
 */
+
+using System.Text;
+
 namespace DotNetXri.Syntax {
 
 	/*
@@ -222,7 +225,7 @@ namespace DotNetXri.Syntax {
 		public String toString() {
 			parse();
 
-			StringBuffer sRetval = new StringBuffer();
+			StringBuilder sRetval = new StringBuilder();
 			for (int i = 0; i < moSubSegments.size(); i++) {
 				sRetval.append(
 					((XRISubSegment)moSubSegments.elementAt(i)).toString(i > 0));	// don't output the star at the beginning; hope that's correct; =peacekeeper
