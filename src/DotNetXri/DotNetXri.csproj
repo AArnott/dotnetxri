@@ -168,7 +168,7 @@
     <Content Include="Syntax\xri3\impl\package.html" />
     <Compile Include="Syntax\xri3\impl\parser\Displayer.cs" />
     <Content Include="Syntax\xri3\impl\parser\package.html" />
-    <Content Include="Syntax\xri3\impl\parser\Parser.cs" />
+    <Compile Include="Syntax\xri3\impl\parser\Parser.cs" />
     <Compile Include="Syntax\xri3\impl\parser\ParserException.cs" />
     <Compile Include="Syntax\xri3\impl\parser\Rule.cs" />
     <Compile Include="Syntax\xri3\impl\parser\Visitor.cs" />
