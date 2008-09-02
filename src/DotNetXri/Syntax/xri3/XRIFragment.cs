@@ -23,6 +23,9 @@ namespace DotNetXri.Syntax.Xri3
 		/// Returns the fragment. In XRI 3.0, this corresponds to the ifragment rule.
 		/// </summary>
 		/// <returns>The fragment excluding the # character.</returns>
-		public string getValue();
+		string Value
+		{
+			get;
+		}
 	}
 }

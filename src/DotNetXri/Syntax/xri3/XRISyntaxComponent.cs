@@ -22,7 +22,7 @@ namespace DotNetXri.Syntax.Xri3
 	[Serializable]
 	public interface XRISyntaxComponent : ICloneable, IComparable
 	{
-		public string toURINormalForm();
-		public string toIRINormalForm();
+		string toURINormalForm();
+		string toIRINormalForm();
 	}
 }

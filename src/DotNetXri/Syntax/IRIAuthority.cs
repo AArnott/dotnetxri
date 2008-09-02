@@ -1,5 +1,6 @@
 /*
  * Copyright 2005 OpenXRI Foundation
+ * Subsequently ported and altered by Andrew Arnott and Troels Thomsen
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -12,216 +13,158 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
-namespace DotNetXri.Syntax {
+ */
 
-/*
-********************************************************************************
-* Class: IRIAuthority
-********************************************************************************
-*/ /**
-* This class provides a strong typing for a IRI Authority.  Any
-* obj of this class that appears outside of the package is a valid
-* IRI Authority.  It currently only accepts IRI Authorities that serve as IP
-* Addresses or appear to be valid host names
-*
-* @author =chetan
-*/
-public class IRIAuthority
-    :AuthorityPath
+using System;
+using System.Net;
+
+namespace DotNetXri.Syntax
 {
-    private URI moURI = null;
+	/// <summary>
+	/// This class provides a strong typing for a IRI Authority.  Any
+	/// obj of this class that appears outside of the package is a valid
+	/// IRI Authority.  It currently only accepts IRI Authorities that serve as IP
+	/// Addresses or appear to be valid host names
+	/// </summary>
+	public class IRIAuthority : AuthorityPath
+	{
+		private Uri moURI = null;
 
-    /*
-    ****************************************************************************
-    * Constructor()
-    ****************************************************************************
-    */ /**
-    *
-    */
-    public IRIAuthority(String sPath)
-    : base(sPath) {
-        parse();
+		public IRIAuthority(String sPath)
+			: base(sPath)
+		{
+			parse();
+		}
 
-    } // Constructor()
+		internal IRIAuthority()
+		{ }
 
-    /*
-    ****************************************************************************
-    * Constructor()
-    ****************************************************************************
-    */ /**
-    *
-    */
-    IRIAuthority()
-    {
-        
+		/// <summary>
+		/// The user info portion of the IRI Authority
+		/// </summary>
+		public string IUserInfo
+		{
+			get
+			{
+				return moURI.UserInfo;
+			}
+		}
 
-    } // Constructor()
+		/// <summary>
+		/// The host portion of the IRI Authority
+		/// </summary>
+		public string IHost
+		{
+			get
+			{
+				return moURI.Host;
+			}
+		}
 
-    /*
-    ****************************************************************************
-    * getIUserInfo()
-    ****************************************************************************
-    */ /**
-    * Returns the  userinfo portion of the IRI Authority
-    */
-    public String getIUserInfo()
-    {
-        return moURI.getUserInfo();
+		/// <summary>
+		/// The port portion of the IRI Authority
+		/// </summary>
+		public int Port
+		{
+			get
+			{
+				return moURI.Port;
+			}
+		}
 
-    } // getIUserInfo()
+		/// <summary>
+		/// Scans the Stream for a valid IRI-Authority
+		/// </summary>
+		/// <param name="oStream"></param>
+		/// <returns></returns>
+		bool doScan(ParseStream oStream)
+		{
+			bool bVal = false;
+			int n = scanChars(oStream.getData());
+			string sData = oStream.getData().Substring(0, n);
+			try
+			{
+				moURI = new Uri("http", sData, null, null, null);
+				String sHost = moURI.Host;
+				if ((sHost != null) && (sHost.Length > 0))
+				{
+					char cFirst = sHost[0];
+					bool bCheckIP = char.IsDigit(cFirst) ||
+						(cFirst == '[');
+					bVal = bCheckIP ? verifyIP(sHost) : verifyDNS(sHost);
+				}
+			}
+			catch (UriFormatException e)
+			{ }
 
-    /*
-    ****************************************************************************
-    * getIHost()
-    ****************************************************************************
-    */ /**
-    * Returns the host portion of the IRI Authority
-    */
-    public String getIHost()
-    {
-        return moURI.getHost();
+			// consume and return true if valid
+			if (bVal)
+			{
+				oStream.consume(n);
+				return true;
+			}
 
-    } // getIHost()
+			return false;
+		}
 
-    /*
-    ****************************************************************************
-    * getPort()
-    ****************************************************************************
-    */ /**
-    * Returns the port portion of the IRI Authority
-    */
-    public int getPort()
-    {
-        return moURI.getPort();
+		private bool verifyDNS(string sHost)
+		{
+			// TODO Auto-generated method stub
+			return true;
+		}
 
-    } // getPort()
+		private bool verifyIP(string sIP)
+		{
+			try
+			{
+				IPAddress oAddr =  IPAddress.Parse(sIP);
+				return oAddr != null;
+			}
+			catch (FormatException)
+			{ }
+			return false;
+		}
 
-    /*
-    ****************************************************************************
-    * doScan()
-    ****************************************************************************
-    */ /**
-    * Scans the Stream for a valid IRI-Authority
-    */
-    bool doScan(ParseStream oStream)
-    {
-        bool bVal = false;
-        int n = scanChars(oStream.getData());
-        String sData = oStream.getData().substring(0, n);
-        try
-        {
-            moURI = new URI("http", sData, null, null, null);
-            String sHost = moURI.getHost();
-            if ((sHost != null) && (sHost.length() > 0))
-            {
-                char cFirst = sHost.charAt(0);
-                bool bCheckIP = char.isDigit(cFirst) ||
-                    (cFirst == '[');
-                bVal = bCheckIP ? verifyIP(sHost) : verifyDNS(sHost);
-            }
-        }
-        catch (URISyntaxException e) {}
+		private int scanChars(string s)
+		{
+			for (int i = 0; i < s.Length; i++)
+			{
+				char c = s[i];
 
-        // consume and return true if valid
-        if (bVal)
-        {
-            oStream.consume(n);
-            return true;
-        }
+				// not exactly spec compliant, but does the right thing
+				switch (c)
+				{
+					case '/':
+					case ')':
+					case '#':
+					case '?':
+						break;
+					default:
+						continue;
+				}
 
-        return false;
+				return i;
+			}
 
-    } // doScan()
+			return s.Length;
+		}
 
-    /*
-    ****************************************************************************
-    * verifyDNS()
-    ****************************************************************************
-    */ /**
-    *
-    * @param host
-    * @return
-    */
-    private bool verifyDNS(String sHost)
-    {
-        // TODO Auto-generated method stub
-        return true;
-
-    } // verifyDNS()
-
-    /*
-    ****************************************************************************
-    * verifyIP()
-    ****************************************************************************
-    */ /**
-    *
-    */
-    private bool verifyIP(String sIP)
-    {
-        try
-        {
-            InetAddress oAddr = InetAddress.getByName(sIP);
-            return oAddr != null;
-        }
-        catch (UnknownHostException e) {}
-        return false;
-
-    } // verifyIP()
-
-    /*
-    ****************************************************************************
-    * scanChars()
-    ****************************************************************************
-    */ /**
-    *
-    * @param data
-    * @return
-    */
-    private int scanChars(String s)
-    {
-        for (int i = 0; i < s.length(); i++)
-        {
-            char c = s.charAt(i);
-
-            // not exactly spec compliant, but does the right thing
-            switch (c)
-            {
-                case '/':
-                case ')':
-                case '#':
-                case '?':
-                    break;
-                default:
-                    continue;
-            }
-
-            return i;
-        }
-
-        return s.length();
-
-    }
-
-    
-    /**
-     * Serialzes the IRIAuthority into IRI normal from
-     * @return The IRI normal form of the IRIAuthority
-     */
-    public String toIRINormalForm()
-    {
-        return IRIUtils.XRItoIRI(toString(), false);
-    }
-
-    
-    /**
-     * Serialzes the IRIAuthority into URI normal from
-     * @return The URI normal form of the IRIAuthority
-     */
-    public String toURINormalForm()
-    {
-        return IRIUtils.IRItoURI(toIRINormalForm());
-    }
-
-}
+		/// <summary>
+		/// Serializes the IRIAuthority into IRI normal from
+		/// </summary>
+		/// <returns>The IRI normal form of the IRIAuthority</returns>
+		public string toIRINormalForm()
+		{
+			return IRIUtils.XRItoIRI(ToString(), false);
+		}
+		
+		/// <summary>
+		/// Serializes the IRIAuthority into URI normal from
+		/// </summary>
+		/// <returns>The URI normal form of the IRIAuthority</returns>
+		public string toURINormalForm()
+		{
+			return IRIUtils.IRItoURI(toIRINormalForm());
+		}
+	}
 }

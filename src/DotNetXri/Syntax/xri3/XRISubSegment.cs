@@ -19,19 +19,34 @@ namespace DotNetXri.Syntax.Xri3
 {
 	public interface XRISubSegment : XRISyntaxComponent
 	{
-		public bool hasGCS();
-		public bool hasLCS();
-		public bool hasLiteral();
-		public bool hasXRef();
+		bool hasGCS();
+		bool hasLCS();
+		bool hasLiteral();
+		bool hasXRef();
 
-		public char getGCS();
-		public char getLCS();
-		public XRILiteral getLiteral();
-		public XRIXRef getXRef();
+		char GCS
+		{
+			get;
+		}
 
-		public bool isGlobal();
-		public bool isLocal();
-		public bool isPersistent();
-		public bool isReassignable();
+		char LCS
+		{
+			get;
+		}
+
+		XRILiteral Literal
+		{
+			get;
+		}
+
+		XRIXRef XRef
+		{
+			get;
+		}
+
+		bool isGlobal();
+		bool isLocal();
+		bool isPersistent();
+		bool isReassignable();
 	}
 }

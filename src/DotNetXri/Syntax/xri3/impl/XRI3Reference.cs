@@ -1,228 +1,290 @@
+/*
+ * Copyright 2005 OpenXRI Foundation
+ * Subsequently ported and altered by Andrew Arnott and Troels Thomsen
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+using System;
+using System.Collections.Generic;
 using System.Text;
+using DotNetXri.Syntax.Xri3.Impl.Parser;
 
-namespace DotNetXri.Syntax.Xri3.Impl {
-public class XRI3Reference :XRI3SyntaxComponent, XRIReference {
+namespace DotNetXri.Syntax.Xri3.Impl
+{
+	public class XRI3Reference : XRI3SyntaxComponent, XRIReference
+	{
+		private const long serialVersionUID = 4191016969141944835L;
 
-	private static final long serialVersionUID = 4191016969141944835L;
+		private Rule rule;
 
-	private Rule rule;
+		private XRI3 xri;
+		private XRI3Path path;
+		private XRI3Query query;
+		private XRI3Fragment fragment;
 
-	private XRI3 xri;
-	private XRI3Path path;
-	private XRI3Query query;
-	private XRI3Fragment fragment;
+		public XRI3Reference(string value)
+		{
+			this.rule = XRI3Util.getParser().parse("xri-reference", value);
+			this.read();
+		}
 
-	public XRI3Reference(String string) throws ParserException {
+		public XRI3Reference(XRIReference xriReference, XRISyntaxComponent xriPart)
+		{
+			StringBuilder buffer = new StringBuilder();
 
-		this.rule = XRI3Util.getParser().parse("xri-reference", string);
-		this.read();
-	}
+			buffer.Append(xriReference.ToString());
+			buffer.Append(xriPart.ToString());
 
-	public XRI3Reference(XRIReference xriReference, XRISyntaxComponent xriPart) throws ParserException {
+			this.rule = XRI3Util.getParser().parse("xri-reference", buffer.ToString());
+			this.read();
+		}
 
-		StringBuilder buffer = new StringBuilder();
+		public XRI3Reference(XRIReference xriReference, string xriPart)
+		{
+			StringBuilder buffer = new StringBuilder();
 
-		buffer.append(xriReference.toString());
-		buffer.append(xriPart.toString());
+			buffer.Append(xriReference.ToString());
+			buffer.Append(xriPart);
 
-		this.rule = XRI3Util.getParser().parse("xri-reference", buffer.toString());
-		this.read();
-	}
+			this.rule = XRI3Util.getParser().parse("xri-reference", buffer.ToString());
+			this.read();
+		}
 
-	public XRI3Reference(XRIReference xriReference, String xriPart) throws ParserException {
+		XRI3Reference(Rule rule)
+		{
+			this.rule = rule;
+			this.read();
+		}
 
-		StringBuilder buffer = new StringBuilder();
+		private void reset()
+		{
+			this.xri = null;
+			this.path = null;
+			this.query = null;
+			this.fragment = null;
+		}
 
-		buffer.append(xriReference.toString());
-		buffer.append(xriPart);
+		private void read()
+		{
+			this.reset();
 
-		this.rule = XRI3Util.getParser().parse("xri-reference", buffer.toString());
-		this.read();
-	}
+			object obj = this.rule;	// xri_reference
 
-	XRI3Reference(Rule rule) {
+			// read xri or relative_xri_ref from xri_reference
 
-		this.rule = rule;
-		this.read();
-	}
+			IList<Rule> list_xri_reference = ((xri_reference)obj).rules;
+			if (list_xri_reference.Count < 1)
+				return;
+			obj = list_xri_reference[0];	// xri or relative_xri_ref
 
-	private void reset() {
+			// xri or relative_xri_ref ?
 
-		this.xri = null;
-		this.path = null;
-		this.query = null;
-		this.fragment = null;
-	}
+			if (obj is xri)
+			{
+				this.xri = new XRI3((xri)obj);
+			}
+			else if (obj is relative_xri_ref)
+			{
 
-	private void read() {
+				// read relative_xri_part from relative_xri_ref
 
-		this.reset();
+				IList<Rule> list_relative_xri_ref = ((relative_xri_ref)obj).rules;
+				if (list_relative_xri_ref.Count < 1)
+					return;
+				obj = list_relative_xri_ref[0];	// relative_xri_part
 
-		Object obj = this.rule;	// xri_reference
+				// read xri_path_abs or xri_path_noscheme or ipath_empty from relative_xri_part
 
-		// read xri or relative_xri_ref from xri_reference
+				IList<Rule> list_relative_xri_part = ((relative_xri_part)obj).rules;
+				if (list_relative_xri_part.Count < 1)
+					return;
+				obj = list_relative_xri_part[0];	// xri_path_abs or xri_path_noscheme or ipath_empty	
 
-		List list_xri_reference = ((xri_reference) obj).rules;
-		if (list_xri_reference.size() < 1) return;
-		obj = list_xri_reference.get(0);	// xri or relative_xri_ref
+				// read xri_path_abs or xri_path_noscheme or ipath_emptry ?
 
-		// xri or relative_xri_ref ?
+				if (obj is xri_path_abs)
+				{
+					this.path = new XRI3Path((xri_path_abs)obj);
+				}
+				else if (obj is xri_path_noscheme)
+				{
+					this.path = new XRI3Path((xri_path_noscheme)obj);
+				}
+				else if (obj is ipath_empty)
+				{
+					this.path = new XRI3Path((ipath_empty)obj);
+				}
+				else
+				{
+					throw new InvalidCastException(obj.GetType().Name);
+				}
 
-		if (obj is xri) {
+				// read iquery from relative_xri_ref
 
-			this.xri = new XRI3((xri) obj);
-		} else if (obj is relative_xri_ref) {
+				if (list_relative_xri_ref.Count < 3)
+					return;
+				obj = list_relative_xri_ref[2];	// iquery
+				this.query = new XRI3Query((iquery)obj);
 
-			// read relative_xri_part from relative_xri_ref
+				// read ifragment from relative_xri_ref
 
-			List list_relative_xri_ref = ((relative_xri_ref) obj).rules;
-			if (list_relative_xri_ref.size() < 1) return;
-			obj = list_relative_xri_ref.get(0);	// relative_xri_part
+				if (list_relative_xri_ref.Count < 5)
+					return;
+				obj = list_relative_xri_ref[4];	// ifragment
+				this.fragment = new XRI3Fragment((ifragment)obj);
+			}
+			else
+			{
+				throw new InvalidCastException(obj.GetType().Name);
+			}
+		}
 
-			// read xri_path_abs or xri_path_noscheme or ipath_empty from relative_xri_part
+		public Rule ParserObject
+		{
+			get
+			{
+				return this.rule;
+			}
+		}
 
-			List list_relative_xri_part = ((relative_xri_part) obj).rules;
-			if (list_relative_xri_part.size() < 1) return;
-			obj = list_relative_xri_part.get(0);	// xri_path_abs or xri_path_noscheme or ipath_empty	
+		public bool hasScheme()
+		{
+			if (this.xri != null)
+				return (this.xri.hasScheme());
 
-			// read xri_path_abs or xri_path_noscheme or ipath_emptry ?
+			return (false);
+		}
 
-			if (obj is xri_path_abs) {
+		public bool hasAuthority()
+		{
+			if (this.xri != null)
+				return (this.xri.hasAuthority());
 
-				this.path = new XRI3Path((xri_path_abs) obj);
-			} else if (obj is xri_path_noscheme) {
+			return (false);
+		}
 
-				this.path = new XRI3Path((xri_path_noscheme) obj);
-			} else if (obj is ipath_empty) {
+		public bool hasPath()
+		{
+			if (this.xri != null)
+				return (this.xri.hasPath());
 
-				this.path = new XRI3Path((ipath_empty) obj);
-			} else {
+			return (this.path != null);
+		}
 
-				throw new ClassCastException(obj.getClass().getName());
+		public bool hasQuery()
+		{
+			if (this.xri != null)
+				return (this.xri.hasQuery());
+
+			return (this.query != null);
+		}
+
+		public bool hasFragment()
+		{
+			if (this.xri != null)
+				return (this.xri.hasFragment());
+
+			return (this.fragment != null);
+		}
+
+		public string Scheme
+		{
+			get
+			{
+				if (this.xri != null)
+					return (this.xri.Scheme);
+
+				return (null);
+			}
+		}
+
+		public XRIAuthority Authority
+		{
+			get
+			{
+				if (this.xri != null)
+					return (this.xri.Authority);
+
+				return (null);
+			}
+		}
+
+		public XRIPath Path
+		{
+			get
+			{
+				if (this.xri != null)
+					return (this.xri.Path);
+
+				return (this.path);
+			}
+		}
+
+		public XRIQuery Query
+		{
+			get
+			{
+				if (this.xri != null)
+					return (this.xri.Query);
+
+				return (this.query);
+			}
+		}
+
+		public XRIFragment Fragment
+		{
+			get
+			{
+				if (this.xri != null)
+					return (this.xri.Fragment);
+
+				return (this.fragment);
+			}
+		}
+
+		public string toIRINormalForm()
+		{
+			if (this.xri != null)
+				return (this.xri.toIRINormalForm());
+
+			return (base.toIRINormalForm());
+		}
+
+		public bool isValidXRI()
+		{
+			XRI xri;
+
+			try
+			{
+				xri = this.toXRI();
+			}
+			catch (Exception)
+			{
+				return (false);
 			}
 
-			// read iquery from relative_xri_ref
+			return (xri != null);
+		}
 
-			if (list_relative_xri_ref.size() < 3) return;
-			obj = list_relative_xri_ref.get(2);	// iquery
-			this.query = new XRI3Query((iquery) obj);
+		public XRI toXRI()
+		{
+			return (new XRI3(this.ToString()));
+		}
 
-			// read ifragment from relative_xri_ref
-
-			if (list_relative_xri_ref.size() < 5) return;
-			obj = list_relative_xri_ref.get(4);	// ifragment
-			this.fragment = new XRI3Fragment((ifragment) obj);
-		} else {
-
-			throw new ClassCastException(obj.getClass().getName());
+		public XRI3 toXRI3()
+		{
+			return (new XRI3(this.ToString()));
 		}
 	}
-
-	public Rule getParserObject() {
-
-		return(this.rule);
-	}
-
-	public bool hasScheme() {
-
-		if (this.xri != null) return(this.xri.hasScheme());
-
-		return(false);
-	}
-
-	public bool hasAuthority() {
-
-		if (this.xri != null) return(this.xri.hasAuthority());
-
-		return(false);
-	}
-
-	public bool hasPath() {
-
-		if (this.xri != null) return(this.xri.hasPath());
-
-		return(this.path != null);
-	}
-
-	public bool hasQuery() {
-
-		if (this.xri != null) return(this.xri.hasQuery());
-
-		return(this.query != null);
-	}
-
-	public bool hasFragment() {
-
-		if (this.xri != null) return(this.xri.hasFragment());
-
-		return(this.fragment != null);
-	}
-
-	public String getScheme() {
-
-		if (this.xri != null) return(this.xri.getScheme());
-
-		return(null);
-	}
-
-	public XRIAuthority getAuthority() {
-
-		if (this.xri != null) return(this.xri.getAuthority());
-
-		return(null);
-	}
-
-	public XRIPath getPath() {
-
-		if (this.xri != null) return(this.xri.getPath());
-
-		return(this.path);
-	}
-
-	public XRIQuery getQuery() {
-
-		if (this.xri != null) return(this.xri.getQuery());
-
-		return(this.query);
-	}
-
-	public XRIFragment getFragment() {
-
-		if (this.xri != null) return(this.xri.getFragment());
-
-		return(this.fragment);
-	}
-
-	public String toIRINormalForm() {
-
-		if (this.xri != null) return(this.xri.toIRINormalForm());
-
-		return(base.toIRINormalForm());
-	}
-
-	public bool isValidXRI() {
-
-		XRI xri;
-		
-		try {
-			
-			xri = this.toXRI();
-		} catch (Exception ex) {
-			
-			return(false);
-		}
-		
-		return(xri != null);
-	}
-	
-	public XRI toXRI() throws ParserException {
-
-		return(new XRI3(this.toString()));
-	}
-
-	public XRI3 toXRI3() throws ParserException {
-
-		return(new XRI3(this.toString()));
-	}
-}
 }

@@ -1,5 +1,6 @@
 /*
  * Copyright 2005 OpenXRI Foundation
+ * Subsequently ported and altered by Andrew Arnott and Troels Thomsen
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -12,90 +13,44 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
-namespace DotNetXri.Syntax {
-
-
-	/*
-	********************************************************************************
-	* Class: XRIParseException
-	********************************************************************************
-	*/
-	/**
- * This class is used to indicate a parsing failure of an XRI syntax element.
- * @author =chetan
  */
-	public class XRIParseException : java.lang.RuntimeException {
+
+using System;
+
+namespace DotNetXri.Syntax
+{
+	/// <summary>
+	/// This class is used to indicate a parsing failure of an XRI syntax element.
+	/// </summary>
+	public class XRIParseException : Exception
+	{
 		private Exception moEx = null;
 
-		/*
-		****************************************************************************
-		* Constructor()
-		****************************************************************************
-		*/
-		/**
-	 *Constructs a XRIParseException with a default message
-	 */
+		/// <summary>
+		/// Constructs a XRIParseException with a default message
+		/// </summary>
 		public XRIParseException()
-			: base("Invalid XRI") {
-		} // Constructor()
+			: base("Invalid XRI")
+		{ }
 
-		/*
-		****************************************************************************
-		* Constructor()
-		****************************************************************************
-		*/
-		/**
-	 *Constructs a XRIParseException with the provided message
-	 */
-		public XRIParseException(String sMsg) : base(sMsg) {
+		/// <summary>
+		/// Constructs a XRIParseException with the provided message
+		/// </summary>
+		/// <param name="message"></param>
+		public XRIParseException(string message)
+			: base(message)
+		{ }
 
-		} // Constructor()
-
-		/*
-		****************************************************************************
-		* Constructor()
-		****************************************************************************
-		*/
-		/**
-	 *Constructs a XRIParseException with the provided message and
-	 *based off of the provided Exception
-	 */
-		public XRIParseException(String sMsg, Exception oEx) : base(sMsg) {
-			moEx = oEx;
-
-		} // Constructor()
-
-		/*
-		****************************************************************************
-		* dump()
-		****************************************************************************
-		*/
-		/**
-	 * Prints the stack trace for the exception and the exception it is based
-	 * upon to standard out.
-	 */
-		public void dump() {
-			if (moEx != null) {
-				moEx.printStackTrace();
-			}
-
-			printStackTrace();
-
-		} // dump()
-
-		/*
-		****************************************************************************
-		* toString()
-		****************************************************************************
-		*/
-		/**
-	 * Provides String representation of the exception
-	 */
-		public String toString() {
-			return base.toString();
-
-		} // toString()
-
-	} // Class: XRIParseException
+		/// <summary>
+		/// Constructs a XRIParseException with the provided message and
+		/// based off of the provided Exception
+		/// </summary>
+		/// <param name="sMsg"></param>
+		/// <param name="oEx"></param>
+		public XRIParseException(string message, Exception exception)
+			: base(message)
+		{
+			moEx = exception;
+		}
+	}
 }

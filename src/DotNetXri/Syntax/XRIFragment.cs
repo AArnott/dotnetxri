@@ -1,5 +1,6 @@
 /*
  * Copyright 2005 OpenXRI Foundation
+ * Subsequently ported and altered by Andrew Arnott and Troels Thomsen
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -12,69 +13,53 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
-namespace DotNetXri.Syntax {
-
-	/*
-	********************************************************************************
-	* Class: XRIFragment
-	********************************************************************************
-	*/
-	/**
- * This class provides a strong typing for a XRI Fragment.  Any
- * obj of this class that appears outside of the package is a valid
- * XRI Fragment.
- *
- * @author =chetan
  */
-	public class XRIFragment : Parsable {
-		/*
-		****************************************************************************
-		* Constructor()
-		****************************************************************************
-		*/
-		/**
-	 *
-	 */
-		XRIFragment() { } // Constructor()
 
-		/*
-		****************************************************************************
-		* Constructor()
-		****************************************************************************
-		*/
-		/**
-	 * Constructs a XRIFragment from a string. Not implemented.
-	 */
-		public XRIFragment(String sFrag)
-			: base(sFrag) {
+namespace DotNetXri.Syntax
+{
+	/// <summary>
+	/// This class provides a strong typing for a XRI Fragment.  Any
+	/// obj of this class that appears outside of the package is a valid
+	/// XRI Fragment.
+	/// </summary>
+	public class XRIFragment : Parsable
+	{
+		internal XRIFragment()
+		{ }
+
+		/// <summary>
+		/// Constructs a XRIFragment from a string. Not implemented.
+		/// </summary>
+		/// <param name="sFrag"></param>
+		public XRIFragment(string sFrag)
+			: base(sFrag)
+		{
 			parse();
-
-		} // Constructor()
-
-
+		}
 
 		// this is called by Parsable.scan after calling our doScan with the consumed string.
 		// we override this method to remove the leading '#'
-		void setParsedValue(String sValue) {
-			if (sValue != null) {
-				if (sValue.length() > 0 && sValue.charAt(0) == '#')
-					msValue = sValue.substring(1);
+		void setParsedValue(string sValue)
+		{
+			if (sValue != null)
+			{
+				if (sValue.Length > 0 && sValue[0] == '#')
+					msValue = sValue.Substring(1);
 				else
 					msValue = sValue;
-			} else {
+			}
+			else
+			{
 				msValue = "";
 			}
 
 			mbParsed = true;
 			mbParseResult = true;
-
 		}
 
-
-
-		bool doScan(ParseStream oStream) {
-			if (oStream.empty() || oStream.getData().charAt(0) != '#')
+		bool doScan(ParseStream oStream)
+		{
+			if (oStream.empty() || oStream.getData()[0] != '#')
 				return false;
 
 			oStream.consume(1);
@@ -84,13 +69,13 @@ namespace DotNetXri.Syntax {
 			oStream.consume(n);
 
 			return true;
-		} // doScan()
+		}
 
-
-		private int scanIFragmentChars(String s) {
-
+		private int scanIFragmentChars(string s)
+		{
 			int c;
-			for (int i = 0; i < s.length(); i += UTF16.getCharCount(c)) {
+			for (int i = 0; i < s.Length; i += UTF16.getCharCount(c))
+			{
 				c = UTF16.charAt(s, i);
 
 				// TODO - ucschar
@@ -105,7 +90,8 @@ namespace DotNetXri.Syntax {
 				//
 				// escaped
 				//
-				if (Characters.isEscaped(c, s, i)) {
+				if (Characters.isEscaped(c, s, i))
+				{
 					i += 2;
 					continue;
 				}
@@ -117,14 +103,12 @@ namespace DotNetXri.Syntax {
 				return i;
 			}
 
-			return s.length();
-
+			return s.Length;
 		}
-
-
-		public String toIRINormalForm() {
-			return IRIUtils.XRItoIRI(toString(), false);
+		
+		public string toIRINormalForm()
+		{
+			return IRIUtils.XRItoIRI(ToString(), false);
 		}
-
-	} // Class: XRIFragment
+	}
 }

@@ -23,6 +23,9 @@ namespace DotNetXri.Syntax.Xri3
 		/// Returns the query. In XRI 3.0, this corresponds to the iquery rule.
 		/// </summary>
 		/// <returns>The query excluding the ? character.</returns>
-		public string getValue();
+		string Value
+		{
+			get;
+		}
 	}
 }

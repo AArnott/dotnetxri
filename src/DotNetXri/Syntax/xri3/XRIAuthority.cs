@@ -21,11 +21,28 @@ namespace DotNetXri.Syntax.Xri3
 {
 	public interface XRIAuthority : XRISyntaxComponent
 	{
-		public IList<XRISubSegment> getSubSegments();
-		public int getNumSubSegments();
-		public XRISubSegment getSubSegment(int i);
-		public XRISubSegment getFirstSubSegment();
-		public XRISubSegment getLastSubSegment();
-		public bool startsWith(XRISubSegment[] subSegments);
+		IList<XRISubSegment> SubSegments
+		{
+			get;
+		}
+
+		int NumSubSegments
+		{
+			get;
+		}
+
+		XRISubSegment getSubSegment(int i);
+
+		XRISubSegment FirstSubSegment
+		{
+			get;
+		}
+
+		XRISubSegment LastSubSegment
+		{
+			get;
+		}
+
+		bool StartsWith(XRISubSegment[] subSegments);
 	}
 }

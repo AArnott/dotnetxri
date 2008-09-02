@@ -1,5 +1,6 @@
 /*
  * Copyright 2005 OpenXRI Foundation
+ * Subsequently ported and altered by Andrew Arnott and Troels Thomsen
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -12,41 +13,33 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
-namespace DotNetXri.Syntax {
-
-	/*
-	********************************************************************************
-	* Interface: XRIReference
-	********************************************************************************
-	*/
-	/**
- * This interface is implemented by all valid XRIReference classes.
- *
- * @author =chetan
  */
 
-	// TBD: implement this class
-	public interface XRIReference {
-		/*
-		****************************************************************************
-		* getAuthorityPath()
-		****************************************************************************
-		*/
-		/**
-	 * Returns the AuthorityPath component of this XRI Reference
-	 */
-		AuthorityPath getAuthorityPath();
+namespace DotNetXri.Syntax
+{
+	// TODO: implement this class
 
-		/*
-		****************************************************************************
-		* getXRIPath()
-		****************************************************************************
-		*/
-		/**
-	 *Returns the XRI Path component of this XRI Reference
-	 */
-		XRIPath getXRIPath();
+	/// <summary>
+	/// This interface is implemented by all valid XRIReference classes.
+	/// </summary>
+	public interface XRIReference
+	{
+		/// <summary>
+		/// Returns the AuthorityPath component of this XRI Reference
+		/// </summary>
+		/// <returns></returns>
+		AuthorityPath AuthorityPath
+		{
+			get;
+		}
 
-	} // Interface: XRIReference
+		/// <summary>
+		/// Returns the XRI Path component of this XRI Reference
+		/// </summary>
+		/// <returns></returns>
+		XRIPath XRIPath
+		{
+			get;
+		}
+	}
 }
