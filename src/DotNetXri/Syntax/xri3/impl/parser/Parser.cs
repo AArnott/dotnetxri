@@ -10526,8 +10526,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 		{
 			public StringValue(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
-			{
-			}
+			{ }
 
 			public object visit(Visitor visitor)
 			{
@@ -10566,8 +10565,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 		{
 			public NumericValue(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
-			{
-			}
+			{ }
 
 			public object visit(Visitor visitor)
 			{
@@ -10607,9 +10605,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 		 * ---------------------------------------------------------------------------
 		 */
 
-		static final public class xri : Rule
+		internal sealed class xri : Rule
 		{
-			private xri(string spelling, IList<Rule> rules)
+			internal xri(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -10623,9 +10621,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class xri_scheme : Rule
+		internal sealed class xri_scheme : Rule
 		{
-			private xri_scheme(string spelling, IList<Rule> rules)
+			internal xri_scheme(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -10639,9 +10637,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class xri_noscheme : Rule
+		internal sealed class xri_noscheme : Rule
 		{
-			private xri_noscheme(string spelling, IList<Rule> rules)
+			internal xri_noscheme(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -10655,9 +10653,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class xri_reference : Rule
+		internal sealed class xri_reference : Rule
 		{
-			private xri_reference(string spelling, IList<Rule> rules)
+			internal xri_reference(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -10671,9 +10669,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class relative_xri_ref : Rule
+		internal sealed class relative_xri_ref : Rule
 		{
-			private relative_xri_ref(string spelling, IList<Rule> rules)
+			internal relative_xri_ref(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -10687,9 +10685,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class relative_xri_part : Rule
+		internal sealed class relative_xri_part : Rule
 		{
-			private relative_xri_part(string spelling, IList<Rule> rules)
+			internal relative_xri_part(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -10703,9 +10701,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class xri_hier_part : Rule
+		internal sealed class xri_hier_part : Rule
 		{
-			private xri_hier_part(string spelling, IList<Rule> rules)
+			internal xri_hier_part(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -10719,9 +10717,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class xri_authority : Rule
+		internal sealed class xri_authority : Rule
 		{
-			private xri_authority(string spelling, IList<Rule> rules)
+			internal xri_authority(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -10735,9 +10733,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class subseg : Rule
+		internal sealed class subseg : Rule
 		{
-			private subseg(string spelling, IList<Rule> rules)
+			internal subseg(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -10751,9 +10749,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class global_subseg : Rule
+		internal sealed class global_subseg : Rule
 		{
-			private global_subseg(string spelling, IList<Rule> rules)
+			internal global_subseg(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -10767,9 +10765,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class local_subseg : Rule
+		internal sealed class local_subseg : Rule
 		{
-			private local_subseg(string spelling, IList<Rule> rules)
+			internal local_subseg(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -10783,9 +10781,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class gcs_char : Rule
+		internal sealed class gcs_char : Rule
 		{
-			private gcs_char(string spelling, IList<Rule> rules)
+			internal gcs_char(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -10799,9 +10797,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class lcs_char : Rule
+		internal sealed class lcs_char : Rule
 		{
-			private lcs_char(string spelling, IList<Rule> rules)
+			internal lcs_char(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -10815,9 +10813,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class rel_subseg : Rule
+		internal sealed class rel_subseg : Rule
 		{
-			private rel_subseg(string spelling, IList<Rule> rules)
+			internal rel_subseg(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -10831,9 +10829,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class rel_subseg_nc : Rule
+		internal sealed class rel_subseg_nc : Rule
 		{
-			private rel_subseg_nc(string spelling, IList<Rule> rules)
+			internal rel_subseg_nc(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -10847,9 +10845,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class literal : Rule
+		internal sealed class literal : Rule
 		{
-			private literal(string spelling, IList<Rule> rules)
+			internal literal(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -10863,9 +10861,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class literal_nc : Rule
+		internal sealed class literal_nc : Rule
 		{
-			private literal_nc(string spelling, IList<Rule> rules)
+			internal literal_nc(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -10879,9 +10877,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class xref : Rule
+		internal sealed class xref : Rule
 		{
-			private xref(string spelling, IList<Rule> rules)
+			internal xref(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -10895,9 +10893,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class xref_empty : Rule
+		internal sealed class xref_empty : Rule
 		{
-			private xref_empty(string spelling, IList<Rule> rules)
+			internal xref_empty(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -10911,9 +10909,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class xref_xri_reference : Rule
+		internal sealed class xref_xri_reference : Rule
 		{
-			private xref_xri_reference(string spelling, IList<Rule> rules)
+			internal xref_xri_reference(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -10927,9 +10925,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class xref_IRI : Rule
+		internal sealed class xref_IRI : Rule
 		{
-			private xref_IRI(string spelling, IList<Rule> rules)
+			internal xref_IRI(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -10943,9 +10941,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class xref_value : Rule
+		internal sealed class xref_value : Rule
 		{
-			private xref_value(string spelling, IList<Rule> rules)
+			internal xref_value(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -10959,9 +10957,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class xri_path : Rule
+		internal sealed class xri_path : Rule
 		{
-			private xri_path(string spelling, IList<Rule> rules)
+			internal xri_path(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -10975,9 +10973,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class xri_path_abempty : Rule
+		internal sealed class xri_path_abempty : Rule
 		{
-			private xri_path_abempty(string spelling, IList<Rule> rules)
+			internal xri_path_abempty(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -10991,9 +10989,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class xri_path_abs : Rule
+		internal sealed class xri_path_abs : Rule
 		{
-			private xri_path_abs(string spelling, IList<Rule> rules)
+			internal xri_path_abs(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -11007,9 +11005,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class xri_path_noscheme : Rule
+		internal sealed class xri_path_noscheme : Rule
 		{
-			private xri_path_noscheme(string spelling, IList<Rule> rules)
+			internal xri_path_noscheme(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -11023,9 +11021,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class xri_segment : Rule
+		internal sealed class xri_segment : Rule
 		{
-			private xri_segment(string spelling, IList<Rule> rules)
+			internal xri_segment(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -11039,9 +11037,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class xri_segment_nz : Rule
+		internal sealed class xri_segment_nz : Rule
 		{
-			private xri_segment_nz(string spelling, IList<Rule> rules)
+			internal xri_segment_nz(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -11055,9 +11053,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class xri_segment_nc : Rule
+		internal sealed class xri_segment_nc : Rule
 		{
-			private xri_segment_nc(string spelling, IList<Rule> rules)
+			internal xri_segment_nc(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -11071,9 +11069,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class xri_pchar : Rule
+		internal sealed class xri_pchar : Rule
 		{
-			private xri_pchar(string spelling, IList<Rule> rules)
+			internal xri_pchar(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -11087,9 +11085,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class xri_pchar_nc : Rule
+		internal sealed class xri_pchar_nc : Rule
 		{
-			private xri_pchar_nc(string spelling, IList<Rule> rules)
+			internal xri_pchar_nc(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -11103,9 +11101,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class xri_reserved : Rule
+		internal sealed class xri_reserved : Rule
 		{
-			private xri_reserved(string spelling, IList<Rule> rules)
+			internal xri_reserved(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -11119,9 +11117,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class xri_gen_delims : Rule
+		internal sealed class xri_gen_delims : Rule
 		{
-			private xri_gen_delims(string spelling, IList<Rule> rules)
+			internal xri_gen_delims(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -11135,9 +11133,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class xri_sub_delims : Rule
+		internal sealed class xri_sub_delims : Rule
 		{
-			private xri_sub_delims(string spelling, IList<Rule> rules)
+			internal xri_sub_delims(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -11151,9 +11149,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class IRI : Rule
+		internal sealed class IRI : Rule
 		{
-			private IRI(string spelling, IList<Rule> rules)
+			internal IRI(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -11167,9 +11165,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class scheme : Rule
+		internal sealed class scheme : Rule
 		{
-			private scheme(string spelling, IList<Rule> rules)
+			internal scheme(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -11183,9 +11181,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class ihier_part : Rule
+		internal sealed class ihier_part : Rule
 		{
-			private ihier_part(string spelling, IList<Rule> rules)
+			internal ihier_part(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -11199,9 +11197,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class iauthority : Rule
+		internal sealed class iauthority : Rule
 		{
-			private iauthority(string spelling, IList<Rule> rules)
+			internal iauthority(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -11215,9 +11213,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class iuserinfo : Rule
+		internal sealed class iuserinfo : Rule
 		{
-			private iuserinfo(string spelling, IList<Rule> rules)
+			internal iuserinfo(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -11231,9 +11229,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class ihost : Rule
+		internal sealed class ihost : Rule
 		{
-			private ihost(string spelling, IList<Rule> rules)
+			internal ihost(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -11247,9 +11245,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class IP_literal : Rule
+		internal sealed class IP_literal : Rule
 		{
-			private IP_literal(string spelling, IList<Rule> rules)
+			internal IP_literal(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -11263,9 +11261,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class IPvFuture : Rule
+		internal sealed class IPvFuture : Rule
 		{
-			private IPvFuture(string spelling, IList<Rule> rules)
+			internal IPvFuture(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -11279,9 +11277,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class IPv6address : Rule
+		internal sealed class IPv6address : Rule
 		{
-			private IPv6address(string spelling, IList<Rule> rules)
+			internal IPv6address(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -11295,9 +11293,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class ls32 : Rule
+		internal sealed class ls32 : Rule
 		{
-			private ls32(string spelling, IList<Rule> rules)
+			internal ls32(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -11311,9 +11309,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class h16 : Rule
+		internal sealed class h16 : Rule
 		{
-			private h16(string spelling, IList<Rule> rules)
+			internal h16(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -11327,9 +11325,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class IPv4address : Rule
+		internal sealed class IPv4address : Rule
 		{
-			private IPv4address(string spelling, IList<Rule> rules)
+			internal IPv4address(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -11343,9 +11341,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class dec_octet : Rule
+		internal sealed class dec_octet : Rule
 		{
-			private dec_octet(string spelling, IList<Rule> rules)
+			internal dec_octet(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -11359,9 +11357,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class ireg_name : Rule
+		internal sealed class ireg_name : Rule
 		{
-			private ireg_name(string spelling, IList<Rule> rules)
+			internal ireg_name(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -11375,9 +11373,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class port : Rule
+		internal sealed class port : Rule
 		{
-			private port(string spelling, IList<Rule> rules)
+			internal port(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -11391,9 +11389,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class ipath_abempty : Rule
+		internal sealed class ipath_abempty : Rule
 		{
-			private ipath_abempty(string spelling, IList<Rule> rules)
+			internal ipath_abempty(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -11407,9 +11405,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class ipath_abs : Rule
+		internal sealed class ipath_abs : Rule
 		{
-			private ipath_abs(string spelling, IList<Rule> rules)
+			internal ipath_abs(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -11423,9 +11421,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class ipath_rootless : Rule
+		internal sealed class ipath_rootless : Rule
 		{
-			private ipath_rootless(string spelling, IList<Rule> rules)
+			internal ipath_rootless(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -11439,9 +11437,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class ipath_empty : Rule
+		internal sealed class ipath_empty : Rule
 		{
-			private ipath_empty(string spelling, IList<Rule> rules)
+			internal ipath_empty(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -11455,9 +11453,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class isegment : Rule
+		internal sealed class isegment : Rule
 		{
-			private isegment(string spelling, IList<Rule> rules)
+			internal isegment(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -11471,9 +11469,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class isegment_nz : Rule
+		internal sealed class isegment_nz : Rule
 		{
-			private isegment_nz(string spelling, IList<Rule> rules)
+			internal isegment_nz(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -11487,9 +11485,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class iquery : Rule
+		internal sealed class iquery : Rule
 		{
-			private iquery(string spelling, IList<Rule> rules)
+			internal iquery(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -11503,9 +11501,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class iprivate : Rule
+		internal sealed class iprivate : Rule
 		{
-			private iprivate(string spelling, IList<Rule> rules)
+			internal iprivate(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -11519,9 +11517,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class ifragment : Rule
+		internal sealed class ifragment : Rule
 		{
-			private ifragment(string spelling, IList<Rule> rules)
+			internal ifragment(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -11535,9 +11533,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class ipchar : Rule
+		internal sealed class ipchar : Rule
 		{
-			private ipchar(string spelling, IList<Rule> rules)
+			internal ipchar(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -11551,9 +11549,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class iunreserved : Rule
+		internal sealed class iunreserved : Rule
 		{
-			private iunreserved(string spelling, IList<Rule> rules)
+			internal iunreserved(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -11567,9 +11565,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class pct_encoded : Rule
+		internal sealed class pct_encoded : Rule
 		{
-			private pct_encoded(string spelling, IList<Rule> rules)
+			internal pct_encoded(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -11583,9 +11581,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class ucschar : Rule
+		internal sealed class ucschar : Rule
 		{
-			private ucschar(string spelling, IList<Rule> rules)
+			internal ucschar(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -11599,9 +11597,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class reserved : Rule
+		internal sealed class reserved : Rule
 		{
-			private reserved(string spelling, IList<Rule> rules)
+			internal reserved(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -11615,9 +11613,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class gen_delims : Rule
+		internal sealed class gen_delims : Rule
 		{
-			private gen_delims(string spelling, IList<Rule> rules)
+			internal gen_delims(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -11631,9 +11629,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class sub_delims : Rule
+		internal sealed class sub_delims : Rule
 		{
-			private sub_delims(string spelling, IList<Rule> rules)
+			internal sub_delims(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -11647,9 +11645,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class unreserved : Rule
+		internal sealed class unreserved : Rule
 		{
-			private unreserved(string spelling, IList<Rule> rules)
+			internal unreserved(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -11663,9 +11661,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class ALPHA : Rule
+		internal sealed class ALPHA : Rule
 		{
-			private ALPHA(string spelling, IList<Rule> rules)
+			internal ALPHA(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -11679,9 +11677,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class BIT : Rule
+		internal sealed class BIT : Rule
 		{
-			private BIT(string spelling, IList<Rule> rules)
+			internal BIT(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -11695,9 +11693,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class CHAR : Rule
+		internal sealed class CHAR : Rule
 		{
-			private CHAR(string spelling, IList<Rule> rules)
+			internal CHAR(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -11711,9 +11709,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class CR : Rule
+		internal sealed class CR : Rule
 		{
-			private CR(string spelling, IList<Rule> rules)
+			internal CR(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -11727,9 +11725,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class CRLF : Rule
+		internal sealed class CRLF : Rule
 		{
-			private CRLF(string spelling, IList<Rule> rules)
+			internal CRLF(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -11743,9 +11741,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class CTL : Rule
+		internal sealed class CTL : Rule
 		{
-			private CTL(string spelling, IList<Rule> rules)
+			internal CTL(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -11759,9 +11757,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class DIGIT : Rule
+		internal sealed class DIGIT : Rule
 		{
-			private DIGIT(string spelling, IList<Rule> rules)
+			internal DIGIT(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -11775,9 +11773,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class DQUOTE : Rule
+		internal sealed class DQUOTE : Rule
 		{
-			private DQUOTE(string spelling, IList<Rule> rules)
+			internal DQUOTE(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -11791,9 +11789,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class HEXDIG : Rule
+		internal sealed class HEXDIG : Rule
 		{
-			private HEXDIG(string spelling, IList<Rule> rules)
+			internal HEXDIG(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -11807,9 +11805,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class HTAB : Rule
+		internal sealed class HTAB : Rule
 		{
-			private HTAB(string spelling, IList<Rule> rules)
+			internal HTAB(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -11823,9 +11821,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class LF : Rule
+		internal sealed class LF : Rule
 		{
-			private LF(string spelling, IList<Rule> rules)
+			internal LF(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -11839,9 +11837,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class LWSP : Rule
+		internal sealed class LWSP : Rule
 		{
-			private LWSP(string spelling, IList<Rule> rules)
+			internal LWSP(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -11855,9 +11853,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class OCTET : Rule
+		internal sealed class OCTET : Rule
 		{
-			private OCTET(string spelling, IList<Rule> rules)
+			internal OCTET(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -11871,9 +11869,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class SP : Rule
+		internal sealed class SP : Rule
 		{
-			private SP(string spelling, IList<Rule> rules)
+			internal SP(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -11887,9 +11885,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class VCHAR : Rule
+		internal sealed class VCHAR : Rule
 		{
-			private VCHAR(string spelling, IList<Rule> rules)
+			internal VCHAR(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
@@ -11903,9 +11901,9 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		static final public class WSP : Rule
+		internal sealed class WSP : Rule
 		{
-			private WSP(string spelling, IList<Rule> rules)
+			internal WSP(string spelling, IList<Rule> rules)
 				: base(spelling, rules)
 			{ }
 
