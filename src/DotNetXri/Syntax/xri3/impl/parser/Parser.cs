@@ -81,7 +81,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 						parser.traceOn();
 
 					if (arguments.getProperty("File") != null)
-						rule = parser.parse(arguments.getProperty("Rule"), new File(arguments.getProperty("File")));
+						rule = parser.parse(arguments.getProperty("Rule"), File.OpenRead(arguments.getProperty("File")));
 					else if (arguments.getProperty("String") != null)
 						rule = parser.parse(arguments.getProperty("Rule"), arguments.getProperty("String"));
 
@@ -134,7 +134,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			return decode(rulename, value);
 		}
 
-		public Rule parse(string rulename, InputStream inValue)
+		public Rule parse(string rulename, Stream inValue)
 		{
 			if (rulename == null)
 				throw new ArgumentNullException("null rulename");
@@ -143,26 +143,11 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			int ch = 0;
 			StringBuilder outValue = new StringBuilder();
-			while ((ch = inValue.read()) != -1)
+
+			TextReader reader = new StreamReader(inValue);
+
+			while ((ch = reader.Read()) != -1)
 				outValue.Append((char)ch);
-
-			return decode(rulename, outValue.ToString());
-		}
-
-		public Rule parse(string rulename, File file)
-		{
-			if (rulename == null)
-				throw new ArgumentNullException("null rulename");
-			if (file == null)
-				throw new ArgumentNullException("null file");
-
-			BufferedReader inValue = new BufferedReader(new FileReader(file));
-			int ch = 0;
-			StringBuilder outValue = new StringBuilder();
-			while ((ch = inValue.read()) != -1)
-				outValue.Append((char)ch);
-
-			inValue.close();
 
 			return decode(rulename, outValue.ToString());
 		}
