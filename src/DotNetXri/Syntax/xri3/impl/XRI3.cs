@@ -170,7 +170,7 @@ namespace DotNetXri.Syntax.Xri3.Impl
 			this.read();
 		}
 
-		XRI3(Rule rule)
+		internal XRI3(Rule rule)
 		{
 			this.rule = rule;
 			this.read();
@@ -193,23 +193,23 @@ namespace DotNetXri.Syntax.Xri3.Impl
 
 			// read xri_scheme or xri_noscheme from xri
 
-			IList<Rule> list_xri = ((xri)obj).rules;
+			IList<Rule> list_xri = ((Parser.Parser.xri)obj).rules;
 			if (list_xri.Count < 1)
 				return;
 			obj = list_xri[0];	// xri_scheme or xri_noscheme
 
 			// xri_scheme or xri_noscheme ?
 
-			if (obj is xri_scheme)
+			if (obj is Parser.Parser.xri_scheme)
 			{
 
 				// read "xri:" from xri_scheme
 
-				IList<Rule> list_xri_scheme = ((xri_scheme)obj).rules;
+				IList<Rule> list_xri_scheme = ((Parser.Parser.xri_scheme)obj).rules;
 				if (list_xri_scheme.Count < 1)
 					return;
 				obj = list_xri_scheme[0];	// "xri:"
-				this.scheme = ((StringValue)obj).spelling;
+				this.scheme = ((Parser.Parser.StringValue)obj).spelling;
 
 				// read xri_noscheme from xri_scheme
 
@@ -217,7 +217,7 @@ namespace DotNetXri.Syntax.Xri3.Impl
 					return;
 				obj = list_xri_scheme[1];	// xri_noscheme
 			}
-			else if (obj is xri_noscheme)
+			else if (obj is Parser.Parser.xri_noscheme)
 			{
 
 			}
@@ -228,18 +228,18 @@ namespace DotNetXri.Syntax.Xri3.Impl
 
 			// read xri_hier_part from xri_noscheme
 
-			IList<Rule> list_xri_noscheme = ((xri_noscheme)obj).rules;
+			IList<Rule> list_xri_noscheme = ((Parser.Parser.xri_noscheme)obj).rules;
 			if (list_xri_noscheme.Count < 1)
 				return;
 			obj = list_xri_noscheme[0];	// xri_hier_part
 
 			// read xri_authority from xri_hier_part
 
-			IList<Rule> list_xri_hier_part = ((xri_hier_part)obj).rules;
+			IList<Rule> list_xri_hier_part = ((Parser.Parser.xri_hier_part)obj).rules;
 			if (list_xri_hier_part.Count < 1)
 				return;
 			obj = list_xri_hier_part[0];	// xri_authority
-			this.authority = new XRI3Authority((xri_authority)obj);
+			this.authority = new XRI3Authority((Parser.Parser.xri_authority)obj);
 			if (this.authority.getParserObject().spelling.Length < 1)
 				this.authority = null;
 
@@ -248,7 +248,7 @@ namespace DotNetXri.Syntax.Xri3.Impl
 			if (list_xri_hier_part.Count < 2)
 				return;
 			obj = list_xri_hier_part[1];	// xri_path_abempty
-			this.path = new XRI3Path((xri_path_abempty)obj);
+			this.path = new XRI3Path((Parser.Parser.xri_path_abempty)obj);
 			if (this.path.getParserObject().spelling.Length < 1)
 				this.path = null;
 
@@ -260,10 +260,10 @@ namespace DotNetXri.Syntax.Xri3.Impl
 
 			// iquery or ifragment ?
 
-			if (obj is iquery)
+			if (obj is Parser.Parser.iquery)
 			{
-				this.query = new XRI3Query((iquery)obj);
-				if (this.query.getParserObject().spelling.length() < 1)
+				this.query = new XRI3Query((Parser.Parser.iquery)obj);
+				if (this.query.getParserObject().spelling.Length < 1)
 					this.query = null;
 
 				// read ifragment from xri_noscheme
@@ -271,14 +271,14 @@ namespace DotNetXri.Syntax.Xri3.Impl
 				if (list_xri_noscheme.Count < 5)
 					return;
 				obj = list_xri_noscheme[4];	// ifragment
-				this.fragment = new XRI3Fragment((ifragment)obj);
-				if (this.fragment.getParserObject().spelling.length() < 1)
+				this.fragment = new XRI3Fragment((Parser.Parser.ifragment)obj);
+				if (this.fragment.getParserObject().spelling.Length < 1)
 					this.fragment = null;
 			}
-			else if (obj is ifragment)
+			else if (obj is Parser.Parser.ifragment)
 			{
-				this.fragment = new XRI3Fragment((ifragment)obj);
-				if (this.fragment.getParserObject().spelling.length() < 1)
+				this.fragment = new XRI3Fragment((Parser.Parser.ifragment)obj);
+				if (this.fragment.getParserObject().spelling.Length < 1)
 					this.fragment = null;
 			}
 			else
@@ -502,8 +502,8 @@ namespace DotNetXri.Syntax.Xri3.Impl
 			if (xri.Path != null && this.Path == null)
 				return (false);
 
-			IList<XRISegment> thisSegments = this.Path.getSegments();
-			IList<XRISegment> xriSegments = xri.Path.getSegments();
+			IList<XRISegment> thisSegments = this.Path.Segments;
+			IList<XRISegment> xriSegments = xri.Path.Segments;
 
 			if (thisSegments.Count < xriSegments.Count)
 				return (false);

@@ -31,7 +31,7 @@ namespace DotNetXri.Syntax.Xri3.Impl
 			this.read();
 		}
 
-		XRI3Query(Rule rule)
+		internal XRI3Query(Rule rule)
 		{
 			this.rule = rule;
 			this.read();
@@ -48,7 +48,7 @@ namespace DotNetXri.Syntax.Xri3.Impl
 
 			object obj = this.rule;	// iquery
 
-			this.value = ((iquery)obj).spelling;
+			this.value = ((Parser.Parser.iquery)obj).spelling;
 		}
 
 		public Rule ParserObject

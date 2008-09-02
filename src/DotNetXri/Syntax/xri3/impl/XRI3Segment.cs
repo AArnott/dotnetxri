@@ -33,7 +33,7 @@ namespace DotNetXri.Syntax.Xri3.Impl
 			this.read();
 		}
 
-		XRI3Segment(Rule rule)
+		internal XRI3Segment(Rule rule)
 		{
 			this.rule = rule;
 			this.read();
@@ -54,24 +54,24 @@ namespace DotNetXri.Syntax.Xri3.Impl
 
 			// xri_segment or xri_segment_nz or xri_segment_nc ?
 
-			if (obj is xri_segment)
+			if (obj is Parser.Parser.xri_segment)
 			{
 				// read rel_subseg or subseg from xri_segment
 
-				IList<Rule> list_xri_segment = ((xri_segment)obj).rules;
+				IList<Rule> list_xri_segment = ((Parser.Parser.xri_segment)obj).rules;
 				if (list_xri_segment.Count < 1)
 					return;
 				obj = list_xri_segment[0];	// rel_subseg or subseg
 
 				// rel_subseg or subseg?
 
-				if (obj is rel_subseg)
+				if (obj is Parser.Parser.rel_subseg)
 				{
-					this.subSegments.Add(new XRI3SubSegment((rel_subseg)obj));
+					this.subSegments.Add(new XRI3SubSegment((Parser.Parser.rel_subseg)obj));
 				}
-				else if (obj is subseg)
+				else if (obj is Parser.Parser.subseg)
 				{
-					this.subSegments.Add(new XRI3SubSegment((subseg)obj));
+					this.subSegments.Add(new XRI3SubSegment((Parser.Parser.subseg)obj));
 				}
 				else
 				{
@@ -85,27 +85,27 @@ namespace DotNetXri.Syntax.Xri3.Impl
 				for (int i = 1; i < list_xri_segment.Count; i++)
 				{
 					obj = list_xri_segment[i];	// subseg
-					this.subSegments.Add(new XRI3SubSegment((subseg)obj));
+					this.subSegments.Add(new XRI3SubSegment((Parser.Parser.subseg)obj));
 				}
 			}
-			else if (obj is xri_segment_nz)
+			else if (obj is Parser.Parser.xri_segment_nz)
 			{
 				// read rel_subseg or subseg from xri_segment_nz
 
-				IList<Rule> list_xri_segment_nz = ((xri_segment_nz)obj).rules;
+				IList<Rule> list_xri_segment_nz = ((Parser.Parser.xri_segment_nz)obj).rules;
 				if (list_xri_segment_nz.Count < 1)
 					return;
 				obj = list_xri_segment_nz[0];	// rel_subseg or subseg
 
 				// rel_subseg or subseg?
 
-				if (obj is rel_subseg)
+				if (obj is Parser.Parser.rel_subseg)
 				{
-					this.subSegments.Add(new XRI3SubSegment((rel_subseg)obj));
+					this.subSegments.Add(new XRI3SubSegment((Parser.Parser.rel_subseg)obj));
 				}
-				else if (obj is subseg)
+				else if (obj is Parser.Parser.subseg)
 				{
-					this.subSegments.Add(new XRI3SubSegment((subseg)obj));
+					this.subSegments.Add(new XRI3SubSegment((Parser.Parser.subseg)obj));
 				}
 				else
 				{
@@ -119,27 +119,27 @@ namespace DotNetXri.Syntax.Xri3.Impl
 				for (int i = 1; i < list_xri_segment_nz.Count; i++)
 				{
 					obj = list_xri_segment_nz[i];	// subseg
-					this.subSegments.Add(new XRI3SubSegment((subseg)obj));
+					this.subSegments.Add(new XRI3SubSegment((Parser.Parser.subseg)obj));
 				}
 			}
-			else if (obj is xri_segment_nc)
+			else if (obj is Parser.Parser.xri_segment_nc)
 			{
 				// read rel_subseg_nc or subseg from xri_segment_nc
 
-				IList<Rule> list_xri_segment_nc = ((xri_segment_nc)obj).rules;
+				IList<Rule> list_xri_segment_nc = ((Parser.Parser.xri_segment_nc)obj).rules;
 				if (list_xri_segment_nc.Count < 1)
 					return;
 				obj = list_xri_segment_nc[0];	// rel_subseg_nc or subseg
 
 				// rel_subseg_nc or subseg?
 
-				if (obj is rel_subseg_nc)
+				if (obj is Parser.Parser.rel_subseg_nc)
 				{
-					this.subSegments.Add(new XRI3SubSegment((rel_subseg_nc)obj));
+					this.subSegments.Add(new XRI3SubSegment((Parser.Parser.rel_subseg_nc)obj));
 				}
-				else if (obj is subseg)
+				else if (obj is Parser.Parser.subseg)
 				{
-					this.subSegments.Add(new XRI3SubSegment((subseg)obj));
+					this.subSegments.Add(new XRI3SubSegment((Parser.Parser.subseg)obj));
 				}
 				else
 				{
@@ -153,7 +153,7 @@ namespace DotNetXri.Syntax.Xri3.Impl
 				for (int i = 1; i < list_xri_segment_nc.Count; i++)
 				{
 					obj = list_xri_segment_nc[i];	// subseg
-					this.subSegments.Add(new XRI3SubSegment((subseg)obj));
+					this.subSegments.Add(new XRI3SubSegment((Parser.Parser.subseg)obj));
 				}
 			}
 			else

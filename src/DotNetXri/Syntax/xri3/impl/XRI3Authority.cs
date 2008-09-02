@@ -44,7 +44,7 @@ namespace DotNetXri.Syntax.Xri3.Impl
 			this.read();
 		}
 
-		XRI3Authority(Rule rule)
+		internal XRI3Authority(Rule rule)
 		{
 			this.rule = rule;
 			this.read();
@@ -63,11 +63,11 @@ namespace DotNetXri.Syntax.Xri3.Impl
 
 			// read global_subseg from xri_authority
 
-			IList<Rule> list_xri_authority = ((xri_authority)obj).rules;
+			IList<Rule> list_xri_authority = ((Parser.Parser.xri_authority)obj).rules;
 			if (list_xri_authority.Count < 1)
 				return;
 			obj = list_xri_authority[0];	// global_subseg
-			this.subSegments.Add(new XRI3SubSegment((global_subseg)obj));
+			this.subSegments.Add(new XRI3SubSegment((Parser.Parser.global_subseg)obj));
 
 			// read subsegs from xri_authority
 
@@ -77,7 +77,7 @@ namespace DotNetXri.Syntax.Xri3.Impl
 			{
 
 				obj = list_xri_authority[i];	// subseg
-				this.subSegments.Add(new XRI3SubSegment((subseg)obj));
+				this.subSegments.Add(new XRI3SubSegment((Parser.Parser.subseg)obj));
 			}
 		}
 

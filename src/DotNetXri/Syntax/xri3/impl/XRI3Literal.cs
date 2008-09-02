@@ -31,7 +31,7 @@ namespace DotNetXri.Syntax.Xri3.Impl
 			this.read();
 		}
 
-		XRI3Literal(Rule rule)
+		internal XRI3Literal(Rule rule)
 		{
 			this.rule = rule;
 			this.read();
@@ -50,13 +50,13 @@ namespace DotNetXri.Syntax.Xri3.Impl
 
 			// literal of literal_nc
 
-			if (obj is literal)
+			if (obj is Parser.Parser.literal)
 			{
-				this.value = ((literal)obj).spelling;
+				this.value = ((Parser.Parser.literal)obj).spelling;
 			}
-			else if (obj is literal_nc)
+			else if (obj is Parser.Parser.literal_nc)
 			{
-				this.value = ((literal_nc)obj).spelling;
+				this.value = ((Parser.Parser.literal_nc)obj).spelling;
 			}
 		}
 

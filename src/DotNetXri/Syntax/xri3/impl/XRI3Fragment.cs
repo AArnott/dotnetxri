@@ -31,7 +31,7 @@ namespace DotNetXri.Syntax.Xri3.Impl
 			this.read();
 		}
 
-		XRI3Fragment(Rule rule)
+		internal XRI3Fragment(Rule rule)
 		{
 			this.rule = rule;
 			this.read();
@@ -48,7 +48,7 @@ namespace DotNetXri.Syntax.Xri3.Impl
 
 			object obj = this.rule;	// ifragment
 
-			this.value = ((ifragment)obj).spelling;
+			this.value = ((Parser.Parser.ifragment)obj).spelling;
 		}
 
 		public Rule ParserObject

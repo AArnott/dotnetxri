@@ -60,7 +60,7 @@ namespace DotNetXri.Syntax.Xri3.Impl
 			this.read();
 		}
 
-		XRI3SubSegment(Rule rule)
+		internal XRI3SubSegment(Rule rule)
 		{
 			this.rule = rule;
 			this.read();
@@ -82,11 +82,11 @@ namespace DotNetXri.Syntax.Xri3.Impl
 
 			// subseg?
 
-			if (obj is subseg)
+			if (obj is Parser.Parser.subseg)
 			{
 				// read global_subseg or local_subseg from subseg
 
-				IList<Rule> list_subseg = ((subseg)obj).rules;
+				IList<Rule> list_subseg = ((Parser.Parser.subseg)obj).rules;
 				if (list_subseg.Count < 1)
 					return;
 				obj = list_subseg[0];	// global_subseg or local_subseg
@@ -94,15 +94,15 @@ namespace DotNetXri.Syntax.Xri3.Impl
 
 			// global_subseg?
 
-			if (obj is global_subseg)
+			if (obj is Parser.Parser.global_subseg)
 			{
 				// read gcs_char from global_subseg;
 
-				IList<Rule> list_global_subseg = ((global_subseg)obj).rules;
+				IList<Rule> list_global_subseg = ((Parser.Parser.global_subseg)obj).rules;
 				if (list_global_subseg.Count < 1)
 					return;
 				obj = list_global_subseg[0];	// gcs_char
-				this.gcs = new char(((gcs_char)obj).spelling.charAt(0));
+				this.gcs = ((Parser.Parser.gcs_char)obj).spelling[0];
 
 				// read rel_subseg or local_subseg from global_subseg
 
@@ -113,15 +113,15 @@ namespace DotNetXri.Syntax.Xri3.Impl
 
 			// local_subseg?
 
-			if (obj is local_subseg)
+			if (obj is Parser.Parser.local_subseg)
 			{
 				// read lcs_char from local_subseg;
 
-				IList<Rule> list_local_subseg = ((local_subseg)obj).rules;
+				IList<Rule> list_local_subseg = ((Parser.Parser.local_subseg)obj).rules;
 				if (list_local_subseg.Count < 1)
 					return;
 				obj = list_local_subseg[0];	// lcs_char
-				this.lcs = new char(((lcs_char)obj).spelling.charAt(0));
+				this.lcs = ((Parser.Parser.lcs_char)obj).spelling[0];
 
 				// read rel_subseg from local_subseg
 
@@ -132,20 +132,20 @@ namespace DotNetXri.Syntax.Xri3.Impl
 
 			// rel_subseg or rel_subseg_nc?
 
-			if (obj is rel_subseg)
+			if (obj is Parser.Parser.rel_subseg)
 			{
 				// read literal or xref from rel_subseg
 
-				IList<Rule> list_rel_subseg = ((rel_subseg)obj).rules;
+				IList<Rule> list_rel_subseg = ((Parser.Parser.rel_subseg)obj).rules;
 				if (list_rel_subseg.Count < 1)
 					return;
 				obj = list_rel_subseg[0];	// literal or xref
 			}
-			else if (obj is rel_subseg_nc)
+			else if (obj is Parser.Parser.rel_subseg_nc)
 			{
 				// read literal_nc or xref from rel_subseg_nc
 
-				IList<Rule> list_rel_subseg_nc = ((rel_subseg_nc)obj).rules;
+				IList<Rule> list_rel_subseg_nc = ((Parser.Parser.rel_subseg_nc)obj).rules;
 				if (list_rel_subseg_nc.Count < 1)
 					return;
 				obj = list_rel_subseg_nc[0];	// literal_nc or xref
@@ -157,17 +157,17 @@ namespace DotNetXri.Syntax.Xri3.Impl
 
 			// literal or literal_nc or xref?
 
-			if (obj is literal)
+			if (obj is Parser.Parser.literal)
 			{
-				this.literal = new XRI3Literal((literal)obj);
+				this.literal = new XRI3Literal((Parser.Parser.literal)obj);
 			}
-			else if (obj is literal_nc)
+			else if (obj is Parser.Parser.literal_nc)
 			{
-				this.literal = new XRI3Literal((literal_nc)obj);
+				this.literal = new XRI3Literal((Parser.Parser.literal_nc)obj);
 			}
-			else if (obj is xref)
+			else if (obj is Parser.Parser.xref)
 			{
-				this.xref = new XRI3XRef((xref)obj);
+				this.xref = new XRI3XRef((Parser.Parser.xref)obj);
 			}
 			else
 			{

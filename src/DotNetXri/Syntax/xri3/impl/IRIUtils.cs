@@ -268,7 +268,7 @@ namespace DotNetXri.Syntax.Xri3.Impl
 			return sb.ToString();
 		}
 
-		protected static String toUTF8PercentEncoded(int cp)
+		protected static string toUTF8PercentEncoded(int cp)
 		{
 			string s = null;
 			try

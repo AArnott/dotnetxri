@@ -33,7 +33,7 @@ namespace DotNetXri.Syntax.Xri3.Impl
 			this.read();
 		}
 
-		XRI3Path(Rule rule)
+		internal XRI3Path(Rule rule)
 		{
 			this.rule = rule;
 			this.read();
@@ -52,11 +52,11 @@ namespace DotNetXri.Syntax.Xri3.Impl
 
 			// xri_path ?
 
-			if (obj is xri_path)
+			if (obj is Parser.Parser.xri_path)
 			{
 				// read xri_path_abempty or xri_path_abs or xri_path_noscheme from xri_path
 
-				IList<Rule> list_xri_path = ((xri_path)obj).rules;
+				IList<Rule> list_xri_path = ((Parser.Parser.xri_path)obj).rules;
 				if (list_xri_path.Count < 1)
 					return;
 				obj = list_xri_path[0];	// xri_path_abempty or xri_path_abs or xri_path_noscheme
@@ -64,29 +64,29 @@ namespace DotNetXri.Syntax.Xri3.Impl
 
 			// xri_path_abempty or xri_path_abs or xri_path_noscheme ?
 
-			if (obj is xri_path_abempty)
+			if (obj is Parser.Parser.xri_path_abempty)
 			{
 				// read xri_segments from xri_path_abempty
 
-				IList<Rule> list_xri_path_abempty = ((xri_path_abempty)obj).rules;
+				IList<Rule> list_xri_path_abempty = ((Parser.Parser.xri_path_abempty)obj).rules;
 				if (list_xri_path_abempty.Count < 2)
 					return;
 				for (int i = 0; i + 1 < list_xri_path_abempty.Count; i += 2)
 				{
 
 					obj = list_xri_path_abempty[i + 1];	// xri_segment
-					this.segments.Add(new XRI3Segment((xri_segment)obj));
+					this.segments.Add(new XRI3Segment((Parser.Parser.xri_segment)obj));
 				}
 			}
-			else if (obj is xri_path_abs)
+			else if (obj is Parser.Parser.xri_path_abs)
 			{
 				// read xri_segment_nz from xri_path_abs
 
-				IList<Rule> list_xri_path_abs = ((xri_path_abs)obj).rules;
+				IList<Rule> list_xri_path_abs = ((Parser.Parser.xri_path_abs)obj).rules;
 				if (list_xri_path_abs.Count < 2)
 					return;
 				obj = list_xri_path_abs[1];	// xri_segment_nz
-				this.segments.Add(new XRI3Segment((xri_segment_nz)obj));
+				this.segments.Add(new XRI3Segment((Parser.Parser.xri_segment_nz)obj));
 
 				// read xri_segments from xri_path_abs
 
@@ -95,18 +95,18 @@ namespace DotNetXri.Syntax.Xri3.Impl
 				for (int i = 2; i + 1 < list_xri_path_abs.Count; i += 2)
 				{
 					obj = list_xri_path_abs[i + 1];	// xri_segment
-					this.segments.Add(new XRI3Segment((xri_segment)obj));
+					this.segments.Add(new XRI3Segment((Parser.Parser.xri_segment)obj));
 				}
 			}
-			else if (obj is xri_path_noscheme)
+			else if (obj is Parser.Parser.xri_path_noscheme)
 			{
 				// read xri_segment_nc from xri_path_noscheme
 
-				IList<Rule> list_xri_path_noscheme = ((xri_path_noscheme)obj).rules;
+				IList<Rule> list_xri_path_noscheme = ((Parser.Parser.xri_path_noscheme)obj).rules;
 				if (list_xri_path_noscheme.Count < 1)
 					return;
 				obj = list_xri_path_noscheme[0];	// xri_segment_nc
-				this.segments.Add(new XRI3Segment((xri_segment_nc)obj));
+				this.segments.Add(new XRI3Segment((Parser.Parser.xri_segment_nc)obj));
 
 				// read xri_segments from xri_path_noscheme
 
@@ -115,7 +115,7 @@ namespace DotNetXri.Syntax.Xri3.Impl
 				for (int i = 1; i + 1 < list_xri_path_noscheme.Count; i += 2)
 				{
 					obj = list_xri_path_noscheme[i + 1];	// xri_segment
-					this.segments.Add(new XRI3Segment((xri_segment)obj));
+					this.segments.Add(new XRI3Segment((Parser.Parser.xri_segment)obj));
 				}
 			}
 			else

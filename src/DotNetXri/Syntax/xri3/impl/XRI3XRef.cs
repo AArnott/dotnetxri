@@ -35,7 +35,7 @@ namespace DotNetXri.Syntax.Xri3.Impl
 			this.read();
 		}
 
-		XRI3XRef(Rule rule)
+		internal XRI3XRef(Rule rule)
 		{
 			this.rule = rule;
 			this.read();
@@ -55,22 +55,22 @@ namespace DotNetXri.Syntax.Xri3.Impl
 
 			// xref or xref_empty or xref_xri_reference or xref_IRI ?
 
-			if (obj is xref)
+			if (obj is Parser.Parser.xref)
 			{
-				IList<Rule> list_xref = ((xref)obj).rules;
+				IList<Rule> list_xref = ((Parser.Parser.xref)obj).rules;
 				if (list_xref.Count < 1)
 					return;
 				obj = list_xref[0];	// xref_empty or xref_xri_reference or xref_IRI
 			}
-			else if (obj is xref_empty)
+			else if (obj is Parser.Parser.xref_empty)
 			{
 
 			}
-			else if (obj is xref_xri_reference)
+			else if (obj is Parser.Parser.xref_xri_reference)
 			{
 
 			}
-			else if (obj is xref_IRI)
+			else if (obj is Parser.Parser.xref_IRI)
 			{
 
 			}
@@ -80,30 +80,30 @@ namespace DotNetXri.Syntax.Xri3.Impl
 			}
 
 			// xref_empty or xref_xri_reference or xref_IRI ?
-			
-			if (obj is xref_empty)
+
+			if (obj is Parser.Parser.xref_empty)
 			{
 
 			}
-			else if (obj is xref_xri_reference)
+			else if (obj is Parser.Parser.xref_xri_reference)
 			{
 				// read xri_reference from xref_xri_reference
 
-				IList<Rule> list_xref_xri_reference = ((xref_xri_reference)obj).rules;
+				IList<Rule> list_xref_xri_reference = ((Parser.Parser.xref_xri_reference)obj).rules;
 				if (list_xref_xri_reference.Count < 2)
 					return;
 				obj = list_xref_xri_reference[1];	// xri_reference
-				this.xriReference = new XRI3Reference((xri_reference)obj);
+				this.xriReference = new XRI3Reference((Parser.Parser.xri_reference)obj);
 			}
-			else if (obj is xref_IRI)
+			else if (obj is Parser.Parser.xref_IRI)
 			{
 				// read IRI from xref_IRI
 
-				IList<Rule> list_xref_IRI = ((xref_IRI)obj).rules;
+				IList<Rule> list_xref_IRI = ((Parser.Parser.xref_IRI)obj).rules;
 				if (list_xref_IRI.Count < 2)
 					return;
 				obj = list_xref_IRI[1];	// IRI
-				this.iri = ((IRI)obj).spelling;
+				this.iri = ((Parser.Parser.IRI)obj).spelling;
 			}
 			else
 			{

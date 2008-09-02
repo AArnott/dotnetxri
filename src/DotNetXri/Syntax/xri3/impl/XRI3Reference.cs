@@ -59,7 +59,7 @@ namespace DotNetXri.Syntax.Xri3.Impl
 			this.read();
 		}
 
-		XRI3Reference(Rule rule)
+		internal XRI3Reference(Rule rule)
 		{
 			this.rule = rule;
 			this.read();
@@ -81,47 +81,47 @@ namespace DotNetXri.Syntax.Xri3.Impl
 
 			// read xri or relative_xri_ref from xri_reference
 
-			IList<Rule> list_xri_reference = ((xri_reference)obj).rules;
+			IList<Rule> list_xri_reference = ((Parser.Parser.xri_reference)obj).rules;
 			if (list_xri_reference.Count < 1)
 				return;
 			obj = list_xri_reference[0];	// xri or relative_xri_ref
 
 			// xri or relative_xri_ref ?
 
-			if (obj is xri)
+			if (obj is Parser.Parser.xri)
 			{
-				this.xri = new XRI3((xri)obj);
+				this.xri = new XRI3((Parser.Parser.xri)obj);
 			}
-			else if (obj is relative_xri_ref)
+			else if (obj is Parser.Parser.relative_xri_ref)
 			{
 
 				// read relative_xri_part from relative_xri_ref
 
-				IList<Rule> list_relative_xri_ref = ((relative_xri_ref)obj).rules;
+				IList<Rule> list_relative_xri_ref = ((Parser.Parser.relative_xri_ref)obj).rules;
 				if (list_relative_xri_ref.Count < 1)
 					return;
 				obj = list_relative_xri_ref[0];	// relative_xri_part
 
 				// read xri_path_abs or xri_path_noscheme or ipath_empty from relative_xri_part
 
-				IList<Rule> list_relative_xri_part = ((relative_xri_part)obj).rules;
+				IList<Rule> list_relative_xri_part = ((Parser.Parser.relative_xri_part)obj).rules;
 				if (list_relative_xri_part.Count < 1)
 					return;
 				obj = list_relative_xri_part[0];	// xri_path_abs or xri_path_noscheme or ipath_empty	
 
 				// read xri_path_abs or xri_path_noscheme or ipath_emptry ?
 
-				if (obj is xri_path_abs)
+				if (obj is Parser.Parser.xri_path_abs)
 				{
-					this.path = new XRI3Path((xri_path_abs)obj);
+					this.path = new XRI3Path((Parser.Parser.xri_path_abs)obj);
 				}
-				else if (obj is xri_path_noscheme)
+				else if (obj is Parser.Parser.xri_path_noscheme)
 				{
-					this.path = new XRI3Path((xri_path_noscheme)obj);
+					this.path = new XRI3Path((Parser.Parser.xri_path_noscheme)obj);
 				}
-				else if (obj is ipath_empty)
+				else if (obj is Parser.Parser.ipath_empty)
 				{
-					this.path = new XRI3Path((ipath_empty)obj);
+					this.path = new XRI3Path((Parser.Parser.ipath_empty)obj);
 				}
 				else
 				{
@@ -133,14 +133,14 @@ namespace DotNetXri.Syntax.Xri3.Impl
 				if (list_relative_xri_ref.Count < 3)
 					return;
 				obj = list_relative_xri_ref[2];	// iquery
-				this.query = new XRI3Query((iquery)obj);
+				this.query = new XRI3Query((Parser.Parser.iquery)obj);
 
 				// read ifragment from relative_xri_ref
 
 				if (list_relative_xri_ref.Count < 5)
 					return;
 				obj = list_relative_xri_ref[4];	// ifragment
-				this.fragment = new XRI3Fragment((ifragment)obj);
+				this.fragment = new XRI3Fragment((Parser.Parser.ifragment)obj);
 			}
 			else
 			{
