@@ -203,7 +203,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			if (trace)
 			{
 				Logger.Info("-> " + ++level + ": " + function + "()");
-				Logger.Info(index + ": " + text.substring(index, index + 10 > text.Length ? text.Length : index + 10).replaceAll("[^\\p{Print}]", " "));
+				Logger.Info(index + ": " + text.Substring(index, index + 10 > text.Length ? text.Length - index : 10).replaceAll("[^\\p{Print}]", " "));
 			}
 		}
 
@@ -213,7 +213,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			if (trace)
 			{
 				Logger.Info("-> " + ++level + ": " + function + "(" + regex + ")");
-				Logger.Info(index + ": " + text.substring(index, index + 10 > text.Length ? text.Length : index + 10).replaceAll("[^\\p{Print}]", " "));
+				Logger.Info(index + ": " + text.Substring(index, index + 10 > text.Length ? text.Length - index : 10).replaceAll("[^\\p{Print}]", " "));
 			}
 		}
 
@@ -223,7 +223,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			if (trace)
 			{
 				Logger.Info("-> " + ++level + ": " + function + "(" + spelling + ", " + regex + ")");
-				Logger.Info(index + ": " + text.substring(index, index + 10 > text.Length ? text.Length : index + 10).replaceAll("[^\\p{Print}]", " "));
+				Logger.Info(index + ": " + text.Substring(index, index + 10 > text.Length ? text.Length - index : 10).replaceAll("[^\\p{Print}]", " "));
 			}
 		}
 
@@ -437,7 +437,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 				int end = (text.Length < error + 30) ? text.Length : error + 30;
 
 				errorBuffer.Append("rule \"" + (string)errorStack.Peek() + "\" failed" + newline);
-				errorBuffer.Append(text.substring(start, end).replaceAll("[^\\p{Print}]", " ") + newline);
+				errorBuffer.Append(text.Substring(start, end - start).replaceAll("[^\\p{Print}]", " ") + newline);
 				errorBuffer.Append(marker.Substring(0, error < 30 ? error : 30) + "^" + newline);
 				errorBuffer.Append("rule stack:");
 
@@ -455,7 +455,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 				int end = (text.Length < index + 30) ? text.Length : index + 30;
 
 				errorBuffer.Append("extra data found" + newline);
-				errorBuffer.Append(text.substring(start, end).replaceAll("[^\\p{Print}]", " ") + newline);
+				errorBuffer.Append(text.Substring(start, end - start).replaceAll("[^\\p{Print}]", " ") + newline);
 				errorBuffer.Append(marker.Substring(0, index < 30 ? index : 30) + "^" + newline);
 
 				throw new ParserException(errorBuffer.ToString());
@@ -531,7 +531,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new xri(text.substring(s0, index), e0);
+				rule = new xri(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -595,7 +595,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new xri_scheme(text.substring(s0, index), e0);
+				rule = new xri_scheme(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -754,7 +754,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new xri_noscheme(text.substring(s0, index), e0);
+				rule = new xri_noscheme(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -830,7 +830,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new xri_reference(text.substring(s0, index), e0);
+				rule = new xri_reference(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -989,7 +989,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new relative_xri_ref(text.substring(s0, index), e0);
+				rule = new relative_xri_ref(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -1092,7 +1092,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new relative_xri_part(text.substring(s0, index), e0);
+				rule = new relative_xri_part(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -1156,7 +1156,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new xri_hier_part(text.substring(s0, index), e0);
+				rule = new xri_hier_part(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -1220,7 +1220,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new xri_authority(text.substring(s0, index), e0);
+				rule = new xri_authority(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -1296,7 +1296,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new subseg(text.substring(s0, index), e0);
+				rule = new subseg(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -1412,7 +1412,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new global_subseg(text.substring(s0, index), e0);
+				rule = new global_subseg(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -1501,7 +1501,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new local_subseg(text.substring(s0, index), e0);
+				rule = new local_subseg(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -1631,7 +1631,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new gcs_char(text.substring(s0, index), e0);
+				rule = new gcs_char(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -1707,7 +1707,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new lcs_char(text.substring(s0, index), e0);
+				rule = new lcs_char(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -1783,7 +1783,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new rel_subseg(text.substring(s0, index), e0);
+				rule = new rel_subseg(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -1859,7 +1859,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new rel_subseg_nc(text.substring(s0, index), e0);
+				rule = new rel_subseg_nc(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -1917,7 +1917,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new literal(text.substring(s0, index), e0);
+				rule = new literal(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -1975,7 +1975,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new literal_nc(text.substring(s0, index), e0);
+				rule = new literal_nc(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -2078,7 +2078,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new xref(text.substring(s0, index), e0);
+				rule = new xref(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -2127,7 +2127,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new xref_empty(text.substring(s0, index), e0);
+				rule = new xref_empty(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -2206,7 +2206,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new xref_xri_reference(text.substring(s0, index), e0);
+				rule = new xref_xri_reference(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -2285,7 +2285,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new xref_IRI(text.substring(s0, index), e0);
+				rule = new xref_IRI(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -2361,7 +2361,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new xref_value(text.substring(s0, index), e0);
+				rule = new xref_value(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -2491,7 +2491,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new xri_path(text.substring(s0, index), e0);
+				rule = new xri_path(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -2580,7 +2580,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new xri_path_abempty(text.substring(s0, index), e0);
+				rule = new xri_path_abempty(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -2724,7 +2724,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new xri_path_abs(text.substring(s0, index), e0);
+				rule = new xri_path_abs(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -2828,7 +2828,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new xri_path_noscheme(text.substring(s0, index), e0);
+				rule = new xri_path_noscheme(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -2917,7 +2917,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new xri_segment(text.substring(s0, index), e0);
+				rule = new xri_segment(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -3033,7 +3033,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new xri_segment_nz(text.substring(s0, index), e0);
+				rule = new xri_segment_nz(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -3149,7 +3149,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new xri_segment_nc(text.substring(s0, index), e0);
+				rule = new xri_segment_nc(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -3279,7 +3279,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new xri_pchar(text.substring(s0, index), e0);
+				rule = new xri_pchar(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -3382,7 +3382,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new xri_pchar_nc(text.substring(s0, index), e0);
+				rule = new xri_pchar_nc(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -3458,7 +3458,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new xri_reserved(text.substring(s0, index), e0);
+				rule = new xri_reserved(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -3750,7 +3750,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new xri_gen_delims(text.substring(s0, index), e0);
+				rule = new xri_gen_delims(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -3880,7 +3880,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new xri_sub_delims(text.substring(s0, index), e0);
+				rule = new xri_sub_delims(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -4069,7 +4069,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new IRI(text.substring(s0, index), e0);
+				rule = new IRI(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -4266,7 +4266,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new scheme(text.substring(s0, index), e0);
+				rule = new scheme(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -4426,7 +4426,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new ihier_part(text.substring(s0, index), e0);
+				rule = new ihier_part(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -4585,7 +4585,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new iauthority(text.substring(s0, index), e0);
+				rule = new iauthority(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -4740,7 +4740,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new iuserinfo(text.substring(s0, index), e0);
+				rule = new iuserinfo(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -4843,7 +4843,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new ihost(text.substring(s0, index), e0);
+				rule = new ihost(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -4974,7 +4974,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new IP_literal(text.substring(s0, index), e0);
+				rule = new IP_literal(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -5244,7 +5244,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new IPvFuture(text.substring(s0, index), e0);
+				rule = new IPvFuture(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -6529,7 +6529,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new IPv6address(text.substring(s0, index), e0);
+				rule = new IPv6address(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -6660,7 +6660,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new ls32(text.substring(s0, index), e0);
+				rule = new ls32(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -6718,7 +6718,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new h16(text.substring(s0, index), e0);
+				rule = new h16(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -6857,7 +6857,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new IPv4address(text.substring(s0, index), e0);
+				rule = new IPv4address(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -7089,7 +7089,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new dec_octet(text.substring(s0, index), e0);
+				rule = new dec_octet(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -7217,7 +7217,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new ireg_name(text.substring(s0, index), e0);
+				rule = new ireg_name(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -7266,7 +7266,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new port(text.substring(s0, index), e0);
+				rule = new port(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -7355,7 +7355,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new ipath_abempty(text.substring(s0, index), e0);
+				rule = new ipath_abempty(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -7499,7 +7499,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new ipath_abs(text.substring(s0, index), e0);
+				rule = new ipath_abs(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -7603,7 +7603,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new ipath_rootless(text.substring(s0, index), e0);
+				rule = new ipath_rootless(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -7652,7 +7652,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new ipath_empty(text.substring(s0, index), e0);
+				rule = new ipath_empty(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -7701,7 +7701,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new isegment(text.substring(s0, index), e0);
+				rule = new isegment(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -7759,7 +7759,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new isegment_nz(text.substring(s0, index), e0);
+				rule = new isegment_nz(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -7914,7 +7914,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new iquery(text.substring(s0, index), e0);
+				rule = new iquery(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -7963,7 +7963,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new iprivate(text.substring(s0, index), e0);
+				rule = new iprivate(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -8091,7 +8091,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new ifragment(text.substring(s0, index), e0);
+				rule = new ifragment(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -8248,7 +8248,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new ipchar(text.substring(s0, index), e0);
+				rule = new ipchar(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -8459,7 +8459,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new iunreserved(text.substring(s0, index), e0);
+				rule = new iunreserved(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -8538,7 +8538,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new pct_encoded(text.substring(s0, index), e0);
+				rule = new pct_encoded(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -8641,7 +8641,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new ucschar(text.substring(s0, index), e0);
+				rule = new ucschar(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -8717,7 +8717,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new reserved(text.substring(s0, index), e0);
+				rule = new reserved(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -8928,7 +8928,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new gen_delims(text.substring(s0, index), e0);
+				rule = new gen_delims(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -9193,7 +9193,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new sub_delims(text.substring(s0, index), e0);
+				rule = new sub_delims(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -9377,7 +9377,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new unreserved(text.substring(s0, index), e0);
+				rule = new unreserved(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -9453,7 +9453,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new ALPHA(text.substring(s0, index), e0);
+				rule = new ALPHA(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -9529,7 +9529,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new BIT(text.substring(s0, index), e0);
+				rule = new BIT(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -9578,7 +9578,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new CHAR(text.substring(s0, index), e0);
+				rule = new CHAR(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -9627,7 +9627,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new CR(text.substring(s0, index), e0);
+				rule = new CR(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -9691,7 +9691,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new CRLF(text.substring(s0, index), e0);
+				rule = new CRLF(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -9767,7 +9767,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new CTL(text.substring(s0, index), e0);
+				rule = new CTL(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -9816,7 +9816,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new DIGIT(text.substring(s0, index), e0);
+				rule = new DIGIT(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -9865,7 +9865,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new DQUOTE(text.substring(s0, index), e0);
+				rule = new DQUOTE(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -10076,7 +10076,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new HEXDIG(text.substring(s0, index), e0);
+				rule = new HEXDIG(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -10125,7 +10125,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new HTAB(text.substring(s0, index), e0);
+				rule = new HTAB(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -10174,7 +10174,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new LF(text.substring(s0, index), e0);
+				rule = new LF(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -10290,7 +10290,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new LWSP(text.substring(s0, index), e0);
+				rule = new LWSP(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -10339,7 +10339,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new OCTET(text.substring(s0, index), e0);
+				rule = new OCTET(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -10388,7 +10388,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new SP(text.substring(s0, index), e0);
+				rule = new SP(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -10437,7 +10437,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new VCHAR(text.substring(s0, index), e0);
+				rule = new VCHAR(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
@@ -10513,7 +10513,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 
 			rule = null;
 			if (decoded)
-				rule = new WSP(text.substring(s0, index), e0);
+				rule = new WSP(text.Substring(s0, index - s0), e0);
 			else
 				index = s0;
 
