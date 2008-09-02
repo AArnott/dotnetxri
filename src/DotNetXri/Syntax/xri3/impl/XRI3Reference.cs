@@ -24,8 +24,6 @@ namespace DotNetXri.Syntax.Xri3.Impl
 {
 	public class XRI3Reference : XRI3SyntaxComponent, XRIReference
 	{
-		private const long serialVersionUID = 4191016969141944835L;
-
 		private Rule rule;
 
 		private XRI3 xri;

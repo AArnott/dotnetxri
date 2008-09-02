@@ -21,8 +21,6 @@ namespace DotNetXri.Syntax.Xri3.Impl
 {
 	public class XRI3Fragment : XRI3SyntaxComponent, XRIFragment
 	{
-		private const long serialVersionUID = 5034503145058610708L;
-
 		private Rule rule;
 
 		private string value;

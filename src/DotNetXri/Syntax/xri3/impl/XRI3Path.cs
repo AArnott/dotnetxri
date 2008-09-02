@@ -23,8 +23,6 @@ namespace DotNetXri.Syntax.Xri3.Impl
 {
 	public class XRI3Path : XRI3SyntaxComponent, XRIPath
 	{
-		private const long serialVersionUID = 482492757184837341L;
-
 		private Rule rule;
 
 		private IList<XRISegment> segments;

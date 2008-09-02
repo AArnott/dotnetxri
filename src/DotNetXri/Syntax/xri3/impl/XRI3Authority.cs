@@ -23,8 +23,6 @@ namespace DotNetXri.Syntax.Xri3.Impl
 {
 	public class XRI3Authority : XRI3SyntaxComponent, XRIAuthority
 	{
-		private const long serialVersionUID = -3281614016180358848L;
-
 		private Rule rule;
 
 		private IList<XRI3SubSegment> subSegments;

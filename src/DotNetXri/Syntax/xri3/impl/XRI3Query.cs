@@ -21,8 +21,6 @@ namespace DotNetXri.Syntax.Xri3.Impl
 {
 	public class XRI3Query : XRI3SyntaxComponent, XRIQuery
 	{
-		private const long serialVersionUID = 8838957773108506171L;
-
 		private Rule rule;
 
 		private string value;

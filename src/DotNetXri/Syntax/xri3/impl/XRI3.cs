@@ -24,8 +24,6 @@ namespace DotNetXri.Syntax.Xri3.Impl
 {
 	public class XRI3 : XRI3SyntaxComponent, XRI
 	{
-		private const long serialVersionUID = 1556756335913091713L;
-
 		private static readonly ICollection<string> reserved = new HashSet<string>(new string[] {
 			"user",
 			"users",

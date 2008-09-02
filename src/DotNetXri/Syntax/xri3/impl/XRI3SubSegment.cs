@@ -23,8 +23,6 @@ namespace DotNetXri.Syntax.Xri3.Impl
 {
 	public class XRI3SubSegment : XRI3SyntaxComponent, XRISubSegment
 	{
-		private const long serialVersionUID = 821195692608034080L;
-
 		private Rule rule;
 
 		private char gcs;
