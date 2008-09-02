@@ -20,14 +20,30 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using DotNetXri.Syntax.Xri3.Impl.Parser;
 
 namespace DotNetXri.Syntax.Xri3.Impl.Parser
 {
 	public class Parser
 	{
-		static public void Main(string[] args)
+		internal struct Properties
 		{
+			IDictionary<string, string> properties = new Dictionary<string, string>();
+
+			public string getProperty(string key)
+			{
+				return properties.ContainsKey(key) ? properties[key] : null;
+			}
+
+			public void setProperty(string key, string value)
+			{
+				properties[key] = value;
+			}
+		}
+
+		static public void Main(string[] args)
+		{		
 			Properties arguments = new Properties();
 			string error = "";
 			bool ok = args.Length > 0;
@@ -77,7 +93,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 					Rule rule = null;
 
 					parser.traceOff();
-					if (arguments.getProperty("Trace").equals("On"))
+					if (arguments.getProperty("Trace").Equals("On"))
 						parser.traceOn();
 
 					if (arguments.getProperty("File") != null)
@@ -188,7 +204,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			if (trace)
 			{
 				Logger.Info("-> " + ++level + ": " + function + "()");
-				Logger.Info(index + ": " + text.Substring(index, index + 10 > text.Length ? text.Length - index : 10).replaceAll("[^\\p{Print}]", " "));
+				Logger.Info(index + ": " + text.Substring(index, index + 10 > text.Length ? text.Length - index : 10).Replace("[^\\p{Print}]", " "));
 			}
 		}
 
@@ -198,7 +214,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			if (trace)
 			{
 				Logger.Info("-> " + ++level + ": " + function + "(" + regex + ")");
-				Logger.Info(index + ": " + text.Substring(index, index + 10 > text.Length ? text.Length - index : 10).replaceAll("[^\\p{Print}]", " "));
+				Logger.Info(index + ": " + text.Substring(index, index + 10 > text.Length ? text.Length - index : 10).Replace("[^\\p{Print}]", " "));
 			}
 		}
 
@@ -208,7 +224,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			if (trace)
 			{
 				Logger.Info("-> " + ++level + ": " + function + "(" + spelling + ", " + regex + ")");
-				Logger.Info(index + ": " + text.Substring(index, index + 10 > text.Length ? text.Length - index : 10).replaceAll("[^\\p{Print}]", " "));
+				Logger.Info(index + ": " + text.Substring(index, index + 10 > text.Length ? text.Length - index : 10).Replace("[^\\p{Print}]", " "));
 			}
 		}
 
@@ -225,7 +241,10 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 				{
 					error = index;
 					errorStack = new Stack<string>();
-					errorStack.addAll(callStack);
+					foreach (string s in callStack)
+					{
+						errorStack.Push(s);
+					}
 				}
 			}
 			else
@@ -245,9 +264,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			this.text = text;
 
 			Rule rule = null;
-			if (true == false)
-				;
-			else if (rulename.Equals("xri", StringComparison.InvariantCultureIgnoreCase))
+			if (rulename.Equals("xri", StringComparison.InvariantCultureIgnoreCase))
 				rule = decode_xri();
 			else if (rulename.Equals("xri-scheme", StringComparison.InvariantCultureIgnoreCase))
 				rule = decode_xri_scheme();
@@ -422,7 +439,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 				int end = (text.Length < error + 30) ? text.Length : error + 30;
 
 				errorBuffer.Append("rule \"" + (string)errorStack.Peek() + "\" failed" + newline);
-				errorBuffer.Append(text.Substring(start, end - start).replaceAll("[^\\p{Print}]", " ") + newline);
+				errorBuffer.Append(text.Substring(start, end - start).Replace("[^\\p{Print}]", " ") + newline);
 				errorBuffer.Append(marker.Substring(0, error < 30 ? error : 30) + "^" + newline);
 				errorBuffer.Append("rule stack:");
 
@@ -440,7 +457,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 				int end = (text.Length < index + 30) ? text.Length : index + 30;
 
 				errorBuffer.Append("extra data found" + newline);
-				errorBuffer.Append(text.Substring(start, end - start).replaceAll("[^\\p{Print}]", " ") + newline);
+				errorBuffer.Append(text.Substring(start, end - start).Replace("[^\\p{Print}]", " ") + newline);
 				errorBuffer.Append(marker.Substring(0, index < 30 ? index : 30) + "^" + newline);
 
 				throw new ParserException(errorBuffer.ToString());
@@ -10519,7 +10536,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		private StringValue decode_StringValue(String regex)
+		private StringValue decode_StringValue(string regex)
 		{
 			push("*StringValue", regex);
 
@@ -10536,7 +10553,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 					stringValue = new StringValue(value, null);
 				}
 			}
-			catch (IndexOutOfRangeException e)
+			catch (IndexOutOfRangeException)
 			{
 				decoded = false;
 			}
@@ -10558,7 +10575,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			}
 		}
 
-		private NumericValue decode_NumericValue(string spelling, String regex, int length)
+		private NumericValue decode_NumericValue(string spelling, string regex, int length)
 		{
 			push("*NumericValue", spelling, regex);
 
@@ -10568,14 +10585,14 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 			NumericValue numericValue = null;
 			try
 			{
-				String value = text.Substring(index, length);
-				if ((decoded = Pattern.matches(regex, value)))
+				string value = text.Substring(index, length);
+				if ((decoded = Regex.IsMatch(value, regex)))
 				{
 					index += length;
 					numericValue = new NumericValue(value, null);
 				}
 			}
-			catch (IndexOutOfRangeException e)
+			catch (IndexOutOfRangeException)
 			{
 				decoded = false;
 			}
