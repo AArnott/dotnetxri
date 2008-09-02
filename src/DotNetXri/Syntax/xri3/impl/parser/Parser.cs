@@ -88,7 +88,7 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 					if (arguments.getProperty("Visitor") != null)
 					{
 						Visitor visitor =
-						  (Visitor)Class.forName(arguments.getProperty("Visitor")).newInstance();
+						  (Visitor)Activator.CreateInstance(Type.GetType(arguments.getProperty("Visitor")));
 						visitor.visit(rule);
 					}
 				}
@@ -104,15 +104,15 @@ namespace DotNetXri.Syntax.Xri3.Impl.Parser
 				{
 					Logger.Info("parser error: " + e.Message);
 				}
-				catch (ReflectionTypeLoadException e)
+				catch (TypeLoadException e)
 				{
 					Logger.Info("visitor error: class not found - " + e.Message);
 				}
-				catch (IllegalAccessException e)
+				catch (MethodAccessException e)
 				{
 					Logger.Info("visitor error: illegal access - " + e.Message);
 				}
-				catch (InstantiationException e)
+				catch (TargetInvocationException e)
 				{
 					Logger.Info("visitor error: instantiation failure - " + e.Message);
 				}
