@@ -19,6 +19,9 @@ namespace DotNetXri.Syntax.Xri3
 {
 	public interface XRILiteral : XRISyntaxComponent
 	{
-		public string getValue();
+		string Value
+		{
+			get;
+		}
 	}
 }

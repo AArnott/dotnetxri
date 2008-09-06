@@ -1,5 +1,6 @@
 /*
  * Copyright 2005 OpenXRI Foundation
+ * Subsequently ported and altered by Andrew Arnott and Troels Thomsen
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -12,163 +13,129 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
-namespace DotNetXri.Syntax {
-
-
-	/*
-	********************************************************************************
-	* Class: XRIAuthority
-	********************************************************************************
-	*/
-	/**
- * This class provides a base class for all types of XRIAuthority elements.
- *
- * @author =chetan
  */
-	public abstract class XRIAuthority : AuthorityPath {
-		XRISegment moSegment;
 
-		/*
-		****************************************************************************
-		* Constructor()
-		****************************************************************************
-		*/
-		/**
-	 * Protected Constructor used by package only
-	 */
-		XRIAuthority() {
-		} // Constructor()
+namespace DotNetXri.Syntax
+{
+	/// <summary>
+	/// This class provides a base class for all types of XRIAuthority elements.
+	/// </summary>
+	public abstract class XRIAuthority : AuthorityPath
+	{
+		protected XRISegment moSegment;
 
-		/*
-		****************************************************************************
-		* Constructor()
-		****************************************************************************
-		*/
-		/**
-	 * Constructs XRIAuthority from a String
-	 */
-		XRIAuthority(String sPath)
-			: base(sPath) {
+		/// <summary>
+		/// Protected Constructor used by package only
+		/// </summary>
+		protected XRIAuthority()
+		{ }
+
+		/// <summary>
+		/// Constructs XRIAuthority from a String
+		/// </summary>
+		/// <param name="sPath"></param>
+		protected XRIAuthority(string sPath)
+			: base(sPath)
+		{
 			parse();
+		}
 
-		} // Constructor()
-
-		/*
-		****************************************************************************
-		* getXRISegment()
-		****************************************************************************
-		*/
-		/**
-	 *Returns the XRI Segment for this Authority Path
-	 * @return  XRISegment The XRI Segment
-	 */
-		public XRISegment getXRISegment() {
-			parse();
-			return moSegment;
-
-		} // getXRISegment()
-
-		/*
-		****************************************************************************
-		* getNumSubSegments()
-		****************************************************************************
-		*/
-		/**
-	 *Returns the number of subsegments in the XRI segment
-	 * @return int number of subsegments
-	 */
-		public int getNumSubSegments() {
-			parse();
-			if (moSegment != null) {
-				return moSegment.getNumSubSegments();
+		/// <summary>
+		/// Returns the XRI Segment for this Authority Path
+		/// </summary>
+		/// <returns>The XRI Segment</returns>
+		public XRISegment XRISegment
+		{
+			get
+			{
+				parse();
+				return moSegment;
 			}
+		}
 
-			return 0;
+		/// <summary>
+		/// The number of subsegments in the XRI segment
+		/// </summary>
+		public int NumSubSegments
+		{
+			get
+			{
+				parse();
+				if (moSegment != null)
+				{
+					return moSegment.getNumSubSegments();
+				}
 
-		} // getNumSubSegments()
-
-		/*
-		****************************************************************************
-		* getSubSegmentAt()
-		****************************************************************************
-		*/
-		/**
-	 *Returns the subsegment at the given index
-	 * @param nIndex The index of the subsegment to return
-	 * @return SubSegment The subsegment at the specified location
-	 */
-		public XRISubSegment getSubSegmentAt(int nIndex) {
+				return 0;
+			}
+		}
+	 
+		/// <summary>
+		/// Returns the subsegment at the given index
+		/// </summary>
+		/// <param name="nIndex">The index of the subsegment to return</param>
+		/// <returns>The subsegment at the specified location</returns>
+		public XRISubSegment getSubSegmentAt(int nIndex)
+		{
 			parse();
-			if (moSegment != null) {
+			if (moSegment != null)
+			{
 				return moSegment.getSubSegmentAt(nIndex);
 			}
 
 			return null;
+		}
 
-		} // getSubSegmentAt()
-
-		/*
-		****************************************************************************
-		* getLastSubSegment()
-		****************************************************************************
-		*/
-		/**
-	 *Returns the last subsegment in the XRI segment
-	 * @return SubSegment The last subsegment
-	 */
-		public XRISubSegment getLastSubSegment() {
+		/// <summary>
+		/// Returns the last subsegment in the XRI segment
+		/// </summary>
+		/// <returns>The last subsegment</returns>
+		public XRISubSegment getLastSubSegment()
+		{
 			parse();
 
-			if (moSegment != null) {
+			if (moSegment != null)
+			{
 				int nSize = moSegment.getNumSubSegments();
-				if (nSize >= 1) {
+				if (nSize >= 1)
+				{
 					return moSegment.getSubSegmentAt(nSize - 1);
 				}
 			}
 
 			return null;
+		}
 
-		} // getLastSubSegment()
+		/// <summary>
+		/// Returns the root XRI Authority as a String
+		/// </summary>
+		/// <returns>The Root XRI Authority</returns>
+		public abstract string RootAuthority
+		{
+			get;
+		}
 
-		/*
-		****************************************************************************
-		* getRootAuthority()
-		****************************************************************************
-		*/
-		/**
-	 *Returns the root XRI Authority as a String
-	 * @return  String The Root XRI Authority
-	 */
-		public abstract String getRootAuthority();
+		/// <summary>
+		/// Returns the parent XRIAuthority for this obj.  Equivalent to all but
+		/// the last SubSegment.
+		/// </summary>
+		/// <returns>The parent XRIAuthority of this obj</returns>
+		public abstract XRIAuthority Parent
+		{
+			get;
+		}
 
-		/*
-		****************************************************************************
-		* getParent()
-		****************************************************************************
-		*/
-		/**
-	 *Returns the parent XRIAuthority for this obj.  Equivalent to all but
-	 *the last SubSegment.
-	 * @return XRIAuthority The parent XRIAuthority of this obj
-	 */
-		public abstract XRIAuthority getParent();
-
-		/*
-		****************************************************************************
-		* getParentAsXRI()
-		****************************************************************************
-		*/
-		/**
-	 *Returns the parent XRefAuthority for this obj.  Equivalent to all but
-	 *the last SubSegment.
-	 * @return XRI The parent XRefAuthority of this obj as an XRI
-	 */
-		public XRI getParentAsXRI() {
-			AuthorityPath oParent = getParent();
-			return (oParent == null) ? null : new XRI(oParent);
-
-		} // getParentAsXRI()
-
-	} // Class: XRIAuthority
+		/// <summary>
+		/// Returns the parent XRefAuthority for this obj.  Equivalent to all but
+		/// the last SubSegment.
+		/// </summary>
+		public XRI ParentAsXRI
+		{
+			get
+			{
+				AuthorityPath oParent = Parent;
+				return (oParent == null) ? null : new XRI(oParent);
+			}
+		}
+	}
 }

@@ -14,6 +14,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
 */
+
+using System.Text;
+
 namespace DotNetXri.Client.Tools {
 
 using java.net.URL;
@@ -79,7 +82,7 @@ public class XRITraceRt {
     */
     public static void main(String[] oArgs)
     {     
-        StringBuffer sOutput = new StringBuffer();
+        StringBuilder sOutput = new StringBuilder();
         XRITraceRt oTraceRt = new XRITraceRt();
 
         int iResult = oTraceRt.process(sOutput, oArgs);
@@ -101,7 +104,7 @@ public class XRITraceRt {
     * 
     * @return SUCCESS or FAILURE
     */
-    public int process(StringBuffer sOutput, String[] sArgs) 
+    public int process(StringBuilder sOutput, String[] sArgs) 
     {
         try 
         {
@@ -190,7 +193,7 @@ public class XRITraceRt {
     * @return SUCCESS or FAILURE
     */
     private void tracert(
-        StringBuffer sOutput, Resolver resolver) throws XRIResolutionException 
+        StringBuilder sOutput, Resolver resolver) throws XRIResolutionException 
     {
         
         // TODO: trusted resolution is currently not supported
@@ -221,7 +224,7 @@ public class XRITraceRt {
         String sLeftHeaderPad = "   ";
 
         // output the trace hops into a separate buffer
-        StringBuffer sTraceHops = new StringBuffer();     
+        StringBuilder sTraceHops = new StringBuilder();     
         int iAuthorityHops = 0;
         
         /*
@@ -310,7 +313,7 @@ public class XRITraceRt {
     * 
     * @return SUCCESS or FAILURE
     */
-    private int scanArgs(StringBuffer sOutput, String[] sArgs)
+    private int scanArgs(StringBuilder sOutput, String[] sArgs)
     {        
         for (int i = 0; i < sArgs.length; i++)
         {
@@ -387,7 +390,7 @@ public class XRITraceRt {
     * 
     * @returns SUCCESS or FAILURE
     */
-    private int validateRootURIs(StringBuffer sOutput) {
+    private int validateRootURIs(StringBuilder sOutput) {
         
         String sCurURI = null;
         try
@@ -418,7 +421,7 @@ public class XRITraceRt {
      */ /**
      * Outputs the program usage to the given string buffer.
      */
-     private void outputUsage(StringBuffer sOutput) 
+     private void outputUsage(StringBuilder sOutput) 
      {
          // output the overall program usage
          sOutput.append(
@@ -483,7 +486,7 @@ public class XRITraceRt {
      * Outputs text to the given buffer asking the end user to type 
      * "xriadmin -help".
      */    
-     private void outputPleaseTypeHelp(StringBuffer sOutput) 
+     private void outputPleaseTypeHelp(StringBuilder sOutput) 
      {
          sOutput.append("Type \"xritracert help\". \n");
      }
@@ -496,7 +499,7 @@ public class XRITraceRt {
      * Outputs text to the given buffer with text suitable for the given
      * option argument error.
      */ 
-     private void outputOptionRequiresArgument(StringBuffer sOutput, String sOption)
+     private void outputOptionRequiresArgument(StringBuilder sOutput, String sOption)
      {
          sOutput.append("Option: " + sOption + " requires argument.\n");
          outputPleaseTypeHelp(sOutput);
@@ -510,7 +513,7 @@ public class XRITraceRt {
     */ /**
     * Outputs the given number of characters to the output buffer.
     */  
-    void outputChars(StringBuffer sOutput, char c, int num) {
+    void outputChars(StringBuilder sOutput, char c, int num) {
         char[] cArray = new char[num];
         for (int i = 0; i < num; i++) 
         {
@@ -527,7 +530,7 @@ public class XRITraceRt {
      */ /**
      * Formats the given throwable into the given output buffer.
      */     
-     private void outputException(StringBuffer sOutput, Throwable oThrowable)
+     private void outputException(StringBuilder sOutput, Throwable oThrowable)
      {
          String message = oThrowable.getLocalizedMessage();
          sOutput.append(oThrowable.getClass().getName() + ": " + message + "\n");
@@ -548,7 +551,7 @@ public class XRITraceRt {
      *
      * @param sOutput - text to output
      */     
-     static private void exit(StringBuffer sOutput, int iStatus)
+     static private void exit(StringBuilder sOutput, int iStatus)
      { 
          if (iStatus == FAILURE)
          {

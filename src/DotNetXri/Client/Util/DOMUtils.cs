@@ -14,6 +14,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
 */
+
+using System.Text;
+
 package org.openxri.util;
 
 using java.io.StringWriter;
@@ -303,7 +306,7 @@ public class DOMUtils
                     }
                     return str;
             }
-            StringBuffer buf = new StringBuffer();
+            StringBuilder buf = new StringBuilder();
             for( int i = 0; i < list.getLength(); i++ )
             {
                     Node node = list.item(i);

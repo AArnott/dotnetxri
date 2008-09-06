@@ -1,5 +1,6 @@
 /*
  * Copyright 2005 OpenXRI Foundation
+ * Subsequently ported and altered by Andrew Arnott and Troels Thomsen
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -12,184 +13,148 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
-namespace DotNetXri.Syntax {
+ */
 
-/*
-********************************************************************************
-* Class: XRIPath
-********************************************************************************
-*/ /**
-* This base class provides a strong typing for a XRI Path.  Any
-* obj of this class that appears outside of the package is a valid
-* XRI Path.
-*
-* @author =chetan
-*/
-public abstract class XRIPath : Parsable
+using System.Collections.Generic;
+using System.Text;
+
+namespace DotNetXri.Syntax
 {
-    Vector moSegments = new Vector();
-    bool mbAllowColon = true;
+	/// <summary>
+	/// This base class provides a strong typing for a XRI Path.  Any
+	/// obj of this class that appears outside of the package is a valid
+	/// XRI Path.
+	/// </summary>
+	public abstract class XRIPath : Parsable
+	{
+		public IList<XRISegment> moSegments = new List<XRISegment>();
+		protected bool mbAllowColon = true;
 
-    /*
-    ****************************************************************************
-    * Constructor()
-    ****************************************************************************
-    */ /**
-    *
-    */
-    XRIPath() {} // Constructor()
+		protected XRIPath()
+		{ }
 
-    /*
-    ****************************************************************************
-    * Constructor()
-    ****************************************************************************
-    */ /**
-    *
-    */
-    XRIPath(String sVal)
-    : base(sVal) {
+		protected XRIPath(string sVal)
+			: base(sVal)
+		{ }
 
-    } // Constructor()
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns>The number of XRISegmentVals for this relative path</returns>
+		public int getNumSegments()
+		{
+			parse();
+			return (moSegments == null) ? 0 : moSegments.Count;
+		}
 
-    /*
-    ****************************************************************************
-    * getNumSegments()
-    ****************************************************************************
-    */ /**
-    *  returns The number of XRISegmentVals for this relative path
-    * @return int The number of XRISegmentVals for this relative path
-    */
-    public int getNumSegments()
-    {
-        parse();
-        return (moSegments == null) ? 0 : moSegments.size();
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns>Iterator for the XRISegmentVals for this relative path</returns>
+		public IEnumerator<XRISegment> getSegmentIterator()
+		{
+			parse();
+			return (moSegments == null) ? null : moSegments.GetEnumerator();
+		}
 
-    } // getNumSegments()
+		/// <summary>
+		/// Returns the XRISegmentVal at the given index
+		/// </summary>
+		/// <param name="nIndex">The index of the XRISegmentVal to return</param>
+		/// <returns>The XRISegmentVal at the specified index</returns>
+		public XRISegment getSegmentAt(int nIndex)
+		{
+			parse();
+			if ((moSegments == null) || (nIndex >= moSegments.Count))
+			{
+				return null;
+			}
 
-    /*
-    ****************************************************************************
-    * getSegmentIterator()
-    ****************************************************************************
-    */ /**
-    *  returns an Iterator for the XRISegmentVals for this relative path
-    * @return Iterator Iterator for the XRISegmentVals for this relative path
-    */
-    public Iterator getSegmentIterator()
-    {
-        parse();
-        return (moSegments == null) ? null : moSegments.iterator();
+			return (XRISegment)moSegments[nIndex];
+		}
 
-    }
+		/// <summary>
+		/// Parses the input stream into XRISegmentVals
+		/// </summary>
+		/// <param name="oPathStream">The input stream to scan from</param>
+		protected void scanXRISegments(ParseStream oPathStream)
+		{
+			// sets whether colons are allowed
+			bool bAllowColon = mbAllowColon;
 
-    /*
-    ****************************************************************************
-    * getSegmentAt()
-    ****************************************************************************
-    */ /**
-    *Returns the XRISegmentVal at the given index
-    * @param nIndex The index of the XRISegmentVal to return
-    * @return XRISegmentVal The XRISegmentVal at the specified index
-    */
-    public XRISegment getSegmentAt(int nIndex)
-    {
-        parse();
-        if ((moSegments == null) || (nIndex >= moSegments.size()))
-        {
-            return null;
-        }
+			// loop through the XRI segments as long as we are consuming something
+			bool bConsumed = true;
+			while (!oPathStream.empty() && bConsumed)
+			{
+				bConsumed = false;
+				ParseStream oStream = oPathStream.begin();
+				bool bStartsWithSlash = (oStream.getData()[0] == '/');
 
-        return (XRISegment) moSegments.elementAt(nIndex);
+				// if this is the first segment, it must not start with slash
+				if ((bStartsWithSlash) && (moSegments.Count == 0))
+				{
+					break;
+				}
 
-    } // getSegmentAt()
+				// if this is not the first segment, we expect a slash
+				if ((!bStartsWithSlash) && (moSegments.Count > 0))
+				{
+					break;
+				}
 
-    /**
-     * Parses the input stream into XRISegmentVals
-     * @param oStream The input stream to scan from
-     */
-    void scanXRISegments(ParseStream oPathStream)
-    {
-        // sets whether colons are allowed
-        bool bAllowColon = mbAllowColon;
+				// consume the slash if necessary
+				if (bStartsWithSlash)
+				{
+					bConsumed = true;
+					oStream.consume(1);
+				}
 
-        // loop through the XRI segments as long as we are consuming something
-        bool bConsumed = true;
-        while (!oPathStream.empty() && bConsumed)
-        {
-            bConsumed = false;
-            ParseStream oStream = oPathStream.begin();
-            bool bStartsWithSlash = (oStream.getData().charAt(0) == '/');
+				// if there is actually a segment, add it to the list
+				XRISegment oSegment = new XRISegment(true, bAllowColon, true);
+				if (oSegment.scan(oStream))
+				{
+					bConsumed = true;
+					moSegments.Add(oSegment);
+				}
 
-            // if this is the first segment, it must not start with slash
-            if ((bStartsWithSlash) && (moSegments.size() == 0))
-            {
-                break;
-            }
+				// consume whatever we used (even if the segment was empty)
+				oPathStream.end(oStream);
 
-            // if this is not the first segment, we expect a slash
-            if ((!bStartsWithSlash) && (moSegments.size() > 0))
-            {
-                break;
-            }
+				// after the first segment, colons are allowed
+				bAllowColon = true;
+			}
+		}
 
-            // consume the slash if necessary
-            if (bStartsWithSlash)
-            {
-                bConsumed = true;
-                oStream.consume(1);
-            }
+		/// <summary>
+		/// Serializes Relative Path into IRI normal from
+		/// </summary>
+		/// <returns>The IRI normal form of the Relative Path</returns>
+		public string toIRINormalForm()
+		{
+			StringBuilder sValue = new StringBuilder();
 
-            // if there is actually a segment, add it to the list
-            XRISegment oSegment = new XRISegment(true, bAllowColon, true);
-            if (oSegment.scan(oStream))
-            {
-                bConsumed = true;
-                moSegments.add(oSegment);
-            }
+			IEnumerator<XRISegment> oIt = moSegments.GetEnumerator();
+			if (oIt.MoveNext())
+			{
+				sValue.Append(oIt.Current.toIRINormalForm());
+			}
 
-            // consume whatever we used (even if the segment was empty)
-            oPathStream.end(oStream);
+			while (oIt.MoveNext())
+			{
+				sValue.Append("/");
+				sValue.Append(oIt.Current.toIRINormalForm());
+			}
 
-            // after the first segment, colons are allowed
-            bAllowColon = true;
-        }
+			return sValue.ToString();
+		}
 
-    } // scanXRISegments()
-
-
-    /**
-     * Serialzes Relative Path into IRI normal from
-     * @return The IRI normal form of the Relative Path
-     */
-    public String toIRINormalForm()
-    {
-        StringBuffer sValue = new StringBuffer();
-
-        Iterator oIt = moSegments.iterator();
-        if (oIt.hasNext())
-        {
-            sValue.append(((XRISegment) oIt.next()).toIRINormalForm());
-        }
-
-        while (oIt.hasNext())
-        {
-            sValue.append("/");
-            sValue.append((((XRISegment) oIt.next()).toIRINormalForm()));
-        }
-
-        return sValue.toString();
-
-    }
-
-
-    /**
-     * Serialzes Relative Path into URI normal from
-     * @return The URI normal form of the Relative Path
-     */
-    public String toURINormalForm()
-    {
-    	return IRIUtils.IRItoURI(toIRINormalForm());
-    }
-
-}
+		/// <summary>
+		/// Serializes Relative Path into URI normal from
+		/// </summary>
+		/// <returns>The URI normal form of the Relative Path</returns>
+		public string toURINormalForm()
+		{
+			return IRIUtils.IRItoURI(toIRINormalForm());
+		}
+	}
 }

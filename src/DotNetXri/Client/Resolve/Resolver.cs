@@ -1,6 +1,9 @@
 /**
  * 
  */
+
+using System.Text;
+
 namespace DotNetXri.Client.Resolve {
 
 using java.io.ByteArrayInputStream;
@@ -213,7 +216,7 @@ public class Resolver :BaseFetcher {
 				+ ", sepMediaType=" + sepMediaType + ", flags: " + flags + ")");
 		ArrayList uris = resolveSEPToURIList(qxri, sepType, sepMediaType,
 				flags, state);
-		StringBuffer buf = new StringBuffer();
+		StringBuilder buf = new StringBuilder();
 		for (int i = 0; uris != null && i < uris.size(); i++) {
 			buf.append(uris.get(i).toString());
 			buf.append("\n");
@@ -640,7 +643,7 @@ public class Resolver :BaseFetcher {
 		// build the new URI for the proxy
 		URI newURI = null;
 		try {
-			StringBuffer query = new StringBuffer();
+			StringBuilder query = new StringBuilder();
 			if (serviceType != null) {
 				query.append("_xrd_t=");
 				query.append(URLEncoder.encode(serviceType, "UTF-8"));
@@ -667,7 +670,7 @@ public class Resolver :BaseFetcher {
 				query.append(proxyURI.getQuery());
 			}
 
-			StringBuffer uriBuf = new StringBuffer();
+			StringBuilder uriBuf = new StringBuilder();
 			uriBuf.append(proxyURI.getScheme());
 			uriBuf.append("://");
 			uriBuf.append(proxyURI.getAuthority());
@@ -675,7 +678,7 @@ public class Resolver :BaseFetcher {
 			if (uriBuf.charAt(uriBuf.length() - 1) != '/')
 				uriBuf.append('/');
 
-			StringBuffer qxriNoQuery = new StringBuffer(qxri.getAuthorityPath().toIRINormalForm());
+			StringBuilder qxriNoQuery = new StringBuilder(qxri.getAuthorityPath().toIRINormalForm());
 			if (sepSelect) {
 				qxriNoQuery.append(qxri.getXRIPath().toURINormalForm());
 			}
@@ -1974,7 +1977,7 @@ public class Resolver :BaseFetcher {
 		if (false) { // old construction rules
 			URI uri = new URI(sepURI);
 	
-			StringBuffer sepURIStr = new StringBuffer(uri.getScheme());
+			StringBuilder sepURIStr = new StringBuilder(uri.getScheme());
 			sepURIStr.append("://");
 			sepURIStr.append(uri.getAuthority());
 			sepURIStr.append(uri.getPath());
@@ -1993,7 +1996,7 @@ public class Resolver :BaseFetcher {
 			return newURI;
 		}
 		
-		StringBuffer sb = new StringBuffer(sepURI.toString());
+		StringBuilder sb = new StringBuilder(sepURI.toString());
 		if (sb.length() == 0 ||
 				sb.charAt(sb.length() - 1) != '/')
 			sb.append('/');
@@ -2008,7 +2011,7 @@ public class Resolver :BaseFetcher {
 		if (append == null)
 			return sepURI.toString();
 		
-		StringBuffer result = new StringBuffer(sepURI.toString());
+		StringBuilder result = new StringBuilder(sepURI.toString());
 
 		if (append.equals(SEPUri.APPEND_NONE)) {
 		} else if (append.equals(SEPUri.APPEND_LOCAL)) {

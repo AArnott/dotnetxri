@@ -21,12 +21,28 @@ namespace DotNetXri.Syntax.Xri3
 {
 	public interface XRIPath : XRISyntaxComponent
 	{
-		public IList<XRISegment> getSegments();
-		public int getNumSegments();
-		public XRISegment getSegment(int i);
-		public XRISegment getFirstSegment();
-		public XRISegment getLastSegment();
+		IList<XRISegment> Segments
+		{
+			get;
+		}
 
-		public bool startsWith(XRISegment[] segments);
+		int NumSegments
+		{
+			get;
+		}
+
+		XRISegment getSegment(int i);
+
+		XRISegment FirstSegment
+		{
+			get;
+		}
+
+		XRISegment LastSegment
+		{
+			get;
+		}
+
+		bool StartsWith(XRISegment[] segments);
 	}
 }

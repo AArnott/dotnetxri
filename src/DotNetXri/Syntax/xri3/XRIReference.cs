@@ -19,19 +19,38 @@ namespace DotNetXri.Syntax.Xri3
 {
 	public interface XRIReference : XRISyntaxComponent
 	{
-		public bool hasScheme();
-		public bool hasAuthority();
-		public bool hasPath();
-		public bool hasQuery();
-		public bool hasFragment();
+		bool hasScheme();
+		bool hasAuthority();
+		bool hasPath();
+		bool hasQuery();
+		bool hasFragment();
 
-		public string getScheme();
-		public XRIAuthority getAuthority();
-		public XRIPath getPath();
-		public XRIQuery getQuery();
-		public XRIFragment getFragment();
+		string Scheme
+		{
+			get;
+		}
 
-		public bool isValidXRI();
-		public XRI toXRI();
+		XRIAuthority Authority
+		{
+			get;
+		}
+
+		XRIPath Path
+		{
+			get;
+		}
+
+		XRIQuery Query
+		{
+			get;
+		}
+
+		XRIFragment Fragment
+		{
+			get;
+		}
+
+		bool isValidXRI();
+		XRI toXRI();
 	}
 }

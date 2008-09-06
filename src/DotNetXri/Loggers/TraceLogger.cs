@@ -10,7 +10,6 @@ namespace DotNetXri.Loggers {
 		private TraceSwitch traceSwitch = new TraceSwitch("OpenID", "OpenID Trace Switch");
 
 		#region ILog Properties
->>>>>>> startertemplate:src/YOURLIBNAME/Loggers/TraceLogger.cs
 
 		/// <summary>
 		/// See <see cref="ILog"/>.

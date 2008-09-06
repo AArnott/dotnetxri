@@ -19,10 +19,17 @@ namespace DotNetXri.Syntax.Xri3
 {
 	public interface XRIXRef : XRISyntaxComponent
 	{
-		public bool hasXRIReference();
-		public bool hasIRI();
+		bool hasXRIReference();
+		bool hasIRI();
 
-		public XRIReference getXRIReference();
-		public string getIRI();
+		XRIReference XRIReference
+		{
+			get;
+		}
+
+		string IRI
+		{
+			get;
+		}
 	}
 }

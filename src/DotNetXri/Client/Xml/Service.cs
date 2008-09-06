@@ -14,6 +14,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+using System.Text;
+
 package org.openxri.xml;
 
 using java.io.ByteArrayInputStream;
@@ -608,7 +611,7 @@ public class Service : Cloneable, Serializable
 
 	public String getExtension() {
 
-		StringBuffer extension = new StringBuffer();
+		StringBuilder extension = new StringBuilder();
 		
 		Iterator oCustomTags = otherChildrenVectorMap.keySet().iterator();
 		while (oCustomTags.hasNext())

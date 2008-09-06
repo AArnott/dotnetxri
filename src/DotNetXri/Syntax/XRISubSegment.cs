@@ -1,5 +1,6 @@
 /*
  * Copyright 2005 OpenXRI Foundation
+ * Subsequently ported and altered by Andrew Arnott and Troels Thomsen
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -12,163 +13,140 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
-namespace DotNetXri.Syntax {
-
-	/*
-	********************************************************************************
-	* Class: SubSegment
-	********************************************************************************
-	*/
-	/**
- * This class provides a strong typing for a XRI subsegment.  Any
- * obj of this class that appears outside of the package is a valid
- * subsegment.
- *
- * @author =chetan
  */
-	public class XRISubSegment : Parsable {
+
+using System;
+
+namespace DotNetXri.Syntax
+{
+	/// <summary>
+	/// This class provides a strong typing for a XRI subsegment.  Any
+	/// obj of this class that appears outside of the package is a valid
+	/// subsegment.
+	/// </summary>
+	public class XRISubSegment : Parsable
+	{
 		bool mbPersistant = false;
 		XRef moXRef = null;
 		bool mbAllowColon = false;
 		bool mbAllowImpliedDelimiter = false;
 
-		/*
-		****************************************************************************
-		* Constructor()
-		****************************************************************************
-		*/
-		/**
-	 * Protected Constructor used by package only
-	 */
-		XRISubSegment(bool bAllowImpliedDelimiter, bool bAllowColon) {
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="bAllowImpliedDelimiter"></param>
+		/// <param name="bAllowColon"></param>
+		/// <remarks>
+		/// Protected Constructor used by package only
+		/// </remarks>
+		internal XRISubSegment(bool bAllowImpliedDelimiter, bool bAllowColon)
+		{
 			mbAllowImpliedDelimiter = bAllowImpliedDelimiter;
 			mbAllowColon = bAllowColon;
-
-		} // Constructor()
-
-		/*
-		****************************************************************************
-		* Constructor()
-		****************************************************************************
-		*/
-		/**
-	 * Constructs SubSegment from String
-	 */
-		public XRISubSegment(String sXRI)
-			: base(sXRI) {
-			parse();
-
-		} // Constructor()
-
-		/*
-		****************************************************************************
-		* Constructor()
-		****************************************************************************
-		*/
-		/**
-	 * Constructs SubSegment from String
-	 */
-		public XRISubSegment(String sXRI, bool bAllowColon)
-			: base(sXRI) {
-			mbAllowColon = bAllowColon;
-			parse();
-
-		} // Constructor()
-
-		/*
-		****************************************************************************
-		* isPersistant()
-		****************************************************************************
-		*/
-		/**
-	 * Indicates whether Subsegment is persistent or not
-	 * @return bool Indicates whether Subsegment is persistent or not
-	 */
-		public bool isPersistant() {
-			return mbPersistant;
-
-		} // isPersistant()
-
-		/*
-		****************************************************************************
-		* getXRef()
-		****************************************************************************
-		*/
-		/**
-	 * Returns the cross-reference of this obj
-	 * @return XRef the cross-reference of this obj
-	 */
-		public XRef getXRef() {
-			parse();
-			return moXRef;
-
-		} // getXRef()
-
-		/*
-		****************************************************************************
-		* toString()
-		****************************************************************************
-		*/
-		/**
-	 * String representation of the obj.
-	 * @return String the String form of the SubSegment with its persistent indicator.
-	 */
-		public String toString() {
-			return toString(true);
 		}
 
+		/// <summary>
+		/// Constructs SubSegment from String
+		/// </summary>
+		/// <param name="sXRI"></param>
+		public XRISubSegment(string sXRI)
+			: base(sXRI)
+		{
+			parse();
+		}
 
-		public String toString(bool wantOptionalDelim) {
+		/// <summary>
+		/// Constructs SubSegment from String
+		/// </summary>
+		/// <param name="sXRI"></param>
+		/// <param name="bAllowColon"></param>
+		public XRISubSegment(string sXRI, bool bAllowColon)
+			: base(sXRI)
+		{
+			mbAllowColon = bAllowColon;
+			parse();
+		}
+
+		/// <summary>
+		/// Indicates whether Subsegment is persistent or not
+		/// </summary>
+		/// <returns>Indicates whether Subsegment is persistent or not</returns>
+		public bool isPersistant()
+		{
+			return mbPersistant;
+		}
+
+		/// <summary>
+		/// Returns the cross-reference of this obj
+		/// </summary>
+		/// <returns>XRef the cross-reference of this obj</returns>
+		public XRef getXRef()
+		{
+			parse();
+			return moXRef;
+		}
+
+		/// <summary>
+		/// String representation of the obj.
+		/// </summary>
+		/// <returns>the String form of the SubSegment with its persistent indicator.</returns>
+		public override string ToString()
+		{
+			return ToString(true);
+		}
+
+		public string ToString(bool wantOptionalDelim)
+		{
 			parse();
 
 			// add the dot if necessary
-			String sRetval = base.toString();
-			if ((sRetval.length() > 0) &&
-				(sRetval.charAt(0) != XRI.RDELIM) &&
-				(sRetval.charAt(0) != XRI.PDELIM) &&
-				wantOptionalDelim) {
+			string sRetval = base.ToString();
+			if ((sRetval.Length > 0) &&
+				(sRetval[0] != XRI.RDELIM) &&
+				(sRetval[0] != XRI.PDELIM) &&
+				wantOptionalDelim)
+			{
 				sRetval = XRI.RDELIM_S + sRetval;
 			}
 
 			return sRetval;
-
 		}
 
-
-		public bool equals(XRISubSegment subseg) {
-			return toString(true).equals(subseg.toString(true));
+		public bool Equals(XRISubSegment subseg)
+		{
+			return ToString(true).Equals(subseg.ToString(true));
 		}
 
-
-		public bool equalsIgnoreCase(XRISubSegment subseg) {
-			return toString(true).equalsIgnoreCase(subseg.toString(true));
+		public bool EqualsIgnoreCase(XRISubSegment subseg)
+		{
+			return ToString(true).Equals(subseg.ToString(true), StringComparison.InvariantCultureIgnoreCase);
 		}
 
-
-		/*
-		****************************************************************************
-		* doScan()
-		****************************************************************************
-		*/
-		/**
-	 * Parses the input stream into the obj
-	 * @param oStream The input stream to scan from
-	 * @return  bool True if part of the Stream was consumed into the obj
-	 */
-		bool doScan(ParseStream oStream) {
-			if (oStream.getData().charAt(0) == XRI.PDELIM) {
+		/// <summary>
+		/// Parses the input stream into the obj
+		/// </summary>
+		/// <param name="oStream">The input stream to scan from</param>
+		/// <returns>True if part of the Stream was consumed into the obj</returns>
+		bool doScan(ParseStream oStream)
+		{
+			if (oStream.getData()[0] == XRI.PDELIM)
+			{
 				this.mbPersistant = true;
 				oStream.consume(1);
-			} else if (oStream.getData().charAt(0) == XRI.RDELIM) {
+			}
+			else if (oStream.getData()[0] == XRI.RDELIM)
+			{
 				oStream.consume(1);
-			} else if (!mbAllowImpliedDelimiter) {
+			}
+			else if (!mbAllowImpliedDelimiter)
+			{
 				return false;
 			}
 
 			// if there is a cross-reference, it has priority in scanning
 			XRef oXRef = new XRef();
-			if (oXRef.scan(oStream)) {
+			if (oXRef.scan(oStream))
+			{
 				moXRef = oXRef;
 				return true;
 			}
@@ -178,25 +156,22 @@ namespace DotNetXri.Syntax {
 			oStream.consume(n);
 
 			return true;
+		}
 
-		} // doScan()
-
-		/*
-		****************************************************************************
-		* scanPChars()
-		****************************************************************************
-		*/
-		/**
-	 * Reads xri-pchars from the String
-	 * @param s The String to scan from
-	 * @return int The number of characters read in
-	 */
-		private int scanPChars(String s) {
+		/// <summary>
+		/// Reads xri-pchars from the String
+		/// </summary>
+		/// <param name="s">The String to scan from</param>
+		/// <returns>The number of characters read in</returns>
+		private int scanPChars(string s)
+		{
 			int c;
-			for (int i = 0; i < s.length(); i += UTF16.getCharCount(c)) {
+			for (int i = 0; i < s.Length; i += UTF16.getCharCount(c))
+			{
 				c = UTF16.charAt(s, i);
 
-				if (Characters.isPChar(c)) {
+				if (Characters.isPChar(c))
+				{
 					// pchar includes colon, but our configuration might not allow it
 					if (c != ':')
 						continue;
@@ -209,7 +184,8 @@ namespace DotNetXri.Syntax {
 				//
 				// escaped
 				//
-				if (Characters.isEscaped(c, s, i)) {
+				if (Characters.isEscaped(c, s, i))
+				{
 					i += 2;
 					continue;
 				}
@@ -217,44 +193,44 @@ namespace DotNetXri.Syntax {
 				return i;
 			}
 
-			return s.length();
+			return s.Length;
 		}
 
-
-		/**
-		 * Serialzes SubSegment into IRI normal from
-		 * @return The IRI normal form of the SubSegment
-		 */
-		public String toIRINormalForm() {
+		/// <summary>
+		/// Serializes SubSegment into IRI normal from
+		/// </summary>
+		/// <returns>The IRI normal form of the SubSegment</returns>
+		public string toIRINormalForm()
+		{
 			return toIRINormalForm(true);
 		}
 
-
-		public String toIRINormalForm(bool wantOptionalDelim) {
-			if (moXRef != null) {
-				String sValue;
+		public string toIRINormalForm(bool wantOptionalDelim)
+		{
+			if (moXRef != null)
+			{
+				string value;
 				if (isPersistant())
-					sValue = XRI.PDELIM_S;
+					value = XRI.PDELIM_S;
 				else
-					sValue = wantOptionalDelim ? XRI.RDELIM_S : "";
-				return sValue + moXRef.toIRINormalForm();
+					value = wantOptionalDelim ? XRI.RDELIM_S : "";
+				return value + moXRef.toIRINormalForm();
 			}
 
-			return IRIUtils.XRItoIRI(toString(wantOptionalDelim), false);
-
+			return IRIUtils.XRItoIRI(ToString(wantOptionalDelim), false);
 		}
 
-
-		/**
-		 * Serialzes SubSegment into URI normal from
-		 * @return The URI normal form of the SubSegment
-		 */
-		public String toURINormalForm() {
+		/// <summary>
+		/// Serializes SubSegment into URI normal from
+		/// </summary>
+		/// <returns>The URI normal form of the SubSegment</returns>
+		public string toURINormalForm()
+		{
 			return toURINormalForm(true);
 		}
 
-
-		public String toURINormalForm(bool wantOptionalDelim) {
+		public string toURINormalForm(bool wantOptionalDelim)
+		{
 			return IRIUtils.IRItoURI(toIRINormalForm(wantOptionalDelim));
 		}
 	}

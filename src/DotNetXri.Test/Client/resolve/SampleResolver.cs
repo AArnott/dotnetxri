@@ -65,15 +65,15 @@ public class SampleResolver {
 	    	// no CID? raise error or throw exception here 
 	    }
 	    
-	    System.Console.WriteLine("CID=" + cid.getValue());
+	    Logger.Info("CID=" + cid.getValue());
 	    
 	    // resolution completed successfully if we did not catch an exception
-	    System.Console.WriteLine("XRDS = " + xrds.toString());
+	    Logger.Info("XRDS = " + xrds.toString());
 	    
 	    // select a service using a set of criteria 
 	    ArrayList uris = resolver.resolveSEPToURIList("=foo/bar", new TrustType(), "xri://+some-type", "some/media-type", true);
 	    for (int i = 0; i < uris.size(); i++) {
-	    	System.Console.WriteLine("Resolved URI[" + i + "] = " + uris.get(0).toString());
+	    	Logger.Info("Resolved URI[" + i + "] = " + uris.get(0).toString());
 	    }
 	  }
 	  catch (PartialResolutionException prex)
