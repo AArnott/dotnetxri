@@ -7,10 +7,11 @@ namespace DotNetXri.Client.Util {
 	using java.util.Iterator;
 	using java.util.TreeMap;
 
-	using org.openxri.xml.Service;
+	using DotNetXri.Client.Xml;
+	using System;
 
-
-	public class PrioritizedList : Serializable {
+	[Serializable]
+	public class PrioritizedList /*: Serializable*/ {
 
 		public const int POLICY_RANDOMIZE = 1;
 		public const String PRIORITY_NULL = "null";

@@ -20,20 +20,20 @@ using System.Text;
 namespace DotNetXri.Client.Util {
 
 
-using java.io.StringWriter;
-using java.text.ParseException;
-using java.text.SimpleDateFormat;
-using java.util.Date;
-using java.util.TimeZone;
+//using java.io.StringWriter;
+//using java.text.ParseException;
+//using java.text.SimpleDateFormat;
+//using java.util.Date;
+//using java.util.TimeZone;
 
-using org.apache.xerces.dom.TextImpl;
-using org.apache.xerces.parsers.DOMParser;
-using org.apache.xml.serialize.OutputFormat;
-using org.apache.xml.serialize.XMLSerializer;
-using org.w3c.dom.Element;
-using org.w3c.dom.Node;
-using org.w3c.dom.NodeList;
-using org.w3c.dom.Document;
+//using org.apache.xerces.dom.TextImpl;
+//using org.apache.xerces.parsers.DOMParser;
+//using org.apache.xml.serialize.OutputFormat;
+//using org.apache.xml.serialize.XMLSerializer;
+//using org.w3c.dom.Element;
+//using org.w3c.dom.Node;
+//using org.w3c.dom.NodeList;
+//using org.w3c.dom.Document;
 
 
 /*
