@@ -1,23 +1,23 @@
 /*
- * Copyright 2005 OpenXRI Foundation
- * Subsequently ported and altered by Andrew Arnott
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+* Copyright 2005 OpenXRI Foundation
+* Subsequently ported and altered by Andrew Arnott
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
 
 using System.Text;
 
-package org.openxri.xml;
+namespace DotNetXri.Client.Xml {
 
 using java.io.ByteArrayInputStream;
 using java.io.InputStream;
@@ -44,13 +44,13 @@ using org.xml.sax.InputSource;
 
 
 /**
- * This class describes the Service XML element used for XRI Authority
- * resolution.
- *
- * @author =chetan
- * @author =wil
- * @author =peacekeeper
- */
+* This class describes the Service XML element used for XRI Authority
+* resolution.
+*
+* @author =chetan
+* @author =wil
+* @author =peacekeeper
+*/
 public class Service : Cloneable, Serializable
 {
 	private static org.apache.commons.logging.Log soLog =
@@ -77,8 +77,8 @@ public class Service : Cloneable, Serializable
 	private HashMap otherChildrenVectorMap = new HashMap();
 
 	/**
-	 * Contructs an empty Service element
-	 */
+	* Contructs an empty Service element
+	*/
 	public Service()
 	{
 		reset();
@@ -86,9 +86,9 @@ public class Service : Cloneable, Serializable
 
 
 	/**
-	 *  This method constructs the obj from DOM.  It does not keep a
-	 * copy of the DOM around.  Whitespace information is lost in this process.
-	 */
+	*  This method constructs the obj from DOM.  It does not keep a
+	* copy of the DOM around.  Whitespace information is lost in this process.
+	*/
 	public Service(Element oElem) throws URISyntaxException
 	{
 		fromDOM(oElem);
@@ -96,8 +96,8 @@ public class Service : Cloneable, Serializable
 
 
 	/**
-	 * Resets the internal state of this obj
-	 */
+	* Resets the internal state of this obj
+	*/
 	public void reset()
 	{
 		providerID = null;
@@ -118,9 +118,9 @@ public class Service : Cloneable, Serializable
 
 
 	/**
-	 * This method populates the obj from DOM.  It does not keep a
-	 * copy of the DOM around.  Whitespace information is lost in this processs.
-	 */
+	* This method populates the obj from DOM.  It does not keep a
+	* copy of the DOM around.  Whitespace information is lost in this processs.
+	*/
 	public void fromDOM(Element oElem)  throws URISyntaxException
 	{
 		reset();
@@ -195,9 +195,9 @@ public class Service : Cloneable, Serializable
 
 
 	/**
-	 * Returns the media type element value
-	 * @deprecated
-	 */
+	* Returns the media type element value
+	* @deprecated
+	*/
 	public String getMediaType()
 	{
 		soLog.warn("getMediaType - deprecated.");
@@ -208,8 +208,8 @@ public class Service : Cloneable, Serializable
 
 
 	/**
-	 * Returns the number of media types in this service
-	 */
+	* Returns the number of media types in this service
+	*/
 	public int getNumMediaTypes()
 	{
 		return (mediaTypes == null) ? 0 : mediaTypes.size();
@@ -218,8 +218,8 @@ public class Service : Cloneable, Serializable
 
 
 	/**
-	 * Returns the media type at the given index.
-	 */
+	* Returns the media type at the given index.
+	*/
 	public SEPMediaType getMediaTypeAt(int n)
 	{
 		if(this.mediaTypes != null) return (SEPMediaType)mediaTypes.get(n);
@@ -229,9 +229,9 @@ public class Service : Cloneable, Serializable
 
 
 	/**
-	 * Sets the media type element value
-	 * @deprecated
-	 */
+	* Sets the media type element value
+	* @deprecated
+	*/
 	public void setMediaType(String sVal)
 	{
 		soLog.warn("setMediaType - deprecated.");
@@ -242,8 +242,8 @@ public class Service : Cloneable, Serializable
 
 
 	/**
-	 * Adds a media type to this Service
-	 */
+	* Adds a media type to this Service
+	*/
 	public void addMediaType(String sVal)
 	{
 		addMediaType(sVal,null,null);
@@ -251,8 +251,8 @@ public class Service : Cloneable, Serializable
 
 
 	/**
-	 * Adds a media type to this Service with attributes
-	 */
+	* Adds a media type to this Service with attributes
+	*/
 	public void addMediaType(String sVal, String match, Boolean select)
 	{
 		SEPMediaType mediaType = new SEPMediaType(sVal,match, select);
@@ -261,9 +261,9 @@ public class Service : Cloneable, Serializable
 
 
 	/**
-	 * Returns the type element value
-	 * @deprecated
-	 */
+	* Returns the type element value
+	* @deprecated
+	*/
 	public String getType()
 	{
 		soLog.warn("getType is deprecated.");
@@ -274,8 +274,8 @@ public class Service : Cloneable, Serializable
 
 
 	/**
-	 * Returns the number of types in this service
-	 */
+	* Returns the number of types in this service
+	*/
 	public int getNumTypes()
 	{
 		return (types == null) ? 0 : types.size();
@@ -284,8 +284,8 @@ public class Service : Cloneable, Serializable
 
 
 	/**
-	 * Returns the type at the given index.
-	 */
+	* Returns the type at the given index.
+	*/
 	public SEPType getTypeAt(int n)
 	{
 		if(this.types != null)
@@ -296,9 +296,9 @@ public class Service : Cloneable, Serializable
 
 
 	/**
-	 * Sets the  type element value
-	 * @deprecated
-	 */
+	* Sets the  type element value
+	* @deprecated
+	*/
 	public void setType(String sVal)
 	{
 		soLog.warn("setType is deprecated.");
@@ -307,8 +307,8 @@ public class Service : Cloneable, Serializable
 
 
 	/**
-	 * Adds a type to this Service
-	 */
+	* Adds a type to this Service
+	*/
 	public void addType(String sVal)
 	{
 		addType(sVal,null,null);
@@ -316,8 +316,8 @@ public class Service : Cloneable, Serializable
 
 
 	/**
-	 * Adds a type to this Service with attributes
-	 */
+	* Adds a type to this Service with attributes
+	*/
 	public void addType(String sVal, String match, Boolean select)
 	{
 		types.add(new SEPType(sVal,match,select));
@@ -325,12 +325,12 @@ public class Service : Cloneable, Serializable
 
 
 	/**
-	 * Returns true if the given type is equivalent to the type of this service.
-	 * TODO - this should probably compare the normalized type rather than 
-	 * performing a straight string comparison. Also, there may be multiple 
-	 * types associated with a service.
-	 * @deprecated
-	 */
+	* Returns true if the given type is equivalent to the type of this service.
+	* TODO - this should probably compare the normalized type rather than 
+	* performing a straight string comparison. Also, there may be multiple 
+	* types associated with a service.
+	* @deprecated
+	*/
 	public bool matchType(String sVal)
 	{
 		for (int i = 0; i < getNumTypes(); i++) {
@@ -342,8 +342,8 @@ public class Service : Cloneable, Serializable
 
 
 	/**
-	 * Returns the number of  URIs
-	 */
+	* Returns the number of  URIs
+	*/
 	public int getNumURIs()
 	{
 		return (uris == null) ? 0 : uris.size();
@@ -351,9 +351,9 @@ public class Service : Cloneable, Serializable
 
 
 	/**
-	 * Returns the first URI
-	 * @deprecated
-	 */
+	* Returns the first URI
+	* @deprecated
+	*/
 	public SEPUri getURI()
 	{
 		soLog.warn("getURI is deprecated.");
@@ -362,8 +362,8 @@ public class Service : Cloneable, Serializable
 
 
 	/**
-	 * Returns the URI at the given index
-	 */
+	* Returns the URI at the given index
+	*/
 	public SEPUri getURIAt(int n)
 	{
 		return (n < getNumURIs()) ? (SEPUri) uris.get(n) : null;
@@ -371,8 +371,8 @@ public class Service : Cloneable, Serializable
 
 
 	/**
-	 * Returns the first URI for the given scheme
-	 */
+	* Returns the first URI for the given scheme
+	*/
 	public SEPUri getURIForScheme(String sScheme)
 	{
 		if (sScheme == null) return null;
@@ -392,8 +392,8 @@ public class Service : Cloneable, Serializable
 
 
 	/**
-	 * Returns the a vector of URIs
-	 */
+	* Returns the a vector of URIs
+	*/
 	public List getURIs()
 	{
 		return uris;
@@ -401,9 +401,9 @@ public class Service : Cloneable, Serializable
 
 
 	/**
-	 * Returns the URIs in sorted in priority order
-	 * @return
-	 */
+	* Returns the URIs in sorted in priority order
+	* @return
+	*/
 	public ArrayList getPrioritizedURIs()
 	{
 		if (prioritizedURIs == null)
@@ -413,8 +413,8 @@ public class Service : Cloneable, Serializable
 
 
 	/**
-	 * Adds a URI to the service
-	 */
+	* Adds a URI to the service
+	*/
 	public void addURI(String sURI)
 	{
 		addURI(sURI, null, null);
@@ -422,8 +422,8 @@ public class Service : Cloneable, Serializable
 
 
 	/**
-	 * Adds a URI to the service with attributes
-	 */
+	* Adds a URI to the service with attributes
+	*/
 	public void addURI(String sURI, Integer priority, String append)
 	{    	 
 		try {
@@ -437,9 +437,9 @@ public class Service : Cloneable, Serializable
 
 
 	/**
-	 * Adds an SEPUri obj to the list of URIs
-	 * @param uri
-	 */
+	* Adds an SEPUri obj to the list of URIs
+	* @param uri
+	*/
 	public void addURI(SEPUri uri)
 	{
 		if (prioritizedURIs == null)
@@ -454,8 +454,8 @@ public class Service : Cloneable, Serializable
 
 
 	/**
-	 * Get a Servie Path
-	 */
+	* Get a Servie Path
+	*/
 	public SEPPath getPathAt(int n)
 	{
 		return (n < getNumPaths()) ? (SEPPath) paths.get(n) : null;
@@ -463,8 +463,8 @@ public class Service : Cloneable, Serializable
 
 
 	/**
-	 * Adds a URI to the service
-	 */
+	* Adds a URI to the service
+	*/
 	public void addPath(String sPath)
 	{
 		addPath(sPath,null,null);
@@ -472,8 +472,8 @@ public class Service : Cloneable, Serializable
 
 
 	/**
-	 * Adds a URI to the service with attributes
-	 */
+	* Adds a URI to the service with attributes
+	*/
 	public void addPath(String sPath, String match, Boolean select)
 	{
 		try {
@@ -485,8 +485,8 @@ public class Service : Cloneable, Serializable
 
 
 	/**
-	 * Returns the number of  URIs
-	 */
+	* Returns the number of  URIs
+	*/
 	public int getNumPaths()
 	{
 		return (paths == null) ? 0 : paths.size();
@@ -494,8 +494,8 @@ public class Service : Cloneable, Serializable
 
 
 	/**
-	 * Returns the authority id element value
-	 */
+	* Returns the authority id element value
+	*/
 	public String getProviderId()
 	{
 		return (providerID != null) ? providerID.getValue(): null;
@@ -503,8 +503,8 @@ public class Service : Cloneable, Serializable
 
 
 	/**
-	 * Sets the authority id element value
-	 */
+	* Sets the authority id element value
+	*/
 	public void setProviderId(String val)
 	{
 		providerID = new ProviderID(val);
@@ -512,8 +512,8 @@ public class Service : Cloneable, Serializable
 
 
 	/**
-	 * Sets the key info element
-	 */
+	* Sets the key info element
+	*/
 
 	public void setKeyInfo(KeyInfo oKeyInfo)
 	{
@@ -522,8 +522,8 @@ public class Service : Cloneable, Serializable
 
 
 	/**
-	 * Returns the key info element
-	 */
+	* Returns the key info element
+	*/
 	public KeyInfo getKeyInfo()
 	{
 		return keyInfo;
@@ -531,25 +531,25 @@ public class Service : Cloneable, Serializable
 
 
 	/**
-	 * Stores simple elements in the Service by Tag
-	 *
-	 * Here we are converting the String obj that is being passed into XML
-	 * Element before storing it into otherChildrenVectorMap Vector. The reason
-	 * we are doing this is, we need to preserve NameSpaces, and also support a scenario
-	 * where a Child Element under Service Element, can have Sub Elements. With this
-	 * it will preserve all the Text Nodes under the Sub Element.
-	 *
-	 * @param sTag - The tag name. Needs to be the Fully Qualified Name of the XML Element.
-	 *
-	 *                    For Example "usrns1:info1"  or "info1" (If not using NameSpaces)
-	 *
-	 * @param sTagValue - The tag values. Needs to be valid XML String like --
-	 *
-	 *            "<usrns1:info1 xmlns:usrns1=\"xri://$user1*schema/localinfo\" >Newton</usrns1:info1>"
+	* Stores simple elements in the Service by Tag
+	*
+	* Here we are converting the String obj that is being passed into XML
+	* Element before storing it into otherChildrenVectorMap Vector. The reason
+	* we are doing this is, we need to preserve NameSpaces, and also support a scenario
+	* where a Child Element under Service Element, can have Sub Elements. With this
+	* it will preserve all the Text Nodes under the Sub Element.
+	*
+	* @param sTag - The tag name. Needs to be the Fully Qualified Name of the XML Element.
+	*
+	*                    For Example "usrns1:info1"  or "info1" (If not using NameSpaces)
+	*
+	* @param sTagValue - The tag values. Needs to be valid XML String like --
+	*
+	*            "<usrns1:info1 xmlns:usrns1=\"xri://$user1*schema/localinfo\" >Newton</usrns1:info1>"
 
-	 * @return -- Boolean - -True if the String could be Successfully Parsed and Stored, Else it will return false
-	 *
-	 */
+	* @return -- Boolean - -True if the String could be Successfully Parsed and Stored, Else it will return false
+	*
+	*/
 	public bool setOtherTagValues(String sTag, String sTagValue)
 	{
 		String xmlStr =
@@ -588,10 +588,10 @@ public class Service : Cloneable, Serializable
 
 
 	/**
-	 * Returns unspecified simple elements in the Service by Tag
-	 * @param sTag - The tag name to get values for
-	 * @return a vector of text values whose element tag names match sTag
-	 */
+	* Returns unspecified simple elements in the Service by Tag
+	* @param sTag - The tag name to get values for
+	* @return a vector of text values whose element tag names match sTag
+	*/
 	public Vector getOtherTagValues(String sTag)
 	{
 		return (Vector) otherChildrenVectorMap.get(sTag);
@@ -631,12 +631,12 @@ public class Service : Cloneable, Serializable
 
 
 	/**
-	 * This method will make DOM using the specified document.  If any DOM state
-	 * has been stored with the obj, it will not be used in this method.
-	 * This method generates a reference-free copy of new DOM.
-	 * 
-	 * @param oDoc - The document to use for generating DOM
-	 */
+	* This method will make DOM using the specified document.  If any DOM state
+	* has been stored with the obj, it will not be used in this method.
+	* This method generates a reference-free copy of new DOM.
+	* 
+	* @param oDoc - The document to use for generating DOM
+	*/
 	public Node toDOM(Document oDoc)
 	{
 		return toDOM(oDoc, false);
@@ -644,13 +644,13 @@ public class Service : Cloneable, Serializable
 
 
 	/**
-	 * This method will make DOM using the specified document.  If any DOM state
-	 * has been stored with the obj, it will not be used in this method.
-	 * This method generates a reference-free copy of new DOM.
-	 * 
-	 * @param doc - The document to use for generating DOM
-	 * @param wantFiltered - If true, the URIs will be sorted according to priority
-	 */
+	* This method will make DOM using the specified document.  If any DOM state
+	* has been stored with the obj, it will not be used in this method.
+	* This method generates a reference-free copy of new DOM.
+	* 
+	* @param doc - The document to use for generating DOM
+	* @param wantFiltered - If true, the URIs will be sorted according to priority
+	*/
 	public Node toDOM(Document doc, bool wantFiltered)
 	{
 		Element elem =
@@ -742,8 +742,8 @@ public class Service : Cloneable, Serializable
 
 
 	/**
-	 * Returns formatted obj.  Do not use if signature needs to be preserved.
-	 */
+	* Returns formatted obj.  Do not use if signature needs to be preserved.
+	*/
 	public String toString()
 	{
 		return dump();
@@ -751,9 +751,9 @@ public class Service : Cloneable, Serializable
 
 
 	/**
-	 * Returns obj as a formatted XML string.
-	 * @param sTab - The characters to prepend before each new line
-	 */
+	* Returns obj as a formatted XML string.
+	* @param sTab - The characters to prepend before each new line
+	*/
 	public String dump()
 	{
 		Document doc = new DocumentImpl();
@@ -765,56 +765,56 @@ public class Service : Cloneable, Serializable
 
 
 	/**
-	 * @return Returns the priority.
-	 */
+	* @return Returns the priority.
+	*/
 	public Integer getPriority() {
 		return priority;
 	}
 
 
 	/**
-	 * @param priority The priority to set.
-	 */
+	* @param priority The priority to set.
+	*/
 	public void setPriority(Integer priority) {
 		this.priority = priority;
 	}
 
 
 	/**
-	 * @param priority The priority to set.
-	 */
+	* @param priority The priority to set.
+	*/
 	public void setPriority(String priority) {
 		this.priority = new Integer(priority);
 	}
 
 
 	/**
-	 * @return Returns the mediaTypes.
-	 */
+	* @return Returns the mediaTypes.
+	*/
 	public List getMediaTypes() {
 		return mediaTypes;
 	}
 
 
 	/**
-	 * @return Returns the otherChildrenVectorMap.
-	 */
+	* @return Returns the otherChildrenVectorMap.
+	*/
 	public HashMap getOtherChildrenVectorMap() {
 		return otherChildrenVectorMap;
 	}
 
 
 	/**
-	 * @return Returns the paths.
-	 */
+	* @return Returns the paths.
+	*/
 	public List getPaths() {
 		return paths;
 	}
 
 
 	/**
-	 * @return Returns the types.
-	 */
+	* @return Returns the types.
+	*/
 	public List getTypes() {
 		return types;
 	}
@@ -839,8 +839,8 @@ public class Service : Cloneable, Serializable
 
 
 	/**
-	 * @param prioritizedURIs The prioritizedURIs to set.
-	 */
+	* @param prioritizedURIs The prioritizedURIs to set.
+	*/
 	public void setPrioritizedURIs(PrioritizedList prioritizedURIs) {
 		this.prioritizedURIs = prioritizedURIs;
 	}
@@ -905,40 +905,40 @@ public class Service : Cloneable, Serializable
 
 
 	/**
-	 * @param uris The uris to set.
-	 */
+	* @param uris The uris to set.
+	*/
 	public void setURIs(List uris) {
 		this.uris = uris;
 	}
 
 
 	/**
-	 * @param mediaTypes The mediaTypes to set.
-	 */
+	* @param mediaTypes The mediaTypes to set.
+	*/
 	public void setMediaTypes(List mediaTypes) {
 		this.mediaTypes = mediaTypes;
 	}
 
 
 	/**
-	 * @param paths The paths to set.
-	 */
+	* @param paths The paths to set.
+	*/
 	public void setPaths(List paths) {
 		this.paths = paths;
 	}
 
 
 	/**
-	 * @param types The types to set.
-	 */
+	* @param types The types to set.
+	*/
 	public void setTypes(List types) {
 		this.types = types;
 	}
 
 	
 	/**
-	 * @return Returns a copy of the collection of Refs in the order as it appears in the original XRD
-	 */
+	* @return Returns a copy of the collection of Refs in the order as it appears in the original XRD
+	*/
 	public Vector getRefs() {
 		return (Vector)refs.clone();
 	}
@@ -969,8 +969,8 @@ public class Service : Cloneable, Serializable
 	
 
 	/**
-	 * @return Returns a copy of the collection of Redirects in the order as it appears in the original XRD
-	 */
+	* @return Returns a copy of the collection of Redirects in the order as it appears in the original XRD
+	*/
 	public Vector getRedirects() {
 		return (Vector)redirects.clone();
 	}
@@ -1052,4 +1052,5 @@ public class Service : Cloneable, Serializable
 
 		return(true);
 	}
+}
 }

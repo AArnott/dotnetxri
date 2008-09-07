@@ -1,23 +1,23 @@
 /*
- * Copyright 2005 OpenXRI Foundation
- * Subsequently ported and altered by Andrew Arnott
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+* Copyright 2005 OpenXRI Foundation
+* Subsequently ported and altered by Andrew Arnott
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
 
 using System.Text;
 
-package org.openxri.xml;
+namespace DotNetXri.Client.Xml {
 
 using java.io.ByteArrayInputStream;
 using java.io.IOException;
@@ -56,12 +56,12 @@ using org.xml.sax.SAXException;
 
 
 /**
- * This class describes the XRD XML element used for XRI Authority
- * resolution.
- *
- * @author =chetan
- * @author =wil
- */
+* This class describes the XRD XML element used for XRI Authority
+* resolution.
+*
+* @author =chetan
+* @author =wil
+*/
 public class XRD : Cloneable, Serializable
 {
 	
@@ -117,8 +117,8 @@ public class XRD : Cloneable, Serializable
 	
 	
 	/**
-	 * Constructs an empty XRD
-	 */
+	* Constructs an empty XRD
+	*/
 	public XRD()
 	{
 		reset();
@@ -126,8 +126,8 @@ public class XRD : Cloneable, Serializable
 
 	
 	/**
-	 * This method resets the state of the XRD.
-	 */
+	* This method resets the state of the XRD.
+	*/
 	public void reset()
 	{
 		xmlID        = "";
@@ -163,8 +163,8 @@ public class XRD : Cloneable, Serializable
 
 
 	/**
-	 * Clone this obj
-	 */
+	* Clone this obj
+	*/
 	public Object clone()
 	{
 		XRD x = new XRD();
@@ -224,11 +224,11 @@ public class XRD : Cloneable, Serializable
 	
 	
 	/**
-	 *  This method creates the XRD from DOM.  It optionally keeps a
-	 * pointer to the DOM.
-	 * @param oElem - The DOM to create the obj from
-	 * @param bKeepDOM - If true, will keep a copy of the DOM with the obj
-	 */
+	*  This method creates the XRD from DOM.  It optionally keeps a
+	* pointer to the DOM.
+	* @param oElem - The DOM to create the obj from
+	* @param bKeepDOM - If true, will keep a copy of the DOM with the obj
+	*/
 	public XRD(Element oElem, bool bKeepDOM) throws URISyntaxException, ParseException
 	{
 		if (bKeepDOM) {
@@ -241,8 +241,8 @@ public class XRD : Cloneable, Serializable
 
 
 	/**
-	 * Constructs XRD from a String
-	 */
+	* Constructs XRD from a String
+	*/
 	public static XRD parseXRD (String xmlStr, bool bKeepDOM)
 	throws URISyntaxException, ParseException
 	{
@@ -281,9 +281,9 @@ public class XRD : Cloneable, Serializable
 
 
 	/**
-	 * This method populates the obj from DOM.  It does not keep a
-	 * copy of the DOM around.  Whitespace information is lost in this process.
-	 */
+	* This method populates the obj from DOM.  It does not keep a
+	* copy of the DOM around.  Whitespace information is lost in this process.
+	*/
 	public void fromDOM(Element oElem) throws URISyntaxException, ParseException
 	{
 		reset();
@@ -398,12 +398,12 @@ public class XRD : Cloneable, Serializable
 
 
 	/**
-	 * Serializes the DOM associated with this XRD.  Will create DOM
-	 * if no DOM is already stored.
-	 * @param bIndent - whether or not to indent the XML.  If true will break
-	 * signature.
-	 * @param bOmitXMLDeclaration - whether or not to omit the XML preamble
-	 */
+	* Serializes the DOM associated with this XRD.  Will create DOM
+	* if no DOM is already stored.
+	* @param bIndent - whether or not to indent the XML.  If true will break
+	* signature.
+	* @param bOmitXMLDeclaration - whether or not to omit the XML preamble
+	*/
 	public String serializeDOM(bool bIndent, bool bOmitXMLDeclaration)
 	{
 		getDOM();
@@ -412,9 +412,9 @@ public class XRD : Cloneable, Serializable
 
 
 	/**
-	 * Returns obj as a formatted XML string.
-	 * @param sTab - The characters to prepend before each new line
-	 */
+	* Returns obj as a formatted XML string.
+	* @param sTab - The characters to prepend before each new line
+	*/
 	public String toString()
 	{
 		Document doc = new DocumentImpl();
@@ -425,9 +425,9 @@ public class XRD : Cloneable, Serializable
 
 
 	/**
-	 * Returns this XRD with only the selected services (filtered and sorted) as XML.
-	 * @return
-	 */
+	* Returns this XRD with only the selected services (filtered and sorted) as XML.
+	* @return
+	*/
 	public String toResultString()
 	{
 		Document doc = new DocumentImpl();
@@ -439,9 +439,9 @@ public class XRD : Cloneable, Serializable
 
 
 	/**
-	 * This method returns DOM stored with this obj.  It may be cached and
-	 * there is no guarantee as to which document it was created from
-	 */
+	* This method returns DOM stored with this obj.  It may be cached and
+	* there is no guarantee as to which document it was created from
+	*/
 	public Element getDOM()
 	{
 		if (moElem == null)
@@ -455,10 +455,10 @@ public class XRD : Cloneable, Serializable
 
 
 	/**
-	 *  This method will import an XRD from DOM, and hold on to it, as
-	 * retrievable by getDOM.  The fromDOM method, on the otherhand, will not keep
-	 * a copy of the DOM.
-	 */
+	*  This method will import an XRD from DOM, and hold on to it, as
+	* retrievable by getDOM.  The fromDOM method, on the otherhand, will not keep
+	* a copy of the DOM.
+	*/
 	public void setDOM(Element oElem)
 	throws URISyntaxException, ParseException
 	{
@@ -468,9 +468,9 @@ public class XRD : Cloneable, Serializable
 
 
 	/**
-	 * This method resets any DOM state in the XRI Descriptor.  It is useful for
-	 * keeping memory consumption low.
-	 */
+	* This method resets any DOM state in the XRI Descriptor.  It is useful for
+	* keeping memory consumption low.
+	*/
 	public void clearDOM()
 	{
 		moElem = null;
@@ -478,14 +478,14 @@ public class XRD : Cloneable, Serializable
 
 
 	/**
-	 *  This method create a DOM using the specified document.
-	 *  If the <code>wantFiltered</code> argument is true, the returned
-	 *  document will have all prioritized elements sorted and
-	 *  only selected services are returned.
-	 *  
-	 * @param doc - The document to use for generating DOM
-	 * @param wantFiltered - Get sorted+filtered Refs and Services
-	 */
+	*  This method create a DOM using the specified document.
+	*  If the <code>wantFiltered</code> argument is true, the returned
+	*  document will have all prioritized elements sorted and
+	*  only selected services are returned.
+	*  
+	* @param doc - The document to use for generating DOM
+	* @param wantFiltered - Get sorted+filtered Refs and Services
+	*/
 	public Element toDOM(Document doc, bool wantFiltered)
 	{
 		if (doc == null)
@@ -623,11 +623,11 @@ public class XRD : Cloneable, Serializable
 
 
 	/**
-	 *  This method will make DOM using the specified document.  If any DOM state
-	 * has been stored with the obj, it will not be used in this method.
-	 * This method generates a reference-free copy of new DOM.
-	 * @param doc - The document to use for generating DOM
-	 */
+	*  This method will make DOM using the specified document.  If any DOM state
+	* has been stored with the obj, it will not be used in this method.
+	* This method generates a reference-free copy of new DOM.
+	* @param doc - The document to use for generating DOM
+	*/
 	public Element toDOM(Document doc)
 	{
 		return toDOM(doc, false);
@@ -635,25 +635,25 @@ public class XRD : Cloneable, Serializable
 
 
 	/**
-	 * Stores simple elements in the Service by Tag
-	 *
-	 * Here we are converting the String obj that is being passed into XML
-	 * Element before storing it into moOtherChildrenVectorsMap Vector. The reason
-	 * we are doing this is, we need to preserve NameSpaces, and also support a scenario
-	 * where a Child Element under Service Element, can have Sub Elements. With this
-	 * it will preserve all the Text Nodes under the Sub Element.
-	 *
-	 * @param sTag - The tag name. Needs to be the Fully Qualified Name of the XML Element.
-	 *
-	 *                    For Example "usrns1:info1"  or "info1" (If not using NameSpaces)
-	 *
-	 * @param sTagValue - The tag values. Needs to be valid XML String like --
-	 *
-	 *            "<usrns1:info1 xmlns:usrns1=\"xri://$user1*schema/localinfo\" >Newton</usrns1:info1>"
+	* Stores simple elements in the Service by Tag
+	*
+	* Here we are converting the String obj that is being passed into XML
+	* Element before storing it into moOtherChildrenVectorsMap Vector. The reason
+	* we are doing this is, we need to preserve NameSpaces, and also support a scenario
+	* where a Child Element under Service Element, can have Sub Elements. With this
+	* it will preserve all the Text Nodes under the Sub Element.
+	*
+	* @param sTag - The tag name. Needs to be the Fully Qualified Name of the XML Element.
+	*
+	*                    For Example "usrns1:info1"  or "info1" (If not using NameSpaces)
+	*
+	* @param sTagValue - The tag values. Needs to be valid XML String like --
+	*
+	*            "<usrns1:info1 xmlns:usrns1=\"xri://$user1*schema/localinfo\" >Newton</usrns1:info1>"
 	
-	 * @return -- Boolean - -True if the String could be Successfully Parsed and Stored, Else it will return false
-	 *
-	 */
+	* @return -- Boolean - -True if the String could be Successfully Parsed and Stored, Else it will return false
+	*
+	*/
 	public bool setOtherTagValues(String sTag, String sTagValue)
 	{
 		String xmlStr =
@@ -688,10 +688,10 @@ public class XRD : Cloneable, Serializable
 
 
 	/**
-	 * Returns unspecified simple elements in the Service by Tag
-	 * @param sTag - The tag name to get values for
-	 * @return a vector of text values whose element tag names match sTag
-	 */
+	* Returns unspecified simple elements in the Service by Tag
+	* @param sTag - The tag name to get values for
+	* @return a vector of text values whose element tag names match sTag
+	*/
 	public Vector getOtherTagValues(String sTag)
 	{
 		return (Vector) moOtherChildrenVectorsMap.get(sTag);
@@ -730,9 +730,9 @@ public class XRD : Cloneable, Serializable
 	}
 
 	/**
-	 * Returns the id attribute
-	 * @return String The authority id element
-	 */
+	* Returns the id attribute
+	* @return String The authority id element
+	*/
 	public String getXmlID()
 	{
 		return xmlID;
@@ -741,8 +741,8 @@ public class XRD : Cloneable, Serializable
 
 
 	/**
-	 * Sets the id attribute
-	 */
+	* Sets the id attribute
+	*/
 	public void setXmlID(String sVal)
 	{
 		xmlID = sVal;
@@ -750,8 +750,8 @@ public class XRD : Cloneable, Serializable
 
 
 	/**
-	 * Generates a new id attribute and sets it
-	 */
+	* Generates a new id attribute and sets it
+	*/
 	public void genXmlID()
 	{
 		xmlID = org.openxri.util.XMLUtils.genXmlID();
@@ -759,8 +759,8 @@ public class XRD : Cloneable, Serializable
 
 
 	/**
-	 * Returns the provider id element value
-	 */
+	* Returns the provider id element value
+	*/
 	public String getProviderID()
 	{
 		return (providerID != null) ? providerID.getValue(): null;
@@ -768,8 +768,8 @@ public class XRD : Cloneable, Serializable
 
 
 	/**
-	 * Sets the provider id element value
-	 */
+	* Sets the provider id element value
+	*/
 	public void setProviderID(String sVal)
 	{
 		providerID = new ProviderID(sVal);
@@ -777,8 +777,8 @@ public class XRD : Cloneable, Serializable
 
 
 	/**
-	 * Returns the query element value
-	 */
+	* Returns the query element value
+	*/
 	public String getQuery()
 	{
 		return (query != null)? query.getValue(): null;
@@ -786,8 +786,8 @@ public class XRD : Cloneable, Serializable
 	
 	
 	/**
-	 * Sets the query element value
-	 */
+	* Sets the query element value
+	*/
 	public void setQuery(String sVal)
 	{
 		if (query != null)
@@ -798,8 +798,8 @@ public class XRD : Cloneable, Serializable
 	
 	
 	/**
-	 * Returns the expires element value
-	 */
+	* Returns the expires element value
+	*/
 	public Date getExpires()
 	{
 		return (expires !=null)? expires.getDate(): null;
@@ -807,8 +807,8 @@ public class XRD : Cloneable, Serializable
 	
 	
 	/**
-	 * Sets the expires element value
-	 */
+	* Sets the expires element value
+	*/
 	public void setExpires(Date d)
 	{
 		if (expires != null)
@@ -845,29 +845,29 @@ public class XRD : Cloneable, Serializable
 	
 	
 	/**
-	 * @deprecated
-	 */
+	* @deprecated
+	*/
 	public int getNumCanonicalids(){
 		return canonicalIDs.size();
 	}
 
 	/**
-	 * @deprecated
-	 */
+	* @deprecated
+	*/
 	public CanonicalID getCanonicalidAt(int n){
 		return (CanonicalID) canonicalIDs.get(n);
 	}
 
 	/**
-	 * @deprecated
-	 */
+	* @deprecated
+	*/
 	public void addCanonicalID(CanonicalID canonicalId) {		
 		canonicalIDs.add(canonicalId);
 	}
 
 	/**
-	 * Sets the CanonicalID
-	 */
+	* Sets the CanonicalID
+	*/
 	public void setCanonicalID(CanonicalID cid) {
 		canonicalIDs.clear();
 		if (cid != null)
@@ -875,8 +875,8 @@ public class XRD : Cloneable, Serializable
 	}
 
 	/**
-	 * Gets the CanonicalID
-	 */
+	* Gets the CanonicalID
+	*/
 	public CanonicalID getCanonicalID() {
 		if (canonicalIDs.size() > 0)
 			return (CanonicalID) canonicalIDs.get(0);
@@ -886,23 +886,23 @@ public class XRD : Cloneable, Serializable
 
 
 	/**
-	 * Sets the CanonicalEquivID
-	 */
+	* Sets the CanonicalEquivID
+	*/
 	public void setCanonicalEquivID(CanonicalEquivID ceid) {
 		canonicalEquivID = ceid;
 	}
 
 	/**
-	 * Gets the CanonicalEquivID
-	 */
+	* Gets the CanonicalEquivID
+	*/
 	public CanonicalEquivID getCanonicalEquivID() {
 		return canonicalEquivID;
 	}
 
 
 	/**
-	 * @return Returns a copy of the collection of Refs in the order as it appears in the original XRD
-	 */
+	* @return Returns a copy of the collection of Refs in the order as it appears in the original XRD
+	*/
 	public Vector getRefs() {
 		return (Vector)refs.clone();
 	}
@@ -931,8 +931,8 @@ public class XRD : Cloneable, Serializable
 
 
 	/**
-	 * @return Returns a copy of the collection of Redirects in the order as it appears in the original XRD
-	 */
+	* @return Returns a copy of the collection of Redirects in the order as it appears in the original XRD
+	*/
 	public Vector getRedirects() {
 		return (Vector)redirects.clone();
 	}
@@ -960,8 +960,8 @@ public class XRD : Cloneable, Serializable
 
 	
 	/**
-	 * Returns the number of services elements
-	 */
+	* Returns the number of services elements
+	*/
 	public int getNumServices()
 	{
 		return services.size();
@@ -969,8 +969,8 @@ public class XRD : Cloneable, Serializable
 	
 	
 	/**
-	 * Returns the service element at the specified index
-	 */
+	* Returns the service element at the specified index
+	*/
 	public Service getServiceAt(int n)
 	{
 		return (Service) services.get(n);
@@ -978,8 +978,8 @@ public class XRD : Cloneable, Serializable
 
 	
 	/**
-	 * Returns a vector of all the service elements
-	 */
+	* Returns a vector of all the service elements
+	*/
 	public ArrayList getPrioritizedServices()
 	{
 		return prioritizedServices.getList();
@@ -987,8 +987,8 @@ public class XRD : Cloneable, Serializable
 	
 	
 	/**
-	 * Adds a service element
-	 */
+	* Adds a service element
+	*/
 	public void addService(Service service)
 	{
 		services.add(service);
@@ -998,8 +998,8 @@ public class XRD : Cloneable, Serializable
 	
 	
 	/**
-	 * Returns the number of services elements
-	 */
+	* Returns the number of services elements
+	*/
 	public int getNumTypes()
 	{
 		return types.size();
@@ -1007,8 +1007,8 @@ public class XRD : Cloneable, Serializable
 	
 	
 	/**
-	 * Returns the Type element at the specified index
-	 */
+	* Returns the Type element at the specified index
+	*/
 	public XRDType getTypeAt(int n)
 	{
 		return (XRDType) types.get(n);
@@ -1016,8 +1016,8 @@ public class XRD : Cloneable, Serializable
 
 	
 	/**
-	 * Returns the SAML assertion
-	 */
+	* Returns the SAML assertion
+	*/
 	public Assertion getSAMLAssertion()
 	{
 		return samlAssertion;
@@ -1025,8 +1025,8 @@ public class XRD : Cloneable, Serializable
 	
 	
 	/**
-	 * Sets the SAML assertion
-	 */
+	* Sets the SAML assertion
+	*/
 	public void setSAMLAssertion(Assertion oSAMLAssertion)
 	{
 		samlAssertion = oSAMLAssertion;
@@ -1034,12 +1034,12 @@ public class XRD : Cloneable, Serializable
 	
 	
 	/**
-	 * This will sign the XRD using the provided Private Key.  The
-	 * signature will be kept in DOM.  DOM will be created if it doesn't exist
-	 * already.
-	 * @param oKey - The private key to sign the descriptor with.
-	 * @throws XMLSecurityException
-	 */
+	* This will sign the XRD using the provided Private Key.  The
+	* signature will be kept in DOM.  DOM will be created if it doesn't exist
+	* already.
+	* @param oKey - The private key to sign the descriptor with.
+	* @throws XMLSecurityException
+	*/
 	public void sign(PrivateKey oKey)
 	throws XMLSecurityException
 	{
@@ -1110,11 +1110,11 @@ public class XRD : Cloneable, Serializable
 	
 	
 	/**
-	 * This will verify the XRD against the given public key.  DOM
-	 * must already be associated with this descriptor.
-	 * @param oPubKey
-	 * @throws XMLSecurityException
-	 */
+	* This will verify the XRD against the given public key.  DOM
+	* must already be associated with this descriptor.
+	* @param oPubKey
+	* @throws XMLSecurityException
+	*/
 	public void verifySignature(PublicKey oPubKey)
 	throws XMLSecurityException
 	{
@@ -1221,8 +1221,8 @@ public class XRD : Cloneable, Serializable
 	
 	
 	/**
-	 * Checks if this XRD is valid based on the optional Expires element
-	 */
+	* Checks if this XRD is valid based on the optional Expires element
+	*/
 	public bool isValid()
 	{
 		// check to make sure the descriptor is not expired
@@ -1240,15 +1240,15 @@ public class XRD : Cloneable, Serializable
 	}
 	
 	/**
-	 * @return Returns the status.
-	 */
+	* @return Returns the status.
+	*/
 	public Status getStatus() {
 		return status;
 	}
 	
 	/**
-	 * @return Returns the ServerStatus code.
-	 */
+	* @return Returns the ServerStatus code.
+	*/
 	public String getServerStatusCode()
 	{
 		if (serverStatus == null)
@@ -1258,24 +1258,24 @@ public class XRD : Cloneable, Serializable
 	
 	
 	/**
-	 * Sets the ServerStatus
-	 * @param serverStatus
-	 */
+	* Sets the ServerStatus
+	* @param serverStatus
+	*/
 	public void setServerStatus(ServerStatus serverStatus) {
 		this.serverStatus = serverStatus;
 	}
 	
 	/**
-	 * @return Returns the ServerStatus.
-	 */
+	* @return Returns the ServerStatus.
+	*/
 	public ServerStatus getServerStatus() {
 		return serverStatus;
 	}
 	
 	
 	/**
-	 * @return Returns the status code.
-	 */
+	* @return Returns the status code.
+	*/
 	public String getStatusCode()
 	{
 		if (status == null)
@@ -1286,8 +1286,8 @@ public class XRD : Cloneable, Serializable
 	
 	
 	/**
-	 * @return Returns a copy of the collection of services as it appears in the original XRD
-	 */
+	* @return Returns a copy of the collection of services as it appears in the original XRD
+	*/
 	public Vector getServices() {
 		return (Vector)services.clone();
 	}
@@ -1347,10 +1347,11 @@ public class XRD : Cloneable, Serializable
 	}
 	
 	/**
-	 * @return Returns the selectedServices.
-	 */
+	* @return Returns the selectedServices.
+	*/
 	public PrioritizedList getSelectedServices() {
 		return selectedServices;
 	}
 	
+}
 }

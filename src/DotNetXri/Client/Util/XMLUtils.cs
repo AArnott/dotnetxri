@@ -14,34 +14,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
 */
-package org.openxri.util;
+namespace DotNetXri.Client.Util {
 
-using org.doomdark.uuid.UUIDGenerator;
+	/*
+	********************************************************************************
+	* Class: XMLUtils
+	********************************************************************************
+	*/
+	/**
+ * Provides XML Utilities.
+ * @author =chetan
+ */
+	public class XMLUtils {
+		private static UUIDGenerator soGenerator = UUIDGenerator.getInstance();
 
+		/*
+		****************************************************************************
+		* genXmlID()
+		****************************************************************************
+		*/
+		/**
+	 * Generates a new Time-based UUID that can be used in an XML id attribute.
+	 */
+		public static String genXmlID() {
+			return soGenerator.generateTimeBasedUUID().toString();
 
-/*
-********************************************************************************
-* Class: XMLUtils
-********************************************************************************
-*/ /**
-* Provides XML Utilities.
-* @author =chetan
-*/
-public class XMLUtils
-{
-    private static UUIDGenerator soGenerator = UUIDGenerator.getInstance();
+		} // genXmlID()
 
-    /*
-    ****************************************************************************
-    * genXmlID()
-    ****************************************************************************
-    */ /**
-    * Generates a new Time-based UUID that can be used in an XML id attribute.
-    */
-    public static String genXmlID()
-    {
-        return soGenerator.generateTimeBasedUUID().toString();
-
-    } // genXmlID()
-
-} // Class: XMLUtils
+	} // Class: XMLUtils
+}

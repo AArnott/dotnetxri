@@ -1,4 +1,4 @@
-package org.openxri.xml;
+namespace DotNetXri.Client.Xml {
 
 using java.net.URISyntaxException;
 
@@ -14,9 +14,9 @@ public class Redirect :SimpleXMLElement {
 	}
 
 	/**
-	 * This method constructs the obj from DOM.  It does not keep a
-	 * copy of the DOM around.  Whitespace information is lost in this process.
-	 */
+	* This method constructs the obj from DOM.  It does not keep a
+	* copy of the DOM around.  Whitespace information is lost in this process.
+	*/
 	public Redirect(Element oElem) throws URISyntaxException : base(Tags.TAG_REDIRECT) {
 		fromXML(oElem);
 		
@@ -27,8 +27,8 @@ public class Redirect :SimpleXMLElement {
 	}
 
 	/**
-	 * @return Returns the priority.
-	 */
+	* @return Returns the priority.
+	*/
 	public Integer getPriority() {
 		String val = getAttributeValue(Tags.ATTR_PRIORITY);
 		if (val == null || val.equals(""))
@@ -45,8 +45,8 @@ public class Redirect :SimpleXMLElement {
 	}
 
 	/**
-	 * @return Returns the priority.
-	 */
+	* @return Returns the priority.
+	*/
 	public String getAppend() {
 		String val = getAttributeValue(Tags.ATTR_APPEND);
 		return val;
@@ -59,4 +59,5 @@ public class Redirect :SimpleXMLElement {
 		else
 			this.addAttribute(Tags.ATTR_APPEND, append);
 	}
+}
 }

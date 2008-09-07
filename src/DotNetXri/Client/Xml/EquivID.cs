@@ -1,4 +1,4 @@
-package org.openxri.xml;
+namespace DotNetXri.Client.Xml {
 
 using java.net.URISyntaxException;
 
@@ -14,9 +14,9 @@ public class EquivID :SimpleXMLElement {
 	}
 
 	/**
-	 * This method constructs the obj from DOM.  It does not keep a
-	 * copy of the DOM around.  Whitespace information is lost in this process.
-	 */
+	* This method constructs the obj from DOM.  It does not keep a
+	* copy of the DOM around.  Whitespace information is lost in this process.
+	*/
 	public EquivID(Element elem) throws URISyntaxException
 	: base(Tags.TAG_EQUIVID) {
 		fromXML(elem);
@@ -28,8 +28,8 @@ public class EquivID :SimpleXMLElement {
 	}
 
 	/**
-	 * @return Returns the priority.
-	 */
+	* @return Returns the priority.
+	*/
 	public Integer getPriority() {
 		String val = getAttributeValue(Tags.ATTR_PRIORITY);
 		if (val == null || val.equals(""))
@@ -48,4 +48,5 @@ public class EquivID :SimpleXMLElement {
 			this.addAttribute(Tags.ATTR_PRIORITY, priority.toString());
 		}
 	}
+}
 }

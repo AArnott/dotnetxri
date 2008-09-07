@@ -1,4 +1,5 @@
-package org.openxri.resolve;
+namespace DotNetXri.Client.Resolve {
+
 
 using java.util.ArrayList;
 
@@ -89,4 +90,5 @@ public class SampleResolver {
 	    System.err.println("Full error XRDS: " + errXRDS.toString());
 	  }
 	}
+}
 }

@@ -14,7 +14,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
 */
-package org.openxri.util;
+namespace DotNetXri.Client.Util {
+
 
 using java.io.IOException;
 using java.net.HttpURLConnection;
@@ -181,3 +182,4 @@ public class IO
     } // getConnectionToURI()
 
 } // Class: IO
+}

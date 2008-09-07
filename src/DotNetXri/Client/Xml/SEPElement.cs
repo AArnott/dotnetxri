@@ -1,4 +1,4 @@
-package org.openxri.xml;
+namespace DotNetXri.Client.Xml {
 
 using java.io.Serializable;
 
@@ -10,28 +10,28 @@ using org.w3c.dom.Node;
 
 public abstract class SEPElement : Cloneable, Serializable {
 
-    protected static org.apache.commons.logging.Log soLog =
-        org.apache.commons.logging.LogFactory.getLog(
-        		XRD.class.getName());
+	protected static org.apache.commons.logging.Log soLog =
+		org.apache.commons.logging.LogFactory.getLog(
+				XRD.class.getName());
 
 	/**
-	 * Default value of the match attribute if it was omitted or its
-	 * value is null. This is an alias for <code>MATCH_ATTR_CONTENT</code>
-	 * as defined in xri-resolution-v2.0-wd-10-ed-08.
-	 */  
+	* Default value of the match attribute if it was omitted or its
+	* value is null. This is an alias for <code>MATCH_ATTR_CONTENT</code>
+	* as defined in xri-resolution-v2.0-wd-10-ed-08.
+	*/  
 	public const String MATCH_ATTR_DEFAULT  = "default";
 	public const String MATCH_ATTR_ANY      = "any";
 	public const String MATCH_ATTR_NON_NULL = "non-null";
 	public const String MATCH_ATTR_NULL     = "null";
 	
 	/**
-	 * @deprecated
-	 */
+	* @deprecated
+	*/
 	public const String MATCH_ATTR_CONTENT  = "content";
 
 	/**
-	 * @deprecated
-	 */
+	* @deprecated
+	*/
 	public const String MATCH_ATTR_NONE     = "none";
 
 
@@ -39,9 +39,9 @@ public abstract class SEPElement : Cloneable, Serializable {
 	public const String  SELECT_ATTR_FALSE = "false";
 
 	/**
-	 * Default value of the select attribute is FALSE if it was omitted
-	 * in the parent element.
-	 */
+	* Default value of the select attribute is FALSE if it was omitted
+	* in the parent element.
+	*/
 	public const String  DEFAULT_SELECT_ATTR = SELECT_ATTR_FALSE;
 	public const bool DEFAULT_SELECT_ATTR_BOOL = false;
 
@@ -50,16 +50,16 @@ public abstract class SEPElement : Cloneable, Serializable {
 	private String  value; // represents the value of this rule
 
 	/**
-	 * Creates a default <code>SEPElement</code> obj
-	 */
+	* Creates a default <code>SEPElement</code> obj
+	*/
 	public SEPElement()
 	{
 		this("", null, null);
 	}
 
 	/**
-	 * Creates a  <code>SEPElement with required attributes</code> obj with the given value
-	 */
+	* Creates a  <code>SEPElement with required attributes</code> obj with the given value
+	*/
 	public SEPElement( String value, String match, Boolean select )
 	{
 		setMatch(match);
@@ -68,24 +68,24 @@ public abstract class SEPElement : Cloneable, Serializable {
 	}
 
 	/**
-	 * Gets the "match" attribute of this Type/MediaType/Path rule
-	 */
+	* Gets the "match" attribute of this Type/MediaType/Path rule
+	*/
 	public String getMatch()
 	{
 		return this.match;
 	}
 
 	/**
-	 * Sets the "match" attribute of this Type/MediaType/Path rule
-	 */
+	* Sets the "match" attribute of this Type/MediaType/Path rule
+	*/
 	public void setMatch( String match )
 	{
 		this.match = match;
 	}
 
 	/**
-	 * Gets the "select" attribute of this Type/MediaType/Path rule
-	 */
+	* Gets the "select" attribute of this Type/MediaType/Path rule
+	*/
 	public bool getSelect()
 	{
 		if ( this.select != null )
@@ -99,26 +99,26 @@ public abstract class SEPElement : Cloneable, Serializable {
 	}
 
 	/**
-	 * Sets the "select" attribute of this Type/MediaType/Path rule
-	 */
+	* Sets the "select" attribute of this Type/MediaType/Path rule
+	*/
 	public void setSelect( bool select )
 	{
 		this.select = Boolean.valueOf(select);
 	}
 
 	/**
-	 * Sets the "select" attribute of this Type/MediaType/Path rule
-	 */
+	* Sets the "select" attribute of this Type/MediaType/Path rule
+	*/
 	public void setSelect( Boolean select )
 	{
 		this.select = select;
 	}
 
 	/**
-	 * Sets the "select" attribute of this Type/MediaType/Path rule.
-	 * Interprets "true" (any case) or "1" as TRUE. Any other value
-	 * is considered FALSE.
-	 */
+	* Sets the "select" attribute of this Type/MediaType/Path rule.
+	* Interprets "true" (any case) or "1" as TRUE. Any other value
+	* is considered FALSE.
+	*/
 	public void setSelect( String select )
 	{
 		if (select == null)
@@ -130,16 +130,16 @@ public abstract class SEPElement : Cloneable, Serializable {
 	}
 
 	/**
-	 * Gets the value of this Type/MediaType/Path rule
-	 */
+	* Gets the value of this Type/MediaType/Path rule
+	*/
 	public String getValue()
 	{
 		return this.value;
 	}
 
 	/**
-	 * Sets the value of this Type/MediaType/Path rule
-	 */
+	* Sets the value of this Type/MediaType/Path rule
+	*/
 	public void setValue( String value )
 	{
 		this.value = (value == null)? "" : value;
@@ -178,17 +178,17 @@ public abstract class SEPElement : Cloneable, Serializable {
 		this.setValue(DOMUtils.getText(root));
 	}
 
-    protected String toString( String tag )
-    {
-            Document doc = new DocumentImpl();
-            Element elm = this.toXML(doc, tag);
-            doc.appendChild(elm);
-            return DOMUtils.toString(doc);
-    }
+	protected String toString( String tag )
+	{
+			Document doc = new DocumentImpl();
+			Element elm = this.toXML(doc, tag);
+			doc.appendChild(elm);
+			return DOMUtils.toString(doc);
+	}
 
-    public Object clone()throws CloneNotSupportedException {
-    	return base.clone();
-    }
+	public Object clone()throws CloneNotSupportedException {
+		return base.clone();
+	}
 
 	public bool equals(Object o) {
 
@@ -219,4 +219,5 @@ public abstract class SEPElement : Cloneable, Serializable {
 		
 		return(h);
 	}
+}
 }

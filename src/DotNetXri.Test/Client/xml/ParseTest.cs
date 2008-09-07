@@ -13,7 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
 */
-package org.openxri.xml;
+namespace DotNetXri.Client.Xml {
+
 
 using org.openxri.xml.Service;
 using org.openxri.xml.XRD;
@@ -284,3 +285,4 @@ public class ParseTest
     } // testSignedDescriptor()
 
 } // Class: ParseTest
+}

@@ -13,7 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
 */
-package org.openxri.resolve;
+namespace DotNetXri.Client.Resolve {
+
 
 using java.util.Random;
 using org.openxri.AuthorityPath;
@@ -261,3 +262,4 @@ public class CacheTest
     } // Class: StuffPruneThread
 
 } // Class: CacheTest
+}

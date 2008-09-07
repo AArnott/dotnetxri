@@ -15,10 +15,9 @@
  * limitations under the License.
 */
 
-using System.Text;
-
 namespace DotNetXri.Client.Tools {
 
+using System.Text;
 using java.net.URL;
 using java.net.URLConnection;
 using java.util.Iterator;

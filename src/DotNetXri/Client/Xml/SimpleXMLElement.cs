@@ -1,4 +1,4 @@
-package org.openxri.xml;
+namespace DotNetXri.Client.Xml {
 
 using java.io.Serializable;
 using java.util.Enumeration;
@@ -26,9 +26,9 @@ public abstract class SimpleXMLElement : Cloneable, Serializable {
 	}
 
 	/**
-	 * Creates a <code>SimpleXMLElement</code> obj with the given <code>tagname</code>
-	 * @param tagname
-	 */
+	* Creates a <code>SimpleXMLElement</code> obj with the given <code>tagname</code>
+	* @param tagname
+	*/
 	public SimpleXMLElement(String tagname)
 	{
 		reset(tagname);
@@ -50,16 +50,16 @@ public abstract class SimpleXMLElement : Cloneable, Serializable {
 		return tag;
 	}
 	/**
-	 * Gets the value of this Type/MediaType/Path rule
-	 */
+	* Gets the value of this Type/MediaType/Path rule
+	*/
 	public String getValue()
 	{
 		return this.value;
 	}
 
 	/**
-	 * Sets the value of this Type/MediaType/Path rule
-	 */
+	* Sets the value of this Type/MediaType/Path rule
+	*/
 	public void setValue( String value )
 	{
 		this.value = value;
@@ -87,13 +87,13 @@ public abstract class SimpleXMLElement : Cloneable, Serializable {
 	}
 
 	/**
-	 * Converts the <code>EppXriServiceEndpointRule</code> obj into an XML element
-	 *
-	 * @param doc the XML <code>Document</code> obj
-	 * @param tag the tag/element name for the <code>EppXriServiceEndpoint</code> obj
-	 *
-	 * @return an <code>Element</code> obj
-	 */
+	* Converts the <code>EppXriServiceEndpointRule</code> obj into an XML element
+	*
+	* @param doc the XML <code>Document</code> obj
+	* @param tag the tag/element name for the <code>EppXriServiceEndpoint</code> obj
+	*
+	* @return an <code>Element</code> obj
+	*/
 	public Element toXML( Document doc, String tag )
 	{
 		Element body = doc.createElement(tag);
@@ -120,14 +120,14 @@ public abstract class SimpleXMLElement : Cloneable, Serializable {
 		return toXML(doc,this.tag);
 	}
 	/**
-	 * Sets the members of this <code>EppXriServiceEndpointRule</code> obj from the given XML element.
-	 * The caller of this method must make sure that the root node is of
-	 * the EPP XRI sepRuleType.
-	 *
-	 * @param root root node for an <code>EppXriServiceEndpointRule</code> obj in
-	 *             XML format
-	 *
-	 */
+	* Sets the members of this <code>EppXriServiceEndpointRule</code> obj from the given XML element.
+	* The caller of this method must make sure that the root node is of
+	* the EPP XRI sepRuleType.
+	*
+	* @param root root node for an <code>EppXriServiceEndpointRule</code> obj in
+	*             XML format
+	*
+	*/
 	public void fromXML( Node root )
 	{	
 		if(root.getNodeType() == Node.ELEMENT_NODE){
@@ -194,4 +194,5 @@ public abstract class SimpleXMLElement : Cloneable, Serializable {
 		doc.appendChild(elm);
 		return DOMUtils.toString(doc);
 	}
+}
 }

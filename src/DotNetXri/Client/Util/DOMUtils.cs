@@ -17,7 +17,8 @@
 
 using System.Text;
 
-package org.openxri.util;
+namespace DotNetXri.Client.Util {
+
 
 using java.io.StringWriter;
 using java.text.ParseException;
@@ -356,3 +357,4 @@ public class DOMUtils
     }
 
 } // Class: DOMUtils
+}
