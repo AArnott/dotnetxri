@@ -1,66 +1,58 @@
 namespace DotNetXri.Client.Xml {
 
-using java.io.Serializable;
-
-using org.apache.xerces.dom.DocumentImpl;
-using org.openxri.util.DOMUtils;
-using org.w3c.dom.Document;
-using org.w3c.dom.Element;
-using org.w3c.dom.Node;
+using System.Xml;
 
 public abstract class SEPElement : Cloneable, Serializable {
 
-	protected static org.apache.commons.logging.Log soLog =
-		org.apache.commons.logging.LogFactory.getLog(
-				XRD.class.getName());
+	//protected static org.apache.commons.logging.Log soLog =
+	//    org.apache.commons.logging.LogFactory.getLog(
+	//            XRD.class.getName());
 
 	/**
 	* Default value of the match attribute if it was omitted or its
 	* value is null. This is an alias for <code>MATCH_ATTR_CONTENT</code>
 	* as defined in xri-resolution-v2.0-wd-10-ed-08.
 	*/  
-	public const String MATCH_ATTR_DEFAULT  = "default";
-	public const String MATCH_ATTR_ANY      = "any";
-	public const String MATCH_ATTR_NON_NULL = "non-null";
-	public const String MATCH_ATTR_NULL     = "null";
+	public const string MATCH_ATTR_DEFAULT  = "default";
+	public const string MATCH_ATTR_ANY      = "any";
+	public const string MATCH_ATTR_NON_NULL = "non-null";
+	public const string MATCH_ATTR_NULL     = "null";
 	
 	/**
 	* @deprecated
 	*/
-	public const String MATCH_ATTR_CONTENT  = "content";
+	public const string MATCH_ATTR_CONTENT  = "content";
 
 	/**
 	* @deprecated
 	*/
-	public const String MATCH_ATTR_NONE     = "none";
+	public const string MATCH_ATTR_NONE     = "none";
 
 
-	public const String  SELECT_ATTR_TRUE  = "true";
-	public const String  SELECT_ATTR_FALSE = "false";
+	public const string  SELECT_ATTR_TRUE  = "true";
+	public const string  SELECT_ATTR_FALSE = "false";
 
 	/**
 	* Default value of the select attribute is FALSE if it was omitted
 	* in the parent element.
 	*/
-	public const String  DEFAULT_SELECT_ATTR = SELECT_ATTR_FALSE;
+	public const string  DEFAULT_SELECT_ATTR = SELECT_ATTR_FALSE;
 	public const bool DEFAULT_SELECT_ATTR_BOOL = false;
 
-	private String  match; // null or one of the MATCH_ATTR_* constants
-	private Boolean select;
-	private String  value; // represents the value of this rule
+	private string  match; // null or one of the MATCH_ATTR_* constants
+	private bool? select;
+	private string  value; // represents the value of this rule
 
 	/**
 	* Creates a default <code>SEPElement</code> obj
 	*/
-	public SEPElement()
-	{
-		this("", null, null);
+	public SEPElement(): this("", null, null) {
 	}
 
 	/**
 	* Creates a  <code>SEPElement with required attributes</code> obj with the given value
 	*/
-	public SEPElement( String value, String match, Boolean select )
+	public SEPElement( string value, string match, bool? select )
 	{
 		setMatch(match);
 		setSelect(select);
@@ -70,7 +62,7 @@ public abstract class SEPElement : Cloneable, Serializable {
 	/**
 	* Gets the "match" attribute of this Type/MediaType/Path rule
 	*/
-	public String getMatch()
+	public string getMatch()
 	{
 		return this.match;
 	}
@@ -78,7 +70,7 @@ public abstract class SEPElement : Cloneable, Serializable {
 	/**
 	* Sets the "match" attribute of this Type/MediaType/Path rule
 	*/
-	public void setMatch( String match )
+	public void setMatch( string match )
 	{
 		this.match = match;
 	}
@@ -88,9 +80,9 @@ public abstract class SEPElement : Cloneable, Serializable {
 	*/
 	public bool getSelect()
 	{
-		if ( this.select != null )
+		if ( this.select.HasValue )
 		{
-			return this.select.booleanValue();
+			return this.select.Value;
 		}
 		else
 		{
@@ -101,15 +93,7 @@ public abstract class SEPElement : Cloneable, Serializable {
 	/**
 	* Sets the "select" attribute of this Type/MediaType/Path rule
 	*/
-	public void setSelect( bool select )
-	{
-		this.select = Boolean.valueOf(select);
-	}
-
-	/**
-	* Sets the "select" attribute of this Type/MediaType/Path rule
-	*/
-	public void setSelect( Boolean select )
+	public void setSelect( bool? select )
 	{
 		this.select = select;
 	}
@@ -119,20 +103,20 @@ public abstract class SEPElement : Cloneable, Serializable {
 	* Interprets "true" (any case) or "1" as TRUE. Any other value
 	* is considered FALSE.
 	*/
-	public void setSelect( String select )
+	public void setSelect( string select )
 	{
 		if (select == null)
 			this.select = null;
-		else if (select.equalsIgnoreCase("true") || select.equals("1"))
-			this.select = Boolean.TRUE;
+		else if (select.Equals("true", System.StringComparison.OrdinalIgnoreCase) || select.Equals("1"))
+			this.select = true;
 		else
-			this.select = Boolean.FALSE;
+			this.select = true;
 	}
 
 	/**
 	* Gets the value of this Type/MediaType/Path rule
 	*/
-	public String getValue()
+	public string getValue()
 	{
 		return this.value;
 	}
@@ -140,57 +124,58 @@ public abstract class SEPElement : Cloneable, Serializable {
 	/**
 	* Sets the value of this Type/MediaType/Path rule
 	*/
-	public void setValue( String value )
+	public void setValue( string value )
 	{
 		this.value = (value == null)? "" : value;
 	}
 
-	public Element toXML( Document doc, String tag )
+	public XmlElement toXML( XmlDocument doc, string tag )
 	{
-		Element body = doc.createElement(tag);
+		XmlElement body = doc.CreateElement(tag);
 
 		if( this.match != null ) {
-			body.setAttribute("match", this.match);
+			body.SetAttribute("match", this.match);
 		}
 
 		if( this.select != null ) {
-			body.setAttribute("select", this.select.toString());
+			body.SetAttribute("select", this.select.ToString());
 		}
 
 		if( this.value != null) {
-			body.appendChild(doc.createTextNode(this.value));
+			body.AppendChild(doc.CreateTextNode(this.value));
 		}
 
 		return body;
 	}
 
-	public void setFromXML( Node root )
+	public void setFromXML( XmlNode root )
 	{
-		Element el = (Element)root;
-		if (el.hasAttribute("match")) {
-			setMatch(el.getAttribute("match").trim());
+		XmlElement el = (XmlElement)root;
+		if (el.HasAttribute("match")) {
+			setMatch(el.GetAttribute("match").Trim());
 		}
 
-		if (el.hasAttribute("select")) {
-			setSelect(el.getAttribute("select").trim());
+		if (el.HasAttribute("select")) {
+			setSelect(el.GetAttribute("select").Trim());
 		}
 
-		this.setValue(DOMUtils.getText(root));
+		this.setValue(el.InnerText);
 	}
 
-	protected String toString( String tag )
+	protected string toString( string tag )
 	{
-			Document doc = new DocumentImpl();
-			Element elm = this.toXML(doc, tag);
-			doc.appendChild(elm);
-			return DOMUtils.toString(doc);
+			XmlDocument doc = new XmlDocument();
+			XmlElement elm = this.toXML(doc, tag);
+			doc.AppendChild(elm);
+			return doc.OuterXml;
 	}
 
-	public Object clone()throws CloneNotSupportedException {
-		return base.clone();
-	}
+	//public Object clone() //throws CloneNotSupportedException 
+	//{
+	//    return base.clone();
+	//}
 
-	public bool equals(Object o) {
+	public override bool Equals(object o) {
 
 		SEPElement other = (SEPElement) o;
 
@@ -198,13 +183,13 @@ public abstract class SEPElement : Cloneable, Serializable {
 		if (other == this) return(true);
 
 		if (this.match == null && other.match != null) return(false);
-		if (this.match != null && ! (this.match.equals(other.match))) return(false);
+		if (this.match != null && ! (this.match.Equals(other.match))) return(false);
 
 		if (this.select == null && other.select != null) return(false);
-		if (this.select != null && ! (this.select.equals(other.select))) return(false);
+		if (this.select != null && ! (this.select.Equals(other.select))) return(false);
 
 		if (this.value == null && other.value != null) return(false);
-		if (this.value != null && ! (this.value.equals(other.value))) return(false);
+		if (this.value != null && ! (this.value.Equals(other.value))) return(false);
 		
 		return(true);
 	}
@@ -213,9 +198,9 @@ public abstract class SEPElement : Cloneable, Serializable {
 		
 		int h = 1;
 		
-		if (this.match != null) h *= this.match.hashCode();
-		if (this.select != null) h *= this.select.hashCode();
-		if (this.value != null) h *= this.value.hashCode();
+		if (this.match != null) h *= this.match.GetHashCode();
+		if (this.select != null) h *= this.select.GetHashCode();
+		if (this.value != null) h *= this.value.GetHashCode();
 		
 		return(h);
 	}

@@ -1,3 +1,5 @@
+// TO BE DELETED AFTER CLIENT CODE IS ADJUSTED.
+
 /*
  * Copyright 2005 OpenXRI Foundation
  * Subsequently ported and altered by Andrew Arnott

@@ -1,52 +1,31 @@
-/**
- * 
- */
 namespace DotNetXri.Client.Util {
+	using System.Text;
+	using DotNetXri.Syntax;
 
-
-	using java.io.ByteArrayOutputStream;
-	using java.io.UnsupportedEncodingException;
-
-	using org.openxri.IRIUtils;
-
-	/**
-	 * @author =wil
-	 *
-	 */
 	public class URLUtils {
+		/// <summary>
+		/// This is the same as java.net.URLDecode(s, "UTF-8") except
+		/// that '+' is not decoded to ' ' (space).
+		/// </summary>
+		/// <author>=wil</author>
+		public static string decode(string s) {
+			if (s == null)
+				return null;
 
+			StringBuilder builder = new StringBuilder();
 
-		/**
-		 * This is the same as java.net.URLDecode(s, "UTF-8") except
-		 * that '+' is not decoded to ' ' (space).
-		 * 
-		 * @see java.net.URLDecoder
-		 * @param s
-		 */
-		public static String decode(String s)
-	{
-		if (s == null)
-			return null;
+			for (int i = 0; i < s.Length; i++) {
+				char c = s[i];
+				if (c != '%') {
+					builder.Append(c);
+					continue;
+				}
 
-		ByteArrayOutputStream out = new ByteArrayOutputStream();
-		for (int i = 0; i < s.length(); i++) {
-			char c = s.charAt(i);
-			if (c != '%') {
-				out.write(c);
-				continue;
+				builder.Append(IRIUtils.decodeHex(s, i));
+				i += 2;
 			}
-			
-			out.write(IRIUtils.decodeHex(s, i));
-			i += 2;
+
+			return builder.ToString();
 		}
-		
-		try {
-			return out.toString("UTF-8");			
-		}
-		catch (UnsupportedEncodingException e) {
-			// should not happen
-			return null;
-		}
-	}
 	}
 }

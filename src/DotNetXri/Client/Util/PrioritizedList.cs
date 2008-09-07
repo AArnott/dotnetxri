@@ -9,6 +9,7 @@ namespace DotNetXri.Client.Util {
 
 	using DotNetXri.Client.Xml;
 	using System;
+	using System.Collections;
 
 	[Serializable]
 	public class PrioritizedList /*: Serializable*/ {
@@ -42,11 +43,11 @@ namespace DotNetXri.Client.Util {
 			String priority = pPriority;
 			if (priority == null || o == null) return;
 
-			if (priority.equalsIgnoreCase(PrioritizedList.PRIORITY_NULL)) {
-				priority = priority.toLowerCase();
+			if (priority.Equals(PrioritizedList.PRIORITY_NULL, StringComparison.OrdinalIgnoreCase)) {
+				priority = priority.ToLowerInvariant();
 			} else {
 				//priority must be always +ve integer
-				long l = Long.parseLong(priority);
+				long l = long.Parse(priority);
 				if (l < 0) return;
 			}
 
@@ -54,11 +55,11 @@ namespace DotNetXri.Client.Util {
 			Item dbitem = (Item)sortedList.get(priority);
 
 			if (dbitem != null) {
-				dbitem.objects.add(o);
+				dbitem.objects.Add(o);
 			} else {
 				dbitem = new Item();
 				dbitem.priority = priority;
-				dbitem.objects.add(o);
+				dbitem.objects.Add(o);
 				sortedList.put(priority, dbitem);
 			}
 		}
@@ -66,11 +67,10 @@ namespace DotNetXri.Client.Util {
 		public ArrayList getList() {
 			ArrayList list = new ArrayList();
 
-			for (Iterator i = sortedList.keySet().iterator(); i.hasNext(); ) {
-				String priority = (String)i.next();
+			foreach( string priority in sortedList.Keys) {
 				Item item = (Item)sortedList.get(priority);
 				applyPolicy(item);
-				list.addAll(item.objects);
+				list.AddRange(item.objects);
 			}
 			return list;
 		}
@@ -78,7 +78,7 @@ namespace DotNetXri.Client.Util {
 		/* method used internally */
 		private void applyPolicy(Item item) {
 			if (!item.policyExecuted) {
-				if (item.objects.size() > 0) {
+				if (item.objects.Count > 0) {
 					Collections.shuffle(item.objects);
 					item.policyExecuted = true;
 				}
@@ -88,29 +88,29 @@ namespace DotNetXri.Client.Util {
 		/* internal data structure & comparator for sorting */
 		private class Item : Comparator, Serializable {
 
-			String priority = PrioritizedList.PRIORITY_NULL; // lowest priority (infinite value)
-			bool policyExecuted = false;
-			ArrayList objects = new ArrayList();
+			internal String priority = PrioritizedList.PRIORITY_NULL; // lowest priority (infinite value)
+			internal bool policyExecuted = false;
+			internal ArrayList objects = new ArrayList();
 
 			public int compare(Object a, Object b) {
 				if (a == null && b == null) {
-					throw new IllegalArgumentException("arguments cannot be null");
+					throw new ArgumentException("arguments cannot be null");
 				}
 				if (!(a is String || b is String)) {
-					throw new IllegalArgumentException("arguments must be of type 'String'");
+					throw new ArgumentException("arguments must be of type 'String'");
 				}
 
 				String aitem = (String)a;
 				String bitem = (String)b;
-				if (aitem.equalsIgnoreCase(bitem)) { // both null & integer values holds good
+				if (aitem.Equals(bitem, StringComparison.OrdinalIgnoreCase)) { // both null & integer values holds good
 					return 0;
 				}
 
-				if (aitem.equals(PrioritizedList.PRIORITY_NULL)) return 1;
-				if (bitem.equals(PrioritizedList.PRIORITY_NULL)) return -1;
+				if (aitem.Equals(PrioritizedList.PRIORITY_NULL)) return 1;
+				if (bitem.Equals(PrioritizedList.PRIORITY_NULL)) return -1;
 
-				long aPriority = Long.parseLong(aitem);
-				long bPriority = Long.parseLong(bitem);
+				long aPriority = long.Parse(aitem);
+				long bPriority = long.Parse(bitem);
 
 				return (aPriority < bPriority) ? -1 : 1;
 
