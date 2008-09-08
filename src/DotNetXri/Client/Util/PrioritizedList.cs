@@ -15,7 +15,7 @@ namespace DotNetXri.Client.Util {
 	public class PrioritizedList /*: Serializable*/ {
 
 		public const int POLICY_RANDOMIZE = 1;
-		public const String PRIORITY_NULL = "null";
+		public const string PRIORITY_NULL = "null";
 
 		//contains priority values int the same numerical order
 		private TreeMap sortedList = new TreeMap(new Item());
@@ -38,9 +38,9 @@ namespace DotNetXri.Client.Util {
 		 * @param pPriority
 		 * @param o
 		 */
-		public void addObject(String pPriority, Object o) {
+		public void addObject(string pPriority, Object o) {
 
-			String priority = pPriority;
+			string priority = pPriority;
 			if (priority == null || o == null) return;
 
 			if (priority.Equals(PrioritizedList.PRIORITY_NULL, StringComparison.OrdinalIgnoreCase)) {
@@ -88,7 +88,7 @@ namespace DotNetXri.Client.Util {
 		/* internal data structure & comparator for sorting */
 		private class Item : Comparator, Serializable {
 
-			internal String priority = PrioritizedList.PRIORITY_NULL; // lowest priority (infinite value)
+			internal string priority = PrioritizedList.PRIORITY_NULL; // lowest priority (infinite value)
 			internal bool policyExecuted = false;
 			internal ArrayList objects = new ArrayList();
 
@@ -96,12 +96,12 @@ namespace DotNetXri.Client.Util {
 				if (a == null && b == null) {
 					throw new ArgumentException("arguments cannot be null");
 				}
-				if (!(a is String || b is String)) {
-					throw new ArgumentException("arguments must be of type 'String'");
+				if (!(a is string || b is string)) {
+					throw new ArgumentException("arguments must be of type 'string'");
 				}
 
-				String aitem = (String)a;
-				String bitem = (String)b;
+				string aitem = (string)a;
+				string bitem = (string)b;
 				if (aitem.Equals(bitem, StringComparison.OrdinalIgnoreCase)) { // both null & integer values holds good
 					return 0;
 				}
@@ -117,14 +117,14 @@ namespace DotNetXri.Client.Util {
 			}
 		}
 
-		public bool equals(Object o) {
+		public bool Equals(Object o) {
 
 			PrioritizedList other = (PrioritizedList)o;
 
 			if (other == null) return (false);
 			if (other == this) return (true);
 
-			return (this.sortedList == null ? other.sortedList == null : this.sortedList.equals(other.sortedList));
+			return (this.sortedList == null ? other.sortedList == null : this.sortedList.Equals(other.sortedList));
 		}
 	}
 }

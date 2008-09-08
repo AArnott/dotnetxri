@@ -1,6 +1,6 @@
 namespace DotNetXri.Client.Xml {
 
-	using java.net.URI;
+	using java.net.Uri;
 	using java.net.URISyntaxException;
 	using java.util.List;
 
@@ -14,21 +14,21 @@ namespace DotNetXri.Client.Xml {
 	*/
 	public class ForwardingService : Service {
 
-		public const String SERVICE_TYPE = "xri://+i-service*(+forwarding)*($v*1.0)";
-		public const String INDEX_PATH = "(+index)";
+		public const string SERVICE_TYPE = "xri://+i-service*(+forwarding)*($v*1.0)";
+		public const string INDEX_PATH = "(+index)";
 
-		public const String[] RECOMMENDED_PERSONAL_DICTIONARY = { "+blog", "+call", "+chat", "+email", "+home", "+links", "+photos", "+resume", "+songs", "+work" };
+		public const string[] RECOMMENDED_PERSONAL_DICTIONARY = { "+blog", "+call", "+chat", "+email", "+home", "+links", "+photos", "+resume", "+songs", "+work" };
 
-		public const String[] RECOMMENDED_ORGANIZATIONAL_DICTIONARY = { "+about", "+account", "+blog", "+call", "+chat", "+customer.service", "+email", "+home", "+investor.relations", "+links" };
+		public const string[] RECOMMENDED_ORGANIZATIONAL_DICTIONARY = { "+about", "+account", "+blog", "+call", "+chat", "+customer.service", "+email", "+home", "+investor.relations", "+links" };
 
 		/**
 		* Constructs a new Forwarding Service endpoint for use in an authority.
-		* @param forwardingPages - The URI(s) where forwarding (HTTP redirection) is implemented.
+		* @param forwardingPages - The Uri(s) where forwarding (HTTP redirection) is implemented.
 		* @param providerID - The global i-number of the I-Broker providing this Forwarding Service.
 		* @param makeDefault - Whether to make the Forwarding Service the default service.
 		* @param useIndexPath - Whether the Forwarding Service implementation responds to the OPTIONAL (+index) path.
 		*/
-		public ForwardingService(URI[] forwardingPages, String providerID, bool makeDefault, bool useIndexPath) {
+		public ForwardingService(Uri[] forwardingPages, string providerID, bool makeDefault, bool useIndexPath) {
 
 
 
@@ -62,11 +62,11 @@ namespace DotNetXri.Client.Xml {
 			*/
 			for (int i = 0; i < forwardingPages.length; i++) {
 
-				URI forwardingPage = forwardingPages[i];
+				Uri forwardingPage = forwardingPages[i];
 
 				try {
 
-					this.addURI(new SEPUri(forwardingPage.toString(), null, SEPUri.APPEND_QXRI));
+					this.addURI(new SEPUri(forwardingPage.ToString(), null, SEPUri.APPEND_QXRI));
 				} catch (URISyntaxException ex) {
 
 					continue;
@@ -74,39 +74,39 @@ namespace DotNetXri.Client.Xml {
 			}
 		}
 
-		public ForwardingService(URI forwardingPage, String providerID, bool makeDefault, bool useIndexPath) {
+		public ForwardingService(Uri forwardingPage, string providerID, bool makeDefault, bool useIndexPath) {
 
-			this(new URI[] { forwardingPage }, providerID, makeDefault, useIndexPath);
+			this(new Uri[] { forwardingPage }, providerID, makeDefault, useIndexPath);
 		}
 
-		public ForwardingService(URI[] forwardingPages, String providerID, bool makeDefault) {
+		public ForwardingService(Uri[] forwardingPages, string providerID, bool makeDefault) {
 
 			this(forwardingPages, providerID, makeDefault, true);
 		}
 
-		public ForwardingService(URI forwardingPage, String providerID, bool makeDefault) {
+		public ForwardingService(Uri forwardingPage, string providerID, bool makeDefault) {
 
-			this(new URI[] { forwardingPage }, providerID, makeDefault, true);
+			this(new Uri[] { forwardingPage }, providerID, makeDefault, true);
 		}
 
-		public ForwardingService(URI[] forwardingPages, String providerID) {
+		public ForwardingService(Uri[] forwardingPages, string providerID) {
 
 			this(forwardingPages, providerID, true, true);
 		}
 
-		public ForwardingService(URI forwardingPage, String providerID) {
+		public ForwardingService(Uri forwardingPage, string providerID) {
 
-			this(new URI[] { forwardingPage }, providerID, true, true);
+			this(new Uri[] { forwardingPage }, providerID, true, true);
 		}
 
-		public ForwardingService(URI[] forwardingPages) {
+		public ForwardingService(Uri[] forwardingPages) {
 
 			this(forwardingPages, null, true, true);
 		}
 
-		public ForwardingService(URI forwardingPage) {
+		public ForwardingService(Uri forwardingPage) {
 
-			this(new URI[] { forwardingPage }, null, true, true);
+			this(new Uri[] { forwardingPage }, null, true, true);
 		}
 
 		public static bool isInstance(Service service) {
@@ -119,7 +119,7 @@ namespace DotNetXri.Client.Xml {
 
 				SEPType serviceType = (SEPType)serviceTypes.get(i);
 
-				if (SERVICE_TYPE.equals(serviceType.getValue())) return (true);
+				if (SERVICE_TYPE.Equals(serviceType.getValue())) return (true);
 			}
 
 			return (false);

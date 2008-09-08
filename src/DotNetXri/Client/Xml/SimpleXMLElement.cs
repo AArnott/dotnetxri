@@ -4,17 +4,17 @@ using java.io.Serializable;
 using java.util.Enumeration;
 using java.util.Hashtable;
 
-using org.apache.xerces.dom.DocumentImpl;
+using org.apache.xerces.dom.XmlDocument;
 using org.openxri.util.DOMUtils;
-using org.w3c.dom.Document;
-using org.w3c.dom.Element;
+using org.w3c.dom.XmlDocument;
+using org.w3c.dom.XmlElement;
 using org.w3c.dom.NamedNodeMap;
 using org.w3c.dom.Node;
 
 public abstract class SimpleXMLElement : Cloneable, Serializable {
 
-	private String value = null;
-	private String tag = null;
+	private string value = null;
+	private string tag = null;
 	protected Hashtable attributes = null;
 
 
@@ -29,30 +29,30 @@ public abstract class SimpleXMLElement : Cloneable, Serializable {
 	* Creates a <code>SimpleXMLElement</code> obj with the given <code>tagname</code>
 	* @param tagname
 	*/
-	public SimpleXMLElement(String tagname)
+	public SimpleXMLElement(string tagname)
 	{
 		reset(tagname);
 	}
 
-	public SimpleXMLElement(String tagname, String sValue)
+	public SimpleXMLElement(string tagname, string sValue)
 	{
 		reset(tagname);
 		this.value = sValue;
 	}
 
-	protected void reset(String tagName){
+	protected void reset(string tagName){
 		value = null;
 		attributes = null;
 		tag = tagName;
 	}
 
-	public String getTagname(){
+	public string getTagname(){
 		return tag;
 	}
 	/**
 	* Gets the value of this Type/MediaType/Path rule
 	*/
-	public String getValue()
+	public string getValue()
 	{
 		return this.value;
 	}
@@ -60,27 +60,27 @@ public abstract class SimpleXMLElement : Cloneable, Serializable {
 	/**
 	* Sets the value of this Type/MediaType/Path rule
 	*/
-	public void setValue( String value )
+	public void setValue( string value )
 	{
 		this.value = value;
 	}
 
-	public void addAttribute(String attrName, String attrValue){
+	public void addAttribute(string attrName, string attrValue){
 		if(attrName == null || attrValue == null) return;
 		if(attributes == null)
 			attributes = new Hashtable();
 		attributes.put(attrName, attrValue);
 	}
 
-	public String getAttributeValue(String attrName){
+	public string getAttributeValue(string attrName){
 
 		if(attrName == null || attributes == null) 
 			return null;
 
-		return (String)attributes.get(attrName);
+		return (string)attributes.get(attrName);
 	}
 
-	public void removeAttribute(String attrName) {
+	public void removeAttribute(string attrName) {
 
 		if (attributes == null) return;
 		attributes.remove(attrName);
@@ -89,33 +89,33 @@ public abstract class SimpleXMLElement : Cloneable, Serializable {
 	/**
 	* Converts the <code>EppXriServiceEndpointRule</code> obj into an XML element
 	*
-	* @param doc the XML <code>Document</code> obj
+	* @param doc the XML <code>XmlDocument</code> obj
 	* @param tag the tag/element name for the <code>EppXriServiceEndpoint</code> obj
 	*
-	* @return an <code>Element</code> obj
+	* @return an <code>XmlElement</code> obj
 	*/
-	public Element toXML( Document doc, String tag )
+	public XmlElement toXML( XmlDocument doc, string tag )
 	{
-		Element body = doc.createElement(tag);
+		XmlElement body = doc.CreateElement(tag);
 
 		if(attributes != null){
 			Enumeration keys = attributes.keys();
 			while(keys.hasMoreElements()){
-				String attrName = (String)keys.nextElement();
-				String attrValue = (String)attributes.get(attrName);
-				body.setAttribute(attrName,attrValue);
+				string attrName = (string)keys.nextElement();
+				string attrValue = (string)attributes.get(attrName);
+				body.SetAttribute(attrName,attrValue);
 			}
 		}
 
 		if( this.value != null)
 		{
-			body.appendChild(doc.createTextNode(this.value));
+			body.AppendChild(doc.CreateTextNode(this.value));
 		}
 
 		return body;
 	}
 
-	public Element toXML( Document doc)
+	public XmlElement toXML( XmlDocument doc)
 	{
 		return toXML(doc,this.tag);
 	}
@@ -131,33 +131,33 @@ public abstract class SimpleXMLElement : Cloneable, Serializable {
 	public void fromXML( Node root )
 	{	
 		if(root.getNodeType() == Node.ELEMENT_NODE){
-			this.tag = root.getLocalName();
+			this.tag = root.LocalName;
 			if (this.tag == null) this.tag = root.getNodeName();
 			setValue(DOMUtils.getText(root));
 			NamedNodeMap attribs = root.getAttributes();
 			for(int i=0; i< attribs.getLength(); i++){
 				Node attribNode = attribs.item(i);
-				String attrName = attribNode.getNodeName();
-				String attrValue = attribNode.getNodeValue();
+				string attrName = attribNode.getNodeName();
+				string attrValue = attribNode.getNodeValue();
 				addAttribute(attrName, attrValue);
 			}
 		}
 	}
 
-	protected String toString( String tag )
+	protected string ToString( string tag )
 	{
-		Document doc = new DocumentImpl();
-		Element elm = this.toXML(doc, tag);
-		doc.appendChild(elm);
-		return DOMUtils.toString(doc);
+		XmlDocument doc = new XmlDocument();
+		XmlElement elm = this.toXML(doc, tag);
+		doc.AppendChild(elm);
+		return DOMUtils.ToString(doc);
 	}
 
-	public Object clone() throws CloneNotSupportedException {
+	public Object clone() //throws CloneNotSupportedException {
 
 		return(base.clone());
 	}
 
-	public bool equals(Object o) {
+	public bool Equals(Object o) {
 
 		SimpleXMLElement other = (SimpleXMLElement) o;
 
@@ -165,13 +165,13 @@ public abstract class SimpleXMLElement : Cloneable, Serializable {
 		if (other == this) return(true);
 
 		if (this.tag == null && other.tag != null) return(false); 
-		if (this.tag != null && ! this.tag.equals(other.tag)) return(false);
+		if (this.tag != null && ! this.tag.Equals(other.tag)) return(false);
 
 		if (this.value == null && other.value != null) return(false);
-		if (this.value != null && ! this.value.equals(other.value)) return(false);
+		if (this.value != null && ! this.value.Equals(other.value)) return(false);
 
 		if (this.attributes == null && other.attributes != null) return(false); 
-		if (this.attributes != null && ! this.attributes.equals(other.attributes)) return(false);
+		if (this.attributes != null && ! this.attributes.Equals(other.attributes)) return(false);
 
 		return(true);
 	}
@@ -187,12 +187,12 @@ public abstract class SimpleXMLElement : Cloneable, Serializable {
 		return(h);
 	}
 
-	public String toString()
+	public override string ToString()
 	{
-		Document doc = new DocumentImpl();
-		Element elm = this.toXML(doc);
-		doc.appendChild(elm);
-		return DOMUtils.toString(doc);
+		XmlDocument doc = new XmlDocument();
+		XmlElement elm = this.toXML(doc);
+		doc.AppendChild(elm);
+		return DOMUtils.ToString(doc);
 	}
 }
 }

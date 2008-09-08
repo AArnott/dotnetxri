@@ -26,8 +26,8 @@ namespace DotNetXri.Client.Util {
 	********************************************************************************
 	*/
 	/**
- * Provides helper methods to create a HttpURLConnection from a URI and properties
- * associated with how to access the URI.
+ * Provides helper methods to create a HttpURLConnection from a Uri and properties
+ * associated with how to access the Uri.
  * @author =chetan
  */
 	public class IO {
@@ -38,8 +38,8 @@ namespace DotNetXri.Client.Util {
 		****************************************************************************
 		*/
 		/**
-	 *Gets the connection to a URI.
-	 *@param oURI The URI to access
+	 *Gets the connection to a Uri.
+	 *@param oURI The Uri to access
 	 *@param sMethod - The HTTP Method (Defaults to "GET")
 	 *@param oReqProperties The request properties to set
 	 *@param oSSLFactory The SSL Socket Factory to use if necessary
@@ -48,7 +48,7 @@ namespace DotNetXri.Client.Util {
 	 *@return the HttpURLConnection The connection obj after calling connect()
 	 */
 		public static HttpWebRequest getConnectionToURI(
-			Uri oURI, String sMethod, NameValueCollection oReqProperties,
+			Uri oURI, string sMethod, NameValueCollection oReqProperties,
 			object/*SSLSocketFactory*/ oSSLFactory, bool bFollowRedirects,
 			bool bUseCaches)
 			//throws IOException
@@ -63,8 +63,8 @@ namespace DotNetXri.Client.Util {
 		****************************************************************************
 		*/
 		/**
-	 *Gets the connection to a URI.
-	 *@param oURI The URI to access
+	 *Gets the connection to a Uri.
+	 *@param oURI The Uri to access
 	 *@param sMethod - The HTTP Method (Defaults to "GET")
 	 *@param oReqProperties The request properties to set
 	 *@param oSSLFactory The SSL Socket Factory to use if necessary
@@ -73,7 +73,7 @@ namespace DotNetXri.Client.Util {
 	 *@return the HttpURLConnection The connection obj after calling connect()
 	 */
 		public static HttpWebRequest getConnectionToURI(
-			Uri oURI, String sMethod, NameValueCollection oReqProperties,
+			Uri oURI, string sMethod, NameValueCollection oReqProperties,
 			object/*SSLSocketFactory*/ oSSLFactory, int nFollowRedirects, bool bUseCaches)
 			//throws IOException
 		{
@@ -93,7 +93,7 @@ namespace DotNetXri.Client.Util {
 				oConnection.Headers[HttpRequestHeader.UserAgent] = "DotNetXri";
 				//oConnection.setAllowUserInteraction(false); // TODO: what's this do?
 				//oConnection.setDoInput(true);
-				//oConnection.setDoOutput(sMethod.equals("POST"));
+				//oConnection.setDoOutput(sMethod.Equals("POST"));
 
 				// setup request properties
 				if (oReqProperties != null) {

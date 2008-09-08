@@ -1,135 +1,133 @@
 namespace DotNetXri.Client.Xml {
 
 using java.io.Serializable;
-using java.net.URI;
+using java.net.Uri;
 using java.net.URISyntaxException;
 
-using org.apache.xerces.dom.DocumentImpl;
+using org.apache.xerces.dom.XmlDocument;
 using org.openxri.XRIParseException;
 using org.openxri.util.DOMUtils;
-using org.w3c.dom.Document;
-using org.w3c.dom.Element;
+using org.w3c.dom.XmlDocument;
+using org.w3c.dom.XmlElement;
 using org.w3c.dom.Node;
+using System;
+using System.Xml;
+using DotNetXri.Loggers;
 
 
 public class SEPUri : Serializable
 {
-	public const String APPEND_LOCAL     = "local";
-	public const String APPEND_AUTHORITY = "authority";
-	public const String APPEND_PATH      = "path";
-	public const String APPEND_QUERY     = "query";
-	public const String APPEND_QXRI      = "qxri";
-	public const String APPEND_NONE      = "none";
+	public const string APPEND_LOCAL     = "local";
+	public const string APPEND_AUTHORITY = "authority";
+	public const string APPEND_PATH      = "path";
+	public const string APPEND_QUERY     = "query";
+	public const string APPEND_QXRI      = "qxri";
+	public const string APPEND_NONE      = "none";
 
-	protected static org.apache.commons.logging.Log soLog =
-			org.apache.commons.logging.LogFactory.getLog(
-					XRD.class.getName());
+	protected static ILog soLog = Logger.Create(typeof(XRD));
 	/**
 	* If the "append" attribute is not present, its default value
 	* is <code>APPEND_LOCAL</code>.
 	*/
-	public const String DEFAULT_APPEND   = APPEND_LOCAL;
+	public const string DEFAULT_APPEND   = APPEND_LOCAL;
 
 
-	private URI     uri;
-	private Integer priority;
-	private String  append;
+	private Uri     uri;
+	private int? priority;
+	private string  append;
 
 	/**
 	* Creates an <code>EppXriURI</code> obj
 	*/
 	public SEPUri()
-		throws URISyntaxException
-	{
-		this(null, null, null);
+		//throws URISyntaxException
+	:	this(null, null, null) {
 	}
 
 	/**
-	* Creates an <code>EppXriURI</code> obj with a URI
+	* Creates an <code>EppXriURI</code> obj with a Uri
 	*/
-	public SEPUri( String uri )
-		throws URISyntaxException
-	{
-		this(uri, null, null);
+	public SEPUri( string uri )
+		//throws URISyntaxException
+	:	this(uri, null, null) {
 	}
 
 	/**
-	* Creates an <code>EppXriURI</code> obj with a URI and a priority value
+	* Creates an <code>EppXriURI</code> obj with a Uri and a priority value
 	*/
-	public SEPUri( String uri, int priority )
-		throws URISyntaxException
-	{
-		this(uri, new Integer(priority), null);
+	public SEPUri( string uri, int priority )
+		//throws URISyntaxException
+	:	this(uri, priority, null) {
 	}
 
 	/**
-	* Creates an <code>EppXriURI</code> obj with a URI, a priority value and an append value.
+	* Creates an <code>EppXriURI</code> obj with a Uri, a priority value and an append value.
 	*/
-	public SEPUri( String uri, Integer priority, String append )
-		throws URISyntaxException
+	public SEPUri( string uri, int? priority, string append )
+		//throws URISyntaxException
 	{
-		this.uri      = (uri == null)? null : new URI(uri);
+		this.uri      = (uri == null)? null : new Uri(uri);
 		this.priority = priority;
 		this.append   = append;
 	}
 
 	/**
-	* Gets the URI
+	* Gets the Uri
 	*/
-	public String getUriString()
+	public string getUriString()
 	{
-		return (uri == null) ? null : uri.toString();
+		return (uri == null) ? null : uri.ToString();
 	}
 
 	/**
-	* Gets the URI
+	* Gets the Uri
 	*/
-	public URI getURI()
+	public Uri getURI()
 	{
 		return uri;
 	}
 
 	/**
-	* Sets the URI
+	* Sets the Uri
 	*/
-	public void setUriString( String uriString )
+	public void setUriString( string uriString )
 	{
 		try {
-			this.uri = new URI(uriString);
+			this.uri = new Uri(uriString);
 		} catch(Exception e) {
 			this.uri = null;
 		}
 	}
 
 	/**
-	* Sets the URI
+	* Sets the Uri
 	*/
-	public void setURI( URI uri )
+	public void setURI( Uri uri )
 	{
 		this.uri = uri;
 	}
 
 	/**
-	* Gets the priority value for this URI
+	* Gets the priority value for this Uri
 	*/
-	public Integer getPriority()
+	public int? getPriority()
 	{
 		return this.priority;
 	}
 
 	/**
-	* Sets the priority value for this URI
+	* Sets the priority value for this Uri
 	*/
 	public void setPriority( int priority )
 	{
-		this.priority = new Integer(priority);
+		this.priority = priority;
 	}
 
 	/**
-	* Sets the priority value for this URI. This method accepts a null obj reference to indicate
+	* Sets the priority value for this Uri. This method accepts a null obj reference to indicate
 	* the absence of the attribute.
 	*/
-	public void setPriority( Integer priority )
+	public void setPriority( int? priority )
 	{
 		this.priority = priority;
 	}
@@ -137,7 +135,7 @@ public class SEPUri : Serializable
 	/**
 	* Gets the append attribute value
 	*/
-	public String getAppend()
+	public string getAppend()
 	{
 		return this.append;
 	}
@@ -145,7 +143,7 @@ public class SEPUri : Serializable
 	/**
 	* Sets the append attribute value
 	*/
-	public void setAppend( String append )
+	public void setAppend( string append )
 	{
 		this.append = append;
 	}
@@ -153,25 +151,25 @@ public class SEPUri : Serializable
 	/**
 		* Converts the <code>EppXriURI</code> obj into an XML element
 		*
-		* @param doc the XML <code>Document</code> obj
+		* @param doc the XML <code>XmlDocument</code> obj
 		* @param tag the tag/element name for the <code>EppXriURI</code> obj
 		*
-		* @return an <code>Element</code> obj
+		* @return an <code>XmlElement</code> obj
 		*/
-	public Element toXML( Document doc, String tag )
+	public XmlElement toXML( XmlDocument doc, string tag )
 	{
-		Element body = doc.createElement(tag);
+		XmlElement body = doc.CreateElement(tag);
 
 		if (this.priority != null) {
-			body.setAttribute(Tags.ATTR_PRIORITY, this.priority.toString());
+			body.SetAttribute(Tags.ATTR_PRIORITY, this.priority.ToString());
 		}
 		
 		if (this.append != null) {
-			body.setAttribute(Tags.ATTR_APPEND, this.append);
+			body.SetAttribute(Tags.ATTR_APPEND, this.append);
 		}
 
 		if (this.uri != null) {
-			body.appendChild(doc.createTextNode(this.uri.toString()));
+			body.AppendChild(doc.CreateTextNode(this.uri.ToString()));
 		}
 
 		return body;
@@ -189,44 +187,44 @@ public class SEPUri : Serializable
 	*         invalid
 	*/
 	public static SEPUri fromXML( Node root )
-	throws URISyntaxException
+	//throws URISyntaxException
 	{
-		Element el = (Element)root;
+		XmlElement el = (XmlElement)root;
 		
 		SEPUri xin = new SEPUri();
 
 		xin.setUriString(DOMUtils.getText(root).trim());
 		
-		if (el.hasAttribute(Tags.ATTR_PRIORITY)) {
+		if (el.HasAttribute(Tags.ATTR_PRIORITY)) {
 			try {
-				int priority = Integer.parseInt(el.getAttribute(Tags.ATTR_PRIORITY));
+				int priority = int.Parse(el.GetAttribute(Tags.ATTR_PRIORITY));
 				xin.setPriority(priority);
 			}
 			catch (NumberFormatException e) {}
 		}
 
-		if (el.hasAttribute(Tags.ATTR_APPEND))
-			xin.setAppend(el.getAttribute(Tags.ATTR_APPEND).trim());
+		if (el.HasAttribute(Tags.ATTR_APPEND))
+			xin.setAppend(el.GetAttribute(Tags.ATTR_APPEND).trim());
 
 		return xin;
 	}
 
-	private String toString( String tag )
+	private string ToString( string tag )
 	{
-			Document doc = new DocumentImpl();
-			Element elm = this.toXML(doc, tag);
-			doc.appendChild(elm);
-			return DOMUtils.toString(doc);
+			XmlDocument doc = new XmlDocument();
+			XmlElement elm = this.toXML(doc, tag);
+			doc.AppendChild(elm);
+			return doc.OuterXml;
 	}
 	
-	public String toString()
+	public override string ToString()
 	{
-		return toString(Tags.TAG_URI);
+		return ToString(Tags.TAG_URI);
 	}
 
 	public Object clone(){
 		try {
-			return new SEPUri((uri == null)? null : uri.toString(), (priority == null)? null: priority, append );
+			return new SEPUri((uri == null)? null : uri.ToString(), (priority == null)? null: priority, append );
 		}catch ( URISyntaxException synException){
 			soLog.error("couldn't clone the SEPUri obj: "+uri);
 			return null;

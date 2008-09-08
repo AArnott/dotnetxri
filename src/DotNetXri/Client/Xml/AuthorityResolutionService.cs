@@ -1,6 +1,6 @@
 namespace DotNetXri.Client.Xml {
 
-	using java.net.URI;
+	using java.net.Uri;
 	using java.net.URISyntaxException;
 	using java.util.List;
 
@@ -12,20 +12,20 @@ namespace DotNetXri.Client.Xml {
 	*/
 	public class AuthorityResolutionService : Service {
 
-		public const String SERVICE_TYPE = "xri://$res*auth*($v*2.0)";
-		public const String SERVICE_MEDIA_TYPE = "application/xrds+xml";
-		public const String TRUST_TYPE_SEPARATOR = ";";
+		public const string SERVICE_TYPE = "xri://$res*auth*($v*2.0)";
+		public const string SERVICE_MEDIA_TYPE = "application/xrds+xml";
+		public const string TRUST_TYPE_SEPARATOR = ";";
 
-		public const Integer URI_PRIORITY_HTTPS = new Integer(1);
-		public const Integer URI_PRIORITY_DEFAULT = new Integer(2);
+		public const int? URI_PRIORITY_HTTPS = new int?(1);
+		public const int? URI_PRIORITY_DEFAULT = new int?(2);
 
 		/**
 		* Constructs a new Authority Resolution 2.0 endpoint.
-		* @param resolvers - The URI(s) where the authority will be resolved.
+		* @param resolvers - The Uri(s) where the authority will be resolved.
 		* @param providerID - The global i-number of the I-Broker providing this Authority Resolution Service.
 		* @param append - The append attribute to use for the URIs.
 		*/
-		public AuthorityResolutionService(URI[] resolvers, String providerID, TrustType trustType, String append) {
+		public AuthorityResolutionService(Uri[] resolvers, string providerID, TrustType trustType, string append) {
 
 
 
@@ -45,8 +45,8 @@ namespace DotNetXri.Client.Xml {
 			* This setting is REQUIRED. 
 			*/
 
-			String mediaType = SERVICE_MEDIA_TYPE;
-			if (trustType != null && !trustType.equals(TrustType.TRUST_NONE)) {
+			string mediaType = SERVICE_MEDIA_TYPE;
+			if (trustType != null && !trustType.Equals(TrustType.TRUST_NONE)) {
 
 				mediaType += TRUST_TYPE_SEPARATOR + trustType.getParameterPair();
 			}
@@ -58,14 +58,14 @@ namespace DotNetXri.Client.Xml {
 			*/
 			for (int i = 0; i < resolvers.length; i++) {
 
-				URI resolver = resolvers[i];
+				Uri resolver = resolvers[i];
 
 				try {
 
-					Integer priority = resolver.getScheme().toLowerCase().equals("https") ?
+					int? priority = resolver.getScheme().toLowerCase().Equals("https") ?
 							URI_PRIORITY_HTTPS : URI_PRIORITY_DEFAULT;
 
-					this.addURI(new SEPUri(resolver.toString(), priority, append));
+					this.addURI(new SEPUri(resolver.ToString(), priority, append));
 				} catch (URISyntaxException ex) {
 
 					continue;
@@ -73,39 +73,39 @@ namespace DotNetXri.Client.Xml {
 			}
 		}
 
-		public AuthorityResolutionService(URI resolver, String providerId, TrustType trustType, String append) {
+		public AuthorityResolutionService(Uri resolver, string providerId, TrustType trustType, string append) {
 
-			this(new URI[] { resolver }, providerId, trustType, append);
+			this(new Uri[] { resolver }, providerId, trustType, append);
 		}
 
-		public AuthorityResolutionService(URI[] resolvers, String providerId, TrustType trustType) {
+		public AuthorityResolutionService(Uri[] resolvers, string providerId, TrustType trustType) {
 
 			this(resolvers, providerId, trustType, null);
 		}
 
-		public AuthorityResolutionService(URI resolver, String providerId, TrustType trustType) {
+		public AuthorityResolutionService(Uri resolver, string providerId, TrustType trustType) {
 
-			this(new URI[] { resolver }, providerId, trustType, null);
+			this(new Uri[] { resolver }, providerId, trustType, null);
 		}
 
-		public AuthorityResolutionService(URI[] resolvers, String providerId) {
+		public AuthorityResolutionService(Uri[] resolvers, string providerId) {
 
 			this(resolvers, providerId, null, null);
 		}
 
-		public AuthorityResolutionService(URI resolver, String providerId) {
+		public AuthorityResolutionService(Uri resolver, string providerId) {
 
-			this(new URI[] { resolver }, providerId, null, null);
+			this(new Uri[] { resolver }, providerId, null, null);
 		}
 
-		public AuthorityResolutionService(URI[] resolvers) {
+		public AuthorityResolutionService(Uri[] resolvers) {
 
 			this(resolvers, null, null, null);
 		}
 
-		public AuthorityResolutionService(URI resolver) {
+		public AuthorityResolutionService(Uri resolver) {
 
-			this(new URI[] { resolver }, null, null, null);
+			this(new Uri[] { resolver }, null, null, null);
 		}
 
 		public static bool isInstance(Service service) {
@@ -118,7 +118,7 @@ namespace DotNetXri.Client.Xml {
 
 				SEPType serviceType = (SEPType)serviceTypes.get(i);
 
-				if (SERVICE_TYPE.equals(serviceType.getValue())) return (true);
+				if (SERVICE_TYPE.Equals(serviceType.getValue())) return (true);
 			}
 
 			return (false);

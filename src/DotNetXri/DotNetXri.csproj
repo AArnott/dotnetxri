@@ -114,8 +114,6 @@
     <Compile Include="Client\Saml\Conditions.cs" />
     <Compile Include="Client\Saml\NameID.cs" />
     <Compile Include="Client\Saml\Subject.cs" />
-    <Compile Include="Client\Tools\XRILookup.cs" />
-    <Compile Include="Client\Tools\XRITraceRt.cs" />
     <None Include="Client\Util\DOM3Utils.cs" />
     <Compile Include="Client\Util\IO.cs" />
     <Compile Include="Client\Util\PrioritizedList.cs" />

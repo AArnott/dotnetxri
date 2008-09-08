@@ -15,7 +15,7 @@ public class SEPMediaType : SEPElement {
 	/**
 		* Creates an <code>EppXriServiceEndpointMediaType</code> obj with the specified fields
 		*/
-	public SEPMediaType(String mediaType, String match, Boolean select)
+	public SEPMediaType(string mediaType, string match, Boolean select)
 		: base(mediaType, match, select) {
 	}
 
@@ -40,7 +40,7 @@ public class SEPMediaType : SEPElement {
 		* Gets the value of this MediaType rule.
 		* This is an alias for the superclass' <code>getValue</code> method.
 		*/
-	public String getMediaType() {
+	public string getMediaType() {
 		return getValue();
 	}
 
@@ -48,12 +48,12 @@ public class SEPMediaType : SEPElement {
 		* Sets the value of this MediaType rule.
 		* This is an alias for the superclass' <code>setValue</code> method.
 		*/
-	public void setMediaType(String mediaType) {
+	public void setMediaType(string mediaType) {
 		setValue(mediaType);
 	}
 
-	public String toString() {
-		return toString(Tags.TAG_MEDIATYPE);
+	public override string ToString() {
+		return ToString(Tags.TAG_MEDIATYPE);
 	}
 
 	public Object clone() {

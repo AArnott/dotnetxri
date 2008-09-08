@@ -1,6 +1,6 @@
 namespace DotNetXri.Client.Xml {
 
-	using java.net.URI;
+	using java.net.Uri;
 	using java.net.URISyntaxException;
 	using java.util.List;
 
@@ -14,16 +14,16 @@ namespace DotNetXri.Client.Xml {
 	*/
 	public class ContactService : Service {
 
-		public const String SERVICE_TYPE = "xri://+i-service*(+contact)*($v*1.0)";
-		public const String CONTACT_PATH = "(+contact)";
+		public const string SERVICE_TYPE = "xri://+i-service*(+contact)*($v*1.0)";
+		public const string CONTACT_PATH = "(+contact)";
 
 		/**
 		* Constructs a new Contact Service endpoint for use in an authority.
-		* @param contactPages - The URI(s) where a contact page is implemented.
+		* @param contactPages - The Uri(s) where a contact page is implemented.
 		* @param providerID - The global i-number of the I-Broker providing this Contact Service.
 		* @param makeDefault - Whether to make the Contact Service the default service.
 		*/
-		public ContactService(URI[] contactPages, String providerID, bool makeDefault) {
+		public ContactService(Uri[] contactPages, string providerID, bool makeDefault) {
 
 
 
@@ -51,16 +51,16 @@ namespace DotNetXri.Client.Xml {
 			this.addMediaType(new SEPMediaType(null, SEPElement.MATCH_ATTR_DEFAULT, null));
 
 			/*
-			* These are the URI where the Contact Service is implemented. The QXRI will be appended.
+			* These are the Uri where the Contact Service is implemented. The QXRI will be appended.
 			* It is currently not in the scope of OpenXRI to implement the actual contact page.
 			*/
 			for (int i = 0; i < contactPages.length; i++) {
 
-				URI contactPage = contactPages[i];
+				Uri contactPage = contactPages[i];
 
 				try {
 
-					this.addURI(new SEPUri(contactPage.toString(), null, SEPUri.APPEND_QXRI));
+					this.addURI(new SEPUri(contactPage.ToString(), null, SEPUri.APPEND_QXRI));
 				} catch (URISyntaxException ex) {
 
 					continue;
@@ -68,29 +68,29 @@ namespace DotNetXri.Client.Xml {
 			}
 		}
 
-		public ContactService(URI contactPage, String providerID, bool makeDefault) {
+		public ContactService(Uri contactPage, string providerID, bool makeDefault) {
 
-			this(new URI[] { contactPage }, providerID, makeDefault);
+			this(new Uri[] { contactPage }, providerID, makeDefault);
 		}
 
-		public ContactService(URI[] contactPages, String providerID) {
+		public ContactService(Uri[] contactPages, string providerID) {
 
 			this(contactPages, providerID, true);
 		}
 
-		public ContactService(URI contactPage, String providerID) {
+		public ContactService(Uri contactPage, string providerID) {
 
-			this(new URI[] { contactPage }, providerID, true);
+			this(new Uri[] { contactPage }, providerID, true);
 		}
 
-		public ContactService(URI[] contactPages) {
+		public ContactService(Uri[] contactPages) {
 
 			this(contactPages, null, true);
 		}
 
-		public ContactService(URI contactPage) {
+		public ContactService(Uri contactPage) {
 
-			this(new URI[] { contactPage }, null, true);
+			this(new Uri[] { contactPage }, null, true);
 		}
 
 		public static bool isInstance(Service service) {
@@ -103,7 +103,7 @@ namespace DotNetXri.Client.Xml {
 
 				SEPType serviceType = (SEPType)serviceTypes.get(i);
 
-				if (SERVICE_TYPE.equals(serviceType.getValue())) return (true);
+				if (SERVICE_TYPE.Equals(serviceType.getValue())) return (true);
 			}
 
 			return (false);

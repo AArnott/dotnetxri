@@ -15,7 +15,7 @@ public class SEPPath : SEPElement {
 	/**
 		* Creates an <code>EppXriServiceEndpointPath</code> obj with the specified fields
 		*/
-	public SEPPath(String path, String match, Boolean select)
+	public SEPPath(string path, string match, Boolean select)
 		: base(path, match, select) {
 	}
 
@@ -40,7 +40,7 @@ public class SEPPath : SEPElement {
 		* Gets the value of this Path rule.
 		* This is an alias for the superclass' <code>getValue</code> method.
 		*/
-	public String getPath() {
+	public string getPath() {
 		return getValue();
 	}
 
@@ -48,13 +48,13 @@ public class SEPPath : SEPElement {
 		* Sets the value of this Path rule.
 		* This is an alias for the superclass' <code>setValue</code> method.
 		*/
-	public void setPath(String path) {
+	public void setPath(string path) {
 		setValue(path);
 	}
 
 
-	public String toString() {
-		return toString(Tags.TAG_PATH);
+	public override string ToString() {
+		return ToString(Tags.TAG_PATH);
 	}
 
 	public Object clone() {

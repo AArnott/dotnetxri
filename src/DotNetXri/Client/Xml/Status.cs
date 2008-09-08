@@ -24,50 +24,50 @@ namespace DotNetXri.Client.Xml {
 	*/
 public class Status : SimpleXMLElement {
 
-	public const String SUCCESS = "100";
-	public const String PERM_FAIL = "200";
-	public const String NOT_IMPLEMENTED = "201";
-	public const String LIMIT_EXCEEDED = "202";
-	public const String INVALID_INPUT = "210";
-	public const String INVALID_QXRI = "211";
-	public const String INVALID_OUTPUT_FORMAT = "212";
-	public const String INVALID_SEP_TYPE = "213";
-	public const String INVALID_SEP_MEDIA_TYPE = "214";
-	public const String UNKNOWN_ROOT = "215";
-	public const String AUTH_RES_ERROR = "220";
-	public const String AUTH_RES_NOT_FOUND = "221";
-	public const String QUERY_NOT_FOUND = "222";
-	public const String UNEXPECTED_XRD = "223";
-	public const String INACTIVE = "224";
-	public const String TRUSTED_RES_ERROR = "230";
-	public const String HTTPS_RES_NOT_FOUND = "231";
-	public const String SAML_RES_NOT_FOUND = "232";
-	public const String HTTPS_SAML_RES_NOT_FOUND = "233";
-	public const String UNVERIFIED_SIGNATURE = "234";
-	public const String SEP_SELECTION_ERROR = "240";
-	public const String SEP_NOT_FOUND = "241";
-	public const String REDIRECT_ERROR = "250";
-	public const String INVALID_REDIRECT = "251";
-	public const String INVALID_HTTPS_REDIRECT = "252";
-	public const String REDIRECT_VERIFY_FAILED = "253";
-	public const String REF_ERROR = "260";
-	public const String INVALID_REF = "261";
-	public const String REF_NOT_FOLLOWED = "262"; // used to be 101
-	public const String TEMPORARY_FAIL = "300";
-	public const String TIMEOUT_ERROR = "301";
-	public const String NETWORK_ERROR = "320";
-	public const String UNEXPECTED_RESPONSE = "321";
-	public const String INVALID_XRDS = "322";
+	public const string SUCCESS = "100";
+	public const string PERM_FAIL = "200";
+	public const string NOT_IMPLEMENTED = "201";
+	public const string LIMIT_EXCEEDED = "202";
+	public const string INVALID_INPUT = "210";
+	public const string INVALID_QXRI = "211";
+	public const string INVALID_OUTPUT_FORMAT = "212";
+	public const string INVALID_SEP_TYPE = "213";
+	public const string INVALID_SEP_MEDIA_TYPE = "214";
+	public const string UNKNOWN_ROOT = "215";
+	public const string AUTH_RES_ERROR = "220";
+	public const string AUTH_RES_NOT_FOUND = "221";
+	public const string QUERY_NOT_FOUND = "222";
+	public const string UNEXPECTED_XRD = "223";
+	public const string INACTIVE = "224";
+	public const string TRUSTED_RES_ERROR = "230";
+	public const string HTTPS_RES_NOT_FOUND = "231";
+	public const string SAML_RES_NOT_FOUND = "232";
+	public const string HTTPS_SAML_RES_NOT_FOUND = "233";
+	public const string UNVERIFIED_SIGNATURE = "234";
+	public const string SEP_SELECTION_ERROR = "240";
+	public const string SEP_NOT_FOUND = "241";
+	public const string REDIRECT_ERROR = "250";
+	public const string INVALID_REDIRECT = "251";
+	public const string INVALID_HTTPS_REDIRECT = "252";
+	public const string REDIRECT_VERIFY_FAILED = "253";
+	public const string REF_ERROR = "260";
+	public const string INVALID_REF = "261";
+	public const string REF_NOT_FOLLOWED = "262"; // used to be 101
+	public const string TEMPORARY_FAIL = "300";
+	public const string TIMEOUT_ERROR = "301";
+	public const string NETWORK_ERROR = "320";
+	public const string UNEXPECTED_RESPONSE = "321";
+	public const string INVALID_XRDS = "322";
 
 	// aliases
-	public const String INVALID_RESPONSE = INVALID_XRDS;
-	public const String INVALID_RES_MEDIA_TYPE = INVALID_OUTPUT_FORMAT;
+	public const string INVALID_RESPONSE = INVALID_XRDS;
+	public const string INVALID_RES_MEDIA_TYPE = INVALID_OUTPUT_FORMAT;
 
 
-	public const String CID_ABSENT = "absent";
-	public const String CID_OFF = "off";
-	public const String CID_VERIFIED = "verified";
-	public const String CID_FAILED = "failed";
+	public const string CID_ABSENT = "absent";
+	public const string CID_OFF = "off";
+	public const string CID_VERIFIED = "verified";
+	public const string CID_FAILED = "failed";
 
 
 	public Status(Status s)
@@ -78,47 +78,47 @@ public class Status : SimpleXMLElement {
 		this(Tags.TAG_STATUS);
 	}
 
-	public Status(String code)
+	public Status(string code)
 		: base(Tags.TAG_STATUS) {
 		setCode(code);
 		setCID(CID_OFF);
 		setCEID(CID_OFF);
 	}
 
-	public Status(String code, String text)
+	public Status(string code, string text)
 		: base(Tags.TAG_STATUS, text) {
 		setCode(code);
 	}
 
-	public String getCode() {
+	public string getCode() {
 		return getAttributeValue(Tags.ATTR_CODE);
 	}
 
-	public String getText() {
+	public string getText() {
 		return getValue();
 	}
 
-	public void setCode(String code) {
+	public void setCode(string code) {
 		addAttribute(Tags.ATTR_CODE, code);
 	}
 
-	public void setText(String text) {
+	public void setText(string text) {
 		setValue(text);
 	}
 
-	public String getCID() {
+	public string getCID() {
 		return getAttributeValue(Tags.ATTR_CID);
 	}
 
-	public void setCID(String status) {
+	public void setCID(string status) {
 		addAttribute(Tags.ATTR_CID, status);
 	}
 
-	public String getCEID() {
+	public string getCEID() {
 		return getAttributeValue(Tags.ATTR_CEID);
 	}
 
-	public void setCEID(String status) {
+	public void setCEID(string status) {
 		addAttribute(Tags.ATTR_CEID, status);
 	}
 

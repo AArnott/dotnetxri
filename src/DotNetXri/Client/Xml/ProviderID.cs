@@ -6,7 +6,7 @@ public class ProviderID : SimpleXMLElement {
 		: base(p) {
 	}
 
-	public ProviderID(String provideridString)
+	public ProviderID(string provideridString)
 		: base(Tags.TAG_PROVIDERID) {
 		setValue(provideridString);
 	}

@@ -13,7 +13,7 @@ public class SEPType : SEPElement {
 	/**
 		* Creates an <code>EppXriServiceEndpointType</code> obj with the specified fields
 		*/
-	public SEPType(String type, String match, Boolean select)
+	public SEPType(string type, string match, Boolean select)
 		: base(type, match, select) {
 	}
 
@@ -38,24 +38,24 @@ public class SEPType : SEPElement {
 		* Gets the value of this Type rule.
 		* This is an alias for the superclass' <code>getValue</code> method.
 		*/
-	public String getType() {
+	public string getType() {
 		return getValue();
 	}
 	/**
 		* Sets the value of this Type rule.
 		* This is an alias for the superclass' <code>setValue</code> method.
 		*/
-	public void setType(String type) {
+	public void setType(string type) {
 		setValue(type);
 	}
 
 
-	public String toString() {
-		return toString(Tags.TAG_TYPE);
+	public override string ToString() {
+		return ToString(Tags.TAG_TYPE);
 	}
 
-	public bool match(String match) {
-		if (getValue() != null && (getValue().equals(match)))
+	public bool match(string match) {
+		if (getValue() != null && (getValue().Equals(match)))
 			return true;
 		return false;
 	}

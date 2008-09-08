@@ -1,9 +1,9 @@
 namespace DotNetXri.Client.Xml {
 
-	using java.net.URI;
+	using java.net.Uri;
 	using java.net.URISyntaxException;
 	using java.util.List;
-	using java.util.Vector;
+	using java.util.ArrayList;
 
 	/**
 	* This is a service that matches a resolution request without service type, media type and path.
@@ -13,9 +13,9 @@ namespace DotNetXri.Client.Xml {
 
 		/**
 		* Constructs a new default service endpoint for use in an authority. Nothing will be appended to them.
-		* @param pages - The default URI(s).
+		* @param pages - The default Uri(s).
 		*/
-		public DefaultService(URI[] pages, String providerID) {
+		public DefaultService(Uri[] pages, string providerID) {
 
 
 
@@ -38,11 +38,11 @@ namespace DotNetXri.Client.Xml {
 			*/
 			for (int i = 0; i < pages.length; i++) {
 
-				URI page = pages[i];
+				Uri page = pages[i];
 
 				try {
 
-					this.addURI(new SEPUri(page.toString(), null, SEPUri.APPEND_NONE));
+					this.addURI(new SEPUri(page.ToString(), null, SEPUri.APPEND_NONE));
 				} catch (URISyntaxException ex) {
 
 					continue;
@@ -50,19 +50,19 @@ namespace DotNetXri.Client.Xml {
 			}
 		}
 
-		public DefaultService(URI page, String providerID) {
+		public DefaultService(Uri page, string providerID) {
 
-			this(new URI[] { page }, providerID);
+			this(new Uri[] { page }, providerID);
 		}
 
-		public DefaultService(URI[] pages) {
+		public DefaultService(Uri[] pages) {
 
 			this(pages, null);
 		}
 
-		public DefaultService(URI page) {
+		public DefaultService(Uri page) {
 
-			this(new URI[] { page }, null);
+			this(new Uri[] { page }, null);
 		}
 
 		public static bool isInstance(Service service) {
@@ -79,21 +79,21 @@ namespace DotNetXri.Client.Xml {
 
 				SEPMediaType mediaType = (SEPMediaType)mediaTypes.get(i);
 
-				if (mediaType.getMatch().equals(SEPMediaType.MATCH_ATTR_NULL)) mediaTypeNull = true;
+				if (mediaType.getMatch().Equals(SEPMediaType.MATCH_ATTR_NULL)) mediaTypeNull = true;
 			}
 
 			for (int i = 0; i < serviceTypes.size(); i++) {
 
 				SEPType serviceType = (SEPType)serviceTypes.get(i);
 
-				if (serviceType.getMatch().equals(SEPType.MATCH_ATTR_NULL)) serviceTypeNull = true;
+				if (serviceType.getMatch().Equals(SEPType.MATCH_ATTR_NULL)) serviceTypeNull = true;
 			}
 
 			for (int i = 0; i < paths.size(); i++) {
 
 				SEPPath path = (SEPPath)paths.get(i);
 
-				if (path.getMatch().equals(SEPMediaType.MATCH_ATTR_NULL)) pathNull = true;
+				if (path.getMatch().Equals(SEPMediaType.MATCH_ATTR_NULL)) pathNull = true;
 			}
 
 			return (mediaTypeNull && serviceTypeNull && pathNull);

@@ -15,16 +15,13 @@
  * limitations under the License.
  */
 
-namespace DotNetXri.Client.Resolve.Exception
-{
+namespace DotNetXri.Client.Resolve.Exception {
 	/// <summary>
 	/// This exception is raised during the authority resolution process when
 	/// neither an authority resolution service nor Ref is found.
 	/// </summary>
-	public class AuthResNotFoundException : XRIResolutionException
-	{
+	public class AuthResNotFoundException : XRIResolutionException {
 		public AuthResNotFoundException(string message)
-			: base(message)
-		{ }
+			: base(message) { }
 	}
 }

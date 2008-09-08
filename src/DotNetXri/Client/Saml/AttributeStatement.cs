@@ -16,11 +16,11 @@
 */
 namespace DotNetXri.Client.Saml {
 
-using org.apache.xerces.dom.DocumentImpl;
+using org.apache.xerces.dom.XmlDocument;
 using org.openxri.util.DOMUtils;
 using org.openxri.xml.Tags;
-using org.w3c.dom.Document;
-using org.w3c.dom.Element;
+using org.w3c.dom.XmlDocument;
+using org.w3c.dom.XmlElement;
 using org.w3c.dom.Node;
 
 
@@ -44,7 +44,7 @@ public class AttributeStatement
     *  This method populates the obj from DOM.  It does not keep a
     * copy of the DOM around.  Whitespace information is lost in this process.
     */
-    public AttributeStatement(Element oElem)
+    public AttributeStatement(XmlElement oElem)
     {
         fromDOM(oElem);
 
@@ -71,7 +71,7 @@ public class AttributeStatement
     *  This method populates the obj from DOM.  It does not keep a
     * copy of the DOM around.  Whitespace information is lost in this process.
     */
-    public void fromDOM(Element oElem)
+    public void fromDOM(XmlElement oElem)
     {
         reset();
 
@@ -79,12 +79,12 @@ public class AttributeStatement
             Node oChild = DOMUtils.getFirstChildElement(oElem); oChild != null;
             oChild = DOMUtils.getNextSiblingElement(oChild))
         {
-            if (oChild.getLocalName().equals(Tags.TAG_ATTRIBUTE))
+            if (oChild.LocalName.Equals(Tags.TAG_ATTRIBUTE))
             {
                 // only accept the first XRIAuthority
                 if (moAttr == null)
                 {
-                    moAttr = new Attribute((Element) oChild);
+                    moAttr = new Attribute((XmlElement) oChild);
                 }
             }
         }
@@ -102,30 +102,30 @@ public class AttributeStatement
 
     /*
     ****************************************************************************
-    * getAttribute()
+    * GetAttribute()
     ****************************************************************************
     */ /**
     * Returns the first attribute element in the statement
     */
-    public Attribute getAttribute()
+    public Attribute GetAttribute()
     {
         return moAttr;
 
-    } // getAttribute()
+    } // GetAttribute()
 
     /*
     ****************************************************************************
-    * setAttribute()
+    * SetAttribute()
     ****************************************************************************
     */ /**
     * Sets the attribute for this statement.  Only 1 attribute at a time is
     * supported.
     */
-    public void setAttribute(Attribute oVal)
+    public void SetAttribute(Attribute oVal)
     {
         moAttr = oVal;
 
-    } // setAttribute()
+    } // SetAttribute()
 
     /*
     ****************************************************************************
@@ -137,7 +137,7 @@ public class AttributeStatement
     * This method generates a reference-free copy of new DOM.
     * @param oDoc - The document to use for generating DOM
     */
-    public Element toDOM(Document oDoc)
+    public XmlElement toDOM(XmlDocument oDoc)
     {
         // for this particular toDOM implementation, oDoc must not be null
         if (oDoc == null)
@@ -145,13 +145,13 @@ public class AttributeStatement
             return null;
         }
 
-        Element oElem =
+        XmlElement oElem =
             oDoc.createElementNS(Tags.NS_SAML, Tags.TAG_ATTRIBUTESTATEMENT);
 
         if (moAttr != null)
         {
-            Element oChildElem = (Element) moAttr.toDOM(oDoc);
-            oElem.appendChild(oChildElem);
+            XmlElement oChildElem = (XmlElement) moAttr.toDOM(oDoc);
+            oElem.AppendChild(oChildElem);
         }
 
         return oElem;
@@ -160,16 +160,16 @@ public class AttributeStatement
 
     /*
     ****************************************************************************
-    * toString()
+    * ToString()
     ****************************************************************************
     */ /**
     * Returns formatted obj.  Do not use if signature needs to be preserved.
     */
-    public String toString()
+    public override string ToString()
     {
         return dump();
 
-    } // toString()
+    } // ToString()
 
     /*
     ****************************************************************************
@@ -179,12 +179,12 @@ public class AttributeStatement
     * Returns obj as a formatted XML string.
     * @param sTab - The characters to prepend before each new line
     */
-    public String dump()
+    public string dump()
     {
-        Document doc = new DocumentImpl();
-        Element elm = this.toDOM(doc);
-        doc.appendChild(elm);
-        return DOMUtils.toString(doc);
+        XmlDocument doc = new XmlDocument();
+        XmlElement elm = this.toDOM(doc);
+        doc.AppendChild(elm);
+        return DOMUtils.ToString(doc);
 
     } // dump()
 

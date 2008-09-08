@@ -162,7 +162,7 @@ public abstract class SEPElement : Cloneable, Serializable {
 		this.setValue(el.InnerText);
 	}
 
-	protected string toString( string tag )
+	protected string ToString( string tag )
 	{
 			XmlDocument doc = new XmlDocument();
 			XmlElement elm = this.toXML(doc, tag);

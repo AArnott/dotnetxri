@@ -31,29 +31,29 @@ public class ServerStatus : SimpleXMLElement {
 		: base(Tags.TAG_SERVERSTATUS) {
 	}
 
-	public ServerStatus(String code)
+	public ServerStatus(string code)
 		: base(Tags.TAG_SERVERSTATUS) {
 		setCode(code);
 	}
 
-	public ServerStatus(String code, String text)
+	public ServerStatus(string code, string text)
 		: base(Tags.TAG_SERVERSTATUS, text) {
 		setCode(code);
 	}
 
-	public String getCode() {
+	public string getCode() {
 		return getAttributeValue(Tags.ATTR_CODE);
 	}
 
-	public String getText() {
+	public string getText() {
 		return getValue();
 	}
 
-	public void setCode(String code) {
+	public void setCode(string code) {
 		addAttribute(Tags.ATTR_CODE, code);
 	}
 
-	public void setText(String text) {
+	public void setText(string text) {
 		setValue(text);
 	}
 }

@@ -24,7 +24,7 @@ namespace DotNetXri.Client.Xml {
 			return expires;
 		}
 
-		public String getDateString() {
+		public string getDateString() {
 			if (expires == null) return "";
 			return DOMUtils.toXMLDateTime(expires);
 		}

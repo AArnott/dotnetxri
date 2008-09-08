@@ -17,8 +17,9 @@
 namespace DotNetXri.Client.Resolve {
 
 using java.util.Iterator;
-using java.util.Vector;
+using java.util.ArrayList;
 using org.openxri.xml.XRD;
+	using System.Collections;
 
 
 /*
@@ -32,7 +33,7 @@ using org.openxri.xml.XRD;
 public class ResolveInfo
 {
     // ordered vector of descriptors used/obtained during resolve
-    private Vector moResolveChains = new Vector();
+    private ArrayList moResolveChains = new ArrayList();
 
     /*
     ****************************************************************************
@@ -41,10 +42,10 @@ public class ResolveInfo
     */ /**
     * Constructor - initializes as unresolved.
     */
-    public ResolveInfo(String sXRI)
+    public ResolveInfo(string sXRI)
     {
         ResolveChain oChain = new ResolveChain(sXRI);
-        moResolveChains.add(oChain);
+        moResolveChains.Add(oChain);
 
     } // Constructor()
 
@@ -55,7 +56,7 @@ public class ResolveInfo
     */ /**
     * Get the XRI attempted to be resolved
     */
-    public String getXRI()
+    public string getXRI()
     {
         return ((ResolveChain) moResolveChains.get(0)).getXRI();
 
@@ -83,7 +84,7 @@ public class ResolveInfo
     */
     public void addChain(ResolveChain oChain)
     {
-        moResolveChains.add(oChain);
+        moResolveChains.Add(oChain);
 
     } // addChain()
 
@@ -118,7 +119,7 @@ public class ResolveInfo
     * Example: Could be ".yahoo.john" for "xri:@email.com.yahoo.john".
     * Null is returned for complete resolutions.
     */
-    public String getUnresolved()
+    public string getUnresolved()
     {
         return getLastChain().getUnresolved();
 

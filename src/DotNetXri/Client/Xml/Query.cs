@@ -2,7 +2,7 @@ namespace DotNetXri.Client.Xml {
 
 public class Query : SimpleXMLElement {
 
-	public Query(String queryString)
+	public Query(string queryString)
 		: base(Tags.TAG_QUERY) {
 		setValue(queryString);
 	}

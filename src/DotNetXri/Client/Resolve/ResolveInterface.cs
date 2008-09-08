@@ -16,7 +16,7 @@
 */
 namespace DotNetXri.Client.Resolve {
 
-using java.net.URI;
+using java.net.Uri;
 using javax.net.ssl.SSLSocketFactory;
 using org.openxri.XRIParseException;
 using org.openxri.resolve.exception.XRIResolutionException;
@@ -45,8 +45,8 @@ public interface ResolveInterface
     * Throws exceptions upon errors while talking to servers.
     */
     public XRD resolveAuthToXRD(
-        String qxri, String trustType, bool followRefs)
-        throws XRIParseException, XRIResolutionException;
+        string qxri, string trustType, bool followRefs)
+        /*throws XRIParseException, XRIResolutionException;*/
 
 
     /*
@@ -92,20 +92,20 @@ public interface ResolveInterface
     ****************************************************************************
     */ /**
     * Sets the proxy resolver to use for XRI resolution
-    * @param oProxyURI - The URI of the proxy resolver to use for resolution.
+    * @param oProxyURI - The Uri of the proxy resolver to use for resolution.
     * Set to null to disable Proxy resolution
     */
-    public void setProxyResolver(URI oProxyURI);
+    public void setProxyResolver(Uri oProxyURI);
 
     /*
     ****************************************************************************
     * getProxyResolver()
     ****************************************************************************
     */ /**
-    * Returns the URI of the proxy resolver being used.  If null, root resolvers
+    * Returns the Uri of the proxy resolver being used.  If null, root resolvers
     * may be contacted directly.
     */
-    public URI getProxyResolver();
+    public Uri getProxyResolver();
 
     /*
     ****************************************************************************

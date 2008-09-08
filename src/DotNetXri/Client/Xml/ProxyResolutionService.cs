@@ -1,9 +1,9 @@
 namespace DotNetXri.Client.Xml {
 
-using java.net.URI;
+using java.net.Uri;
 using java.net.URISyntaxException;
 using java.util.List;
-using java.util.Vector;
+using java.util.ArrayList;
 
 using org.openxri.resolve.TrustType;
 
@@ -13,26 +13,26 @@ using org.openxri.resolve.TrustType;
 	*/
 public class ProxyResolutionService : Service {
 
-	public const String SERVICE_TYPE = "xri://$res*proxy*($v*2.0)";
-	public const String[] SERVICE_MEDIA_TYPES = new String[] {
+	public const string SERVICE_TYPE = "xri://$res*proxy*($v*2.0)";
+	public const string[] SERVICE_MEDIA_TYPES = new string[] {
 		"application/xrds+xml", "application/xrd+xml", "text/uri-list" };
 
-	public const String TRUST_TYPE_SEPARATOR = ";";
-	public const String REFS_SEPARATOR = ";";
-	public const String SEP_SEPARATOR = ";";
+	public const string TRUST_TYPE_SEPARATOR = ";";
+	public const string REFS_SEPARATOR = ";";
+	public const string SEP_SEPARATOR = ";";
 
-	public const Integer URI_PRIORITY_HTTPS = new Integer(1);
-	public const Integer URI_PRIORITY_DEFAULT = new Integer(2);
+	public const int? URI_PRIORITY_HTTPS = new int?(1);
+	public const int? URI_PRIORITY_DEFAULT = new int?(2);
 
 	/**
 		* Constructs a new Proxy Resolution endpoint.
-		* @param resolvers - The URI(s) where the proxy is implemented.
+		* @param resolvers - The Uri(s) where the proxy is implemented.
 		* @param providerID - The global i-number of the I-Broker providing this Proxy Resolution Service.
 		* @param trustType - The Trust Type supported by the proxy
 		* @param refs - Whether the proxy supports following references
 		* @param sep - Whether the proxy supports service endpoint selection
 		*/
-	public ProxyResolutionService(URI[] proxies, String providerID, TrustType trustType, Boolean refs, Boolean sep) {
+	public ProxyResolutionService(Uri[] proxies, string providerID, TrustType trustType, Boolean refs, Boolean sep) {
 
 
 
@@ -52,9 +52,9 @@ public class ProxyResolutionService : Service {
 
 		for (int i = 0; i < SERVICE_MEDIA_TYPES.length; i++) {
 
-			String mediaType = SERVICE_MEDIA_TYPES[i];
+			string mediaType = SERVICE_MEDIA_TYPES[i];
 
-			if (trustType != null && !trustType.equals(TrustType.TRUST_NONE)) {
+			if (trustType != null && !trustType.Equals(TrustType.TRUST_NONE)) {
 
 				mediaType += TRUST_TYPE_SEPARATOR + trustType.getParameterPair();
 				if (refs != null) mediaType += REFS_SEPARATOR + refs;
@@ -69,14 +69,14 @@ public class ProxyResolutionService : Service {
 			*/
 		for (int i = 0; i < proxies.length; i++) {
 
-			URI resolver = proxies[i];
+			Uri resolver = proxies[i];
 
 			try {
 
-				Integer priority = resolver.getScheme().toLowerCase().equals("https") ?
+				int? priority = resolver.getScheme().toLowerCase().Equals("https") ?
 					URI_PRIORITY_HTTPS : URI_PRIORITY_DEFAULT;
 
-				this.addURI(new SEPUri(resolver.toString(), priority, SEPUri.APPEND_NONE));
+				this.addURI(new SEPUri(resolver.ToString(), priority, SEPUri.APPEND_NONE));
 			} catch (URISyntaxException ex) {
 
 				continue;
@@ -84,39 +84,39 @@ public class ProxyResolutionService : Service {
 		}
 	}
 
-	public ProxyResolutionService(URI proxy, String providerId, TrustType trustType, Boolean refs, Boolean sep) {
+	public ProxyResolutionService(Uri proxy, string providerId, TrustType trustType, Boolean refs, Boolean sep) {
 
-		this(new URI[] { proxy }, providerId, trustType, refs, sep);
+		this(new Uri[] { proxy }, providerId, trustType, refs, sep);
 	}
 
-	public ProxyResolutionService(URI[] proxies, String providerId, TrustType trustType) {
+	public ProxyResolutionService(Uri[] proxies, string providerId, TrustType trustType) {
 
 		this(proxies, providerId, trustType, null, null);
 	}
 
-	public ProxyResolutionService(URI proxy, String providerId, TrustType trustType) {
+	public ProxyResolutionService(Uri proxy, string providerId, TrustType trustType) {
 
-		this(new URI[] { proxy }, providerId, trustType, null, null);
+		this(new Uri[] { proxy }, providerId, trustType, null, null);
 	}
 
-	public ProxyResolutionService(URI[] proxies, String providerId) {
+	public ProxyResolutionService(Uri[] proxies, string providerId) {
 
 		this(proxies, providerId, null, null, null);
 	}
 
-	public ProxyResolutionService(URI proxy, String providerId) {
+	public ProxyResolutionService(Uri proxy, string providerId) {
 
-		this(new URI[] { proxy }, providerId, null, null, null);
+		this(new Uri[] { proxy }, providerId, null, null, null);
 	}
 
-	public ProxyResolutionService(URI[] proxies) {
+	public ProxyResolutionService(Uri[] proxies) {
 
 		this(proxies, null, null, null, null);
 	}
 
-	public ProxyResolutionService(URI proxy) {
+	public ProxyResolutionService(Uri proxy) {
 
-		this(new URI[] { proxy }, null, null, null, null);
+		this(new Uri[] { proxy }, null, null, null, null);
 	}
 
 	public static bool isInstance(Service service) {
@@ -129,7 +129,7 @@ public class ProxyResolutionService : Service {
 
 			SEPType serviceType = (SEPType)serviceTypes.get(i);
 
-			if (SERVICE_TYPE.equals(serviceType.getValue())) return (true);
+			if (SERVICE_TYPE.Equals(serviceType.getValue())) return (true);
 		}
 
 		return (false);

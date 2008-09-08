@@ -17,14 +17,15 @@
 namespace DotNetXri.Client.Resolve {
 
 using java.util.Collections;
-using java.util.HashMap;
+using java.util.Hashtable;
 using java.util.Iterator;
 using java.util.Map;
-using java.util.Vector;
+using java.util.ArrayList;
 using org.openxri.XRISubSegment;
 using org.openxri.XRIAuthority;
 using org.openxri.xml.XRD;
 using org.openxri.xml.XRDS;
+using System.Collections;
 
 
 /*
@@ -157,7 +158,7 @@ public class Cache
     */
     CachedValue find(
         XRIAuthority oAuth, bool bPartial, bool bCompleteChain,
-        Vector oCachedDescriptors)
+        ArrayList oCachedDescriptors)
     {
         CacheNode oNode =
             findNode(oAuth, bPartial, bCompleteChain, oCachedDescriptors);
@@ -174,7 +175,7 @@ public class Cache
     */
     private CacheNode findNode(
         XRIAuthority oAuth, bool bPartial, bool bCompleteChain,
-        Vector oCachedDescriptors)
+        ArrayList oCachedDescriptors)
     {
         // get the Node for the community root
         CacheNode oCommunityNode = moRootNode.find(oAuth.getRootAuthority());
@@ -397,16 +398,16 @@ public class Cache
 
         /*
         ************************************************************************
-        * toString()
+        * ToString()
         ************************************************************************
         */ /**
         * Serializes the descriptor member.
         */
-        public String toString()
+        public override string ToString()
         {
-            return moDescriptor.toString();
+            return moDescriptor.ToString();
 
-        } // toString()
+        } // ToString()
 
     } // Class: CachedValue
 
@@ -424,9 +425,9 @@ public class Cache
 class CacheNode
 {
     Cache.CachedValue moCacheValue = null;
-    Map moCacheHash = Collections.synchronizedMap(new HashMap());
+    Map moCacheHash = Collections.synchronizedMap(new Hashtable());
     CacheNode moParent = null;
-    String msSubsegment = null;
+    string msSubsegment = null;
     CacheNode moPrev = null;
     CacheNode moNext = null;
     Cache moCache = null;
@@ -454,7 +455,7 @@ class CacheNode
     */ /**
     *  This is used to add a new CacheNode to the cache
     */
-    CacheNode(CacheNode oParent, String sSubsegment)
+    CacheNode(CacheNode oParent, string sSubsegment)
     {
         // we need to keep track of these for the removeSelf method
         moParent = oParent;
@@ -540,7 +541,7 @@ class CacheNode
     */
     CacheResult find(
         XRIAuthority oAuth, int nNextSubsegment, bool bCompleteChain,
-        Vector oCachedDescriptors)
+        ArrayList oCachedDescriptors)
     {
         // if there are no new subsegments to get, just return "this", we are done
         XRISubSegment oSubSegment = oAuth.getSubSegmentAt(nNextSubsegment);
@@ -550,7 +551,7 @@ class CacheNode
         }
 
         // also return if we can't find the next subsegment
-        CacheNode oNode = find(oSubSegment.toString());
+        CacheNode oNode = find(oSubSegment.ToString());
         if (oNode == null)
         {
             return new CacheResult(this, nNextSubsegment);
@@ -601,7 +602,7 @@ class CacheNode
             return this;
         }
 
-        CacheNode oNode = mkdir(oSubSegment.toString());
+        CacheNode oNode = mkdir(oSubSegment.ToString());
 
         return ((n + 1) < iTargetDepth)
         ? oNode.mkdir(oAuth, n + 1, iTargetDepth) : oNode;
@@ -615,7 +616,7 @@ class CacheNode
     */ /**
     * Creates a CacheNode under this CacheNode for the specified subsegment
     */
-    CacheNode mkdir(String sSubSegment)
+    CacheNode mkdir(string sSubSegment)
     {
         CacheNode oNode = find(sSubSegment);
         if (oNode == null)
@@ -635,7 +636,7 @@ class CacheNode
     */ /**
     * Tries to find the specified subsegment under the current CacheNode
     */
-    CacheNode find(String sSubSegment)
+    CacheNode find(string sSubSegment)
     {
         CacheNode oNode = (CacheNode) moCacheHash.get(sSubSegment);
         if (oNode != null)

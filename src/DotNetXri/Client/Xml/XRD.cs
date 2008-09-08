@@ -15,44 +15,51 @@
 * limitations under the License.
 */
 
-using System.Text;
 
 namespace DotNetXri.Client.Xml {
 
-using java.io.ByteArrayInputStream;
-using java.io.IOException;
-using java.io.InputStream;
-using java.io.Serializable;
-using java.net.URISyntaxException;
-using java.security.PrivateKey;
-using java.security.PublicKey;
-using java.text.ParseException;
-using java.util.ArrayList;
-using java.util.Collection;
-using java.util.Date;
-using java.util.HashMap;
-using java.util.Iterator;
-using java.util.Vector;
+//using java.io.ByteArrayInputStream;
+//using java.io.IOException;
+//using java.io.InputStream;
+//using java.io.Serializable;
+//using java.net.URISyntaxException;
+//using java.security.PrivateKey;
+//using java.security.PublicKey;
+//using java.text.ParseException;
+//using java.util.ArrayList;
+//using java.util.Collection;
+//using java.util.Date;
+//using java.util.Hashtable;
+//using java.util.Iterator;
+//using java.util.ArrayList;
 
-using org.apache.xerces.dom.DocumentImpl;
-using org.apache.xerces.parsers.DOMParser;
-using org.apache.xml.security.c14n.Canonicalizer;
-using org.apache.xml.security.exceptions.XMLSecurityException;
-using org.apache.xml.security.signature.Reference;
-using org.apache.xml.security.signature.SignedInfo;
-using org.apache.xml.security.signature.XMLSignature;
-using org.apache.xml.security.transforms.Transforms;
-using org.openxri.XRIParseException;
-using org.openxri.resolve.exception.XRIResolutionException;
-using org.openxri.saml.Assertion;
-using org.openxri.util.DOM3Utils;
-using org.openxri.util.DOMUtils;
-using org.openxri.util.PrioritizedList;
-using org.w3c.dom.Document;
-using org.w3c.dom.Element;
-using org.w3c.dom.Node;
-using org.xml.sax.InputSource;
-using org.xml.sax.SAXException;
+//using org.apache.xerces.dom.XmlDocument;
+//using org.apache.xerces.parsers.DOMParser;
+//using org.apache.xml.security.c14n.Canonicalizer;
+//using org.apache.xml.security.exceptions.XMLSecurityException;
+//using org.apache.xml.security.signature.Reference;
+//using org.apache.xml.security.signature.SignedInfo;
+//using org.apache.xml.security.signature.XMLSignature;
+//using org.apache.xml.security.transforms.Transforms;
+//using org.openxri.XRIParseException;
+//using org.openxri.resolve.exception.XRIResolutionException;
+//using org.openxri.saml.Assertion;
+//using org.openxri.util.DOM3Utils;
+//using org.openxri.util.DOMUtils;
+//using org.openxri.util.PrioritizedList;
+//using org.w3c.dom.XmlDocument;
+//using org.w3c.dom.XmlElement;
+//using org.w3c.dom.Node;
+//using org.xml.sax.InputSource;
+//using org.xml.sax.SAXException;
+using DotNetXri.Loggers;
+using System;
+using System.Collections;
+using System.Text;
+using DotNetXri.Client.Util;
+using System.Collections.Generic;
+using System.Xml;
+using DotNetXri.Client.Saml;
 
 
 /**
@@ -65,53 +72,51 @@ using org.xml.sax.SAXException;
 public class XRD : Cloneable, Serializable
 {
 	
-	public const String CURRENT_VERSION = "2.0";
+	public const string CURRENT_VERSION = "2.0";
 	
-	private static org.apache.commons.logging.Log soLog =
-		org.apache.commons.logging.LogFactory.getLog(
-				XRD.class.getName());
+	private static ILog soLog = Logger.Create(typeof(XRD));
 	
 	// optional attributes
-	private String xmlID;
-	private String idRef;
-	private String version;
+	private string xmlID;
+	private string idRef;
+	private string version;
 
 	// other elements
-	private Vector           types;
+	private ArrayList           types;
 	private Query            query;
 	private Status           status;
 	private ServerStatus     serverStatus;
 	private Expires          expires;
 	private ProviderID       providerID;
 
-	private Vector           localIDs;
-	private Vector           equivIDs;
-	private Vector           canonicalIDs;
+	private ArrayList           localIDs;
+	private ArrayList           equivIDs;
+	private ArrayList           canonicalIDs;
 	private CanonicalEquivID canonicalEquivID;
 	
-	private Vector           redirects;
+	private ArrayList           redirects;
 	private PrioritizedList  prioritizedRedirects;
 	
-	private Vector           refs;
+	private ArrayList           refs;
 	private PrioritizedList  prioritizedRefs;
 	
-	private Vector           services;
+	private ArrayList           services;
 	private PrioritizedList  prioritizedServices;
 	private PrioritizedList  selectedServices;
 
 	private Assertion        samlAssertion;
 
-	private Element          moElem;
-	private HashMap          moOtherChildrenVectorsMap;
+	private XmlElement          moElem;
+	private Dictionary<object, object>          moOtherChildrenVectorsMap;
 
 	
-	static
+	static XRD()
 	{
 		try {
 			org.apache.xml.security.Init.init();
 		}
 		catch (Exception oEx) {
-			soLog.warn("Failed to initialize XML Sec library", oEx);
+			soLog.Warn("Failed to initialize XML Sec library", oEx);
 		}
 	}
 	
@@ -133,32 +138,32 @@ public class XRD : Cloneable, Serializable
 		xmlID        = "";
 		idRef        = null;
 		version	     = null;
-		types        = new Vector();
+		types        = new ArrayList();
 		query        = null;
 		status       = null;
 		serverStatus = null;
 		expires      = null;
 		providerID   = null;
 
-		localIDs             = new Vector();    
-		equivIDs             = new Vector();
-		canonicalIDs         = new Vector(); // CanonicalID (TODO: Should be 0 or 1)
+		localIDs             = new ArrayList();    
+		equivIDs             = new ArrayList();
+		canonicalIDs         = new ArrayList(); // CanonicalID (TODO: Should be 0 or 1)
 		canonicalEquivID     = null;
 		
-		refs                 = new Vector();
+		refs                 = new ArrayList();
 		prioritizedRefs      = new PrioritizedList();
 		
-		redirects            = new Vector();
+		redirects            = new ArrayList();
 		prioritizedRedirects = new PrioritizedList();
 		
-		services             = new Vector();
+		services             = new ArrayList();
 		prioritizedServices  = new PrioritizedList();
 		selectedServices     = new PrioritizedList();
 
 		samlAssertion        = null;
 
 		moElem               = null;
-		moOtherChildrenVectorsMap = new HashMap();
+		moOtherChildrenVectorsMap = new Dictionary<object, object>();
 	}
 
 
@@ -173,7 +178,7 @@ public class XRD : Cloneable, Serializable
 		x.idRef            = idRef;
 		x.version          = version;
 		if (types != null) 
-			x.types = (Vector)types.clone();		
+			x.types = (ArrayList)types.clone();		
 		if (query != null) 
 			x.query = new Query(query);
 		if (status != null) 
@@ -186,26 +191,26 @@ public class XRD : Cloneable, Serializable
 			x.providerID = new ProviderID(providerID);
 
 		if (localIDs != null)
-			x.localIDs = (Vector)localIDs.clone();
+			x.localIDs = (ArrayList)localIDs.clone();
 		if (equivIDs != null) 
-			x.equivIDs = (Vector)equivIDs.clone();
+			x.equivIDs = (ArrayList)equivIDs.clone();
 		if (canonicalIDs != null) 
-			x.canonicalIDs = (Vector)canonicalIDs.clone();
+			x.canonicalIDs = (ArrayList)canonicalIDs.clone();
 		if (canonicalEquivID != null) 
 			x.canonicalEquivID = new CanonicalEquivID(canonicalEquivID);
 		
 		if (refs != null)
-			x.refs = (Vector)refs.clone();
+			x.refs = (ArrayList)refs.clone();
 		if (prioritizedRefs != null)
 			x.prioritizedRefs = (PrioritizedList)prioritizedRefs.clone();
 		
 		if (redirects != null)
-			x.redirects = (Vector)redirects.clone();
+			x.redirects = (ArrayList)redirects.clone();
 		if (prioritizedRedirects != null)
 			x.prioritizedRedirects = (PrioritizedList)prioritizedRedirects.clone();
 
 		if (services != null)
-			x.services = (Vector)services.clone();
+			x.services = (ArrayList)services.clone();
 		if (prioritizedServices != null)
 			x.prioritizedServices = (PrioritizedList)prioritizedServices.clone();
 		if (selectedServices != null)
@@ -216,7 +221,7 @@ public class XRD : Cloneable, Serializable
 		x.moElem        = moElem;
 		
 		if (moOtherChildrenVectorsMap != null)
-			x.moOtherChildrenVectorsMap = (HashMap)moOtherChildrenVectorsMap.clone();
+			x.moOtherChildrenVectorsMap = (Dictionary<object, object>)moOtherChildrenVectorsMap.clone();
 		
 		return x;
 	}
@@ -229,7 +234,7 @@ public class XRD : Cloneable, Serializable
 	* @param oElem - The DOM to create the obj from
 	* @param bKeepDOM - If true, will keep a copy of the DOM with the obj
 	*/
-	public XRD(Element oElem, bool bKeepDOM) throws URISyntaxException, ParseException
+	public XRD(XmlElement oElem, bool bKeepDOM) //throws URISyntaxException, ParseException
 	{
 		if (bKeepDOM) {
 			setDOM(oElem);
@@ -241,10 +246,10 @@ public class XRD : Cloneable, Serializable
 
 
 	/**
-	* Constructs XRD from a String
+	* Constructs XRD from a string
 	*/
-	public static XRD parseXRD (String xmlStr, bool bKeepDOM)
-	throws URISyntaxException, ParseException
+	public static XRD parseXRD (string xmlStr, bool bKeepDOM)
+	//throws URISyntaxException, ParseException
 	{
 		InputStream oIn = new ByteArrayInputStream(xmlStr.getBytes());
 		
@@ -253,10 +258,10 @@ public class XRD : Cloneable, Serializable
 		try {
 			DOMParser oDOMParser = DOMUtils.getDOMParser();
 			oDOMParser.parse(new InputSource(oIn));
-			Document oDOMDoc = oDOMParser.getDocument();
+			XmlDocument oDOMDoc = oDOMParser.getDocument();
 			
 			// XRDS
-			Element oElement = oDOMDoc.getDocumentElement();
+			XmlElement oElement = oDOMDoc.getDocumentElement();
 			
 			// Populate the cache and store the Descriptors from the response
 			oXriD = new XRD(oElement, bKeepDOM);
@@ -284,7 +289,7 @@ public class XRD : Cloneable, Serializable
 	* This method populates the obj from DOM.  It does not keep a
 	* copy of the DOM around.  Whitespace information is lost in this process.
 	*/
-	public void fromDOM(Element oElem) throws URISyntaxException, ParseException
+	public void fromDOM(XmlElement oElem) //throws URISyntaxException, ParseException
 	{
 		reset();
 		
@@ -298,100 +303,100 @@ public class XRD : Cloneable, Serializable
 		if (oElem.hasAttributeNS(null, Tags.ATTR_XRD_VERSION))
 			version = oElem.getAttributeNS(null, Tags.ATTR_XRD_VERSION);
 	
-		for (Element oChild = DOMUtils.getFirstChildElement(oElem); oChild != null; oChild = DOMUtils.getNextSiblingElement(oChild)) {
+		for (XmlElement oChild = DOMUtils.getFirstChildElement(oElem); oChild != null; oChild = DOMUtils.getNextSiblingElement(oChild)) {
 			
-			String sChildName = oChild.getLocalName();
+			string sChildName = oChild.LocalName;
 			if (sChildName == null) sChildName = oChild.getNodeName();
 			
-			if (sChildName.equals(Tags.TAG_TYPE))
+			if (sChildName.Equals(Tags.TAG_TYPE))
 			{
 				XRDType t = new XRDType();
 				t.fromXML(oChild);
 				types.add(t);
 			}
-			else if (sChildName.equals(Tags.TAG_QUERY))
+			else if (sChildName.Equals(Tags.TAG_QUERY))
 			{
 				Query q = new Query();
 				q.fromXML(oChild);
 				this.query = q;
 			}
-			else if (sChildName.equals(Tags.TAG_STATUS))
+			else if (sChildName.Equals(Tags.TAG_STATUS))
 			{
 				Status s = new Status();
 				s.fromXML(oChild);
 				this.status = s;
 			}
-			else if (sChildName.equals(Tags.TAG_SERVERSTATUS))
+			else if (sChildName.Equals(Tags.TAG_SERVERSTATUS))
 			{
 				ServerStatus s = new ServerStatus();
 				s.fromXML(oChild);
 				this.serverStatus = s;
 			}
-			else if (sChildName.equals(Tags.TAG_EXPIRES))
+			else if (sChildName.Equals(Tags.TAG_EXPIRES))
 			{
 				// only accept the first Expires element and make sure it
 				expires = new Expires(
 						DOMUtils.fromXMLDateTime(oChild.getFirstChild().getNodeValue())
 				);	
 			}
-			else if (sChildName.equals(Tags.TAG_PROVIDERID))
+			else if (sChildName.Equals(Tags.TAG_PROVIDERID))
 			{
 				ProviderID p = new ProviderID();
 				p.fromXML(oChild);
 				this.providerID = p;
 			}
-			else if (sChildName.equals(Tags.TAG_LOCALID))
+			else if (sChildName.Equals(Tags.TAG_LOCALID))
 			{
 				addLocalID(new LocalID(oChild));
 			}
-			else if (sChildName.equals(Tags.TAG_EQUIVID))
+			else if (sChildName.Equals(Tags.TAG_EQUIVID))
 			{
 				equivIDs.add(new EquivID(oChild));
 			}
-			else if (sChildName.equals(Tags.TAG_CANONICALID))
+			else if (sChildName.Equals(Tags.TAG_CANONICALID))
 			{
 				canonicalIDs.add(new CanonicalID(oChild));
 			}
-			else if (sChildName.equals(Tags.TAG_CANONICALEQUIVID))
+			else if (sChildName.Equals(Tags.TAG_CANONICALEQUIVID))
 			{
 				canonicalEquivID = new CanonicalEquivID();
 				canonicalEquivID.fromXML(oChild);
 			}
-			else if (sChildName.equals(Tags.TAG_REDIRECT))
+			else if (sChildName.Equals(Tags.TAG_REDIRECT))
 			{
-				Redirect ref = new Redirect(oChild);
-				addRedirect(ref);
+				Redirect _ref = new Redirect(oChild);
+				addRedirect(_ref);
 			}
-			else if (sChildName.equals(Tags.TAG_REF))
+			else if (sChildName.Equals(Tags.TAG_REF))
 			{
-				Ref ref = new Ref(oChild);
-				addRef(ref);
+				Ref _ref = new Ref(oChild);
+				addRef(_ref);
 			}
-			else if (sChildName.equals(Tags.TAG_SERVICE))
+			else if (sChildName.Equals(Tags.TAG_SERVICE))
 			{
 				addService(new Service(oChild));
 			}
 			else if (
-					(oChild.getNamespaceURI() != null) &&
-					oChild.getNamespaceURI().equals(Tags.NS_SAML) &&
-					(oChild.getLocalName() != null) &&
-					oChild.getLocalName().equals(Tags.TAG_ASSERTION))
+					(oChild.NamespaceURI != null) &&
+					oChild.NamespaceURI.Equals(Tags.NS_SAML) &&
+					(oChild.LocalName != null) &&
+					oChild.LocalName.Equals(Tags.TAG_ASSERTION))
 			{
 				samlAssertion = new Assertion(oChild);
 			}
-			// Added this code to support extensions in Authority Element
+			// Added this code to support extensions in Authority XmlElement
 			else
 			{
-				Vector oVector =
-					(Vector) moOtherChildrenVectorsMap.get(sChildName);
+				ArrayList oVector =
+					(ArrayList) moOtherChildrenVectorsMap[sChildName];
 				
 				if (oVector == null)
 				{
-					oVector = new Vector();
-					moOtherChildrenVectorsMap.put(sChildName, oVector);
+					oVector = new ArrayList();
+					moOtherChildrenVectorsMap[sChildName] = oVector;
 				}
 				
-				oVector.add(oChild.cloneNode(true));
+				oVector.Add(oChild.CloneNode(true));
 			}
 		}
 	}
@@ -404,10 +409,10 @@ public class XRD : Cloneable, Serializable
 	* signature.
 	* @param bOmitXMLDeclaration - whether or not to omit the XML preamble
 	*/
-	public String serializeDOM(bool bIndent, bool bOmitXMLDeclaration)
+	public string serializeDOM(bool bIndent, bool bOmitXMLDeclaration)
 	{
 		getDOM();
-		return DOMUtils.toString(moElem, bIndent, bOmitXMLDeclaration);
+		return DOMUtils.ToString(moElem, bIndent, bOmitXMLDeclaration);
 	}
 
 
@@ -415,12 +420,12 @@ public class XRD : Cloneable, Serializable
 	* Returns obj as a formatted XML string.
 	* @param sTab - The characters to prepend before each new line
 	*/
-	public String toString()
+	public override string ToString()
 	{
-		Document doc = new DocumentImpl();
-		Element elm = this.toDOM(doc);
-		doc.appendChild(elm);
-		return DOMUtils.toString(doc); 
+		XmlDocument doc = new  XmlDocument();
+		XmlElement elm = this.toDOM(doc);
+		doc.AppendChild(elm);
+		return doc.OuterXml;
 	}
 
 
@@ -428,12 +433,12 @@ public class XRD : Cloneable, Serializable
 	* Returns this XRD with only the selected services (filtered and sorted) as XML.
 	* @return
 	*/
-	public String toResultString()
+	public string toResultString()
 	{
-		Document doc = new DocumentImpl();
-		Element elm = this.toDOM(doc, true); // filtered
-		doc.appendChild(elm);
-		return DOMUtils.toString(doc);
+		XmlDocument doc = new XmlDocument();
+		XmlElement elm = this.toDOM(doc, true); // filtered
+		doc.AppendChild(elm);
+		return DOMUtils.ToString(doc);
 	}
 
 
@@ -442,12 +447,12 @@ public class XRD : Cloneable, Serializable
 	* This method returns DOM stored with this obj.  It may be cached and
 	* there is no guarantee as to which document it was created from
 	*/
-	public Element getDOM()
+	public XmlElement getDOM()
 	{
 		if (moElem == null)
 		{
-			moElem = toDOM(new DocumentImpl());
-			moElem.getOwnerDocument().appendChild(moElem);
+			moElem = toDOM(new XmlDocument());
+			moElem.getOwnerDocument().AppendChild(moElem);
 		}
 		
 		return moElem;
@@ -459,8 +464,8 @@ public class XRD : Cloneable, Serializable
 	* retrievable by getDOM.  The fromDOM method, on the otherhand, will not keep
 	* a copy of the DOM.
 	*/
-	public void setDOM(Element oElem)
-	throws URISyntaxException, ParseException
+	public void setDOM(XmlElement oElem)
+	//throws URISyntaxException, ParseException
 	{
 		fromDOM(oElem);
 		moElem = oElem;
@@ -486,14 +491,14 @@ public class XRD : Cloneable, Serializable
 	* @param doc - The document to use for generating DOM
 	* @param wantFiltered - Get sorted+filtered Refs and Services
 	*/
-	public Element toDOM(Document doc, bool wantFiltered)
+	public XmlElement toDOM(XmlDocument doc, bool wantFiltered)
 	{
 		if (doc == null)
 			return null;
 		
-		Element elem = doc.createElementNS(Tags.NS_XRD_V2, Tags.TAG_XRD);
+		XmlElement elem = doc.createElementNS(Tags.NS_XRD_V2, Tags.TAG_XRD);
 		
-		if (!xmlID.equals(""))
+		if (!xmlID.Equals(""))
 			elem.setAttributeNS(Tags.NS_XML, Tags.ATTR_ID_LOW, xmlID);
 
 		if (idRef != null)
@@ -504,116 +509,116 @@ public class XRD : Cloneable, Serializable
 
 		for (int i = 0; i < getNumTypes(); i++)
 		{
-			Element t = (Element) getTypeAt(i).toXML(doc);
-			elem.appendChild(t);
+			XmlElement t = (XmlElement) getTypeAt(i).toXML(doc);
+			elem.AppendChild(t);
 		}
 		
 		if (query != null) {
-			Element oResolved = query.toXML(doc);
-			elem.appendChild(oResolved);
+			XmlElement oResolved = query.toXML(doc);
+			elem.AppendChild(oResolved);
 		}
 		
 		if (status != null) {
-			Element oStatus = status.toXML(doc);
-			elem.appendChild(oStatus);
+			XmlElement oStatus = status.toXML(doc);
+			elem.AppendChild(oStatus);
 		}
 		
 		if (serverStatus != null) {
-			Element oServerStatus = serverStatus.toXML(doc);
-			elem.appendChild(oServerStatus);
+			XmlElement oServerStatus = serverStatus.toXML(doc);
+			elem.AppendChild(oServerStatus);
 		}
 		
 		if (expires != null ) {
-			Element oExpires = expires.toXML(doc);
-			elem.appendChild(oExpires);
+			XmlElement oExpires = expires.toXML(doc);
+			elem.AppendChild(oExpires);
 		}
 		
 		if (providerID != null ) {
-			Element oProviderid = providerID.toXML(doc);
-			elem.appendChild(oProviderid);
+			XmlElement oProviderid = providerID.toXML(doc);
+			elem.AppendChild(oProviderid);
 		}
 		
 		for (int i = 0; i < getNumLocalIDs(); i++)
 		{
-			Element oLocal = (Element) getLocalIDAt(i).toXML(doc);
-			elem.appendChild(oLocal);
+			XmlElement oLocal = (XmlElement) getLocalIDAt(i).toXML(doc);
+			elem.AppendChild(oLocal);
 		}
 		
 		for (int i = 0; i < getNumEquivIDs(); i++)
 		{
-			Element equivID = (Element) getEquivIDAt(i).toXML(doc);
-			elem.appendChild(equivID);
+			XmlElement equivID = (XmlElement) getEquivIDAt(i).toXML(doc);
+			elem.AppendChild(equivID);
 		}
 		
 		for (int i = 0; i < getNumCanonicalids(); i++)
 		{
-			Element oLocal = (Element) getCanonicalidAt(i).toXML(doc);
-			elem.appendChild(oLocal);
+			XmlElement oLocal = (XmlElement) getCanonicalidAt(i).toXML(doc);
+			elem.AppendChild(oLocal);
 		}
 		
 		if (canonicalEquivID != null)
-			elem.appendChild(canonicalEquivID.toXML(doc));
+			elem.AppendChild(canonicalEquivID.toXML(doc));
 
 		if (wantFiltered) {
 			ArrayList redirects = getPrioritizedRedirects();
 			for (int i =0; i < redirects.size(); i++){
 				Redirect r = (Redirect)redirects.get(i);
-				Element e = (Element) r.toXML(doc);
-				elem.appendChild(e);
+				XmlElement e = (XmlElement) r.toXML(doc);
+				elem.AppendChild(e);
 			}
 			
 			ArrayList refs = getPrioritizedRefs();
 			for (int i =0; i < refs.size(); i++){
 				Ref r = (Ref)refs.get(i);
-				Element e = (Element) r.toXML(doc);
-				elem.appendChild(e);
+				XmlElement e = (XmlElement) r.toXML(doc);
+				elem.AppendChild(e);
 			}
 			
 			ArrayList svcs = getSelectedServices().getList();
 			for (int i = 0; i < svcs.size(); i++)
 			{
 				Service s = (Service)svcs.get(i);
-				Element e = (Element) s.toDOM(doc, true);
-				elem.appendChild(e);
+				XmlElement e = (XmlElement) s.toDOM(doc, true);
+				elem.AppendChild(e);
 			}
 		}
 		else {
 			for (int i =0; i < getNumRedirects(); i++){
-				Element e = (Element) getRedirectAt(i).toXML(doc);
-				elem.appendChild(e);
+				XmlElement e = (XmlElement) getRedirectAt(i).toXML(doc);
+				elem.AppendChild(e);
 			}
 			
 			for (int i =0; i < getNumRefs(); i++){
-				Element e = (Element) getRefAt(i).toXML(doc);
-				elem.appendChild(e);
+				XmlElement e = (XmlElement) getRefAt(i).toXML(doc);
+				elem.AppendChild(e);
 			}
 			
 			for (int i = 0; i < getNumServices(); i++)
 			{
-				Element e = (Element) getServiceAt(i).toDOM(doc);
-				elem.appendChild(e);
+				XmlElement e = (XmlElement) getServiceAt(i).toDOM(doc);
+				elem.AppendChild(e);
 			}
 			
 			if (samlAssertion != null)
 			{
-				Element oSAMLElement = (Element) samlAssertion.toDOM(doc);
-				elem.appendChild(oSAMLElement);
+				XmlElement oSAMLElement = (XmlElement) samlAssertion.toDOM(doc);
+				elem.AppendChild(oSAMLElement);
 			}
 			
 			Iterator oCustomTags = moOtherChildrenVectorsMap.keySet().iterator();
 			while (oCustomTags.hasNext())
 			{
-				String sTag = (String) oCustomTags.next();
-				Vector oValues = (Vector) moOtherChildrenVectorsMap.get(sTag);
+				string sTag = (string) oCustomTags.next();
+				ArrayList oValues = (ArrayList) moOtherChildrenVectorsMap.get(sTag);
 				for (int i = 0; i < oValues.size(); i++)
 				{
-					Element oCustom = doc.createElement(sTag);
+					XmlElement oCustom = doc.CreateElement(sTag);
 					
-					// Importing the Child Node into New Document and also adding it to the
-					// Service Element as a Child Node
+					// Importing the Child Node into New XmlDocument and also adding it to the
+					// Service XmlElement as a Child Node
 					Node oChild = (Node) oValues.get(i);
 					Node oChild2 = doc.importNode(oChild, true);
-					elem.appendChild(oChild2);
+					elem.AppendChild(oChild2);
 				}
 			}
 		}
@@ -628,7 +633,7 @@ public class XRD : Cloneable, Serializable
 	* This method generates a reference-free copy of new DOM.
 	* @param doc - The document to use for generating DOM
 	*/
-	public Element toDOM(Document doc)
+	public XmlElement toDOM(XmlDocument doc)
 	{
 		return toDOM(doc, false);
 	}
@@ -637,26 +642,26 @@ public class XRD : Cloneable, Serializable
 	/**
 	* Stores simple elements in the Service by Tag
 	*
-	* Here we are converting the String obj that is being passed into XML
-	* Element before storing it into moOtherChildrenVectorsMap Vector. The reason
+	* Here we are converting the string obj that is being passed into XML
+	* XmlElement before storing it into moOtherChildrenVectorsMap ArrayList. The reason
 	* we are doing this is, we need to preserve NameSpaces, and also support a scenario
-	* where a Child Element under Service Element, can have Sub Elements. With this
-	* it will preserve all the Text Nodes under the Sub Element.
+	* where a Child XmlElement under Service XmlElement, can have Sub Elements. With this
+	* it will preserve all the Text Nodes under the Sub XmlElement.
 	*
-	* @param sTag - The tag name. Needs to be the Fully Qualified Name of the XML Element.
+	* @param sTag - The tag name. Needs to be the Fully Qualified Name of the XML XmlElement.
 	*
 	*                    For Example "usrns1:info1"  or "info1" (If not using NameSpaces)
 	*
-	* @param sTagValue - The tag values. Needs to be valid XML String like --
+	* @param sTagValue - The tag values. Needs to be valid XML string like --
 	*
 	*            "<usrns1:info1 xmlns:usrns1=\"xri://$user1*schema/localinfo\" >Newton</usrns1:info1>"
 	
-	* @return -- Boolean - -True if the String could be Successfully Parsed and Stored, Else it will return false
+	* @return -- Boolean - -True if the string could be Successfully Parsed and Stored, Else it will return false
 	*
 	*/
-	public bool setOtherTagValues(String sTag, String sTagValue)
+	public bool setOtherTagValues(string sTag, string sTagValue)
 	{
-		String xmlStr =
+		string xmlStr =
 			"<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + sTagValue;
 		bool returnValue = false;
 		
@@ -664,17 +669,17 @@ public class XRD : Cloneable, Serializable
 			InputStream oIn = new ByteArrayInputStream(xmlStr.getBytes());
 			DOMParser oDOMParser = DOMUtils.getDOMParser();
 			oDOMParser.parse(new InputSource(oIn));
-			Document oDOMDoc = oDOMParser.getDocument();
-			Element oElement = oDOMDoc.getDocumentElement();
+			XmlDocument oDOMDoc = oDOMParser.getDocument();
+			XmlElement oElement = oDOMDoc.getDocumentElement();
 			
-			Vector oVector = (Vector) moOtherChildrenVectorsMap.get(sTag);
+			ArrayList oVector = (ArrayList) moOtherChildrenVectorsMap.get(sTag);
 			
 			if (oVector == null) {
-				oVector = new Vector();
+				oVector = new ArrayList();
 				moOtherChildrenVectorsMap.put(sTag, oVector);
 			}
 			
-			oVector.add(oElement.cloneNode(true));
+			oVector.add(oElement.CloneNode(true));
 			
 			returnValue = true;
 		}
@@ -692,14 +697,14 @@ public class XRD : Cloneable, Serializable
 	* @param sTag - The tag name to get values for
 	* @return a vector of text values whose element tag names match sTag
 	*/
-	public Vector getOtherTagValues(String sTag)
+	public ArrayList getOtherTagValues(string sTag)
 	{
-		return (Vector) moOtherChildrenVectorsMap.get(sTag);
+		return (ArrayList) moOtherChildrenVectorsMap.get(sTag);
 	}
 
-	public void setExtension(String extension) throws URISyntaxException, ParseException {
+	public void setExtension(string extension) //throws URISyntaxException, ParseException {
 
-		String xmlStr = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + 
+		string xmlStr = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + 
 		"<xrd xmlns=\"xri://$xrd*($v*2.0)\">" +
 		extension
 		+ "</xrd>";
@@ -709,31 +714,31 @@ public class XRD : Cloneable, Serializable
 		this.moOtherChildrenVectorsMap = tempXrd.moOtherChildrenVectorsMap;
 	}
 
-	public String getExtension() {
+	public string getExtension() {
 
 		StringBuilder extension = new StringBuilder();
 		
 		Iterator oCustomTags = moOtherChildrenVectorsMap.keySet().iterator();
 		while (oCustomTags.hasNext())
 		{
-			String sTag = (String) oCustomTags.next();
-			Vector oValues = (Vector) moOtherChildrenVectorsMap.get(sTag);
+			string sTag = (string) oCustomTags.next();
+			ArrayList oValues = (ArrayList) moOtherChildrenVectorsMap.get(sTag);
 			for (int i = 0; i < oValues.size(); i++)
 			{
 				Node oChild = (Node) oValues.get(i);
 				
-				extension.append(DOMUtils.toString((Element) oChild, true, true));
+				extension.append(DOMUtils.ToString((XmlElement) oChild, true, true));
 			}
 		}
 
-		return extension.toString();
+		return extension.ToString();
 	}
 
 	/**
 	* Returns the id attribute
-	* @return String The authority id element
+	* @return string The authority id element
 	*/
-	public String getXmlID()
+	public string getXmlID()
 	{
 		return xmlID;
 		
@@ -743,7 +748,7 @@ public class XRD : Cloneable, Serializable
 	/**
 	* Sets the id attribute
 	*/
-	public void setXmlID(String sVal)
+	public void setXmlID(string sVal)
 	{
 		xmlID = sVal;
 	}
@@ -761,7 +766,7 @@ public class XRD : Cloneable, Serializable
 	/**
 	* Returns the provider id element value
 	*/
-	public String getProviderID()
+	public string getProviderID()
 	{
 		return (providerID != null) ? providerID.getValue(): null;
 	}
@@ -770,7 +775,7 @@ public class XRD : Cloneable, Serializable
 	/**
 	* Sets the provider id element value
 	*/
-	public void setProviderID(String sVal)
+	public void setProviderID(string sVal)
 	{
 		providerID = new ProviderID(sVal);
 	}
@@ -779,7 +784,7 @@ public class XRD : Cloneable, Serializable
 	/**
 	* Returns the query element value
 	*/
-	public String getQuery()
+	public string getQuery()
 	{
 		return (query != null)? query.getValue(): null;
 	}
@@ -788,7 +793,7 @@ public class XRD : Cloneable, Serializable
 	/**
 	* Sets the query element value
 	*/
-	public void setQuery(String sVal)
+	public void setQuery(string sVal)
 	{
 		if (query != null)
 			query.setValue(sVal);
@@ -903,8 +908,8 @@ public class XRD : Cloneable, Serializable
 	/**
 	* @return Returns a copy of the collection of Refs in the order as it appears in the original XRD
 	*/
-	public Vector getRefs() {
-		return (Vector)refs.clone();
+	public ArrayList getRefs() {
+		return (ArrayList)refs.clone();
 	}
 
 	
@@ -918,10 +923,10 @@ public class XRD : Cloneable, Serializable
 	}
 	
 	
-	public void addRef(Ref ref) {
-		Integer priority = ref.getPriority();		
-		refs.add(ref);
-		prioritizedRefs.addObject((priority == null)? "null" : priority.toString(), ref);
+	public void addRef(Ref _ref) {
+		int? priority = _ref.getPriority();		
+		refs.add(_ref);
+		prioritizedRefs.addObject((priority == null)? "null" : priority.ToString(), _ref);
 	}
 
 	public ArrayList getPrioritizedRefs() {
@@ -933,8 +938,8 @@ public class XRD : Cloneable, Serializable
 	/**
 	* @return Returns a copy of the collection of Redirects in the order as it appears in the original XRD
 	*/
-	public Vector getRedirects() {
-		return (Vector)redirects.clone();
+	public ArrayList getRedirects() {
+		return (ArrayList)redirects.clone();
 	}
 
 	
@@ -949,9 +954,9 @@ public class XRD : Cloneable, Serializable
 	
 	
 	public void addRedirect(Redirect redirect) {
-		Integer priority = redirect.getPriority();		
+		int? priority = redirect.getPriority();		
 		redirects.add(redirect);
-		prioritizedRedirects.addObject((priority == null)? "null" : priority.toString(), redirect);
+		prioritizedRedirects.addObject((priority == null)? "null" : priority.ToString(), redirect);
 	}
 
 	public ArrayList getPrioritizedRedirects() {
@@ -992,8 +997,8 @@ public class XRD : Cloneable, Serializable
 	public void addService(Service service)
 	{
 		services.add(service);
-		Integer priority = service.getPriority();
-		prioritizedServices.addObject((priority == null)? "null" : priority.toString(), service);
+		int? priority = service.getPriority();
+		prioritizedServices.addObject((priority == null)? "null" : priority.ToString(), service);
 	}
 	
 	
@@ -1041,7 +1046,7 @@ public class XRD : Cloneable, Serializable
 	* @throws XMLSecurityException
 	*/
 	public void sign(PrivateKey oKey)
-	throws XMLSecurityException
+	//throws XMLSecurityException
 	{
 		// build up the DOM (stored in moElem for future use)
 		getDOM();
@@ -1050,7 +1055,7 @@ public class XRD : Cloneable, Serializable
 		// this is separate from the XMLDSig canonicalization and is more for attributes, namespaces, etc.
 		moElem.getOwnerDocument().normalizeDocument();
 		
-		Element oAssertionElem =
+		XmlElement oAssertionElem =
 			DOMUtils.getFirstChildElement(
 					moElem, Tags.NS_SAML, Tags.TAG_ASSERTION);
 		if (oAssertionElem == null)
@@ -1059,7 +1064,7 @@ public class XRD : Cloneable, Serializable
 			"Cannot create signature. No SAML Assertion attached to descriptor.");
 		}
 		
-		Element oSubjectElem =
+		XmlElement oSubjectElem =
 			DOMUtils.getFirstChildElement(
 					oAssertionElem, Tags.NS_SAML, Tags.TAG_SUBJECT);
 		if (oSubjectElem == null)
@@ -1069,27 +1074,27 @@ public class XRD : Cloneable, Serializable
 		}
 		
 		// make sure the id attribute is present
-		String sID = moElem.getAttributeNS(Tags.NS_XML, Tags.ATTR_ID_LOW);
-		if ((sID == null) || (sID.equals("")))
+		string sID = moElem.getAttributeNS(Tags.NS_XML, Tags.ATTR_ID_LOW);
+		if ((sID == null) || (sID.Equals("")))
 		{
 			throw new XMLSecurityException(
 					"Cannot create signature. ID is missing for " +
-					moElem.getLocalName());
+					moElem.LocalName);
 		}
 		
 		// Set the DOM so that it can be signed
 		DOM3Utils.bestEffortSetIDAttr(moElem, Tags.NS_XML, Tags.ATTR_ID_LOW);
 		
 		// Build the empty signature.
-		Document oDoc = moElem.getOwnerDocument();
+		XmlDocument oDoc = moElem.getOwnerDocument();
 		XMLSignature oSig =
 			new XMLSignature(
 					oDoc, null, XMLSignature.ALGO_ID_SIGNATURE_RSA_SHA1,
 					Canonicalizer.ALGO_ID_C14N_EXCL_OMIT_COMMENTS);
 		
 		// add all the transforms to the signature
-		String[] oTransforms =
-			new String[] { Transforms.TRANSFORM_ENVELOPED_SIGNATURE, Transforms.TRANSFORM_C14N_EXCL_OMIT_COMMENTS };
+		string[] oTransforms =
+			new string[] { Transforms.TRANSFORM_ENVELOPED_SIGNATURE, Transforms.TRANSFORM_C14N_EXCL_OMIT_COMMENTS };
 		Transforms oTrans = new Transforms(oSig.getDocument());
 		for (int i = 0; i < oTransforms.length; i++)
 		{
@@ -1101,7 +1106,7 @@ public class XRD : Cloneable, Serializable
 		oSig.sign(oKey);
 		
 		// now sub in this element
-		Element oSigElem = oSig.getElement();
+		XmlElement oSigElem = oSig.getElement();
 		
 		// insert the signature in the right place
 		oAssertionElem.insertBefore(oSigElem, oSubjectElem);
@@ -1116,7 +1121,7 @@ public class XRD : Cloneable, Serializable
 	* @throws XMLSecurityException
 	*/
 	public void verifySignature(PublicKey oPubKey)
-	throws XMLSecurityException
+	//throws XMLSecurityException
 	{
 		if (moElem == null)
 		{
@@ -1125,21 +1130,21 @@ public class XRD : Cloneable, Serializable
 		}
 		
 		// make sure the ID attribute is present
-		String sIDAttr = Tags.ATTR_ID_LOW;
-		String sIDAttrNS = Tags.NS_XML;
-		String sID = moElem.getAttributeNS(sIDAttrNS, sIDAttr);
-		if ((sID == null) || (sID.equals("")))
+		string sIDAttr = Tags.ATTR_ID_LOW;
+		string sIDAttrNS = Tags.NS_XML;
+		string sID = moElem.getAttributeNS(sIDAttrNS, sIDAttr);
+		if ((sID == null) || (sID.Equals("")))
 		{
 			throw new XMLSecurityException(
 					"Cannot verify the signature. ID is missing for " +
-					moElem.getLocalName());
+					moElem.LocalName);
 		}
-		String sRef = "#" + sID;
+		string sRef = "#" + sID;
 		
 		// Set the DOM so that it can be verified
 		DOM3Utils.bestEffortSetIDAttr(moElem, sIDAttrNS, sIDAttr);
 		
-		Element oAssertionElem =
+		XmlElement oAssertionElem =
 			DOMUtils.getFirstChildElement(
 					moElem, Tags.NS_SAML, Tags.TAG_ASSERTION);
 		
@@ -1149,7 +1154,7 @@ public class XRD : Cloneable, Serializable
 			"Cannot verify the signature. No Assertion in XRD");
 		}
 		
-		Element oSigElem =
+		XmlElement oSigElem =
 			DOMUtils.getFirstChildElement(
 					oAssertionElem, Tags.NS_XMLDSIG, Tags.TAG_SIGNATURE);
 		
@@ -1164,7 +1169,7 @@ public class XRD : Cloneable, Serializable
 		oSig = new XMLSignature(oSigElem, null);
 		
 		// Validate the signature content by checking the references
-		String sFailedRef = null;
+		string sFailedRef = null;
 		SignedInfo oSignedInfo = oSig.getSignedInfo();
 		if (oSignedInfo.getLength() != 1)
 		{
@@ -1175,11 +1180,11 @@ public class XRD : Cloneable, Serializable
 		
 		// make sure it references the correct element
 		Reference oRef = oSignedInfo.item(0);
-		String sURI = oRef.getURI();
-		if (!sRef.equals(sURI))
+		string sURI = oRef.getURI();
+		if (!sRef.Equals(sURI))
 		{
 			throw new XMLSecurityException(
-			"Cannot verify the signature. Reference URI did not match ID");
+			"Cannot verify the signature. Reference Uri did not match ID");
 		}
 		
 		// check that the transforms are ok
@@ -1187,14 +1192,14 @@ public class XRD : Cloneable, Serializable
 		Transforms oTransforms = oRef.getTransforms();
 		for (int i = 0; i < oTransforms.getLength(); i++)
 		{
-			String sTransform = oTransforms.item(i).getURI();
-			if (Transforms.TRANSFORM_ENVELOPED_SIGNATURE.equals(sTransform))
+			string sTransform = oTransforms.item(i).getURI();
+			if (Transforms.TRANSFORM_ENVELOPED_SIGNATURE.Equals(sTransform))
 			{
 				// mark that we got the required transform
 				bEnvelopedFound = true;
 			}
 			else if (
-					!Transforms.TRANSFORM_C14N_EXCL_OMIT_COMMENTS.equals(
+					!Transforms.TRANSFORM_C14N_EXCL_OMIT_COMMENTS.Equals(
 							sTransform))
 			{
 				// bonk if we don't have one of the two acceptable transforms
@@ -1249,7 +1254,7 @@ public class XRD : Cloneable, Serializable
 	/**
 	* @return Returns the ServerStatus code.
 	*/
-	public String getServerStatusCode()
+	public string getServerStatusCode()
 	{
 		if (serverStatus == null)
 			return null;
@@ -1276,7 +1281,7 @@ public class XRD : Cloneable, Serializable
 	/**
 	* @return Returns the status code.
 	*/
-	public String getStatusCode()
+	public string getStatusCode()
 	{
 		if (status == null)
 			return null;
@@ -1288,13 +1293,13 @@ public class XRD : Cloneable, Serializable
 	/**
 	* @return Returns a copy of the collection of services as it appears in the original XRD
 	*/
-	public Vector getServices() {
-		return (Vector)services.clone();
+	public ArrayList getServices() {
+		return (ArrayList)services.clone();
 	}
 	
 	
 	public void setServices(Collection col) {
-		services = new Vector();
+		services = new ArrayList();
 		prioritizedServices = new PrioritizedList();
 		
 		Iterator i = col.iterator();
@@ -1310,14 +1315,14 @@ public class XRD : Cloneable, Serializable
 		Iterator i = svcs.iterator();
 		while (i.hasNext()) {
 			Service s = (Service)i.next();
-			Integer priority = s.getPriority();
-			String priStr = (priority == null)? "null" : priority.toString();
+			int? priority = s.getPriority();
+			string priStr = (priority == null)? "null" : priority.ToString();
 			selectedServices.addObject(priStr, s);
 		}
 	}
 	
 	public void setEquivIDs(Collection col) {
-		equivIDs = new Vector();
+		equivIDs = new ArrayList();
 		
 		Iterator i = col.iterator();
 		while (i.hasNext()) {
@@ -1327,7 +1332,7 @@ public class XRD : Cloneable, Serializable
 	}
 	
 	public void setRefs(Collection col) {
-		refs = new Vector();
+		refs = new ArrayList();
 		
 		Iterator i = col.iterator();
 		while (i.hasNext()) {
@@ -1337,7 +1342,7 @@ public class XRD : Cloneable, Serializable
 	}
 	
 	public void setRedirects(Collection col) {
-		redirects = new Vector();
+		redirects = new ArrayList();
 		
 		Iterator i = col.iterator();
 		while (i.hasNext()) {

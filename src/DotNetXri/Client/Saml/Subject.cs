@@ -15,12 +15,14 @@
  * limitations under the License.
 */
 namespace DotNetXri.Client.Saml {
-using org.apache.xerces.dom.DocumentImpl;
+using org.apache.xerces.dom.XmlDocument;
 using org.openxri.util.DOMUtils;
 using org.openxri.xml.Tags;
-using org.w3c.dom.Document;
-using org.w3c.dom.Element;
-using org.w3c.dom.Node;
+using org.w3c.dom.XmlDocument;
+using org.w3c.dom.XmlElement;
+using org.w3c.dom.XmlNode;
+	using System.Xml;
+	using DotNetXri.Client.Xml;
 
 
 /*
@@ -43,7 +45,7 @@ public class Subject
     *  This method populates the obj from DOM.  It does not keep a
     * copy of the DOM around.  Whitespace information is lost in this process.
     */
-    public Subject(Element oElem)
+    public Subject(XmlElement oElem)
     {
         fromDOM(oElem);
 
@@ -70,20 +72,20 @@ public class Subject
     *  This method populates the obj from DOM.  It does not keep a
     * copy of the DOM around.  Whitespace information is lost in this process.
     */
-    public void fromDOM(Element oElem)
+    public void fromDOM(XmlElement oElem)
     {
         reset();
 
         for (
-            Node oChild = DOMUtils.getFirstChildElement(oElem); oChild != null;
+            XmlNode oChild = DOMUtils.getFirstChildElement(oElem); oChild != null;
             oChild = DOMUtils.getNextSiblingElement(oChild))
         {
-            if (oChild.getLocalName().equals(Tags.TAG_NAMEID))
+            if (oChild.LocalName.Equals(Tags.TAG_NAMEID))
             {
                 // only accept the first XRIAuthority
                 if (moNameID == null)
                 {
-                    moNameID = new NameID((Element) oChild);
+                    moNameID = new NameID((XmlElement) oChild);
                 }
             }
         }
@@ -135,7 +137,7 @@ public class Subject
     * This method generates a reference-free copy of new DOM.
     * @param oDoc - The document to use for generating DOM
     */
-    public Element toDOM(Document oDoc)
+    public XmlElement toDOM(XmlDocument oDoc)
     {
         // for this particular toDOM implementation, oDoc must not be null
         if (oDoc == null)
@@ -143,12 +145,12 @@ public class Subject
             return null;
         }
 
-        Element oElem = oDoc.createElementNS(Tags.NS_SAML, Tags.TAG_SUBJECT);
+        XmlElement oElem = oDoc.createElementNS(Tags.NS_SAML, Tags.TAG_SUBJECT);
 
         if (moNameID != null)
         {
-            Element oChildElem = (Element) moNameID.toDOM(oDoc);
-            oElem.appendChild(oChildElem);
+            XmlElement oChildElem = (XmlElement) moNameID.toDOM(oDoc);
+            oElem.AppendChild(oChildElem);
         }
 
         return oElem;
@@ -157,16 +159,16 @@ public class Subject
 
     /*
     ****************************************************************************
-    * toString()
+    * ToString()
     ****************************************************************************
     */ /**
     * Returns formatted obj.  Do not use if signature needs to be preserved.
     */
-    public String toString()
+    public override string ToString()
     {
         return dump();
 
-    } // toString()
+    } // ToString()
 
     /*
     ****************************************************************************
@@ -176,12 +178,12 @@ public class Subject
     * Returns obj as a formatted XML string.
     * @param sTab - The characters to prepend before each new line
     */
-    public String dump()
+    public string dump()
     {
-        Document doc = new DocumentImpl();
-        Element elm = this.toDOM(doc);
-        doc.appendChild(elm);
-        return DOMUtils.toString(doc);
+        XmlDocument doc = new XmlDocument();
+        XmlElement elm = this.toDOM(doc);
+        doc.AppendChild(elm);
+        return DOMUtils.ToString(doc);
 
     } // dump()
 

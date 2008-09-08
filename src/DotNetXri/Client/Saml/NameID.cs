@@ -15,12 +15,14 @@
  * limitations under the License.
 */
 namespace DotNetXri.Client.Saml {
-using org.apache.xerces.dom.DocumentImpl;
+using org.apache.xerces.dom.XmlDocument;
 using org.openxri.util.DOMUtils;
 using org.openxri.xml.Tags;
-using org.w3c.dom.Document;
-using org.w3c.dom.Element;
-using org.w3c.dom.Node;
+using org.w3c.dom.XmlDocument;
+using org.w3c.dom.XmlElement;
+using org.w3c.dom.XmlNode;
+	using System.Xml;
+	using DotNetXri.Client.Xml;
 
 
 /*
@@ -33,9 +35,9 @@ using org.w3c.dom.Node;
 */
 public class NameID
 {
-    private String msTag = "";
-    private String msNQ = "";
-    private String msValue = "";
+    private string msTag = "";
+    private string msNQ = "";
+    private string msValue = "";
 
     /*
     ****************************************************************************
@@ -45,7 +47,7 @@ public class NameID
     *  This method populates the obj from DOM.  It does not keep a
     * copy of the DOM around.  Whitespace information is lost in this process.
     */
-    public NameID(Element oElem)
+    public NameID(XmlElement oElem)
     {
         fromDOM(oElem);
 
@@ -74,11 +76,11 @@ public class NameID
     *  This method populates the obj from DOM.  It does not keep a
     * copy of the DOM around.  Whitespace information is lost in this process.
     */
-    public void fromDOM(Element oElem)
+    public void fromDOM(XmlElement oElem)
     {
         reset();
 
-        msTag = oElem.getLocalName();
+        msTag = oElem.LocalName;
 
         // get the id attribute
         if (oElem.hasAttributeNS(null, Tags.ATTR_NAMEQUALIFIER))
@@ -86,8 +88,8 @@ public class NameID
             msNQ = oElem.getAttributeNS(null, Tags.ATTR_NAMEQUALIFIER);
         }
 
-        Node oChild = oElem.getFirstChild();
-        if ((oChild != null) && (oChild.getNodeType() == Node.TEXT_NODE))
+        XmlNode oChild = oElem.getFirstChild();
+        if ((oChild != null) && (oChild.getNodeType() == XmlNode.TEXT_NODE))
         {
             msValue = oChild.getNodeValue();
         }
@@ -102,7 +104,7 @@ public class NameID
     * Constructs an empty SAML NameID obj.
     * @param sTag - The tag name for the element during serialization
     */
-    public NameID(String sTag)
+    public NameID(string sTag)
     {
         msTag = sTag;
 
@@ -115,7 +117,7 @@ public class NameID
     */ /**
     * Sets the nameQualifier attribute
     */
-    public void setNameQualifier(String sVal)
+    public void setNameQualifier(string sVal)
     {
         msNQ = sVal;
 
@@ -128,7 +130,7 @@ public class NameID
     */ /**
     * Returns the nameQualifier attribute
     */
-    public String getNameQualifier()
+    public string getNameQualifier()
     {
         return msNQ;
 
@@ -141,7 +143,7 @@ public class NameID
     */ /**
     * Sets the text value
     */
-    public void setValue(String sVal)
+    public void setValue(string sVal)
     {
         msValue = sVal;
 
@@ -154,7 +156,7 @@ public class NameID
     */ /**
     * Returns the text value
     */
-    public String getValue()
+    public string getValue()
     {
         return msValue;
 
@@ -170,7 +172,7 @@ public class NameID
     * This method generates a reference-free copy of new DOM.
     * @param oDoc - The document to use for generating DOM
     */
-    public Element toDOM(Document oDoc)
+    public XmlElement toDOM(XmlDocument oDoc)
     {
         // for this particular toDOM implementation, oDoc must not be null
         if (oDoc == null)
@@ -178,14 +180,14 @@ public class NameID
             return null;
         }
 
-        Element oElem = oDoc.createElementNS(Tags.NS_SAML, msTag);
+        XmlElement oElem = oDoc.createElementNS(Tags.NS_SAML, msTag);
 
-        if (!msNQ.equals(""))
+        if (!msNQ.Equals(""))
         {
             oElem.setAttributeNS(null, Tags.ATTR_NAMEQUALIFIER, msNQ);
         }
 
-        oElem.appendChild(oDoc.createTextNode(msValue));
+        oElem.AppendChild(oDoc.CreateTextNode(msValue));
 
         return oElem;
 
@@ -193,16 +195,16 @@ public class NameID
 
     /*
     ****************************************************************************
-    * toString()
+    * ToString()
     ****************************************************************************
     */ /**
     * Returns formatted obj.  Do not use if signature needs to be preserved.
     */
-    public String toString()
+    public override string ToString()
     {
         return dump();
 
-    } // toString()
+    } // ToString()
 
     /*
     ****************************************************************************
@@ -212,12 +214,12 @@ public class NameID
     * Returns obj as a formatted XML string.
     * @param sTab - The characters to prepend before each new line
     */
-    public String dump()
+    public string dump()
     {
-        Document doc = new DocumentImpl();
-        Element elm = this.toDOM(doc);
-        doc.appendChild(elm);
-        return DOMUtils.toString(doc);
+		XmlDocument doc = new XmlDocument();
+        XmlElement elm = this.toDOM(doc);
+        doc.AppendChild(elm);
+		return doc.OuterXml;
 
     } // dump()
 

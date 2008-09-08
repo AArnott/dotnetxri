@@ -21,10 +21,10 @@ namespace DotNetXri.Client.Util {
 
 using java.lang.reflect.InvocationTargetException;
 
-using org.apache.xerces.dom.DocumentImpl;
+using org.apache.xerces.dom.XmlDocument;
 using org.w3c.dom.Attr;
-using org.w3c.dom.Document;
-using org.w3c.dom.Element;
+using org.w3c.dom.XmlDocument;
+using org.w3c.dom.XmlElement;
 using org.w3c.dom.Node;
 
 
@@ -45,9 +45,9 @@ public class DOM3Utils
     {
         try
         {
-            Document.class.getDeclaredMethod(
+            XmlDocument.class.getDeclaredMethod(
                 "adoptNode", new Class[] { Node.class });
-            Element.class.getDeclaredMethod(
+            XmlElement.class.getDeclaredMethod(
             		"setIdAttributeNode", new Class[] { Node.class });
             sbHasDOM3Support = true;
         }
@@ -72,9 +72,9 @@ public class DOM3Utils
      * isXercesDocument()
      ****************************************************************************
      */ /**
-     * Returns true if specified Document is backed by Xerces
+     * Returns true if specified XmlDocument is backed by Xerces
      */
-    public static bool isXercesDocument(Document oDoc)
+    public static bool isXercesDocument(XmlDocument oDoc)
     {
         return oDoc.getClass().getName().startsWith("org.apache.xerces.dom");
     }
@@ -86,7 +86,7 @@ public class DOM3Utils
     */ /**
     *  Attempts to adopt the node into the document
     */
-    public static void bestEffortAdopt(Document oDoc, Node oNode)
+    public static void bestEffortAdopt(XmlDocument oDoc, Node oNode)
     {
         // do nothing if there is nothing to do
         if (
@@ -113,10 +113,10 @@ public class DOM3Utils
             return;
         }
 
-        // if it is an DocumentImpl, steal its adoption
+        // if it is an XmlDocument, steal its adoption
         if (isXercesDocument(oDoc))
         {
-            ((DocumentImpl) oDoc).adoptNode(oNode);
+            ((XmlDocument) oDoc).adoptNode(oNode);
             return;
         }
 
@@ -131,10 +131,10 @@ public class DOM3Utils
     ****************************************************************************
     */ /**
     * Makes a best effort at setting the ID attribute so that it can be looked
-    * up using Document::getElementsById
+    * up using XmlDocument::getElementsById
     */
     public static void bestEffortSetIDAttr(
-        Element oElem, String sNS, String sAttr)
+        XmlElement oElem, string sNS, string sAttr)
     {
         // do nothing if there is nothing to do
         if ((oElem == null) || (sAttr == null))
@@ -170,18 +170,18 @@ public class DOM3Utils
 			return;
         }
 
-        // if it is an DocumentImpl, use the putIdentifier method
+        // if it is an XmlDocument, use the putIdentifier method
         if (isXercesDocument(oElem.getOwnerDocument()))
         {
-            String sAttrVal = oElem.getAttributeNS(sNS, sAttr);
-            ((DocumentImpl) oElem.getOwnerDocument()).putIdentifier(
+            string sAttrVal = oElem.getAttributeNS(sNS, sAttr);
+            ((XmlDocument) oElem.getOwnerDocument()).putIdentifier(
                 sAttrVal, oElem);
             return;
         }
 
         throw new RuntimeException(
             "No known method to set a signable ID attribute. " +
-            "Try using a DOM3-compliant Parser or a DOM2 Xerces Document.");
+            "Try using a DOM3-compliant Parser or a DOM2 Xerces XmlDocument.");
 
     } // bestEffortSetIDAttr()
 

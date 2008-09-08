@@ -16,11 +16,11 @@
 */
 namespace DotNetXri.Client.Saml {
 
-using org.apache.xerces.dom.DocumentImpl;
+using org.apache.xerces.dom.XmlDocument;
 using org.openxri.util.DOMUtils;
 using org.openxri.xml.Tags;
-using org.w3c.dom.Document;
-using org.w3c.dom.Element;
+using org.w3c.dom.XmlDocument;
+using org.w3c.dom.XmlElement;
 using org.w3c.dom.Node;
 
 
@@ -34,8 +34,8 @@ using org.w3c.dom.Node;
 */
 public class Attribute
 {
-    private String msName = "";
-    private String msValue = "";
+    private string msName = "";
+    private string msValue = "";
 
     /*
     ****************************************************************************
@@ -54,7 +54,7 @@ public class Attribute
     *  This method populates the obj from DOM.  It does not keep a
     * copy of the DOM around.  Whitespace information is lost in this process.
     */
-    public Attribute(Element oElem)
+    public Attribute(XmlElement oElem)
     {
         fromDOM(oElem);
 
@@ -82,7 +82,7 @@ public class Attribute
     *  This method populates the XRD from DOM.  It does not keep a
     * copy of the DOM around.  Whitespace information is lost in this process.
     */
-    public void fromDOM(Element oElem)
+    public void fromDOM(XmlElement oElem)
     {
         reset();
 
@@ -96,12 +96,12 @@ public class Attribute
             Node oChild = DOMUtils.getFirstChildElement(oElem); oChild != null;
             oChild = DOMUtils.getNextSiblingElement(oChild))
         {
-            if (oChild.getLocalName().equals(Tags.TAG_ATTRIBUTEVALUE))
+            if (oChild.LocalName.Equals(Tags.TAG_ATTRIBUTEVALUE))
             {
                 // only accept the first  element and make sure it
                 // is a text node                
                 if (
-                    (msValue.equals("")) && (oChild.getFirstChild() != null) &&
+                    (msValue.Equals("")) && (oChild.getFirstChild() != null) &&
                     (oChild.getFirstChild().getNodeType() == Node.TEXT_NODE))
                 {
                     msValue = oChild.getFirstChild().getNodeValue();
@@ -121,7 +121,7 @@ public class Attribute
     * This method generates a reference-free copy of new DOM.
     * @param oDoc - The document to use for generating DOM
     */
-    public Element toDOM(Document oDoc)
+    public XmlElement toDOM(XmlDocument oDoc)
     {
         // for this particular toDOM implementation, oDoc must not be null
         if (oDoc == null)
@@ -129,18 +129,18 @@ public class Attribute
             return null;
         }
 
-        Element oElem = oDoc.createElementNS(Tags.NS_SAML, Tags.TAG_ATTRIBUTE);
+        XmlElement oElem = oDoc.createElementNS(Tags.NS_SAML, Tags.TAG_ATTRIBUTE);
 
-        if (!msName.equals(""))
+        if (!msName.Equals(""))
         {
             oElem.setAttributeNS(null, Tags.ATTR_NAME, msName);
         }
 
-        Element oValElem =
+        XmlElement oValElem =
             oDoc.createElementNS(Tags.NS_SAML, Tags.TAG_ATTRIBUTEVALUE);
-        oValElem.appendChild(oDoc.createTextNode(msValue));
+        oValElem.AppendChild(oDoc.CreateTextNode(msValue));
 
-        oElem.appendChild(oValElem);
+        oElem.AppendChild(oValElem);
 
         return oElem;
 
@@ -153,7 +153,7 @@ public class Attribute
     */ /**
     * returns the name attribute
     */
-    public String getName()
+    public string getName()
     {
         return msName;
 
@@ -166,7 +166,7 @@ public class Attribute
     */ /**
     * returns the text value
     */
-    public String getValue()
+    public string getValue()
     {
         return msValue;
 
@@ -179,7 +179,7 @@ public class Attribute
     */ /**
     * sets the text value
     */
-    public void setValue(String sVal)
+    public void setValue(string sVal)
     {
         msValue = sVal;
 
@@ -192,7 +192,7 @@ public class Attribute
     */ /**
     * sets the name attribute
     */
-    public void setName(String sVal)
+    public void setName(string sVal)
     {
         msName = sVal;
 
@@ -200,16 +200,16 @@ public class Attribute
 
     /*
     ****************************************************************************
-    * toString()
+    * ToString()
     ****************************************************************************
     */ /**
     * Returns formatted obj.  Do not use if signature needs to be preserved.
     */
-    public String toString()
+    public override string ToString()
     {
         return dump();
 
-    } // toString()
+    } // ToString()
 
     /*
     ****************************************************************************
@@ -219,12 +219,12 @@ public class Attribute
     * Returns obj as a formatted XML string.
     * @param sTab - The characters to prepend before each new line
     */
-    public String dump()
+    public string dump()
     {
-        Document doc = new DocumentImpl();
-        Element elm = this.toDOM(doc);
-        doc.appendChild(elm);
-        return DOMUtils.toString(doc);
+        XmlDocument doc = new XmlDocument();
+        XmlElement elm = this.toDOM(doc);
+        doc.AppendChild(elm);
+        return DOMUtils.ToString(doc);
 
     } // dump()
 

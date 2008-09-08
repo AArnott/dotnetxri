@@ -14,19 +14,20 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
+using System.Collections;
 namespace DotNetXri.Client.Xml {
 
-using java.io.Serializable;
-using java.net.URISyntaxException;
-using java.text.ParseException;
-using java.util.Vector;
+//using java.io.Serializable;
+//using java.net.URISyntaxException;
+//using java.text.ParseException;
+//using java.util.ArrayList;
 
-using org.apache.xerces.dom.DocumentImpl;
-using org.openxri.util.DOMUtils;
-using org.w3c.dom.Document;
-using org.w3c.dom.Element;
-using org.w3c.dom.NamedNodeMap;
-using org.w3c.dom.Node;
+//using org.apache.xerces.dom.XmlDocument;
+//using org.openxri.util.DOMUtils;
+//using org.w3c.dom.XmlDocument;
+//using org.w3c.dom.XmlElement;
+//using org.w3c.dom.NamedNodeMap;
+//using org.w3c.dom.Node;
 
 
 /*
@@ -40,10 +41,10 @@ using org.w3c.dom.Node;
 */
 public class XRDS : Serializable
 {
-	private Vector moXRDs = new Vector();
+	private ArrayList moXRDs = new ArrayList();
 	
-	private String ref = null;
-	private String redirect = null;
+	private string _ref = null;
+	private string redirect = null;
 	
 	/*
 	****************************************************************************
@@ -64,8 +65,8 @@ public class XRDS : Serializable
 	* @param bKeepXRIDDOMs - Whether or not the XRDS should keep
 	* a copy of their DOM after construction.
 	*/
-	public XRDS(Element oElem, bool bKeepXRIDDOMs)
-		throws URISyntaxException, ParseException
+	public XRDS(XmlElement oElem, bool bKeepXRIDDOMs)
+		//throws URISyntaxException, ParseException
 	{
 		fromDOM(oElem, bKeepXRIDDOMs);
 
@@ -207,7 +208,7 @@ public class XRDS : Serializable
 	*/
 	public void reset()
 	{
-		moXRDs = new Vector();
+		moXRDs = new ArrayList();
 
 	} // reset()
 
@@ -221,15 +222,15 @@ public class XRDS : Serializable
 	* @param bKeepXRIDDOMs - Whether or not the XRDS should keep
 	* a copy of their DOM after construction.
 	*/
-	public void fromDOM(Element oElem, bool bKeepXRIDDOMs)
-		throws ParseException, URISyntaxException
+	public void fromDOM(XmlElement oElem, bool bKeepXRIDDOMs)
+		//throws ParseException, URISyntaxException
 	{
 		reset();
 		if (oElem != null){
 			NamedNodeMap attribs = oElem.getAttributes();
 			Node attribNode = attribs.getNamedItem(Tags.ATTR_REF);
 			if (attribNode != null)
-				ref = attribNode.getNodeValue();
+				_ref = attribNode.getNodeValue();
 
 			attribNode = attribs.getNamedItem(Tags.ATTR_REDIRECT);
 			if (attribNode != null)
@@ -239,13 +240,13 @@ public class XRDS : Serializable
 
 		for (; oChild != null; oChild = DOMUtils.getNextSiblingElement(oChild))
 		{
-			if (oChild.getLocalName().equals(Tags.TAG_XRD) )
+			if (oChild.LocalName.Equals(Tags.TAG_XRD) )
 			{
 					moXRDs.add(
-						new XRD((Element) oChild, bKeepXRIDDOMs));
-			}else if (oChild.getLocalName().equals(Tags.TAG_XRDS) ){
+						new XRD((XmlElement) oChild, bKeepXRIDDOMs));
+			}else if (oChild.LocalName.Equals(Tags.TAG_XRDS) ){
 				moXRDs.add(
-							new XRDS((Element) oChild, bKeepXRIDDOMs));
+							new XRDS((XmlElement) oChild, bKeepXRIDDOMs));
 			}
 		}
 
@@ -261,7 +262,7 @@ public class XRDS : Serializable
 	* This method generates a reference-free copy of new DOM.
 	* @param oDoc - The document to use for generating DOM
 	*/
-	public Element toDOM(Document oDoc)
+	public XmlElement toDOM(XmlDocument oDoc)
 	{
 		// for this particular toDOM implementation, oDoc must not be null
 		if (oDoc == null)
@@ -269,26 +270,26 @@ public class XRDS : Serializable
 			return null;
 		}
 
-		Element oElem = oDoc.createElementNS(Tags.NS_XRDS, Tags.TAG_XRDS);
+		XmlElement oElem = oDoc.createElementNS(Tags.NS_XRDS, Tags.TAG_XRDS);
 
-		if (ref != null){
-			oElem.setAttribute(Tags.ATTR_REF, ref);
+		if (_ref != null){
+			oElem.SetAttribute(Tags.ATTR_REF, _ref);
 		}
 		
 		if (redirect != null){
-			oElem.setAttribute(Tags.ATTR_REDIRECT, redirect);
+			oElem.SetAttribute(Tags.ATTR_REDIRECT, redirect);
 		}
 		
 		for (int i = 0; i < getNumChildren(); i++)
 		{
 			
-			Element oLocal = null;
+			XmlElement oLocal = null;
 			if (isXRDSAt(i)) 
 				oLocal = getXRDSAt(i).toDOM(oDoc) ;     
 			else if(isXRDAt(i))
 				oLocal = getDescriptorAt(i).toDOM(oDoc);
 			if (oLocal != null)
-				oElem.appendChild(oLocal);
+				oElem.AppendChild(oLocal);
 		}
 
 		return oElem;
@@ -319,36 +320,36 @@ public class XRDS : Serializable
 	*  Serializes the obj based on calling serializeDOM(false, true) on each
 	* of the child XRDS
 	*/
-	public String serializeDescriptorDOM()
+	public string serializeDescriptorDOM()
 	{
-		return toString();
+		return ToString();
 
 	} // serializeDescriptorDOM()
 
 	/* 
 	****************************************************************************
-	* toString()
+	* ToString()
 	****************************************************************************
 	*/ /**
 	* Returns formatted obj.  Do not use if signature needs to be preserved.
 	*/
-	public String toString()
+	public override string ToString()
 	{
 		return dump();
 		
 
-	} // toString()
+	} // ToString()
 
 	/**
 	* Returns obj as a formatted XML string.
 	* @param sTab - The characters to prepend before each new line
 	*/
-	public String dump()
+	public string dump()
 	{
-		Document doc = new DocumentImpl();
-		Element elm = this.toDOM(doc);
-		doc.appendChild(elm);
-		return DOMUtils.toString(doc);
+		XmlDocument doc = new XmlDocument();
+		XmlElement elm = this.toDOM(doc);
+		doc.AppendChild(elm);
+		return DOMUtils.ToString(doc);
 
 	}
 
@@ -390,30 +391,30 @@ public class XRDS : Serializable
 	}
 	
 	/**
-	* @return Returns the ref.
+	* @return Returns the _ref.
 	*/
-	public String getRef() {
-		return ref;
+	public string getRef() {
+		return _ref;
 	}
 
 	/**
-	* @param ref The ref to set.
+	* @param _ref The _ref to set.
 	*/
-	public void setRef(String ref) {
-		this.ref = ref;
+	public void setRef(string _ref) {
+		this._ref = _ref;
 	}
 	
 	/**
 	* @return Returns the redirect attribute.
 	*/
-	public String getRedirect() {
+	public string getRedirect() {
 		return redirect;
 	}
 
 	/**
-	* @param ref The redirect attribute value to set.
+	* @param _ref The redirect attribute value to set.
 	*/
-	public void setRedirect(String redirect) {
+	public void setRedirect(string redirect) {
 		this.redirect = redirect;
 	}
 	

@@ -16,7 +16,7 @@
 */
 namespace DotNetXri.Client.Resolve {
 
-using java.util.Vector;
+using java.util.ArrayList;
 using org.openxri.xml.XRD;
 using org.openxri.xml.XRDS;
 
@@ -33,7 +33,7 @@ using org.openxri.xml.XRDS;
 public class ResolveChain
 {
     // xri attempted to resolve
-    private String msXRI = null;
+    private string msXRI = null;
 
     // were all segments resolved?
     private bool mbResolvedAll = false;
@@ -42,7 +42,7 @@ public class ResolveChain
     private XRDS moXRIDescriptors = new XRDS();
 
     // unresolved portion for an incomplete resolve
-    private String msUnresolved = "";
+    private string msUnresolved = "";
 
     /*
     ****************************************************************************
@@ -51,7 +51,7 @@ public class ResolveChain
     */ /**
     * Constructor - initializes as unresolved.
     */
-    public ResolveChain(String sXRI)
+    public ResolveChain(string sXRI)
     {
         msXRI = sXRI;
 
@@ -64,7 +64,7 @@ public class ResolveChain
     */ /**
     * Get the XRI attempted to be resolved
     */
-    public String getXRI()
+    public string getXRI()
     {
         return msXRI;
 
@@ -128,7 +128,7 @@ public class ResolveChain
     * Example: Could be ".yahoo.john" for "xri:@email.com.yahoo.john".
     * Null is returned for complete resolutions.
     */
-    public String getUnresolved()
+    public string getUnresolved()
     {
         return msUnresolved;
 
@@ -154,7 +154,7 @@ public class ResolveChain
     */ /**
     * Set unresolved portion.
     */
-    public void setUnresolved(String sUnresolved)
+    public void setUnresolved(string sUnresolved)
     {
         msUnresolved = (sUnresolved == null) ? "" : sUnresolved;
 
@@ -196,7 +196,7 @@ public class ResolveChain
     */ /**
     * Adds the specified XRI Descriptors to the chain
     */
-    public void addXRIDescriptors(Vector oDescriptors)
+    public void addXRIDescriptors(ArrayList oDescriptors)
     {
         for (int i = 0; i < oDescriptors.size(); i++)
         {

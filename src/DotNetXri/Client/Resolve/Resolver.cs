@@ -11,17 +11,17 @@ using java.io.IOException;
 using java.io.InputStream;
 using java.io.UnsupportedEncodingException;
 using java.net.HttpURLConnection;
-using java.net.URI;
+using java.net.Uri;
 using java.net.URISyntaxException;
 using java.net.URLEncoder;
 using java.text.ParseException;
 using java.util.ArrayList;
-using java.util.HashMap;
+using java.util.Hashtable;
 using java.util.Iterator;
 using java.util.LinkedHashMap;
 using java.util.List;
 using java.util.Properties;
-using java.util.Vector;
+using java.util.ArrayList;
 
 using org.apache.xerces.parsers.DOMParser;
 using org.apache.xml.security.exceptions.XMLSecurityException;
@@ -66,6 +66,9 @@ using org.w3c.dom.Document;
 using org.w3c.dom.Element;
 using org.xml.sax.InputSource;
 using org.xml.sax.SAXException;
+using DotNetXri.Loggers;
+using System.Collections;
+using DotNetXri.Client.Xml;
 
 /**
  * @author wtan
@@ -73,30 +76,29 @@ using org.xml.sax.SAXException;
  */
 public class Resolver :BaseFetcher {
 
-	private static org.apache.commons.logging.Log log
-		= org.apache.commons.logging.LogFactory.getLog(Resolver.class.getName());
+	private static ILog log = Logger.Create(typeof(Resolver));
 
-	protected HashMap root = null;
+	protected Hashtable root = null;
 
 	protected int maxFollowRefs = -1;
 
 	protected int maxRequests = -1;
 
-	protected URI proxyURI = null;
+	protected Uri proxyURI = null;
 
 	private int maxTotalBytes = -1;
 
 	private int maxBytesPerRequest = -1;
 	
-	private HashMap needNoHttps = null;
+	private Hashtable needNoHttps = null;
 	
 
 	/**
 	 * Creates a Resolver obj.
 	 */
 	public Resolver() {
-		root = new HashMap();
-		needNoHttps = new HashMap();
+		root = new Hashtable();
+		needNoHttps = new Hashtable();
 	}
 
 	/**
@@ -108,8 +110,8 @@ public class Resolver :BaseFetcher {
 	 * @throws PartialResolutionException
 	 */
 	public XRDS resolveAuthToXRDS(XRI qxri, ResolverFlags flags,
-			ResolverState state) throws PartialResolutionException {
-		log.trace("resolveAuthToXRDS(s'" + qxri + "', flags: " + flags + ")");
+			ResolverState state) /*throws PartialResolutionException */{
+		log.Info("resolveAuthToXRDS(s'" + qxri + "', flags: " + flags + ")");
 		if (proxyURI != null)
 			return resolveViaProxy(qxri, null, null, false, flags, state);
 
@@ -130,8 +132,8 @@ public class Resolver :BaseFetcher {
 	 * @throws PartialResolutionException
 	 */
 	public XRD resolveAuthToXRD(XRI qxri, ResolverFlags flags,
-			ResolverState state) throws PartialResolutionException {
-		log.trace("resolveAuthToXRD(s'" + qxri + "', flags: " + flags + ")");
+			ResolverState state) /*throws PartialResolutionException */{
+		log.Info("resolveAuthToXRD(s'" + qxri + "', flags: " + flags + ")");
 
 		if (proxyURI != null) {
 			XRDS xrds = resolveViaProxy(qxri, null, null, false, flags, state);
@@ -147,10 +149,10 @@ public class Resolver :BaseFetcher {
 	}
 
 	
-	public XRDS resolveSEPToXRDS(XRI qxri, String sepType, String sepMediaType,
+	public XRDS resolveSEPToXRDS(XRI qxri, string sepType, string sepMediaType,
 			ResolverFlags flags, ResolverState state)
-			throws PartialResolutionException {
-		log.trace("resolveSEPToXRDS('" + qxri + "', sepType=" + sepType
+			/*throws PartialResolutionException */{
+		log.Info("resolveSEPToXRDS('" + qxri + "', sepType=" + sepType
 				+ ", sepMediaType=" + sepMediaType + ", flags:" + flags + ")");
 
 		if (proxyURI != null)
@@ -167,10 +169,10 @@ public class Resolver :BaseFetcher {
 	}
 
 	
-	public XRD resolveSEPToXRD(XRI qxri, String sepType, String sepMediaType,
+	public XRD resolveSEPToXRD(XRI qxri, string sepType, string sepMediaType,
 			ResolverFlags flags, ResolverState state)
-			throws PartialResolutionException {
-		log.trace("resolveSEPToXRD('" + qxri + "', sepType=" + sepType
+			/*throws PartialResolutionException */{
+		log.Info("resolveSEPToXRD('" + qxri + "', sepType=" + sepType
 				+ ", sepMediaType=" + sepMediaType + ", flags: " + flags + ")");
 
 		XRDS xrds = resolveSEPToXRDS(qxri, sepType, sepMediaType, flags, state);
@@ -178,10 +180,10 @@ public class Resolver :BaseFetcher {
 	}
 
 	
-	public ArrayList resolveSEPToURIList(XRI qxri, String sepType,
-			String sepMediaType, ResolverFlags flags, ResolverState state)
-			throws PartialResolutionException {
-		log.trace("resolveSEPToURIList('" + qxri + "', sepType=" + sepType
+	public ArrayList resolveSEPToURIList(XRI qxri, string sepType,
+			string sepMediaType, ResolverFlags flags, ResolverState state)
+			/*throws PartialResolutionException */{
+		log.Info("resolveSEPToURIList('" + qxri + "', sepType=" + sepType
 				+ ", sepMediaType=" + sepMediaType + ", flags: " + flags + ")");
 
 		// no need to do uric
@@ -201,7 +203,7 @@ public class Resolver :BaseFetcher {
 		ArrayList uris = topService.getPrioritizedURIs();
 		for (int i = 0; uris != null && i < uris.size(); i++) {
 			SEPUri uri = (SEPUri) uris.get(i);
-			String append = uri.getAppend();
+			string append = uri.getAppend();
 			urisOut.add(constructURI(uri.getURI(), append, qxri));
 		}
 
@@ -209,19 +211,19 @@ public class Resolver :BaseFetcher {
 	}
 	
 
-	public String resolveSEPToTextURIList(XRI qxri, String sepType,
-			String sepMediaType, ResolverFlags flags, ResolverState state)
-			throws PartialResolutionException {
-		log.trace("resolveSEPToTextURIList('" + qxri + ", sepType=" + sepType
+	public string resolveSEPToTextURIList(XRI qxri, string sepType,
+			string sepMediaType, ResolverFlags flags, ResolverState state)
+			/*throws PartialResolutionException */{
+		log.Info("resolveSEPToTextURIList('" + qxri + ", sepType=" + sepType
 				+ ", sepMediaType=" + sepMediaType + ", flags: " + flags + ")");
 		ArrayList uris = resolveSEPToURIList(qxri, sepType, sepMediaType,
 				flags, state);
 		StringBuilder buf = new StringBuilder();
 		for (int i = 0; uris != null && i < uris.size(); i++) {
-			buf.append(uris.get(i).toString());
+			buf.append(uris.get(i).ToString());
 			buf.append("\n");
 		}
-		return buf.toString();
+		return buf.ToString();
 	}
 	
 	/////////////////////////////////////////////////////////////////////////
@@ -231,8 +233,8 @@ public class Resolver :BaseFetcher {
 	/**
 	 * @deprecated
 	 */
-	public XRDS resolveAuthToXRDS(String qxri, TrustType trustType, bool followRefs) 
-			throws PartialResolutionException
+	public XRDS resolveAuthToXRDS(string qxri, TrustType trustType, bool followRefs) 
+			/*throws PartialResolutionException*/
 	{
 		return resolveAuthToXRDS(qxri, trustType, followRefs, new ResolverState());
 	}
@@ -240,8 +242,8 @@ public class Resolver :BaseFetcher {
 	/**
 	 * @deprecated
 	 */
-	public XRDS resolveAuthToXRDS(String qxri, TrustType trustType, bool followRefs, ResolverState state)
-			throws PartialResolutionException
+	public XRDS resolveAuthToXRDS(string qxri, TrustType trustType, bool followRefs, ResolverState state)
+			/*throws PartialResolutionException*/
 	{
 		XRI xri = parseAbsoluteQXRIOrError(qxri);
 		return resolveAuthToXRDS(xri, trustType, followRefs, state);
@@ -251,7 +253,7 @@ public class Resolver :BaseFetcher {
 	 * @deprecated
 	 */
 	public XRDS resolveAuthToXRDS(XRI qxri, TrustType trustType, bool followRefs)
-			throws PartialResolutionException
+			/*throws PartialResolutionException*/
 	{
 		return resolveAuthToXRDS(qxri, trustType, followRefs, new ResolverState());
 	}
@@ -261,7 +263,7 @@ public class Resolver :BaseFetcher {
 	 */
 	public XRDS resolveAuthToXRDS(XRI qxri, TrustType trustType,
 			bool followRefs, ResolverState state)
-			throws PartialResolutionException {
+			/*throws PartialResolutionException */{
 		ResolverFlags f = new ResolverFlags(trustType, followRefs);
 		return resolveAuthToXRDS(qxri, f, state);
 	}
@@ -269,8 +271,8 @@ public class Resolver :BaseFetcher {
 	/**
 	 * @deprecated
 	 */
-	public XRD resolveAuthToXRD(String qxri, TrustType trustType,
-			bool followRefs) throws PartialResolutionException {
+	public XRD resolveAuthToXRD(string qxri, TrustType trustType,
+			bool followRefs) /*throws PartialResolutionException */{
 		return resolveAuthToXRD(qxri, trustType, followRefs,
 				new ResolverState());
 	}
@@ -278,10 +280,10 @@ public class Resolver :BaseFetcher {
 	/**
 	 * @deprecated
 	 */
-	public XRD resolveAuthToXRD(String qxri, TrustType trustType,
+	public XRD resolveAuthToXRD(string qxri, TrustType trustType,
 			bool followRefs, ResolverState state)
-			throws PartialResolutionException {
-		log.trace("resolveAuthToXRD(s'" + qxri + "', trustType=" + trustType
+			/*throws PartialResolutionException */{
+		log.Info("resolveAuthToXRD(s'" + qxri + "', trustType=" + trustType
 				+ ", followRefs=" + followRefs + ")");
 		XRI xri = parseAbsoluteQXRIOrError(qxri);
 		return resolveAuthToXRD(xri, trustType, followRefs, state);
@@ -291,7 +293,7 @@ public class Resolver :BaseFetcher {
 	 * @deprecated
 	 */
 	public XRD resolveAuthToXRD(XRI qxri, TrustType trustType,
-			bool followRefs) throws PartialResolutionException {
+			bool followRefs) /*throws PartialResolutionException */{
 		return resolveAuthToXRD(qxri, trustType, followRefs,
 				new ResolverState());
 	}
@@ -301,8 +303,8 @@ public class Resolver :BaseFetcher {
 	 */
 	public XRD resolveAuthToXRD(XRI qxri, TrustType trustType,
 			bool followRefs, ResolverState state)
-			throws PartialResolutionException {
-		log.trace("resolveAuthToXRD('" + qxri + "', trustType=" + trustType
+			/*throws PartialResolutionException */{
+		log.Info("resolveAuthToXRD('" + qxri + "', trustType=" + trustType
 				+ ", followRefs=" + followRefs + ")");
 
 		ResolverFlags f = new ResolverFlags(trustType, followRefs);
@@ -312,9 +314,9 @@ public class Resolver :BaseFetcher {
 	/**
 	 * @deprecated
 	 */
-	public XRDS resolveSEPToXRDS(String qxri, TrustType trustType,
-			String sepType, String sepMediaType, bool followRefs)
-			throws PartialResolutionException {
+	public XRDS resolveSEPToXRDS(string qxri, TrustType trustType,
+			string sepType, string sepMediaType, bool followRefs)
+			/*throws PartialResolutionException */{
 		return resolveSEPToXRDS(qxri, trustType, sepType, sepMediaType,
 				followRefs, new ResolverState());
 	}
@@ -322,10 +324,10 @@ public class Resolver :BaseFetcher {
 	/**
 	 * @deprecated
 	 */
-	public XRDS resolveSEPToXRDS(String qxri, TrustType trustType,
-			String sepType, String sepMediaType, bool followRefs,
-			ResolverState state) throws PartialResolutionException {
-		log.trace("resolveSEPToXRDS(s'" + qxri + "', trustType=" + trustType
+	public XRDS resolveSEPToXRDS(string qxri, TrustType trustType,
+			string sepType, string sepMediaType, bool followRefs,
+			ResolverState state) /*throws PartialResolutionException */{
+		log.Info("resolveSEPToXRDS(s'" + qxri + "', trustType=" + trustType
 				+ ", sepType=" + sepType + ", sepMediaType=" + sepMediaType
 				+ ", followRefs=" + followRefs + ")");
 
@@ -337,9 +339,9 @@ public class Resolver :BaseFetcher {
 	/**
 	 * @deprecated
 	 */
-	public XRDS resolveSEPToXRDS(XRI qxri, TrustType trustType, String sepType,
-			String sepMediaType, bool followRefs)
-			throws PartialResolutionException {
+	public XRDS resolveSEPToXRDS(XRI qxri, TrustType trustType, string sepType,
+			string sepMediaType, bool followRefs)
+			/*throws PartialResolutionException */{
 		return resolveSEPToXRDS(qxri, trustType, sepType, sepMediaType,
 				followRefs, new ResolverState());
 	}
@@ -347,10 +349,10 @@ public class Resolver :BaseFetcher {
 	/**
 	 * @deprecated
 	 */
-	public XRDS resolveSEPToXRDS(XRI qxri, TrustType trustType, String sepType,
-			String sepMediaType, bool followRefs, ResolverState state)
-			throws PartialResolutionException {
-		log.trace("resolveSEPToXRDS('" + qxri + "', trustType=" + trustType
+	public XRDS resolveSEPToXRDS(XRI qxri, TrustType trustType, string sepType,
+			string sepMediaType, bool followRefs, ResolverState state)
+			/*throws PartialResolutionException */{
+		log.Info("resolveSEPToXRDS('" + qxri + "', trustType=" + trustType
 				+ ", sepType=" + sepType + ", sepMediaType=" + sepMediaType
 				+ ", followRefs=" + followRefs + ")");
 
@@ -361,9 +363,9 @@ public class Resolver :BaseFetcher {
 	/**
 	 * @deprecated
 	 */
-	public XRD resolveSEPToXRD(String qxri, TrustType trustType,
-			String sepType, String sepMediaType, bool followRefs)
-			throws PartialResolutionException {
+	public XRD resolveSEPToXRD(string qxri, TrustType trustType,
+			string sepType, string sepMediaType, bool followRefs)
+			/*throws PartialResolutionException */{
 		return resolveSEPToXRD(qxri, trustType, sepType, sepMediaType,
 				followRefs, new ResolverState());
 	}
@@ -371,10 +373,10 @@ public class Resolver :BaseFetcher {
 	/**
 	 * @deprecated
 	 */
-	public XRD resolveSEPToXRD(String qxri, TrustType trustType,
-			String sepType, String sepMediaType, bool followRefs,
-			ResolverState state) throws PartialResolutionException {
-		log.trace("resolveSEPToXRD(s'" + qxri + "', trustType=" + trustType
+	public XRD resolveSEPToXRD(string qxri, TrustType trustType,
+			string sepType, string sepMediaType, bool followRefs,
+			ResolverState state) /*throws PartialResolutionException */{
+		log.Info("resolveSEPToXRD(s'" + qxri + "', trustType=" + trustType
 				+ ", sepType=" + sepType + ", sepMediaType=" + sepMediaType
 				+ ", followRefs=" + followRefs + ")");
 
@@ -386,9 +388,9 @@ public class Resolver :BaseFetcher {
 	/**
 	 * @deprecated
 	 */
-	public XRD resolveSEPToXRD(XRI qxri, TrustType trustType, String sepType,
-			String sepMediaType, bool followRefs)
-			throws PartialResolutionException {
+	public XRD resolveSEPToXRD(XRI qxri, TrustType trustType, string sepType,
+			string sepMediaType, bool followRefs)
+			/*throws PartialResolutionException */{
 		return resolveSEPToXRD(qxri, trustType, sepType, sepMediaType,
 				followRefs, new ResolverState());
 	}
@@ -396,10 +398,10 @@ public class Resolver :BaseFetcher {
 	/**
 	 * @deprecated
 	 */
-	public XRD resolveSEPToXRD(XRI qxri, TrustType trustType, String sepType,
-			String sepMediaType, bool followRefs, ResolverState state)
-			throws PartialResolutionException {
-		log.trace("resolveSEPToXRD('" + qxri + "', trustType=" + trustType
+	public XRD resolveSEPToXRD(XRI qxri, TrustType trustType, string sepType,
+			string sepMediaType, bool followRefs, ResolverState state)
+			/*throws PartialResolutionException */{
+		log.Info("resolveSEPToXRD('" + qxri + "', trustType=" + trustType
 				+ ", sepType=" + sepType + ", sepMediaType=" + sepMediaType
 				+ ", followRefs=" + followRefs + ")");
 
@@ -411,9 +413,9 @@ public class Resolver :BaseFetcher {
 	/**
 	 * @deprecated
 	 */
-	public ArrayList resolveSEPToURIList(String qxri, TrustType trustType,
-			String sepType, String sepMediaType, bool followRefs)
-			throws PartialResolutionException {
+	public ArrayList resolveSEPToURIList(string qxri, TrustType trustType,
+			string sepType, string sepMediaType, bool followRefs)
+			/*throws PartialResolutionException */{
 		return resolveSEPToURIList(qxri, trustType, sepType, sepMediaType,
 				followRefs, new ResolverState());
 	}
@@ -421,10 +423,10 @@ public class Resolver :BaseFetcher {
 	/**
 	 * @deprecated
 	 */
-	public ArrayList resolveSEPToURIList(String qxri, TrustType trustType,
-			String sepType, String sepMediaType, bool followRefs,
-			ResolverState state) throws PartialResolutionException {
-		log.trace("resolveSEPToURIList(s'" + qxri + "', trustType=" + trustType
+	public ArrayList resolveSEPToURIList(string qxri, TrustType trustType,
+			string sepType, string sepMediaType, bool followRefs,
+			ResolverState state) /*throws PartialResolutionException */{
+		log.Info("resolveSEPToURIList(s'" + qxri + "', trustType=" + trustType
 				+ ", sepType=" + sepType + ", sepMediaType=" + sepMediaType
 				+ ", followRefs=" + followRefs + ")");
 
@@ -437,8 +439,8 @@ public class Resolver :BaseFetcher {
 	 * @deprecated
 	 */
 	public ArrayList resolveSEPToURIList(XRI qxri, TrustType trustType,
-			String sepType, String sepMediaType, bool followRefs)
-			throws PartialResolutionException {
+			string sepType, string sepMediaType, bool followRefs)
+			/*throws PartialResolutionException */{
 		return resolveSEPToURIList(qxri, trustType, sepType, sepMediaType,
 				followRefs, new ResolverState());
 	}
@@ -447,8 +449,8 @@ public class Resolver :BaseFetcher {
 	 * @deprecated
 	 */
 	public ArrayList resolveSEPToURIList(XRI qxri, TrustType trustType,
-			String sepType, String sepMediaType, bool followRefs,
-			ResolverState state) throws PartialResolutionException {
+			string sepType, string sepMediaType, bool followRefs,
+			ResolverState state) /*throws PartialResolutionException */{
 		ResolverFlags f = new ResolverFlags(trustType, followRefs);
 		return resolveSEPToURIList(qxri, sepType, sepMediaType, f, state);
 	}
@@ -456,9 +458,9 @@ public class Resolver :BaseFetcher {
 	/**
 	 * @deprecated
 	 */
-	public String resolveSEPToTextURIList(String qxri, TrustType trustType,
-			String sepType, String sepMediaType, bool followRefs)
-			throws PartialResolutionException {
+	public string resolveSEPToTextURIList(string qxri, TrustType trustType,
+			string sepType, string sepMediaType, bool followRefs)
+			/*throws PartialResolutionException */{
 		return resolveSEPToTextURIList(qxri, trustType, sepType, sepMediaType,
 				followRefs, new ResolverState());
 	}
@@ -466,9 +468,9 @@ public class Resolver :BaseFetcher {
 	/**
 	 * @deprecated
 	 */
-	public String resolveSEPToTextURIList(String qxri, TrustType trustType,
-			String sepType, String sepMediaType, bool followRefs,
-			ResolverState state) throws PartialResolutionException {
+	public string resolveSEPToTextURIList(string qxri, TrustType trustType,
+			string sepType, string sepMediaType, bool followRefs,
+			ResolverState state) /*throws PartialResolutionException */{
 		ResolverFlags f = new ResolverFlags(trustType, followRefs);
 		XRI xri = parseAbsoluteQXRIOrError(qxri);
 		return resolveSEPToTextURIList(xri, sepType, sepMediaType, f, state);
@@ -493,12 +495,12 @@ public class Resolver :BaseFetcher {
 	 * @return
 	 */
 	public XRDS resolveAuthority(XRI qxri, ResolverFlags flags, ResolverState state)
-		throws PartialResolutionException
+		/*throws PartialResolutionException*/
 	{
-		log.trace("resolveAuthority(s'" + qxri + "', flags: " + flags + ")");
+		log.Info("resolveAuthority(s'" + qxri + "', flags: " + flags + ")");
 
 		XRDS xrdsOut = new XRDS();
-		xrdsOut.setRef("xri://" + qxri.getAuthorityPath().toString());
+		xrdsOut.setRef("xri://" + qxri.getAuthorityPath().ToString());
 
 		// determine the authority type
 		AuthorityPath ap = qxri.getAuthorityPath();
@@ -520,10 +522,10 @@ public class Resolver :BaseFetcher {
 
 	
 	protected XRDS resolveXRIAuth(XRI origQXRI, XRIAuthority xriAuth, ResolverFlags flags, ResolverState state)
-		throws PartialResolutionException
+		/*throws PartialResolutionException*/
 	{
 
-		String rootAuth = xriAuth.getRootAuthority();
+		string rootAuth = xriAuth.getRootAuthority();
 		if (rootAuth == null) {
 			throw new RuntimeException("First subsegment of '" + xriAuth + "' is null");
 		}
@@ -551,9 +553,9 @@ public class Resolver :BaseFetcher {
 	
 	
 	protected XRDS resolveIRIAuth(IRIAuthority iriAuth, ResolverFlags flags, ResolverState state)
-		throws PartialResolutionException
+		/*throws PartialResolutionException*/
 	{
-		log.trace("resolveIRIAuth('" + iriAuth + "', flags: " + flags + ")");
+		log.Info("resolveIRIAuth('" + iriAuth + "', flags: " + flags + ")");
 
 		XRDS xrdsOut = new XRDS();
 
@@ -566,25 +568,25 @@ public class Resolver :BaseFetcher {
 		}
 
 		// only use http for insecure and https for secure
-		String scheme = flags.isHttps() ? "https" : "http";
+		string scheme = flags.isHttps() ? "https" : "http";
 
-		URI uri = null;
+		Uri uri = null;
 		try {
-			uri = new URI(scheme, iriAuth.getIUserInfo(), iriAuth.getIHost(),
+			uri = new Uri(scheme, iriAuth.getIUserInfo(), iriAuth.getIHost(),
 					iriAuth.getPort(), null, null, null);
 		} catch (java.net.URISyntaxException e) {
 			XRD err = createErrorXRD(iriAuth.toURINormalForm(),
 					Status.INVALID_INPUT,
-					"Unable to construct URI to resolve IRI authority: "
+					"Unable to construct Uri to resolve IRI authority: "
 							+ e.getMessage());
 			xrdsOut.add(err);
 			throw new PartialResolutionException(xrdsOut);
 		}
 
-		// now that we've constructed the new URI, try to return the stream from it
+		// now that we've constructed the new Uri, try to return the stream from it
 		InputStream in = null;
 		try {
-			in = getDataFromURI(uri, uri.toString(), flags, state);
+			in = getDataFromURI(uri, uri.ToString(), flags, state);
 		} catch (Exception e) {
 			XRD err = createErrorXRD(iriAuth.toURINormalForm(),
 					Status.NETWORK_ERROR,
@@ -631,17 +633,17 @@ public class Resolver :BaseFetcher {
 	}
 	
 
-	protected XRDS resolveViaProxy(XRI qxri, String serviceType,
-			String serviceMediaType, bool sepSelect, ResolverFlags flags,
-			ResolverState state) throws PartialResolutionException {
-		log.trace("resolveViaProxy('" + qxri + ", serviceType=" + serviceType
+	protected XRDS resolveViaProxy(XRI qxri, string serviceType,
+			string serviceMediaType, bool sepSelect, ResolverFlags flags,
+			ResolverState state) /*throws PartialResolutionException */{
+		log.Info("resolveViaProxy('" + qxri + ", serviceType=" + serviceType
 				+ ", serviceMediaType=" + serviceMediaType + ", flags: "
 				+ flags + ")");
 
 		XRDS xrdsOut = new XRDS();
 
-		// build the new URI for the proxy
-		URI newURI = null;
+		// build the new Uri for the proxy
+		Uri newURI = null;
 		try {
 			StringBuilder query = new StringBuilder();
 			if (serviceType != null) {
@@ -683,18 +685,18 @@ public class Resolver :BaseFetcher {
 				qxriNoQuery.append(qxri.getXRIPath().toURINormalForm());
 			}
 			
-			uriBuf.append(URLEncoder.encode(qxriNoQuery.toString(), "UTF-8"));
+			uriBuf.append(URLEncoder.encode(qxriNoQuery.ToString(), "UTF-8"));
 			uriBuf.append('?');
 			uriBuf.append(query);
 
-			log.trace("resolveViaProxy - constructed proxy query URI '"
+			log.Info("resolveViaProxy - constructed proxy query Uri '"
 					+ uriBuf + "'");
 
-			newURI = new URI(uriBuf.toString());
+			newURI = new Uri(uriBuf.ToString());
 		} catch (java.net.URISyntaxException oEx) {
 			XRD err = createErrorXRD(qxri.getAuthorityPath().toURINormalForm(),
 					Status.INVALID_INPUT,
-					"Unable to construct URI to access proxy resolution service");
+					"Unable to construct Uri to access proxy resolution service");
 			xrdsOut.add(err);
 			throw new PartialResolutionException(xrdsOut);
 		} catch (UnsupportedEncodingException e) {
@@ -707,7 +709,7 @@ public class Resolver :BaseFetcher {
 		} catch (Exception e) {
 			XRD err = createErrorXRD(qxri.getAuthorityPath().toURINormalForm(),
 					Status.PERM_FAIL,
-					"Unexpected error while constructing proxy URI: "
+					"Unexpected error while constructing proxy Uri: "
 							+ e.getMessage());
 			xrdsOut.add(err);
 			throw new PartialResolutionException(xrdsOut);
@@ -720,7 +722,7 @@ public class Resolver :BaseFetcher {
 			XRDS xrds = readXRDS(in);
 			XRD finalXRD = xrds.getFinalXRD();
 
-			String code = finalXRD.getStatusCode();
+			string code = finalXRD.getStatusCode();
 			if ((flags.isRefs() && !code.equals(Status.SUCCESS) && !code
 					.equals(Status.REF_NOT_FOLLOWED))
 					|| !code.equals(Status.SUCCESS)) {
@@ -743,9 +745,9 @@ public class Resolver :BaseFetcher {
 
 	
 	protected XRDS processRedirects(XRI qxri, XRD parent, ResolverFlags flags, ResolverState state)
-		throws PartialResolutionException
+		/*throws PartialResolutionException*/
 	{
-		log.trace("processRedirects (qxri=" + qxri + ")");
+		log.Info("processRedirects (qxri=" + qxri + ")");
 		
 		XRDS xrdsOut = new XRDS();
 		XRDS tmpXRDS;
@@ -761,22 +763,22 @@ public class Resolver :BaseFetcher {
 			Redirect r = (Redirect)it.next();
 			log.debug("processRedirects - Got redirect " + r);
 
-			URI uri;
+			Uri uri;
 			try {
-				uri = new URI(r.getValue());
+				uri = new Uri(r.getValue());
 				if (r.getAppend() != null) {
-					// construct URI
-					String constructedURI = constructURI(uri, r.getAppend(), qxri);
-					uri = new URI(constructedURI);
+					// construct Uri
+					string constructedURI = constructURI(uri, r.getAppend(), qxri);
+					uri = new Uri(constructedURI);
 				}
 			} catch (URISyntaxException e) {
 				// skip invalid URIs
-				log.warn("processRedirects - Encountered invalid URI while constructing Redirect URI"); 
+				log.warn("processRedirects - Encountered invalid Uri while constructing Redirect Uri"); 
 				continue;
 			}
 			
 			try {
-				log.info("processRedirects - Fetching URI (" + uri + ")");
+				log.info("processRedirects - Fetching Uri (" + uri + ")");
 				tmpXRDS = fetchRedirectXRDS(uri, parent, qxri, flags, state);
 				xrdsOut.add(tmpXRDS);
 
@@ -801,7 +803,7 @@ public class Resolver :BaseFetcher {
 	
 
 	
-	protected String verifyCID(XRD prevXRD, XRD xrd) {
+	protected string verifyCID(XRD prevXRD, XRD xrd) {
 		CanonicalID parentCID = prevXRD.getCanonicalID();
 		CanonicalID thisCID = xrd.getCanonicalID();
 		
@@ -837,8 +839,8 @@ public class Resolver :BaseFetcher {
 			if (thisAuthorityParentXRI == null)
 				return Status.CID_FAILED;
 			
-			String parentXRIStr = parentAuthorityAP.toIRINormalForm();
-			String thisParentXRIStr = thisAuthorityParentXRI.getAuthorityPath().toIRINormalForm();
+			string parentXRIStr = parentAuthorityAP.toIRINormalForm();
+			string thisParentXRIStr = thisAuthorityParentXRI.getAuthorityPath().toIRINormalForm();
 			if (parentXRIStr.equalsIgnoreCase(thisParentXRIStr))
 				return Status.CID_VERIFIED;
 			else
@@ -858,7 +860,7 @@ public class Resolver :BaseFetcher {
 	 * @param parent
 	 * @return
 	 */
-	protected String verifyRedirectXRD(XRD xrd, XRD parent)
+	protected string verifyRedirectXRD(XRD xrd, XRD parent)
 	{
 		CanonicalID cid = xrd.getCanonicalID();
 		CanonicalID cid2 = parent.getCanonicalID();
@@ -932,8 +934,8 @@ public class Resolver :BaseFetcher {
 		}
 		
 		try {
-			URI u1 = new URI(e1.getValue());
-			URI u2 = new URI(e2.getValue());
+			Uri u1 = new Uri(e1.getValue());
+			Uri u2 = new Uri(e2.getValue());
 			if (!u1.equals(u2))
 				return false;
 		} catch (URISyntaxException e) {
@@ -944,8 +946,8 @@ public class Resolver :BaseFetcher {
 	}
 	
 	
-	protected String verifyCEID(XRI qxri, XRD xrd, ResolverFlags flags, ResolverState state)
-		throws PartialResolutionException
+	protected string verifyCEID(XRI qxri, XRD xrd, ResolverFlags flags, ResolverState state)
+		/*throws PartialResolutionException*/
 	{
 		CanonicalEquivID ceid = xrd.getCanonicalEquivID();
 		if (ceid == null) {
@@ -1034,32 +1036,32 @@ public class Resolver :BaseFetcher {
 	 * @return
 	 * @throws PartialResolutionException
 	 */
-	protected XRDS fetchAuthXRDSHelper(XRI qxri, URI uri, XRD parent, Service parentService, XRISegment segment, ResolverFlags flags, ResolverState state)
-		throws PartialResolutionException
+	protected XRDS fetchAuthXRDSHelper(XRI qxri, Uri uri, XRD parent, Service parentService, XRISegment segment, ResolverFlags flags, ResolverState state)
+		/*throws PartialResolutionException*/
 	{
 		XRDS xrdsOut = new XRDS();
-		String query = segment.getSubSegmentAt(0).toURINormalForm(true);
+		string query = segment.getSubSegmentAt(0).toURINormalForm(true);
 
-		URI newURI;
+		Uri newURI;
 		try {
-			newURI = constructAuthResURI(uri.toString(), segment.toURINormalForm(true));
-			log.trace("fetchAuthXRDS - newURI = " + newURI);
+			newURI = constructAuthResURI(uri.ToString(), segment.toURINormalForm(true));
+			log.Info("fetchAuthXRDS - newURI = " + newURI);
 		}
 		catch (java.net.URISyntaxException oEx) {
-			throw makeResolutionException(xrdsOut, query, Status.AUTH_RES_ERROR, "Invalid URI for authority resolution service");
+			throw makeResolutionException(xrdsOut, query, Status.AUTH_RES_ERROR, "Invalid Uri for authority resolution service");
 		}
 
 		XRDS tmpXRDS = null;
-		// now that we've constructed the new URI, try to return the stream from it
+		// now that we've constructed the new Uri, try to return the stream from it
 		try {
-			InputStream in = getDataFromURI(newURI, segment.toString(), flags, state);
+			InputStream in = getDataFromURI(newURI, segment.ToString(), flags, state);
 			tmpXRDS = readXRDS(in);
-			log.debug("fetchAuthXRDS - got XRDS = " + tmpXRDS.toString());
+			log.debug("fetchAuthXRDS - got XRDS = " + tmpXRDS.ToString());
 		} catch (IOException e) {
-			log.trace("fetchAuthXRDS - got IOException from URI " + newURI);
+			log.Info("fetchAuthXRDS - got IOException from Uri " + newURI);
 			throw makeResolutionException(xrdsOut, query, Status.NETWORK_ERROR, "Networking error encountered");
 		} catch (Exception e) {
-			log.trace("fetchAuthXRDS - " + e);
+			log.Info("fetchAuthXRDS - " + e);
 			throw makeResolutionException(xrdsOut, query, Status.AUTH_RES_ERROR, e.getMessage());
 		}
 		
@@ -1118,7 +1120,7 @@ public class Resolver :BaseFetcher {
 				Status parentStatus = parent.getStatus();
 				Status s = xrd.getStatus();
 				
-				String parentCIDStat = parentStatus.getCID(); 
+				string parentCIDStat = parentStatus.getCID(); 
 				if (parentCIDStat.equals(Status.CID_FAILED)) {
 					s.setCID(Status.CID_FAILED);
 				}
@@ -1166,15 +1168,15 @@ public class Resolver :BaseFetcher {
 	 * @return
 	 * @throws PartialResolutionException 
 	 */
-	protected XRDS fetchAuthXRDS(XRI qxri, XRD parent, List authResServices, XRISegment segment, ResolverFlags flags, ResolverState state) throws PartialResolutionException
+	protected XRDS fetchAuthXRDS(XRI qxri, XRD parent, List authResServices, XRISegment segment, ResolverFlags flags, ResolverState state) /*throws PartialResolutionException*/
 	{
 		XRDS xrdsOut = null;
 		XRD errXRD = null;
-		String query = segment.getSubSegmentAt(0).toURINormalForm(true);
+		string query = segment.getSubSegmentAt(0).toURINormalForm(true);
 		
 		//// TODO verify synonyms
 
-		///// Try each URI in each selected service in turn
+		///// Try each Uri in each selected service in turn
 		Exception savedException = null;
 		Iterator srvIterator = authResServices.iterator();
 		while (srvIterator.hasNext()) {			
@@ -1183,13 +1185,13 @@ public class Resolver :BaseFetcher {
 			
 			while (uriIterator.hasNext()) {
 				SEPUri sepURI = (SEPUri) uriIterator.next();
-				URI uri = sepURI.getURI();
+				Uri uri = sepURI.getURI();
 
-				log.trace("fetchAuthXRDS - trying URI='" + uri + "'");
+				log.Info("fetchAuthXRDS - trying Uri='" + uri + "'");
 
 				// skip non-HTTPS URIs if HTTPS was requested
 				if (flags.isHttps() && !uri.getScheme().equals(HTTPS)) {
-					log.trace("fetchAuthXRDS - skipping non HTTPS URI");
+					log.Info("fetchAuthXRDS - skipping non HTTPS Uri");
 					continue;
 				}
 
@@ -1204,17 +1206,17 @@ public class Resolver :BaseFetcher {
 			}
 		}
 
-		if (xrdsOut == null) { // no appropriate URI found
+		if (xrdsOut == null) { // no appropriate Uri found
 			xrdsOut = new XRDS();
-			String code = flags.isHttps()? Status.TRUSTED_RES_ERROR : Status.AUTH_RES_ERROR;
-			xrdsOut.add(createErrorXRD(query, code, "No URI found for authority resolution"));
+			string code = flags.isHttps()? Status.TRUSTED_RES_ERROR : Status.AUTH_RES_ERROR;
+			xrdsOut.add(createErrorXRD(query, code, "No Uri found for authority resolution"));
 		}
 		throw new PartialResolutionException(xrdsOut);
 	}
 
 	
-	protected void checkMaxRequests(XRDS xrdsOut, String query, ResolverState state)
-		throws PartialResolutionException
+	protected void checkMaxRequests(XRDS xrdsOut, string query, ResolverState state)
+		/*throws PartialResolutionException*/
 	{
 		if (maxRequests >= 0 && state.getNumRequests() >= maxRequests) {
 			XRD finalXRD = xrdsOut.getFinalXRD();
@@ -1232,7 +1234,7 @@ public class Resolver :BaseFetcher {
 	
 
 	private PartialResolutionException
-	makeResolutionException(XRDS targetXRDS, String query, String status, String message)
+	makeResolutionException(XRDS targetXRDS, string query, string status, string message)
 	{
 		XRD x = createErrorXRD(query, status, message);
 		targetXRDS.add(x);
@@ -1251,9 +1253,9 @@ public class Resolver :BaseFetcher {
 	 */
 	public XRDS resolveAuthSegment(XRI qxri, XRD parent, XRISegment segment,
 			ResolverFlags flags, ResolverState state)
-			throws PartialResolutionException
+			/*throws PartialResolutionException*/
 	{
-		log.trace("resolveAuthSegment - segment='" + segment + "'");
+		log.Info("resolveAuthSegment - segment='" + segment + "'");
 
 		XRDS xrdsOut = new XRDS();
 		XRDS tmpXRDS = null;
@@ -1261,7 +1263,7 @@ public class Resolver :BaseFetcher {
 		bool authResComplete = false;
 		ResolverFlags currentFlags = null; // this is only for overriding by HttpsBypassAuthority settings
 
-		String parentXRI = ((XRIAuthority)qxri.getAuthorityPath()).getRootAuthority();
+		string parentXRI = ((XRIAuthority)qxri.getAuthorityPath()).getRootAuthority();
 		XRISegment remainingSegment = segment;
 		
 		while (remainingSegment != null && remainingSegment.getNumSubSegments() > 0) {
@@ -1269,7 +1271,7 @@ public class Resolver :BaseFetcher {
 			currentFlags = new ResolverFlags(flags);
 			
 			// more subsegments to resolve
-			String query = remainingSegment.getSubSegmentAt(0).toURINormalForm(true);
+			string query = remainingSegment.getSubSegmentAt(0).toURINormalForm(true);
 
 			log.debug("resolveAuthSegment - resolving subsegment '" + query + "'");
 			
@@ -1283,7 +1285,7 @@ public class Resolver :BaseFetcher {
 			}
 			
 			//// perform service selection
-			String authResMediaType = Tags.CONTENT_TYPE_XRDS + ";" + currentFlags.getTrustParameters();
+			string authResMediaType = Tags.CONTENT_TYPE_XRDS + ";" + currentFlags.getTrustParameters();
 			List authResServices = selectServices(parent.getServices(), Tags.SERVICE_AUTH_RES, null, authResMediaType, currentFlags);
 			if (authResServices.size() < 1) {
 				log.debug("resolveAuthSegment - no authority resolution service found!");
@@ -1297,12 +1299,12 @@ public class Resolver :BaseFetcher {
 
 			try {
 				// retrieve XRDS documents for the given subsegment
-				log.trace("resolveAuthSegment - fetching XRDS");
+				log.Info("resolveAuthSegment - fetching XRDS");
 				tmpXRDS = fetchAuthXRDS(qxri, parent, authResServices, remainingSegment, currentFlags, state);
 			}
 			catch (PartialResolutionException e) {
-				log.trace("got PRE: " + e.getPartialXRDS());
-				log.trace("xrdsOut.n = " + xrdsOut.getNumChildren() + ", partialXRDS.n=" + e.getPartialXRDS().getNumChildren());
+				log.Info("got PRE: " + e.getPartialXRDS());
+				log.Info("xrdsOut.n = " + xrdsOut.getNumChildren() + ", partialXRDS.n=" + e.getPartialXRDS().getNumChildren());
 				xrdsOut.add(e.getPartialXRDS());
 				throw new PartialResolutionException(xrdsOut);				
 			}
@@ -1356,7 +1358,7 @@ public class Resolver :BaseFetcher {
 				&& parent.getCanonicalEquivID() != null)
 		{
 			log.debug("resolveAuthSegment - final XRD contains a CanonicalEquivID. Verifying...");
-			String vStat = verifyCEID(qxri, parent, currentFlags, state);
+			string vStat = verifyCEID(qxri, parent, currentFlags, state);
 			parent.getStatus().setCEID(vStat);
 		}
 		return xrdsOut;
@@ -1365,7 +1367,7 @@ public class Resolver :BaseFetcher {
 	
 	
 	protected XRDS processRefs(XRD parent, ResolverFlags flags, ResolverState state)
-		throws PartialResolutionException
+		/*throws PartialResolutionException*/
 	{
 		XRDS xrdsOut = new XRDS();
 		//// get all the Refs in the parent XRD
@@ -1374,13 +1376,13 @@ public class Resolver :BaseFetcher {
 		
 		//// try each one in turn
 		while (it.hasNext()) {
-			Ref ref = (Ref)it.next();
+			Ref _ref = (Ref)it.next();
 
-			checkMaxRefs(xrdsOut, ref.getValue(), state);
+			checkMaxRefs(xrdsOut, _ref.getValue(), state);
 
 			XRI refXRI;
 			try {
-				refXRI = parseAbsoluteQXRIOrError(ref.getValue());
+				refXRI = parseAbsoluteQXRIOrError(_ref.getValue());
 			}
 			catch (PartialResolutionException e) {
 				xrdsOut.add(e.getPartialXRDS());
@@ -1405,26 +1407,26 @@ public class Resolver :BaseFetcher {
 	}
 
 	
-	protected void checkMaxRefs(XRDS xrdsOut, String query, ResolverState state) {
+	protected void checkMaxRefs(XRDS xrdsOut, string query, ResolverState state) {
 	}
 
 	
 	
     protected bool isTrustedDescriptor(XRISubSegment subseg, XRD xrd, Service parentService) {
 		// Descriptor must provide an XML ID for SAML assertion validation
-		String sXMLID = xrd.getXmlID();
+		string sXMLID = xrd.getXmlID();
 		if ((sXMLID == null) || (sXMLID.length() == 0)) {
 			return false;
 		}
 
 		// Must contain an authority id
-		String sAuthorityID = xrd.getProviderID();
+		string sAuthorityID = xrd.getProviderID();
 		if ((sAuthorityID == null) || (sAuthorityID.length() == 0)) {
 			return false;
 		}
 
 		// The resolved element must match the subsegment we were looking for
-		String sSubsegment = subseg.toString();
+		string sSubsegment = subseg.ToString();
 		if ((xrd.getQuery() == null)
 				|| (!xrd.getQuery().equals(sSubsegment))) {
 			return false;
@@ -1467,13 +1469,13 @@ public class Resolver :BaseFetcher {
 		}
 
 		// Attribute must describe the XML ID reference
-		Attribute oAttr = oAttrStmt.getAttribute();
+		Attribute oAttr = oAttrStmt.GetAttribute();
 		if ((oAttr.getName() == null)
 				|| (!oAttr.getName().equals(Tags.NS_XRD_V2))) {
 			return false;
 		}
 
-		String sValue = oAttr.getValue();
+		string sValue = oAttr.getValue();
 		if ((sValue == null) || (!sValue.equals("#" + sXMLID))) {
 			return false;
 		}
@@ -1517,11 +1519,11 @@ public class Resolver :BaseFetcher {
 	 * @return
 	 * @throws PartialResolutionException
 	 */
-	public List selectServiceFromXRD(XRDS xrdsOut, XRD xrd, XRI qxri, String sepType,
-			String sepMediaType, ResolverFlags flags, ResolverState state)
-			throws PartialResolutionException {
+	public List selectServiceFromXRD(XRDS xrdsOut, XRD xrd, XRI qxri, string sepType,
+			string sepMediaType, ResolverFlags flags, ResolverState state)
+			/*throws PartialResolutionException */{
 		// get the QXRI path
-		String path = null;
+		string path = null;
 		XRIAbsolutePath absPath = qxri.getXRIAbsolutePath();
 		if (absPath != null)
 			path = absPath.toURINormalForm();
@@ -1565,8 +1567,8 @@ public class Resolver :BaseFetcher {
 	 * @throws PartialResolutionException
 	 */
 	private List processServiceRedirects(XRDS xrdsOut, Service srv, XRD parent, XRI qxri,
-			String sepType, String sepMediaType, ResolverFlags flags,
-			ResolverState state) throws PartialResolutionException
+			string sepType, string sepMediaType, ResolverFlags flags,
+			ResolverState state) /*throws PartialResolutionException*/
 	{
 		List redirects = srv.getPrioritizedRedirects();
 		Iterator it = redirects.iterator();
@@ -1578,17 +1580,17 @@ public class Resolver :BaseFetcher {
 		// do a depth-first following of redirects
 		while (it.hasNext()) {
 			Redirect r = (Redirect)it.next();
-			URI uri;
+			Uri uri;
 			try {
-				uri = new URI(r.getValue());
+				uri = new Uri(r.getValue());
 				if (r.getAppend() != null) {
-					// construct URI
-					String constructedURI = constructURI(uri, r.getAppend(), qxri);
-					uri = new URI(constructedURI);
+					// construct Uri
+					string constructedURI = constructURI(uri, r.getAppend(), qxri);
+					uri = new Uri(constructedURI);
 				}
 			} catch (URISyntaxException e) {
 				XRDS tmpXRDS = new XRDS();
-				XRD err = createErrorXRD(r.getValue(), Status.INVALID_REDIRECT, "Invalid Redirect URI");
+				XRD err = createErrorXRD(r.getValue(), Status.INVALID_REDIRECT, "Invalid Redirect Uri");
 				tmpXRDS.add(err);
 				xrdsOut.add(tmpXRDS);
 				continue;
@@ -1605,7 +1607,7 @@ public class Resolver :BaseFetcher {
 				return services; // we're done!
 			} catch (XRIResolutionException e) {
 				XRDS tmpXRDS = new XRDS();
-				XRD err = createErrorXRD(uri.toString(), Status.REDIRECT_ERROR, "Error fetching XRDS: " + e.getMessage());
+				XRD err = createErrorXRD(uri.ToString(), Status.REDIRECT_ERROR, "Error fetching XRDS: " + e.getMessage());
 				tmpXRDS.add(err);
 				xrdsOut.add(tmpXRDS);
 				
@@ -1615,8 +1617,8 @@ public class Resolver :BaseFetcher {
 		throw new PartialResolutionException(xrdsOut);
 	}
 	
-	protected List processServiceRefs(XRDS xrdsOut, Service srv, XRD parent, XRI qxri, String sepType, String sepMediaType, ResolverFlags flags, ResolverState state)
-		throws PartialResolutionException
+	protected List processServiceRefs(XRDS xrdsOut, Service srv, XRD parent, XRI qxri, string sepType, string sepMediaType, ResolverFlags flags, ResolverState state)
+		/*throws PartialResolutionException*/
 	{
 		//// get all the Refs in the parent XRD
 		List refs = srv.getPrioritizedRefs();
@@ -1624,13 +1626,13 @@ public class Resolver :BaseFetcher {
 		
 		//// try each one in turn
 		while (it.hasNext()) {
-			Ref ref = (Ref)it.next();
+			Ref _ref = (Ref)it.next();
 	
-			checkMaxRefs(xrdsOut, ref.getValue(), state);
+			checkMaxRefs(xrdsOut, _ref.getValue(), state);
 	
 			XRI refXRI;
 			try {
-				refXRI = parseAbsoluteQXRIOrError(ref.getValue());
+				refXRI = parseAbsoluteQXRIOrError(_ref.getValue());
 			}
 			catch (PartialResolutionException e) {
 				xrdsOut.add(e.getPartialXRDS());
@@ -1665,10 +1667,10 @@ public class Resolver :BaseFetcher {
 	 * @return ArrayList containing Services in priority order
 	 */
 	protected ArrayList selectServices(
-			Vector services,
-			String type,
-			String path,
-			String mediaType,
+			ArrayList services,
+			string type,
+			string path,
+			string mediaType,
 			ResolverFlags flags)
 	{
 		if (services == null || services.size() == 0)
@@ -1684,8 +1686,8 @@ public class Resolver :BaseFetcher {
 		PrioritizedList list = new PrioritizedList();
 		for (int i = 0; i < selectedServices.size(); i++) {
 			Service s = (Service) selectedServices.get(i);
-			String priority = (s.getPriority() == null) ? PrioritizedList.PRIORITY_NULL
-					: s.getPriority().toString();
+			string priority = (s.getPriority() == null) ? PrioritizedList.PRIORITY_NULL
+					: s.getPriority().ToString();
 			list.addObject(priority, s);
 		}
 
@@ -1694,18 +1696,18 @@ public class Resolver :BaseFetcher {
 
 	
 	/**
-	 * Gets an InputStream from the URI according the XRI HTTP Bindings.
+	 * Gets an InputStream from the Uri according the XRI HTTP Bindings.
 	 * 
 	 * @param uri -
-	 *            The URI to get data from
+	 *            The Uri to get data from
 	 * @param flags -
 	 *            ResolverFlags
 	 * @return InputStream if HTTP OK is received, null if HTTP Not found
 	 * @throws XRIResolutionException
 	 *             if HTTP response is not OK or Not Found
 	 */
-	protected InputStream getDataFromURI(URI uri, String query, ResolverFlags flags, ResolverState state)
-		throws XRIResolutionException, IOException
+	protected InputStream getDataFromURI(Uri uri, string query, ResolverFlags flags, ResolverState state)
+		/*throws XRIResolutionException, IOException*/
 	{
 		// Post request
 		HttpURLConnection conn = null;
@@ -1714,7 +1716,7 @@ public class Resolver :BaseFetcher {
 		try {
 			// add the appropriate accept header
 			LinkedHashMap requestProp = new LinkedHashMap();
-			String sContentType = Tags.CONTENT_TYPE_XRDS + ";"
+			string sContentType = Tags.CONTENT_TYPE_XRDS + ";"
 					+ flags.getTrustParameters();
 			requestProp.put(Tags.HEADER_ACCEPT, sContentType);
 
@@ -1724,7 +1726,7 @@ public class Resolver :BaseFetcher {
 			if (conn.getResponseCode() != HttpURLConnection.HTTP_OK) {
 				conn.disconnect();
 				throw new XRIResolutionException(
-						"Got bad response code from URI: " + uri.toString()
+						"Got bad response code from Uri: " + uri.ToString()
 								+ ", code = " + conn.getResponseCode());
 			}
 
@@ -1760,12 +1762,12 @@ public class Resolver :BaseFetcher {
 			}
 
 			// using Latin1 allows the length() method to return the exact bytes
-			String bufString = new String(buf, 0, bufIndex, "iso-8859-1");
-			state.pushResolved(query, flags.toString(), bufString, uri);
+			string bufString = new string(buf, 0, bufIndex, "iso-8859-1");
+			state.pushResolved(query, flags.ToString(), bufString, uri);
 			return new ByteArrayInputStream(buf, 0, bufIndex);
 		} catch (java.io.IOException e) {
 			// There was a communication error
-			log.warn("Failed XRI lookup from " + uri.toString()
+			log.warn("Failed XRI lookup from " + uri.ToString()
 					+ ".  IOException " + e);
 			throw e;
 		} finally {
@@ -1781,24 +1783,24 @@ public class Resolver :BaseFetcher {
 
 	
 	
-	protected XRDS fetchRedirectXRDS(URI uri, XRD parent, XRI qxri, ResolverFlags flags, ResolverState state)
-		throws PartialResolutionException
+	protected XRDS fetchRedirectXRDS(Uri uri, XRD parent, XRI qxri, ResolverFlags flags, ResolverState state)
+		/*throws PartialResolutionException*/
 	{
 			XRDS xrdsOut = new XRDS();
-			String query = qxri.toURINormalForm();
-			xrdsOut.setRedirect(uri.toString());
+			string query = qxri.toURINormalForm();
+			xrdsOut.setRedirect(uri.ToString());
 			
 			XRDS tmpXRDS = null;
 			try {
-				log.info("fetchRedirectXRDS - fetching from URI(" + uri + ")");
+				log.info("fetchRedirectXRDS - fetching from Uri(" + uri + ")");
 				InputStream in = getDataFromURI(uri, query, flags, state);
 				
-				log.info("fetchRedirectXRDS - reading content from URI(" + uri + ")");
+				log.info("fetchRedirectXRDS - reading content from Uri(" + uri + ")");
 				tmpXRDS = readXRDS(in);
 
-				log.debug("fetchRedirectXRDS - got XRDS = " + tmpXRDS.toString());
+				log.debug("fetchRedirectXRDS - got XRDS = " + tmpXRDS.ToString());
 			} catch (IOException e) {
-				log.error("fetchRedirectXRDS - got IOException from URI " + uri);
+				log.error("fetchRedirectXRDS - got IOException from Uri " + uri);
 				throw makeResolutionException(xrdsOut, query, Status.NETWORK_ERROR, "Networking error encountered");
 			} catch (Exception e) {
 				log.error("fetchRedirectXRDS - unexpected error: " + e);
@@ -1844,7 +1846,7 @@ public class Resolver :BaseFetcher {
 				throw new PartialResolutionException(xrdsOut);
 			}
 			
-			String err = verifyRedirectXRD(xrd, parent);
+			string err = verifyRedirectXRD(xrd, parent);
 			if (err != null) {
 				xrd.setStatus(new Status(Status.REDIRECT_VERIFY_FAILED, err));
 				throw new PartialResolutionException(xrdsOut);
@@ -1859,7 +1861,7 @@ public class Resolver :BaseFetcher {
 			
 			try {
 				if (xrd.getNumRedirects() > 0) {
-					log.info("fetchRedirectXRDS - XRD at URI(" + uri + ") contains Redirect(s), following..");
+					log.info("fetchRedirectXRDS - XRD at Uri(" + uri + ") contains Redirect(s), following..");
 					tmpXRDS = processRedirects(qxri, xrd, flags, state);
 					xrdsOut.addAll(tmpXRDS);
 				}
@@ -1871,7 +1873,7 @@ public class Resolver :BaseFetcher {
 							Status.REF_NOT_FOLLOWED,
 							"Ref not followed");
 					}
-					log.info("fetchRedirectXRDS - XRD at URI(" + uri + ") contains Ref(s), following..");
+					log.info("fetchRedirectXRDS - XRD at Uri(" + uri + ") contains Ref(s), following..");
 					tmpXRDS = processRefs(xrd, flags, state);
 					xrdsOut.addAll(tmpXRDS);
 				}
@@ -1885,7 +1887,7 @@ public class Resolver :BaseFetcher {
 	}
 	
 
-	protected XRDS readXRDS(InputStream in) throws XRIResolutionException {
+	protected XRDS readXRDS(InputStream in) /*throws XRIResolutionException */{
 		XRDS xrds = null;
 
 		if (in == null) {
@@ -1947,7 +1949,7 @@ public class Resolver :BaseFetcher {
 				false);
 		XRD bangAuthority = XRD.parseXRD(properties
 				.getProperty("BangAuthority"), false);
-		String supports = properties.getProperty("SupportedResMediaTypes");
+		string supports = properties.getProperty("SupportedResMediaTypes");
 	
 		this.setMaxHttpRedirects(maxFollowRedirects);
 		this.setMaxFollowRefs(maxFollowRefs);
@@ -1960,7 +1962,7 @@ public class Resolver :BaseFetcher {
 		this.setAuthority("!", bangAuthority);
 	}
 
-	public XRD createErrorXRD(String query, String code, String msg) {
+	public XRD createErrorXRD(string query, string code, string msg) {
 		XRD err = new XRD();
 		err.setQuery(query);
 		Status stat = new Status(code, msg);
@@ -1970,12 +1972,12 @@ public class Resolver :BaseFetcher {
 
 	
 	
-	public URI constructAuthResURI(String sepURI, String segment)
-			throws URISyntaxException
+	public Uri constructAuthResURI(string sepURI, string segment)
+			/*throws URISyntaxException*/
 	{
 		
 		if (false) { // old construction rules
-			URI uri = new URI(sepURI);
+			Uri uri = new Uri(sepURI);
 	
 			StringBuilder sepURIStr = new StringBuilder(uri.getScheme());
 			sepURIStr.append("://");
@@ -1992,26 +1994,26 @@ public class Resolver :BaseFetcher {
 				sepURIStr.append(uri.getQuery());
 			}
 	
-			URI newURI = new URI(sepURIStr.toString());
+			Uri newURI = new Uri(sepURIStr.ToString());
 			return newURI;
 		}
 		
-		StringBuilder sb = new StringBuilder(sepURI.toString());
+		StringBuilder sb = new StringBuilder(sepURI.ToString());
 		if (sb.length() == 0 ||
 				sb.charAt(sb.length() - 1) != '/')
 			sb.append('/');
 		sb.append(segment);
-		return new URI(sb.toString());
+		return new Uri(sb.ToString());
 	}
 
-	public String constructURI(URI sepURI, String append, XRI qxri) {
-		log.trace("constructURI - sepURI=" + sepURI + ", append=" + append
+	public string constructURI(Uri sepURI, string append, XRI qxri) {
+		log.Info("constructURI - sepURI=" + sepURI + ", append=" + append
 				+ ", qxri=" + qxri);
 
 		if (append == null)
-			return sepURI.toString();
+			return sepURI.ToString();
 		
-		StringBuilder result = new StringBuilder(sepURI.toString());
+		StringBuilder result = new StringBuilder(sepURI.ToString());
 
 		if (append.equals(SEPUri.APPEND_NONE)) {
 		} else if (append.equals(SEPUri.APPEND_LOCAL)) {
@@ -2035,17 +2037,17 @@ public class Resolver :BaseFetcher {
 				result.append(p.toURINormalForm());
 		} else if (append.equals(SEPUri.APPEND_QUERY)) {
 			XRIQuery q = qxri.getQuery();
-			if (q != null && q.toString().length() > 0)
-				result.append("?" + q.toString());
+			if (q != null && q.ToString().length() > 0)
+				result.append("?" + q.ToString());
 		} else if (append.equals(SEPUri.APPEND_QXRI)) {
-			String qxriParam = qxri.toURINormalForm();
+			string qxriParam = qxri.toURINormalForm();
 			if (qxriParam.startsWith("xri://"))
 				qxriParam = qxriParam.substring(6);
 			result.append(qxriParam);
 		}
 
-		log.trace("constructURI - returning '" + result + "'");
-		return result.toString();
+		log.Info("constructURI - returning '" + result + "'");
+		return result.ToString();
 	}
 
 	
@@ -2062,11 +2064,11 @@ public class Resolver :BaseFetcher {
 			Iterator itURI = uris.iterator();
 			while (itURI.hasNext()) {
 				SEPUri uri = (SEPUri)itURI.next();
-				String append = uri.getAppend();
+				string append = uri.getAppend();
 				if (append != null) {
-					String r = constructURI(uri.getURI(), uri.getAppend(), qxri);
+					string r = constructURI(uri.getURI(), uri.getAppend(), qxri);
 					try {
-						uri.setURI(new URI(r));
+						uri.setURI(new Uri(r));
 						uri.setAppend(null);
 					} catch (URISyntaxException e) {}
 				}
@@ -2080,11 +2082,11 @@ public class Resolver :BaseFetcher {
 			Iterator itURI = uris.iterator();
 			while (itURI.hasNext()) {
 				SEPUri uri = (SEPUri)itURI.next();
-				String append = uri.getAppend();
+				string append = uri.getAppend();
 				if (append != null) {
-					String r = constructURI(uri.getURI(), uri.getAppend(), qxri);
+					string r = constructURI(uri.getURI(), uri.getAppend(), qxri);
 					try {
-						uri.setURI(new URI(r));
+						uri.setURI(new Uri(r));
 						uri.setAppend(null);
 					} catch (URISyntaxException e) {}
 				}
@@ -2098,8 +2100,8 @@ public class Resolver :BaseFetcher {
 	 * @param qxri QXRI to parse
 	 * @return XRI
 	 */
-	private XRI parseAbsoluteQXRIOrError(String qxri)
-			throws PartialResolutionException {
+	private XRI parseAbsoluteQXRIOrError(string qxri)
+			/*throws PartialResolutionException */{
 		try {
 			XRI xri = new XRI(qxri);
 			if (xri.isRelative()) {
@@ -2119,7 +2121,7 @@ public class Resolver :BaseFetcher {
 		}
 	}
 
-	protected XRI parseAbsoluteXRI(String qxri) {
+	protected XRI parseAbsoluteXRI(string qxri) {
 		try {
 			XRI xri = new XRI(qxri);
 			if (xri.isRelative()) {
@@ -2167,7 +2169,7 @@ public class Resolver :BaseFetcher {
 	 * @param auth - authority to query
 	 * @return true if authority is configured, false otherwise.
 	 */
-	public bool hasAuthority(String auth) {
+	public bool hasAuthority(string auth) {
 		return root.containsKey(auth);
 	}
 
@@ -2176,7 +2178,7 @@ public class Resolver :BaseFetcher {
 	 * @param auth - authority to query
 	 * @return XRD representing the authority
 	 */
-	public XRD getAuthority(String auth) {
+	public XRD getAuthority(string auth) {
 		Object xrd = root.get(auth);
 		return (xrd == null) ? null : (XRD) xrd;
 	}
@@ -2186,7 +2188,7 @@ public class Resolver :BaseFetcher {
 	 * @param auth - GCS or Cross Reference authority to configure
 	 * @param authXRD - XRD representing the authority
 	 */
-	public void setAuthority(String auth, XRD authXRD) {
+	public void setAuthority(string auth, XRD authXRD) {
 		root.put(auth, authXRD);
 	}
 
@@ -2194,7 +2196,7 @@ public class Resolver :BaseFetcher {
 	/**
 	 * Configures the Resolver to bypass HTTPS for the given authorities, while satisfying the https=true requirement.
 	 */
-	public void addHttpsBypassAuthority(String auth) {
+	public void addHttpsBypassAuthority(string auth) {
 		needNoHttps.put(auth.toLowerCase(), Boolean.TRUE);
 	}
 	
@@ -2202,7 +2204,7 @@ public class Resolver :BaseFetcher {
 	/**
 	 * Tests to see if resolving names at the given authority can bypass HTTPS while satisfying the https=true requirement.
 	 */
-	public bool isHttpsBypassAuthority(String auth) {
+	public bool isHttpsBypassAuthority(string auth) {
 		if (needNoHttps.containsKey(auth.toLowerCase())) {
 			return true;
 		}
@@ -2213,14 +2215,14 @@ public class Resolver :BaseFetcher {
 	/**
 	 * @return Returns the proxyURI.
 	 */
-	public URI getProxyURI() {
+	public Uri getProxyURI() {
 		return proxyURI;
 	}
 
 	/**
 	 * @param proxyURI The proxyURI to set.
 	 */
-	public void setProxyURI(URI proxyURI) {
+	public void setProxyURI(Uri proxyURI) {
 		this.proxyURI = proxyURI;
 	}
 

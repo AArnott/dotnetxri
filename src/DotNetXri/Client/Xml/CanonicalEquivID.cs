@@ -2,7 +2,7 @@ namespace DotNetXri.Client.Xml {
 
 using java.net.URISyntaxException;
 
-using org.w3c.dom.Element;
+using org.w3c.dom.XmlElement;
 
 public class CanonicalEquivID :SimpleXMLElement {
 
@@ -12,7 +12,7 @@ public class CanonicalEquivID :SimpleXMLElement {
 	public CanonicalEquivID() : base(Tags.TAG_CANONICALEQUIVID) {
 	}
 	
-	public CanonicalEquivID(String canonicalidString) : base(Tags.TAG_CANONICALEQUIVID) {
+	public CanonicalEquivID(string canonicalidString) : base(Tags.TAG_CANONICALEQUIVID) {
 		setValue(canonicalidString);
 	}
 
@@ -20,7 +20,7 @@ public class CanonicalEquivID :SimpleXMLElement {
 	* This method constructs the obj from DOM.  It does not keep a
 	* copy of the DOM around.  Whitespace information is lost in this process.
 	*/
-	public CanonicalEquivID(Element elem) throws URISyntaxException
+	public CanonicalEquivID(XmlElement elem)//throws URISyntaxException
 	: base(Tags.TAG_CANONICALEQUIVID) {
 		fromXML(elem);
 	}

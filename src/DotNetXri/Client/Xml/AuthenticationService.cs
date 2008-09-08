@@ -1,6 +1,6 @@
 namespace DotNetXri.Client.Xml {
 
-using java.net.URI;
+using java.net.Uri;
 using java.net.URISyntaxException;
 using java.util.List;
 
@@ -10,25 +10,25 @@ using java.util.List;
 * It is currently not in the scope of OpenXRI to implement the authentication for this service.
 * The RECOMMENDED third-level DNS name for hosting an Authentication Service is 'authn',
 * e.g. 'authn.my-i-broker.com'
-* It is REQUIRED that at least one HTTPS URI is used with an Authentication Service.
+* It is REQUIRED that at least one HTTPS Uri is used with an Authentication Service.
 * @author =peacekeeper
 */
 public class AuthenticationService :org.openxri.xml.Service {
 
-	public const String SERVICE_TYPE1 = "http://openid.net/signon/1.0";
-	public const String SERVICE_TYPE2 = "http://specs.openid.net/auth/2.0/signon";
-	public const String LOGIN_PATH = "(+login)";
-	public const Integer URI_PRIORITY_HTTPS = new Integer(1);
-	public const Integer URI_PRIORITY_DEFAULT = new Integer(2);
+	public const string SERVICE_TYPE1 = "http://openid.net/signon/1.0";
+	public const string SERVICE_TYPE2 = "http://specs.openid.net/auth/2.0/signon";
+	public const string LOGIN_PATH = "(+login)";
+	public const int? URI_PRIORITY_HTTPS = new int?(1);
+	public const int? URI_PRIORITY_DEFAULT = new int?(2);
 
 	/**
 	* Constructs a new Authentication endpoint for use in an authority.
-	* @param authenticationPages - The URI(s) where OpenID authentication is implemented.
+	* @param authenticationPages - The Uri(s) where OpenID authentication is implemented.
 	* @param providerID - The global i-number of the I-Broker providing this Authentication Service.
 	* @param delegate - The identity to use for authenticating at the OpenID IdP; null if the XRI itself is to be used.
 	* @param useLoginPath - Whether the Authentication Service implementation responds to the OPTIONAL (+login) path.
 	*/
-	public AuthenticationService(URI[] authenticationPages, String providerID, String delegate, bool useLoginPath) {
+	public AuthenticationService(Uri[] authenticationPages, string providerID, string delegate, bool useLoginPath) {
 		
 		
 		
@@ -54,7 +54,7 @@ public class AuthenticationService :org.openxri.xml.Service {
 		
 		/*
 		* If the user already has an OpenID, we can point to it (delegation) instead of using the XRI itself
-		* as an OpenID. In that case, the provided URI(s) must point to the OpenID IdP which is authorative
+		* as an OpenID. In that case, the provided Uri(s) must point to the OpenID IdP which is authorative
 		* for the delegated identity.
 		*/
 		if (delegate != null) {
@@ -74,20 +74,20 @@ public class AuthenticationService :org.openxri.xml.Service {
 
 		/*
 		* These are the URIs where the Authentication Service is implemented. Nothing will be appended.
-		* According to the Authentication Service specification, the HTTPS URI(s) must have the
+		* According to the Authentication Service specification, the HTTPS Uri(s) must have the
 		* highest priority.
 		* It is currently not in the scope of OpenXRI to implement the actual OpenID authentication.
 		*/
 		for (int i=0; i<authenticationPages.length; i++) {
 
-			URI authenticationPage = authenticationPages[i];
+			Uri authenticationPage = authenticationPages[i];
 			
 			try {
 
-				Integer priority;
+				int? priority;
 				
 				if (authenticationPage.getScheme() != null &&
-					authenticationPage.getScheme().toLowerCase().equals("https")) {
+					authenticationPage.getScheme().toLowerCase().Equals("https")) {
 					
 					priority = URI_PRIORITY_HTTPS;
 				} else {
@@ -95,7 +95,7 @@ public class AuthenticationService :org.openxri.xml.Service {
 					priority = URI_PRIORITY_DEFAULT;
 				}
 				
-				this.addURI(new SEPUri(authenticationPage.toString(), priority, SEPUri.APPEND_NONE));
+				this.addURI(new SEPUri(authenticationPage.ToString(), priority, SEPUri.APPEND_NONE));
 			} catch (URISyntaxException ex) {
 				
 				continue;
@@ -103,39 +103,39 @@ public class AuthenticationService :org.openxri.xml.Service {
 		}
 	}
 
-	public AuthenticationService(URI authenticationPage, String providerID, String delegate, bool useLoginPath) {
+	public AuthenticationService(Uri authenticationPage, string providerID, string delegate, bool useLoginPath) {
 		
-		this(new URI[] { authenticationPage }, providerID, delegate, useLoginPath);
+		this(new Uri[] { authenticationPage }, providerID, delegate, useLoginPath);
 	}
 
-	public AuthenticationService(URI[] authenticationPages, String providerID, String delegate) {
+	public AuthenticationService(Uri[] authenticationPages, string providerID, string delegate) {
 		
 		this(authenticationPages, providerID, delegate, true);
 	}
 
-	public AuthenticationService(URI authenticationPage, String providerID, String delegate) {
+	public AuthenticationService(Uri authenticationPage, string providerID, string delegate) {
 		
-		this(new URI[] { authenticationPage }, providerID, delegate, true);
+		this(new Uri[] { authenticationPage }, providerID, delegate, true);
 	}
 
-	public AuthenticationService(URI[] authenticationPages, String providerID) {
+	public AuthenticationService(Uri[] authenticationPages, string providerID) {
 		
 		this(authenticationPages, providerID, null, true);
 	}
 
-	public AuthenticationService(URI authenticationPage, String providerID) {
+	public AuthenticationService(Uri authenticationPage, string providerID) {
 		
-		this(new URI[] { authenticationPage }, providerID, null, true);
+		this(new Uri[] { authenticationPage }, providerID, null, true);
 	}
 
-	public AuthenticationService(URI[] authenticationPages) {
+	public AuthenticationService(Uri[] authenticationPages) {
 		
 		this(authenticationPages, null, null, true);
 	}
 
-	public AuthenticationService(URI authenticationPage) {
+	public AuthenticationService(Uri authenticationPage) {
 		
-		this(new URI[] { authenticationPage }, null, null, true);
+		this(new Uri[] { authenticationPage }, null, null, true);
 	}
 
 	public static bool isInstance(Service service) {
@@ -148,8 +148,8 @@ public class AuthenticationService :org.openxri.xml.Service {
 			
 			SEPType serviceType = (SEPType) serviceTypes.get(i);
 			
-			if (SERVICE_TYPE1.equals(serviceType.getValue())) return(true);
-			if (SERVICE_TYPE2.equals(serviceType.getValue())) return(true);
+			if (SERVICE_TYPE1.Equals(serviceType.getValue())) return(true);
+			if (SERVICE_TYPE2.Equals(serviceType.getValue())) return(true);
 		}
 		
 		return(false);

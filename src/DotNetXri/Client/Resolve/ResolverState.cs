@@ -16,21 +16,24 @@
 */
 
 using System.Text;
+using System.Collections;
+using System;
+using DotNetXri.Syntax;
 
 namespace DotNetXri.Client.Resolve {
 
-using java.net.URI;
-using java.util.ArrayList;
+//using java.net.Uri;
+//using java.util.ArrayList;
 
-using org.openxri.GCSAuthority;
-using org.openxri.XRI;
-using org.openxri.XRIAuthority;
-using org.openxri.xml.XRD;
+//using org.openxri.GCSAuthority;
+//using org.openxri.XRI;
+//using org.openxri.XRIAuthority;
+//using org.openxri.xml.XRD;
 
 
 /**
  * This class <strong>used to provide</strong> encapsulation of the cache state of a Resolver obj.
- * Now, it is used to store information about the references processed, URI traversed, etc. during
+ * Now, it is used to store information about the references processed, Uri traversed, etc. during
  * a resolution request.
  * The caching functionality may be revived at a later date.
  *
@@ -51,7 +54,7 @@ public class ResolverState
      */
     public ResolverState()
     {
-    	timeStarted = System.currentTimeMillis();
+    	timeStarted = System.currentTimeMillis(); // DateTime.Now.Ticks?
     	steps = new ArrayList();
     	numRefsFollowed = 0; // successful or not
     	numRequests = 0;
@@ -90,13 +93,13 @@ public class ResolverState
 
 	public ResolverStep getStepAt(int i)
 	{
-		return (ResolverStep)steps.get(i);
+		return (ResolverStep)steps[i];
 	}
 
 	
 	public int getNumSteps()
 	{
-		return steps.size();
+		return steps.Count;
 	}
 	
 
@@ -104,74 +107,74 @@ public class ResolverState
      * 
      * @param qxri QXRI that was resolved
      * @param xrds XRDS document received
-     * @param uri  URI queried to resolve the QXRI
+     * @param uri  Uri queried to resolve the QXRI
      */
-	public void pushResolved(String qxri, String trustType, String xrds, URI uri)
+	public void pushResolved(string qxri, string trustType, string xrds, Uri uri)
 	{
 		ResolverStep step = new ResolverStep(qxri, trustType, xrds, null, uri);
-		steps.add(step);
+		steps.Add(step);
 		numRequests++;
-		numBytesReceived += xrds.length();
+		numBytesReceived += xrds.Length;
 	}
 	
 	
-	public void pushFollowingRef(XRI ref)
+	public void pushFollowingRef(XRI _ref)
 	{
-		ResolverStep step = new ResolverStep(null, null, null, ref, null);
+		ResolverStep step = new ResolverStep(null, null, null, _ref, null);
 		steps.add(step);
 		numRefsFollowed++;
 	}
 	
 	
-	public String toString()
+	public override string ToString()
 	{
 		StringBuilder sb = new StringBuilder();
 		
-		sb.append("NumRequests=" + numRequests + ", numRefsFollowed=" + numRefsFollowed + ", numBytesReceived=" + numBytesReceived + "\n");
+		sb.Append("NumRequests=" + numRequests + ", numRefsFollowed=" + numRefsFollowed + ", numBytesReceived=" + numBytesReceived + "\n");
 		for (int i = 0; i < getNumSteps(); i++) {
 			ResolverStep step = getStepAt(i);
-			sb.append(step.toString());
-			sb.append("\n");
+			sb.Append(step.ToString());
+			sb.Append("\n");
 		}
-		return sb.toString();
+		return sb.ToString();
 	}
 	
 	
 	public class ResolverStep
 	{
-		public final String qxri;
-		public final String trust; 
-		public final String xrds;
-		public final URI    uri;
-		public final XRI    ref;
+		public final string qxri;
+		public final string trust; 
+		public final string xrds;
+		public final Uri    uri;
+		public final XRI    _ref;
 		public final long   timeCompleted;
 		
-		public ResolverStep(String qxri, String trust, String xrds, XRI ref, URI uri)
+		public ResolverStep(string qxri, string trust, string xrds, XRI _ref, Uri uri)
 		{
 			this.qxri  = qxri;
 			this.trust = trust;
 			this.xrds  = xrds;
-			this.ref   = ref;
+			this._ref   = _ref;
 			this.uri   = uri;
 			this.timeCompleted = System.currentTimeMillis();
 		}
 		
-		public String toString()
+		public override string ToString()
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.append("QXRI=");
-			sb.append(qxri);
-			sb.append(", trust=");
-			sb.append(trust);
-			sb.append(", uri=");
-			sb.append((uri == null)? "null" : uri.toASCIIString());
-			sb.append(", ref=");
-			sb.append(ref);
-			sb.append(", elapsed=");
-			sb.append(timeCompleted - timeStarted);
-			sb.append("ms\n\nXRDS = \n");
-			sb.append(xrds);
-			return sb.toString();
+			sb.Append("QXRI=");
+			sb.Append(qxri);
+			sb.Append(", trust=");
+			sb.Append(trust);
+			sb.Append(", uri=");
+			sb.Append((uri == null)? "null" : uri.toASCIIString());
+			sb.Append(", ref=");
+			sb.Append(_ref);
+			sb.Append(", elapsed=");
+			sb.Append(timeCompleted - timeStarted);
+			sb.Append("ms\n\nXRDS = \n");
+			sb.Append(xrds);
+			return sb.ToString();
 		}
 	}
 	

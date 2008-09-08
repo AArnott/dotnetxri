@@ -7,7 +7,7 @@ using System.Text;
 namespace DotNetXri.Client.Resolve {
 
 using java.util.Comparator;
-using java.util.HashMap;
+using java.util.Hashtable;
 using java.util.Iterator;
 using java.util.Set;
 
@@ -24,39 +24,39 @@ using org.openxri.resolve.exception.IllegalTrustTypeException;
  */
 public class MimeType : Comparable {
 
-	public const String PARAM_SEP          = "sep";
-	public const String PARAM_REFS         = "refs";
-	public const String PARAM_HTTPS        = "https";
-	public const String PARAM_SAML         = "saml";
-	public const String PARAM_CID          = "cid";
-	public const String PARAM_URIC         = "uric";
-	public const String PARAM_NO_DEFAULT_T = "nodefault_t";
-	public const String PARAM_NO_DEFAULT_P = "nodefault_p";
-	public const String PARAM_NO_DEFAULT_M = "nodefault_m";
+	public const string PARAM_SEP          = "sep";
+	public const string PARAM_REFS         = "refs";
+	public const string PARAM_HTTPS        = "https";
+	public const string PARAM_SAML         = "saml";
+	public const string PARAM_CID          = "cid";
+	public const string PARAM_URIC         = "uric";
+	public const string PARAM_NO_DEFAULT_T = "nodefault_t";
+	public const string PARAM_NO_DEFAULT_P = "nodefault_p";
+	public const string PARAM_NO_DEFAULT_M = "nodefault_m";
 
 	/**
 	 * @deprecated
 	 */
-	public const String PARAM_TRUST        = "trust";
+	public const string PARAM_TRUST        = "trust";
 
-	public const String XRDS_XML = "application/xrds+xml";
-	public const String XRD_XML  = "application/xrd+xml";
-	public const String URI_LIST = "text/uri-list";
+	public const string XRDS_XML = "application/xrds+xml";
+	public const string XRD_XML  = "application/xrd+xml";
+	public const string URI_LIST = "text/uri-list";
 	
 	
 	// mime type
-	protected String type = null;
+	protected string type = null;
 	
 	// media params
-	protected HashMap params = null;
+	protected Hashtable params = null;
 	
 	// whatever was given to the parse method is saved here
-	protected String original = null;
+	protected string original = null;
 
 	/**
 	 * Creates a MimeType obj
 	 */
-	protected MimeType(String type, HashMap params, String original) {
+	protected MimeType(string type, Hashtable params, string original) {
 		this.type = type;
 		this.params = params;
 		this.original = original;
@@ -66,20 +66,20 @@ public class MimeType : Comparable {
 	 * Creates a MimeType obj with no params.
 	 * @param type all-lowercase string with no leading or trailing whitespace.
 	 */
-	public MimeType(String type) {
-		this(type, new HashMap(), type);
+	public MimeType(string type) {
+		this(type, new Hashtable(), type);
 	}
 	
 	/**
 	 * Retrieves the MIME parameter value for the given key
 	 * @param key
-	 * @return String the value if present (could be an empty String), or <code>null</code> if not present
+	 * @return string the value if present (could be an empty string), or <code>null</code> if not present
 	 */
-	public String getParam(String key) {
+	public string getParam(string key) {
 		Object val = params.get(key);
 		if (val == null)
 			return null;
-		return (String)val;
+		return (string)val;
 	}
 
 	/**
@@ -104,12 +104,12 @@ public class MimeType : Comparable {
 			try {
 				// look for all three parameters: https, saml, and trust
 				// but the latter is only used if either https or saml is absent 
-				String myTrust = (String)this.params.get(PARAM_TRUST);
+				string myTrust = (string)this.params.get(PARAM_TRUST);
 				TrustType myTT = null;
 				if (myTrust != null)
 					myTT = new TrustType(myTrust);
-				String myHTTPS = (String)this.params.get(PARAM_HTTPS);
-				String mySAML  = (String)this.params.get(PARAM_SAML);
+				string myHTTPS = (string)this.params.get(PARAM_HTTPS);
+				string mySAML  = (string)this.params.get(PARAM_SAML);
 				
 				if (myHTTPS == null && myTT != null) {
 					myHTTPS = myTT.isHTTPS()? "true" : "false";
@@ -119,12 +119,12 @@ public class MimeType : Comparable {
 				}
 				
 				
-				String itsTrust = (String)m.params.get(PARAM_TRUST);
+				string itsTrust = (string)m.params.get(PARAM_TRUST);
 				TrustType itsTT = null;
 				if (itsTrust != null)
 					itsTT = new TrustType(itsTrust);
-				String itsHTTPS = (String)m.params.get(PARAM_HTTPS);
-				String itsSAML  = (String)m.params.get(PARAM_SAML);
+				string itsHTTPS = (string)m.params.get(PARAM_HTTPS);
+				string itsSAML  = (string)m.params.get(PARAM_SAML);
 				
 				if (itsHTTPS == null && itsTT != null) {
 					itsHTTPS = itsTT.isHTTPS()? "true" : "false";
@@ -152,9 +152,9 @@ public class MimeType : Comparable {
 		Set keys = params.keySet();
 		Iterator i = keys.iterator();
 		while (i.hasNext()) {
-			String k = (String)i.next();
-			String v1 = (String)params.get(k);
-			String v2 = (String)m.params.get(k);
+			string k = (string)i.next();
+			string v1 = (string)params.get(k);
+			string v2 = (string)m.params.get(k);
 			
 			if (v2 == null) {
 				// key does not exist in m.params
@@ -201,7 +201,7 @@ public class MimeType : Comparable {
 	 * Tests to see if this <code>MimeType</code> has the same type as the simple type
 	 * <code>mtype</code>. If this <code>MimeType</code> has sub-parameters, they are ignored.
 	 */
-	public bool isType(String mtype) {
+	public bool isType(string mtype) {
 		return type.equals(mtype.toLowerCase());
 	}
 	
@@ -224,9 +224,9 @@ public class MimeType : Comparable {
 		Set keys = m.params.keySet();
 		Iterator i = keys.iterator();
 		while (i.hasNext()) {
-			String k = (String)i.next();
-			String v1 = (String)params.get(k);
-			String v2 = (String)m.params.get(k);
+			string k = (string)i.next();
+			string v1 = (string)params.get(k);
+			string v2 = (string)m.params.get(k);
 			
 			if (v1 == null) {
 				// key does not exist in this obj's params
@@ -245,18 +245,18 @@ public class MimeType : Comparable {
 	 * @param typeStr
 	 * @return Returns a new <code>MimeType</code> obj.
 	 */
-	public static MimeType parse(String typeStr) {
+	public static MimeType parse(string typeStr) {
 		if (typeStr == null)
 			return null;
 
-		String[] parts = typeStr.split("\\s*;\\s*");
-		String typeVal = parts[0].trim().toLowerCase();
-		HashMap params = new HashMap();
+		string[] parts = typeStr.split("\\s*;\\s*");
+		string typeVal = parts[0].trim().toLowerCase();
+		Hashtable params = new Hashtable();
 		for (int i = 1; i < parts.length; i++) {
 			if (parts[i].length() == 0)
 				continue; // ignore blank parts
-			String[] kvpair = parts[i].split("\\s*=\\s*");
-			String val = (kvpair.length > 1)? kvpair[1] : "";
+			string[] kvpair = parts[i].split("\\s*=\\s*");
+			string val = (kvpair.length > 1)? kvpair[1] : "";
 			params.put(kvpair[0].toLowerCase(), val.trim());
 		}
 		
@@ -275,36 +275,36 @@ public class MimeType : Comparable {
 	/**
 	 * @return Returns the type.
 	 */
-	public String getType() {
+	public string getType() {
 		return type;
 	}
 
 	/**
 	 * @return Returns the original type string (as given to <code>parse</code>.)
 	 */
-	public String toString() {
+	public override string ToString() {
 		return original;
 	}
 
 	/**
 	 * @return Returns the normalized string suitable for use in Accept and Content-Type headers.
 	 */
-	public String toNormalizedString() {
+	public string toNormalizedString() {
 		StringBuilder sb = new StringBuilder(type);
 		Iterator ki = params.keySet().iterator();
 		while (ki.hasNext()) {
-			String key = (String)ki.next();
-			String val = (String)params.get(key);
+			string key = (string)ki.next();
+			string val = (string)params.get(key);
 			sb.append(';');
 			sb.append(key);
 			sb.append('=');
 			sb.append(val);
 		}
-		return sb.toString();
+		return sb.ToString();
 	}
 	
 	
-	private static bool isXriResMediaType(String v)
+	private static bool isXriResMediaType(string v)
 	{
 		return (v.equals(XRDS_XML)
 				|| v.equals(XRD_XML)
@@ -312,9 +312,9 @@ public class MimeType : Comparable {
 		
 	}
 	
-	private static void setXriResDefaultParams(HashMap params)
+	private static void setXriResDefaultParams(Hashtable params)
 	{
-		String val = null;
+		string val = null;
 
 		if (params.get(PARAM_TRUST) == null && params.get(PARAM_HTTPS) == null && params.get(PARAM_SAML) == null) {
 			params.put(PARAM_HTTPS, "false");
@@ -323,7 +323,7 @@ public class MimeType : Comparable {
 	}
 	
 	
-	public static void main(String args[]) {
+	public static void main(string args[]) {
 		MimeType m1 = MimeType.parse("application/xrdS+xml");
 		MimeType m2 = MimeType.parse("application/xrds+xml;trust=none");
 		MimeType m3 = MimeType.parse("application/xrds+xml;sep=true");

@@ -14,14 +14,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
 */
+using DotNetXri.Loggers;
+using DotNetXri.Client.Util;
+using DotNetXri.Client.Xml;
+using System.Xml;
+using System;
 namespace DotNetXri.Client.Saml {
-using org.apache.xerces.dom.DocumentImpl;
-using org.apache.xml.security.signature.XMLSignature;
-using org.openxri.util.DOMUtils;
-using org.openxri.xml.Tags;
-using org.w3c.dom.Document;
-using org.w3c.dom.Element;
-using org.w3c.dom.Node;
+//using org.apache.xerces.dom.XmlDocument;
+//using org.apache.xml.security.signature.XMLSignature;
+//using org.openxri.util.DOMUtils;
+//using org.openxri.xml.Tags;
+//using org.w3c.dom.XmlDocument;
+//using org.w3c.dom.XmlElement;
+//using org.w3c.dom.XmlNode;
 
 
 /*
@@ -34,11 +39,10 @@ using org.w3c.dom.Node;
 */
 public class Assertion
 {
-    private static org.apache.commons.logging.Log soLog =
-        org.apache.commons.logging.LogFactory.getLog(Assertion.class.getName());
-    private String msXmlID = "";
-    private String msIssueInstant = "";
-    private Element moElem;
+    private static ILog soLog = Logger.Create(typeof(Assertion));
+    private string msXmlID = "";
+    private string msIssueInstant = "";
+    private XmlElement moElem;
     private NameID moIssuer;
     private XMLSignature moSignature;
     private Subject moSubject;
@@ -65,7 +69,7 @@ public class Assertion
     */ /**
     * Contructs a SAML 2.0 assertion from the specified DOM
     */
-    public Assertion(Element oElem)
+    public Assertion(XmlElement oElem)
     {
         fromDOM(oElem);
 
@@ -78,7 +82,7 @@ public class Assertion
     */ /**
     * Returns the issueInstant attribute
     */
-    public String getIssueInstant()
+    public string getIssueInstant()
     {
         return msIssueInstant;
 
@@ -91,7 +95,7 @@ public class Assertion
     */ /**
     * Sets the issueInstant attribute
     */
-    public void setIssueInstant(String sVal)
+    public void setIssueInstant(string sVal)
     {
         msIssueInstant = sVal;
 
@@ -104,7 +108,7 @@ public class Assertion
     */ /**
     * Returns the id attribute
     */
-    public String getXmlID()
+    public string getXmlID()
     {
         return msXmlID;
 
@@ -117,7 +121,7 @@ public class Assertion
     */ /**
     * Sets the id attribute
     */
-    public void setXmlID(String sVal)
+    public void setXmlID(string sVal)
     {
         msXmlID = sVal;
 
@@ -132,7 +136,7 @@ public class Assertion
     */
     public void genXmlID()
     {
-        msXmlID = "_" + org.openxri.util.XMLUtils.genXmlID();
+        msXmlID = "_" + XMLUtils.genXmlID();
 
     } // genXmlID()
 
@@ -145,7 +149,7 @@ public class Assertion
     * retrievable by getDOM.  The fromDOM method, on the otherhand, will not keep
     * a copy of the DOM.
     */
-    public void setDOM(Element oElem)
+    public void setDOM(XmlElement oElem)
     {
         fromDOM(oElem);
         moElem = oElem;
@@ -180,7 +184,7 @@ public class Assertion
     *  This method populates the obj from DOM.  It does not keep a
     * copy of the DOM around.  Whitespace information is lost in this process.
     */
-    public void fromDOM(Element oElem)
+    public void fromDOM(XmlElement oElem)
     {
         reset();
 
@@ -196,58 +200,58 @@ public class Assertion
         }
 
         for (
-            Node oChild = DOMUtils.getFirstChildElement(oElem); oChild != null;
+            XmlNode oChild = oElem.FirstChild; oChild != null;
             oChild = DOMUtils.getNextSiblingElement(oChild))
         {
-            if (oChild.getLocalName().equals(Tags.TAG_ISSUER))
+            if (oChild.LocalName.Equals(Tags.TAG_ISSUER))
             {
                 // only accept the first XRIAuthority
                 if (moIssuer == null)
                 {
-                    moIssuer = new NameID((Element) oChild);
+                    moIssuer = new NameID((XmlElement) oChild);
                 }
             }
-            else if (oChild.getLocalName().equals(Tags.TAG_SIGNATURE))
+            else if (oChild.LocalName.Equals(Tags.TAG_SIGNATURE))
             {
                 // only accept the first XRIAuthority
                 if (moSignature == null)
                 {
                     try
                     {
-                        Document oDoc = new DocumentImpl();
-                        Element oChildCopy =
-                            (Element) oDoc.importNode(oChild, true);
+						XmlDocument oDoc = new XmlDocument();
+                        XmlElement oChildCopy =
+                            (XmlElement) oDoc.ImportNode(oChild, true);
                         moSignature = new XMLSignature(oChildCopy, null);
                     }
                     catch (Exception oEx)
                     {
-                        soLog.warn(
+                        soLog.Warn(
                             "Caught exception while parsing Signature", oEx);
                     }
                 }
             }
-            else if (oChild.getLocalName().equals(Tags.TAG_SUBJECT))
+            else if (oChild.LocalName.Equals(Tags.TAG_SUBJECT))
             {
                 // only accept the first XRIAuthority
                 if (moSubject == null)
                 {
-                    moSubject = new Subject((Element) oChild);
+                    moSubject = new Subject((XmlElement) oChild);
                 }
             }
-            else if (oChild.getLocalName().equals(Tags.TAG_CONDITIONS))
+            else if (oChild.LocalName.Equals(Tags.TAG_CONDITIONS))
             {
                 // only accept the first XRIAuthority
                 if (moConditions == null)
                 {
-                    moConditions = new Conditions((Element) oChild);
+                    moConditions = new Conditions((XmlElement) oChild);
                 }
             }
-            else if (oChild.getLocalName().equals(Tags.TAG_ATTRIBUTESTATEMENT))
+            else if (oChild.LocalName.Equals(Tags.TAG_ATTRIBUTESTATEMENT))
             {
                 // only accept the first XRIAuthority
                 if (moAttrStatement == null)
                 {
-                    moAttrStatement = new AttributeStatement((Element) oChild);
+                    moAttrStatement = new AttributeStatement((XmlElement) oChild);
                 }
             }
         }
@@ -262,12 +266,12 @@ public class Assertion
     * This method returns DOM stored with this obj.  It may be cached and
     * there is no guarantee as to which document it was created from
     */
-    public Element getDOM()
+    public XmlElement getDOM()
     {
         if (moElem == null)
         {
-            moElem = toDOM(new DocumentImpl());
-            moElem.getOwnerDocument().appendChild(moElem);
+            moElem = toDOM(new XmlDocument());
+            moElem.getOwnerDocument().AppendChild(moElem);
         }
 
         return moElem;
@@ -285,7 +289,7 @@ public class Assertion
     public bool isValid()
     {
         if (
-            (msIssueInstant.equals("")) || (msXmlID.equals("")) ||
+            (msIssueInstant.Equals("")) || (msXmlID.Equals("")) ||
             (moIssuer == null))
         {
             return false;
@@ -323,7 +327,7 @@ public class Assertion
     * This method generates a reference-free copy of new DOM.
     * @param oDoc - The document to use for generating DOM
     */
-    public Element toDOM(Document oDoc)
+    public XmlElement toDOM(XmlDocument oDoc)
     {
         // for this particular toDOM implementation, oDoc must not be null
         if (oDoc == null)
@@ -331,7 +335,7 @@ public class Assertion
             return null;
         }
 
-        Element oElem = oDoc.createElementNS(Tags.NS_SAML, Tags.TAG_ASSERTION);
+        XmlElement oElem = oDoc.createElementNS(Tags.NS_SAML, Tags.TAG_ASSERTION);
 
         oElem.setAttributeNS(Tags.NS_XMLNS, "xmlns", Tags.NS_SAML);
         oElem.setAttributeNS(Tags.NS_XMLNS, "xmlns:saml", Tags.NS_SAML);
@@ -342,35 +346,35 @@ public class Assertion
 
         if (moIssuer != null)
         {
-            Element oChildElem = (Element) moIssuer.toDOM(oDoc);
-            oElem.appendChild(oChildElem);
+            XmlElement oChildElem = (XmlElement) moIssuer.toDOM(oDoc);
+            oElem.AppendChild(oChildElem);
         }
 
         if (moSignature != null)
         {
-            Element oChildElem = moSignature.getElement();
+            XmlElement oChildElem = moSignature.getElement();
 
             // import the node, we want a copy
-            oChildElem = (Element) oDoc.importNode(oChildElem, true);
-            oElem.appendChild(oChildElem);
+            oChildElem = (XmlElement) oDoc.importNode(oChildElem, true);
+            oElem.AppendChild(oChildElem);
         }
 
         if (moSubject != null)
         {
-            Element oChildElem = (Element) moSubject.toDOM(oDoc);
-            oElem.appendChild(oChildElem);
+            XmlElement oChildElem = (XmlElement) moSubject.toDOM(oDoc);
+            oElem.AppendChild(oChildElem);
         }
 
         if (moConditions != null)
         {
-            Element oChildElem = (Element) moConditions.toDOM(oDoc);
-            oElem.appendChild(oChildElem);
+            XmlElement oChildElem = (XmlElement) moConditions.toDOM(oDoc);
+            oElem.AppendChild(oChildElem);
         }
 
         if (moAttrStatement != null)
         {
-            Element oChildElem = (Element) moAttrStatement.toDOM(oDoc);
-            oElem.appendChild(oChildElem);
+            XmlElement oChildElem = (XmlElement) moAttrStatement.toDOM(oDoc);
+            oElem.AppendChild(oChildElem);
         }
 
         return oElem;
@@ -392,16 +396,16 @@ public class Assertion
 
     /*
     ****************************************************************************
-    * toString()
+    * ToString()
     ****************************************************************************
     */ /**
     * Returns formatted obj.  Do not use if signature needs to be preserved.
     */
-    public String toString()
+    public override string ToString()
     {
         return dump();
 
-    } // toString()
+    } // ToString()
 
     /*
     ****************************************************************************
@@ -411,12 +415,12 @@ public class Assertion
     * Returns obj as a formatted XML string.
     * @param sTab - The characters to prepend before each new line
     */
-    public String dump()
+    public string dump()
     {
-        Document doc = new DocumentImpl();
-        Element elm = this.toDOM(doc);
-        doc.appendChild(elm);
-        return DOMUtils.toString(doc);
+        XmlDocument doc = new XmlDocument();
+        XmlElement elm = this.toDOM(doc);
+        doc.AppendChild(elm);
+        return DOMUtils.ToString(doc);
 
     } // dump()
 

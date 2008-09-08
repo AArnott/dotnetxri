@@ -9,7 +9,7 @@ namespace DotNetXri.Client.Resolve {
 			org.apache.commons.logging.LogFactory.getLog(typeof(Service));
 
 
-		public static List select(List seps, String inType, String inMediaType, String inPath, ResolverFlags flags)
+		public static List select(List seps, string inType, string inMediaType, string inPath, ResolverFlags flags)
 	{
 		int n = seps.size();
 		ArrayList sepOut = new ArrayList();
@@ -30,7 +30,7 @@ namespace DotNetXri.Client.Resolve {
 		bool[] presentPath       = new bool[n];
 		bool[] presentMediaType  = new bool[n];
 		
-		log.trace("select type='" + inType + "' mtype='" + inMediaType + "' path='" + inPath + "' len(SEPs)=" + n);
+		log.Info("select type='" + inType + "' mtype='" + inMediaType + "' path='" + inPath + "' len(SEPs)=" + n);
 		
 		for (int i = 0; i < n; i++) {
 			List sels;
@@ -38,7 +38,7 @@ namespace DotNetXri.Client.Resolve {
 			Service sep = (Service)seps.get(i);
 			defaultSepOut.Add(null); // occupy the slot by setting to null
 
-			log.trace("SEPSelector.select SEP[" + i + "] = " + sep);
+			log.Info("SEPSelector.select SEP[" + i + "] = " + sep);
 
 			// flag to continue main loop from SEL loop
 			bool sepDone = false;
@@ -52,18 +52,18 @@ namespace DotNetXri.Client.Resolve {
 				
 				if (matchSEL(typeSEL, inType)) {
 					if (typeSEL.getSelect()) {
-						log.trace("SEPSelector.select SEP[" + i + "] Type is selected.");
+						log.Info("SEPSelector.select SEP[" + i + "] Type is selected.");
 						sepOut.Add(sep);
 						sepDone = true;
 						break; // next sep
 					}
 					else {
-						log.trace("SEPSelector.select SEP[" + i + "] Type is a positive match.");
+						log.Info("SEPSelector.select SEP[" + i + "] Type is a positive match.");
 						positiveType[i] = true;
 					}
 				}
 				else if (!noDefaultType && !positiveType[i] && isDefaultMatch(typeSEL)) {
-					log.trace("SEPSelector.select SEP[" + i + "] Type is a default match.");
+					log.Info("SEPSelector.select SEP[" + i + "] Type is a default match.");
 					defaultType[i] = true;
 				}
 			} // end-foreach type-sel
@@ -72,7 +72,7 @@ namespace DotNetXri.Client.Resolve {
 				continue;
 			
 			if (!presentType[i] && !noDefaultType) {
-				log.trace("SEPSelector.select SEP[" + i + "] Type is a default match (no Type element found).");
+				log.Info("SEPSelector.select SEP[" + i + "] Type is a default match (no Type element found).");
 				defaultType[i] = true;
 			}
 
@@ -86,18 +86,18 @@ namespace DotNetXri.Client.Resolve {
 				
 				if (matchSEL(pathSEL, inPath)) {
 					if (pathSEL.getSelect()) {
-						log.trace("SEPSelector.select SEP[" + i + "] Path is selected.");
+						log.Info("SEPSelector.select SEP[" + i + "] Path is selected.");
 						sepOut.Add(sep);
 						sepDone = true;
 						break; // next sep
 					}
 					else {
-						log.trace("SEPSelector.select SEP[" + i + "] Path is a positive match.");
+						log.Info("SEPSelector.select SEP[" + i + "] Path is a positive match.");
 						positivePath[i] = true;
 					}
 				}
 				else if (!noDefaultPath && !positivePath[i] && isDefaultMatch(pathSEL)) {
-					log.trace("SEPSelector.select SEP[" + i + "] Path is a default match.");
+					log.Info("SEPSelector.select SEP[" + i + "] Path is a default match.");
 					defaultPath[i] = true;
 				}
 			} // end-foreach path-sel
@@ -106,7 +106,7 @@ namespace DotNetXri.Client.Resolve {
 				continue;
 			
 			if (!presentPath[i] && !noDefaultPath) {
-				log.trace("SEPSelector.select SEP[" + i + "] Path is a default match (no Path element found).");
+				log.Info("SEPSelector.select SEP[" + i + "] Path is a default match (no Path element found).");
 				defaultPath[i] = true;
 			}
 			
@@ -121,18 +121,18 @@ namespace DotNetXri.Client.Resolve {
 				
 				if (matchSEL(mediaTypeSEL, inMediaType)) {
 					if (mediaTypeSEL.getSelect()) {
-						log.trace("SEPSelector.select SEP[" + i + "] MediaType is selected.");
+						log.Info("SEPSelector.select SEP[" + i + "] MediaType is selected.");
 						sepOut.Add(sep);
 						sepDone = true;
 						break; // next sep
 					}
 					else {
-						log.trace("SEPSelector.select SEP[" + i + "] MediaType is a positive match.");
+						log.Info("SEPSelector.select SEP[" + i + "] MediaType is a positive match.");
 						positiveMediaType[i] = true;
 					}
 				}
 				else if (!noDefaultMediaType && !positiveMediaType[i] && isDefaultMatch(mediaTypeSEL)) {
-					log.trace("SEPSelector.select SEP[" + i + "] MediaType is a default match.");
+					log.Info("SEPSelector.select SEP[" + i + "] MediaType is a default match.");
 					defaultMediaType[i] = true;
 				}
 			} // end-foreach mediatype-sel
@@ -141,12 +141,12 @@ namespace DotNetXri.Client.Resolve {
 				continue;
 			
 			if (!presentMediaType[i] && !noDefaultMediaType) {
-				log.trace("SEPSelector.select SEP[" + i + "] MediaType is a default match (no MediaType element found).");
+				log.Info("SEPSelector.select SEP[" + i + "] MediaType is a default match (no MediaType element found).");
 				defaultMediaType[i] = true;
 			}
 
 			if (positiveType[i] && positivePath[i] && positiveMediaType[i]) {
-				log.trace("SEPSelector.select SEP[" + i + "] is an ALL positive match.");
+				log.Info("SEPSelector.select SEP[" + i + "] is an ALL positive match.");
 				sepOut.Add(sep);
 				// next sep
 			}
@@ -156,7 +156,7 @@ namespace DotNetXri.Client.Resolve {
 						(positiveMediaType[i] || defaultMediaType[i]))
 					)
 			{
-				log.trace("SEPSelector.select SEP[" + i + "] is a default match.");
+				log.Info("SEPSelector.select SEP[" + i + "] is a default match.");
 				defaultSepOut.set(i, sep); // instead of using add(), override the null at this index pos
 			}
 		} // end-foreach sep
@@ -181,7 +181,7 @@ namespace DotNetXri.Client.Resolve {
 			/// add the seps with default match and has 2 positive matches
 			for (int i = 0; i < n; i++) {
 				if (numMatches[i] >= 2) {
-					log.trace("SEPSelector.select Phase 2 - SEP[" + i + "] is selected for having 2 positive matches.");
+					log.Info("SEPSelector.select Phase 2 - SEP[" + i + "] is selected for having 2 positive matches.");
 					sepOut.Add(seps.get(i));
 				}
 			}
@@ -190,7 +190,7 @@ namespace DotNetXri.Client.Resolve {
 			if (sepOut.Count == 0) {
 				for (int i = 0; i < n; i++) {
 					if (numMatches[i] == 1) {
-						log.trace("SEPSelector.select Phase 2 - SEP[" + i + "] is selected for having 1 positive match.");
+						log.Info("SEPSelector.select Phase 2 - SEP[" + i + "] is selected for having 1 positive match.");
 						sepOut.Add(seps.get(i));
 					}
 				}
@@ -201,7 +201,7 @@ namespace DotNetXri.Client.Resolve {
 				for (int i = 0; i < n; i++) {
 					object sep = defaultSepOut.get(i);
 					if (sep != null) {
-						log.trace("SEPSelector.select Phase 2 - SEP[" + i + "] is selected for being a default match.");
+						log.Info("SEPSelector.select Phase 2 - SEP[" + i + "] is selected for being a default match.");
 						sepOut.Add(sep);
 					}
 				}
@@ -213,15 +213,15 @@ namespace DotNetXri.Client.Resolve {
 
 
 		public static bool isDefaultMatch(SEPElement sel) {
-			String m = sel.getMatch();
+			string m = sel.getMatch();
 			return (m != null && m.equals(SEPElement.MATCH_ATTR_DEFAULT));
 		}
 
 
 		/* This method is used to match the element of the service */
-		private static bool matchSEL(SEPElement element, String inValue) {
-			String matchAttr = element.getMatch();
-			String selVal = element.getValue();
+		private static bool matchSEL(SEPElement element, string inValue) {
+			string matchAttr = element.getMatch();
+			string selVal = element.getValue();
 
 			if (matchAttr != null) {
 				if (matchAttr.equals(SEPElement.MATCH_ATTR_ANY))
@@ -262,17 +262,17 @@ namespace DotNetXri.Client.Resolve {
 
 
 
-		public static bool matchType(String selType, String inType) {
+		public static bool matchType(string selType, string inType) {
 			return inType.equals(selType);
 		}
 
-		public static bool matchPath(String selPath, String inPath) {
+		public static bool matchPath(string selPath, string inPath) {
 			// XXX use Unicode caseless matching
 			if (inPath.equalsIgnoreCase(selPath))
 				return true;
 
-			log.trace("xrdPath = '" + selPath + "'");
-			log.trace("inputPath = '" + inPath + "'");
+			log.Info("xrdPath = '" + selPath + "'");
+			log.Info("inputPath = '" + inPath + "'");
 
 			if (selPath.length() > 0 && selPath.charAt(0) != '/')
 				selPath = '/' + selPath; // prepend leading slash
@@ -288,7 +288,7 @@ namespace DotNetXri.Client.Resolve {
 		}
 
 
-		public static bool matchMediaType(String selMediaType, String inMediaType) {
+		public static bool matchMediaType(string selMediaType, string inMediaType) {
 			MimeType candidateMimeType = MimeType.parse(inMediaType);
 			MimeType critMimeType = MimeType.parse(selMediaType);
 			return critMimeType.equals(candidateMimeType);
@@ -299,9 +299,9 @@ namespace DotNetXri.Client.Resolve {
 
 
 		private ArrayList seps = null;
-		private String matchTypeValue = null;
-		private String matchMediaTypeValue = null;
-		private String matchPathValue = null;
+		private string matchTypeValue = null;
+		private string matchMediaTypeValue = null;
+		private string matchPathValue = null;
 		private bool matchedNonDefaultType = false;
 		private bool matchedNonDefaultMediaType = false;
 		private bool matchedNonDefaultPath = false;
@@ -324,7 +324,7 @@ namespace DotNetXri.Client.Resolve {
 			seps = null;
 		}
 
-		public ArrayList getSelectedSEPs(String type, String mediaType, String path) {
+		public ArrayList getSelectedSEPs(string type, string mediaType, string path) {
 			this.matchTypeValue = type;
 			this.matchMediaTypeValue = mediaType;
 			this.matchPathValue = path;
@@ -359,7 +359,7 @@ namespace DotNetXri.Client.Resolve {
 					List types = service.getTypes();
 					List mtypes = service.getMediaTypes();
 					List paths = service.getPaths();
-					Vector elements = new Vector();
+					ArrayList elements = new ArrayList();
 
 					/* rule 1 is applied after 2, 3, 4 for processing optimization 
 					 * if SEP element is omited consider <element match="default" /> 
@@ -417,7 +417,7 @@ namespace DotNetXri.Client.Resolve {
 						}
 					}
 
-					Vector output = new Vector();
+					ArrayList output = new ArrayList();
 					/* Rule 4 use table 20 (XRI specs march 2006 wd10 ) to match rules */
 					for (int j = 0; j < types.size(); j++) {
 						SEPElement element = (SEPElement)types.get(j);
@@ -432,7 +432,7 @@ namespace DotNetXri.Client.Resolve {
 					types = output;
 					service.setTypes(types);
 
-					output = new Vector();
+					output = new ArrayList();
 					for (int j = 0; j < mtypes.size(); j++) {
 						SEPElement element = (SEPElement)mtypes.get(j);
 						if (element.getMatch().equals(SEPElement.MATCH_ATTR_DEFAULT)) {
@@ -445,7 +445,7 @@ namespace DotNetXri.Client.Resolve {
 					mtypes = output;
 					service.setMediaTypes(mtypes);
 
-					output = new Vector();
+					output = new ArrayList();
 					for (int j = 0; j < paths.size(); j++) {
 						SEPElement element = (SEPElement)paths.get(j);
 						if (element.getMatch().equals(SEPElement.MATCH_ATTR_DEFAULT)) {
@@ -478,32 +478,32 @@ namespace DotNetXri.Client.Resolve {
 				// earlier we found a non-default match for Type element,
 				// remove all the match="default" elements
 				if (matchedNonDefaultType) {
-					Vector newTypes = new Vector();
+					ArrayList newTypes = new ArrayList();
 					for (int j = 0; j < sep.getTypes().size(); j++) {
 						SEPElement element = (SEPElement)sep.getTypes().get(j);
 						if (!element.getMatch().equals(SEPElement.MATCH_ATTR_DEFAULT)) {
 							newTypes.Add(element);
-						} else log.trace("removeMatchDefaults - removing Type[" + j + "] from Service[" + i + "]");
+						} else log.Info("removeMatchDefaults - removing Type[" + j + "] from Service[" + i + "]");
 					}
 					sep.setTypes(newTypes);
 				}
 				if (matchedNonDefaultPath) {
-					Vector newPaths = new Vector();
+					ArrayList newPaths = new ArrayList();
 					for (int j = 0; j < sep.getPaths().size(); j++) {
 						SEPElement element = (SEPElement)sep.getPaths().get(j);
 						if (!element.getMatch().equals(SEPElement.MATCH_ATTR_DEFAULT)) {
 							newPaths.Add(element);
-						} else log.trace("removeMatchDefaults - removing Path[" + j + "] from Service[" + i + "]");
+						} else log.Info("removeMatchDefaults - removing Path[" + j + "] from Service[" + i + "]");
 					}
 					sep.setPaths(newPaths);
 				}
 				if (matchedNonDefaultMediaType) {
-					Vector newMediaTypes = new Vector();
+					ArrayList newMediaTypes = new ArrayList();
 					for (int j = 0; j < sep.getMediaTypes().size(); j++) {
 						SEPElement element = (SEPElement)sep.getMediaTypes().get(j);
 						if (!element.getMatch().equals(SEPElement.MATCH_ATTR_DEFAULT)) {
 							newMediaTypes.Add(element);
-						} else log.trace("removeMatchDefaults - removing MediaType[" + j + "] from Service[" + i + "]");
+						} else log.Info("removeMatchDefaults - removing MediaType[" + j + "] from Service[" + i + "]");
 					}
 					sep.setMediaTypes(newMediaTypes);
 				}
@@ -535,7 +535,7 @@ namespace DotNetXri.Client.Resolve {
 		 * as per the matching rules applied before applying select criteria
 		 */
 		private bool canBeSelected(Service service) {
-			Vector elements = new Vector();
+			ArrayList elements = new ArrayList();
 
 			elements.addAll(service.getTypes());
 			elements.addAll(service.getMediaTypes());
@@ -582,10 +582,10 @@ namespace DotNetXri.Client.Resolve {
 
 		/* This method is used to match the element of the service */
 		private bool match(SEPElement element) {
-			String elementMatch = element.getMatch();
-			String elementValue = element.getValue();
+			string elementMatch = element.getMatch();
+			string elementValue = element.getValue();
 
-			String matchElementValue = null;
+			string matchElementValue = null;
 
 			if (element is SEPType) {
 				matchElementValue = this.matchTypeValue;
@@ -643,15 +643,15 @@ namespace DotNetXri.Client.Resolve {
 		}
 
 		public bool matchContent(SEPPath path) {
-			String xrdPath = trimPath(path.getValue());
-			String inputPath = trimPath(this.matchPathValue);
+			string xrdPath = trimPath(path.getValue());
+			string inputPath = trimPath(this.matchPathValue);
 
 			// try verbatim match (caseless)
 			if (inputPath.equalsIgnoreCase(xrdPath))
 				return true;
 
-			log.trace("xrdPath = '" + xrdPath + "'");
-			log.trace("inputPath = '" + inputPath + "'");
+			log.Info("xrdPath = '" + xrdPath + "'");
+			log.Info("inputPath = '" + inputPath + "'");
 
 			XRIAbsolutePath xrdAbsPath = new XRIAbsolutePath("/" + xrdPath);
 			XRIAbsolutePath inputAbsPath = new XRIAbsolutePath("/" + inputPath);
@@ -672,7 +672,7 @@ namespace DotNetXri.Client.Resolve {
 		 * @param path
 		 * @return
 		 */
-		private String trimPath(String path) {
+		private string trimPath(string path) {
 			StringBuilder sb = new StringBuilder(path.trim());
 
 			while (sb.length() > 0) {
@@ -682,7 +682,7 @@ namespace DotNetXri.Client.Resolve {
 				else
 					break;
 			}
-			return sb.toString();
+			return sb.ToString();
 		}
 	}
 }

@@ -20,8 +20,8 @@ using java.util.Date;
 
 using org.openxri.util.DOMUtils;
 using org.openxri.xml.Tags;
-using org.w3c.dom.Document;
-using org.w3c.dom.Element;
+using org.w3c.dom.XmlDocument;
+using org.w3c.dom.XmlElement;
 
 
 /*
@@ -57,7 +57,7 @@ public class Conditions
     *  This method populates the obj from DOM.  It does not keep a
     * copy of the DOM around.  Whitespace information is lost in this process.
     */
-    public Conditions(Element oElem)
+    public Conditions(XmlElement oElem)
     {
         fromDOM(oElem);
 
@@ -65,16 +65,16 @@ public class Conditions
 
     /*
     ****************************************************************************
-    * toString()
+    * ToString()
     ****************************************************************************
     */ /**
     * Returns formatted obj.  Do not use if signature needs to be preserved.
     */
-    public String toString()
+    public override string ToString()
     {
         return dump("");
 
-    } // toString()
+    } // ToString()
 
     /*
     ****************************************************************************
@@ -84,7 +84,7 @@ public class Conditions
     * Returns obj as a formatted XML string.
     * @param sTab - The characters to prepend before each new line
     */
-    public String dump(String sTab)
+    public string dump(string sTab)
     {
         return "";
 
@@ -114,14 +114,14 @@ public class Conditions
     *  This method populates the obj from DOM.  It does not keep a
     * copy of the DOM around.  Whitespace information is lost in this process.
     */
-    public void fromDOM(Element oElem)
+    public void fromDOM(XmlElement oElem)
     {
         reset();
 
         // get the notbefore attribute
         if (oElem.hasAttributeNS(null, Tags.ATTR_NOTBEFORE))
         {
-            String sVal = oElem.getAttributeNS(null, Tags.ATTR_NOTBEFORE);
+            string sVal = oElem.getAttributeNS(null, Tags.ATTR_NOTBEFORE);
             try
             {
                 moNotBefore = DOMUtils.fromXMLDateTime(sVal);
@@ -135,7 +135,7 @@ public class Conditions
         // get the notAfter attribute
         if (oElem.hasAttributeNS(null, Tags.ATTR_NOTONORAFTER))
         {
-            String sVal = oElem.getAttributeNS(null, Tags.ATTR_NOTONORAFTER);
+            string sVal = oElem.getAttributeNS(null, Tags.ATTR_NOTONORAFTER);
             try
             {
                 moNotAfter = DOMUtils.fromXMLDateTime(sVal);
@@ -183,7 +183,7 @@ public class Conditions
     * This method generates a reference-free copy of new DOM.
     * @param oDoc - The document to use for generating DOM
     */
-    public Element toDOM(Document oDoc)
+    public XmlElement toDOM(XmlDocument oDoc)
     {
         // for this particular toDOM implementation, oDoc must not be null
         if (oDoc == null)
@@ -191,7 +191,7 @@ public class Conditions
             return null;
         }
 
-        Element oElem = oDoc.createElementNS(Tags.NS_SAML, Tags.TAG_CONDITIONS);
+        XmlElement oElem = oDoc.createElementNS(Tags.NS_SAML, Tags.TAG_CONDITIONS);
 
         return oElem;
 

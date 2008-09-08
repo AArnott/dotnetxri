@@ -36,8 +36,8 @@ namespace DotNetXri.Client.Util {
 		/**
 	 * Generates a new Time-based UUID that can be used in an XML id attribute.
 	 */
-		public static String genXmlID() {
-			return soGenerator.generateTimeBasedUUID().toString();
+		public static string genXmlID() {
+			return soGenerator.generateTimeBasedUUID().ToString();
 
 		} // genXmlID()
 

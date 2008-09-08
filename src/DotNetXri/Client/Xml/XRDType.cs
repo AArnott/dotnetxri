@@ -31,16 +31,16 @@ public class XRDType : SimpleXMLElement {
 		: base(Tags.TAG_TYPE) {
 	}
 
-	public XRDType(String type)
+	public XRDType(string type)
 		: base(Tags.TAG_TYPE) {
 		setType(type);
 	}
 
-	public String getType() {
+	public string getType() {
 		return getValue();
 	}
 
-	public void setType(String type) {
+	public void setType(string type) {
 		setValue(type);
 	}
 }

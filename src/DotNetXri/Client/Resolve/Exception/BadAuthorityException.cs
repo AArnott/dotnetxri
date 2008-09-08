@@ -15,24 +15,19 @@
  * limitations under the License.
  */
 
-namespace DotNetXri.Client.Resolve.Exception
-{
+namespace DotNetXri.Client.Resolve.Exception {
 	/// <summary>
 	/// Exception thrown when a XRI being resolved does not have an authority path
 	/// or has an unsupported authority path type
 	/// </summary>
-	public class BadAuthorityException : XRIResolutionException
-	{
-		public string XRI
-		{
+	public class BadAuthorityException : XRIResolutionException {
+		public string XRI {
 			get;
 			private set;
 		}
 
 		public BadAuthorityException(string xri)
-			: base("Missing global authority symbol in XRI " + xri)
-		{
-
+			: base("Missing global authority symbol in XRI " + xri) {
 			XRI = xri;
 		}
 	}

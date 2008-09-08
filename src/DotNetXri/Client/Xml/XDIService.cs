@@ -1,6 +1,6 @@
 namespace DotNetXri.Client.Xml {
 
-using java.net.URI;
+using java.net.Uri;
 using java.net.URISyntaxException;
 using java.util.List;
 
@@ -10,14 +10,14 @@ using java.util.List;
 	*/
 public class XDIService : Service {
 
-	public const String SERVICE_TYPE = "xri://$xdi!($v!1)";
-	public const String SERVICE_PATH = "($context)!($xdi)!($card)!($v!1) ";
+	public const string SERVICE_TYPE = "xri://$xdi!($v!1)";
+	public const string SERVICE_PATH = "($context)!($xdi)!($card)!($v!1) ";
 
 	/**
 		* Constructs a new XDI Service endpoint for use in an authority.
 		* @param providerID - The global i-number of the provider of this service.
 		*/
-	public XDIService(URI[] uris, String providerID) {
+	public XDIService(Uri[] uris, string providerID) {
 
 
 
@@ -49,11 +49,11 @@ public class XDIService : Service {
 			*/
 		for (int i = 0; i < uris.length; i++) {
 
-			URI uri = uris[i];
+			Uri uri = uris[i];
 
 			try {
 
-				this.addURI(new SEPUri(uri.toString(), null, SEPUri.APPEND_NONE));
+				this.addURI(new SEPUri(uri.ToString(), null, SEPUri.APPEND_NONE));
 			} catch (URISyntaxException ex) {
 
 				continue;
@@ -61,26 +61,26 @@ public class XDIService : Service {
 		}
 	}
 
-	public XDIService(URI uri, String providerID) {
+	public XDIService(Uri uri, string providerID) {
 
-		this(new URI[] { uri }, providerID);
+		this(new Uri[] { uri }, providerID);
 	}
 
-	public XDIService(URI[] uris) {
+	public XDIService(Uri[] uris) {
 
 		this(uris, null);
 	}
 
-	public XDIService(URI uri) {
+	public XDIService(Uri uri) {
 
-		this(new URI[] { uri }, null);
+		this(new Uri[] { uri }, null);
 	}
 
 	/**
 		* Constructs a new XDI Service endpoint for use in an authority.
 		* @param providerID - The global i-number of the provider of this service.
 		*/
-	public XDIService(Ref[] xdiRefs, String providerID) {
+	public XDIService(Ref[] xdiRefs, string providerID) {
 
 
 
@@ -118,7 +118,7 @@ public class XDIService : Service {
 		}
 	}
 
-	public XDIService(Ref xdiRef, String providerID) {
+	public XDIService(Ref xdiRef, string providerID) {
 
 		this(new Ref[] { xdiRef }, providerID);
 	}
@@ -143,7 +143,7 @@ public class XDIService : Service {
 
 			SEPType serviceType = (SEPType)serviceTypes.get(i);
 
-			if (SERVICE_TYPE.equals(serviceType.getValue())) return (true);
+			if (SERVICE_TYPE.Equals(serviceType.getValue())) return (true);
 		}
 
 		return (false);

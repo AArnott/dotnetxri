@@ -19,20 +19,23 @@ using System.Text;
 
 namespace DotNetXri.Client.Tools {
 
-using java.net.URL;
-using java.net.URLConnection;
-using java.io.FileReader;
-using java.io.BufferedReader;
-using java.io.FileNotFoundException;
-using java.io.IOException;
-using org.openxri.resolve.MimeType;
-using org.openxri.resolve.Resolver;
-using org.openxri.resolve.ResolverState;
-using org.openxri.resolve.TrustType;
-using org.openxri.resolve.exception.IllegalTrustTypeException;
-using org.openxri.resolve.exception.PartialResolutionException;
-using org.openxri.resolve.exception.XRIResolutionException;
-using org.openxri.xml.*;
+//using java.net.URL;
+//using java.net.URLConnection;
+//using java.io.FileReader;
+//using java.io.BufferedReader;
+//using java.io.FileNotFoundException;
+//using java.io.IOException;
+//using org.openxri.resolve.MimeType;
+//using org.openxri.resolve.Resolver;
+//using org.openxri.resolve.ResolverState;
+//using org.openxri.resolve.TrustType;
+//using org.openxri.resolve.exception.IllegalTrustTypeException;
+//using org.openxri.resolve.exception.PartialResolutionException;
+//using org.openxri.resolve.exception.XRIResolutionException;
+//using org.openxri.xml.*;
+using DotNetXri.Client.Resolve;
+using System;
+using DotNetXri.Client.Xml;
 
 /*
 ********************************************************************************
@@ -134,7 +137,7 @@ public class XRILookup {
         try 
         {
             // re-initialize variables so this may be called more than once
-            sOutput.setLength(0);
+            sOutput.Length = 0;
             msTargetXRI = null;
             mbIsVerbose = false;
             msRootEqualsURI = ROOT_DEF_EQ_URI;
@@ -148,19 +151,19 @@ public class XRILookup {
             	setTrustType(TRUST_TYPE);
             }
             catch (Exception e) {
-            	e.printStackTrace();
+				Logger.Error("setTrustType failed", e);
             }
             
 
             // exit with message if no arguments passed on the command line
-            if (sArgs.length == 0) 
+            if (sArgs.Length == 0) 
             {
                 outputPleaseTypeHelp(sOutput); 
                 return FAILURE;
             }
             
             // this is the "help" form of invocation (usage 2)
-            if (sArgs[0].equalsIgnoreCase(CMD_HELP))
+            if (sArgs[0].Equals(CMD_HELP, StringComparison.OrdinalIgnoreCase))
             {
                 outputUsage(sOutput);
                 return SUCCESS;
@@ -267,7 +270,7 @@ public class XRILookup {
     		if (doSEP) {
     			if (resMediaType.isType(MimeType.URI_LIST)) {
     				String  text = resolver.resolveSEPToTextURIList(msTargetXRI.toString(), trustType, xrdT, xrdM, followRefs, state);
-    				if (text.length() <= 0)
+    				if (text.Length() <= 0)
     					sOutput.append("ERROR: SEP_NOT_FOUND(code=241): no url found\n");
     				else
     					sOutput.append(text);
@@ -337,7 +340,7 @@ public class XRILookup {
     */
     private int scanArgs(StringBuilder sOutput, String[] sArgs)
     {        
-        for (int i = 0; i < sArgs.length; i++)
+        for (int i = 0; i < sArgs.Length; i++)
         {
             String sArg = sArgs[i];
             if (!isOption(sArg)) 
@@ -353,76 +356,76 @@ public class XRILookup {
                     return FAILURE;
                 }
             }
-            else if (sArg.equalsIgnoreCase(OPT_VERBOSE)) 
+            else if (sArg.Equals(OPT_VERBOSE, StringComparison.OrdinalIgnoreCase)) 
             {
                 mbIsVerbose = true;
             }           
-            else if (sArg.equalsIgnoreCase(OPT_ROOT_AT_URI)) 
+            else if (sArg.Equals(OPT_ROOT_AT_URI, StringComparison.OrdinalIgnoreCase)) 
             {
-                if (i == sArgs.length || isOption(sArgs[++i]))
+                if (i == sArgs.Length || isOption(sArgs[++i]))
                 {
                     outputOptionRequiresArgument(sOutput, OPT_ROOT_AT_URI);
                     return FAILURE;
                 }
                 msRootAtURI = sArgs[i];
             }
-            else if (sArg.equalsIgnoreCase(OPT_ROOT_EQUALS_URI)) 
+            else if (sArg.Equals(OPT_ROOT_EQUALS_URI, StringComparison.OrdinalIgnoreCase)) 
             {
-                if (i == sArgs.length || isOption(sArgs[++i]))
+                if (i == sArgs.Length || isOption(sArgs[++i]))
                 {
                     outputOptionRequiresArgument(sOutput, OPT_ROOT_EQUALS_URI);
                     return FAILURE;
                 }
                 msRootEqualsURI = sArgs[i];
             }
-            else if (sArg.equalsIgnoreCase(OPT_ROOT_BANG_URI)) 
+            else if (sArg.Equals(OPT_ROOT_BANG_URI, StringComparison.OrdinalIgnoreCase)) 
             {
-                if (i == sArgs.length || isOption(sArgs[++i]))
+                if (i == sArgs.Length || isOption(sArgs[++i]))
                 {
                     outputOptionRequiresArgument(sOutput, OPT_ROOT_BANG_URI);
                     return FAILURE;
                 }
                 msRootBangURI = sArgs[i];
             }
-            else if (sArg.equalsIgnoreCase(OPT_PROXY_URI)) 
+            else if (sArg.Equals(OPT_PROXY_URI, StringComparison.OrdinalIgnoreCase)) 
             {
-                if (i == sArgs.length || isOption(sArgs[++i]))
+                if (i == sArgs.Length || isOption(sArgs[++i]))
                 {
                     outputOptionRequiresArgument(sOutput, OPT_PROXY_URI);
                     return FAILURE;
                 }
                 msProxyURI = sArgs[i];
             }
-            else if (sArg.equalsIgnoreCase(OPT_RES_MEDIA)) 
+            else if (sArg.Equals(OPT_RES_MEDIA, StringComparison.OrdinalIgnoreCase)) 
             {
-                if (i == sArgs.length || isOption(sArgs[++i]))
+                if (i == sArgs.Length || isOption(sArgs[++i]))
                 {
                     outputOptionRequiresArgument(sOutput, OPT_RES_MEDIA);
                     return FAILURE;
                 }
                 xrdR = sArgs[i];
             }
-            else if (sArg.equalsIgnoreCase(OPT_RES_TYPE)) 
+            else if (sArg.Equals(OPT_RES_TYPE, StringComparison.OrdinalIgnoreCase)) 
             {
-                if (i == sArgs.length || isOption(sArgs[++i]))
+                if (i == sArgs.Length || isOption(sArgs[++i]))
                 {
                     outputOptionRequiresArgument(sOutput, OPT_RES_TYPE);
                     return FAILURE;
                 }
                 xrdT = sArgs[i];
             }
-            else if (sArg.equalsIgnoreCase(OPT_MEDIA_TYPE)) 
+            else if (sArg.Equals(OPT_MEDIA_TYPE, StringComparison.OrdinalIgnoreCase)) 
             {
-                if (i == sArgs.length || isOption(sArgs[++i]))
+                if (i == sArgs.Length || isOption(sArgs[++i]))
                 {
                     outputOptionRequiresArgument(sOutput, OPT_MEDIA_TYPE);
                     return FAILURE;
                 }
                 xrdM = sArgs[i];
             }
-            else if (sArg.equalsIgnoreCase(OPT_TRUST_TYPE)) 
+            else if (sArg.Equals(OPT_TRUST_TYPE, StringComparison.OrdinalIgnoreCase)) 
             {
-                if (i == sArgs.length || isOption(sArgs[++i]))
+                if (i == sArgs.Length || isOption(sArgs[++i]))
                 {
                     outputOptionRequiresArgument(sOutput, OPT_TRUST_TYPE);
                     return FAILURE;
@@ -435,36 +438,36 @@ public class XRILookup {
                 	return FAILURE;
                 }
             }
-            else if (sArg.equalsIgnoreCase(OPT_FOLLOW_REFS)) 
+            else if (sArg.Equals(OPT_FOLLOW_REFS, StringComparison.OrdinalIgnoreCase)) 
             {
-                if (i == sArgs.length || isOption(sArgs[++i]))
+                if (i == sArgs.Length || isOption(sArgs[++i]))
                 {
                     outputOptionRequiresArgument(sOutput, OPT_FOLLOW_REFS);
                     return FAILURE;
                 }
                 followRefs = sArgs[i].toLowerCase().equals("true");
             }
-            else if (sArg.equalsIgnoreCase(OPT_SEP)) 
+            else if (sArg.Equals(OPT_SEP, StringComparison.OrdinalIgnoreCase)) 
             {
-                if (i == sArgs.length || isOption(sArgs[++i]))
+                if (i == sArgs.Length || isOption(sArgs[++i]))
                 {
                     outputOptionRequiresArgument(sOutput, OPT_SEP);
                     return FAILURE;
                 }
                 doSEP = sArgs[i].toLowerCase().equals("true");
             }
-            else if (sArg.equalsIgnoreCase(OPT_CHECK_ROOTS)) 
+            else if (sArg.Equals(OPT_CHECK_ROOTS, StringComparison.OrdinalIgnoreCase)) 
             {
-                if (i == sArgs.length || isOption(sArgs[++i]))
+                if (i == sArgs.Length || isOption(sArgs[++i]))
                 {
                     outputOptionRequiresArgument(sOutput, OPT_CHECK_ROOTS);
                     return FAILURE;
                 }
                 mbCheckRoots = sArgs[i].toLowerCase().equals("true");
             }   
-            else if (sArg.equalsIgnoreCase(OPT_ROOT_FILE))
+            else if (sArg.Equals(OPT_ROOT_FILE, StringComparison.OrdinalIgnoreCase))
             {
-                if (i == sArgs.length || isOption(sArgs[++i]))
+                if (i == sArgs.Length || isOption(sArgs[++i]))
                 {
                     outputOptionRequiresArgument(sOutput, OPT_ROOT_FILE);
                     return FAILURE;
@@ -718,7 +721,7 @@ public class XRILookup {
     * @param oResolver- resolver obj into which roots are set
     * @param sFilename- filename containing lines of <root auth><whitespace><auth service url> 
     */
-    protected void setRootsFromFile(Resolver resolver, String filename) throws FileNotFoundException, IOException
+    protected void setRootsFromFile(Resolver resolver, String filename)// throws FileNotFoundException, IOException
     {
         BufferedReader bf=new BufferedReader(new FileReader(filename));
         String line;
