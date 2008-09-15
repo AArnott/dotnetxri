@@ -156,7 +156,7 @@ public class ProxyTest
         try
         {
             XRD oDesc = oResolver.resolveAuthToXRD("xri://@!foo!bar!baz", new TrustType(), true);
-            assertFalse("Should get a PartialResolutionException", oDesc.getStatusCode().equals(Status.SUCCESS));
+            assertFalse("Should get a PartialResolutionException", oDesc.getStatusCode().Equals(Status.SUCCESS));
         }
         catch (Exception e)
         {
@@ -177,9 +177,9 @@ public class ProxyTest
         			assertTrue("Got exception: " + e1.getMessage(), false);
         		}
         		
-            	assertTrue("First XRD should be successful", stat1.equals(Status.SUCCESS));
-            	assertTrue("Second XRD should be successful", stat2.equals(Status.SUCCESS));
-            	assertTrue("Third XRD should be a failure", stat3.equals(Status.AUTH_RES_NOT_FOUND));
+            	assertTrue("First XRD should be successful", stat1.Equals(Status.SUCCESS));
+            	assertTrue("Second XRD should be successful", stat2.Equals(Status.SUCCESS));
+            	assertTrue("Third XRD should be a failure", stat3.Equals(Status.AUTH_RES_NOT_FOUND));
         	}
         	else {
         		fail("Got exception while trying to resolve via proxy " + e);
@@ -192,7 +192,7 @@ public class ProxyTest
         try
         {
             XRD oDesc = oResolver.resolveAuthToXRD("xri://@!foo", new TrustType(), true);
-            assertFalse("Should get a failure code for too many XRDs", oDesc.getStatusCode().equals(Status.SUCCESS));
+            assertFalse("Should get a failure code for too many XRDs", oDesc.getStatusCode().Equals(Status.SUCCESS));
         }
         catch (Exception oEx)
         {
@@ -218,7 +218,7 @@ public class ProxyTest
         		}
         		catch (Exception e1) { assertTrue("got exception: " + e1.getMessage(), false); }
         		
-        		assertTrue("First XRD should fail", stat.equals(Status.AUTH_RES_NOT_FOUND));
+        		assertTrue("First XRD should fail", stat.Equals(Status.AUTH_RES_NOT_FOUND));
         	}
         	else {
         		fail("Got exception while trying to resolve via proxy " + e);

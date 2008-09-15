@@ -151,7 +151,7 @@ public class DOM3Utils
             // oElem.setIdAttributeNode(oAttr, true);
         	try {
         		oElem.getClass().getMethod("setIdAttributeNode", new Class[] { oAttr.getClass(), Boolean.TYPE })
-					.invoke(oElem, new Object[] { oAttr, Boolean.TRUE });
+					.invoke(oElem, new Object[] { oAttr, true });
 			}
         	/*
 			catch (IllegalArgumentException e) { }

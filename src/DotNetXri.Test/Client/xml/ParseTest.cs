@@ -123,7 +123,7 @@ public class ParseTest
             // Resolved
             assertTrue(
                 "Resolved component failed.  Expected .foo, got " +
-                oDesc.getQuery(), oDesc.getQuery().equals(".foo"));
+                oDesc.getQuery(), oDesc.getQuery().Equals(".foo"));
 
             // AuthorityID
             assertEquals(
@@ -161,11 +161,11 @@ public class ParseTest
 
             // Services
             Service oLA = oDesc.getServiceAt(1);
-            assertTrue("Incorrect type", oLA.getTypeAt(0).getType().equals("xri:@epok/foo"));
+            assertTrue("Incorrect type", oLA.getTypeAt(0).getType().Equals("xri:@epok/foo"));
             assertTrue("Incorrect URI for Local Access", oLA.getNumURIs() == 0);
 
             oLA = oDesc.getServiceAt(2);
-            assertTrue("Incorrect type", oLA.getTypeAt(0).getType().equals("xri:@epok/foo2"));
+            assertTrue("Incorrect type", oLA.getTypeAt(0).getType().Equals("xri:@epok/foo2"));
             assertTrue(
                 "Incorrect URI for Local Access2", oLA.getNumURIs() == 1);
             assertTrue(

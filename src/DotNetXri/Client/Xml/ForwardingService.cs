@@ -1,8 +1,9 @@
 namespace DotNetXri.Client.Xml {
 
-	using java.net.Uri;
-	using java.net.URISyntaxException;
-	using java.util.List;
+	//using java.net.Uri;
+	//using java.net.UriFormatException;
+	//using java.util.List;
+	using System;
 
 	/**
 	* This is a Forwarding Service as described by "Forwarding Service v1.0 Working Draft 03, 7 September 2006
@@ -41,14 +42,14 @@ namespace DotNetXri.Client.Xml {
 			/*
 			* Set paths.
 			*/
-			if (useIndexPath) this.addPath(new SEPPath(INDEX_PATH, null, Boolean.TRUE));
+			if (useIndexPath) this.addPath(new SEPPath(INDEX_PATH, null, true));
 			this.addPath(new SEPPath(null, SEPElement.MATCH_ATTR_NON_NULL, null));
 			if (makeDefault) this.addPath(new SEPPath(null, SEPElement.MATCH_ATTR_NULL, null));
 
 			/*
 			* Set service types.
 			*/
-			this.addType(new SEPType(SERVICE_TYPE, null, Boolean.TRUE));
+			this.addType(new SEPType(SERVICE_TYPE, null, true));
 			this.addType(new SEPType(null, SEPElement.MATCH_ATTR_NULL, null));
 
 			/*
@@ -60,14 +61,14 @@ namespace DotNetXri.Client.Xml {
 			* These are the URIs where the Forwarding Service is implemented. The QXRI will be appended.
 			* It is currently not in the scope of OpenXRI to implement the actual forwarding (HTTP redirects).
 			*/
-			for (int i = 0; i < forwardingPages.length; i++) {
+			for (int i = 0; i < forwardingPages.Length; i++) {
 
 				Uri forwardingPage = forwardingPages[i];
 
 				try {
 
 					this.addURI(new SEPUri(forwardingPage.ToString(), null, SEPUri.APPEND_QXRI));
-				} catch (URISyntaxException ex) {
+				} catch (UriFormatException ex) {
 
 					continue;
 				}
@@ -113,11 +114,11 @@ namespace DotNetXri.Client.Xml {
 
 			if (service is ForwardingService) return (true);
 
-			List serviceTypes = service.getTypes();
+			ArrayList serviceTypes = service.getTypes();
 
 			for (int i = 0; i < serviceTypes.size(); i++) {
 
-				SEPType serviceType = (SEPType)serviceTypes.get(i);
+				SEPType serviceType = (SEPType)serviceTypes[i];
 
 				if (SERVICE_TYPE.Equals(serviceType.getValue())) return (true);
 			}

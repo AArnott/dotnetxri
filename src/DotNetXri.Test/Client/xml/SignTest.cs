@@ -125,7 +125,7 @@ public class SignTest
             String sNewXRID = oNewXRID.serializeDOM(false, true);
             Logger.Info("NEW XRD: " + sNewXRID);
             assertTrue(
-                "Unable to reconstruct DOM correctly", sXRID.equals(sNewXRID));
+                "Unable to reconstruct DOM correctly", sXRID.Equals(sNewXRID));
             oNewXRID.verifySignature(oKP.getPublic());
         }
         catch (Exception e)

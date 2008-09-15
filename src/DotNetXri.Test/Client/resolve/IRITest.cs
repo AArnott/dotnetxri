@@ -118,7 +118,7 @@ public class IRITest
                 oDesc != null);
             assertTrue(
                 "Failed to obtain correct XRD for IRI Authority",
-                oDesc.getRefAt(0).getValue().equals(
+                oDesc.getRefAt(0).getValue().Equals(
                     "xri://@foo"));
         }
         catch (Exception oEx)

@@ -1,11 +1,14 @@
 namespace DotNetXri.Client.Xml {
 
-using java.net.Uri;
-using java.net.URISyntaxException;
-using java.util.List;
-using java.util.ArrayList;
+//using java.net.Uri;
+//using java.net.UriFormatException;
+//using java.util.List;
+//using java.util.ArrayList;
+	using System;
+	using DotNetXri.Client.Resolve;
+	using System.Collections;
 
-using org.openxri.resolve.TrustType;
+//using org.openxri.resolve.TrustType;
 
 /**
 	* This is Proxy Resolution Service.
@@ -32,7 +35,7 @@ public class ProxyResolutionService : Service {
 		* @param refs - Whether the proxy supports following references
 		* @param sep - Whether the proxy supports service endpoint selection
 		*/
-	public ProxyResolutionService(Uri[] proxies, string providerID, TrustType trustType, Boolean refs, Boolean sep) {
+	public ProxyResolutionService(Uri[] proxies, string providerID, TrustType trustType, bool? refs, bool? sep) {
 
 
 
@@ -44,13 +47,13 @@ public class ProxyResolutionService : Service {
 		/*
 			* This setting is REQUIRED. 
 			*/
-		this.addType(new SEPType(SERVICE_TYPE, null, Boolean.TRUE));
+		this.addType(new SEPType(SERVICE_TYPE, null, true));
 
 		/*
 			* This setting is REQUIRED. 
 			*/
 
-		for (int i = 0; i < SERVICE_MEDIA_TYPES.length; i++) {
+		for (int i = 0; i < SERVICE_MEDIA_TYPES.Length; i++) {
 
 			string mediaType = SERVICE_MEDIA_TYPES[i];
 
@@ -61,13 +64,13 @@ public class ProxyResolutionService : Service {
 				if (sep != null) mediaType += SEP_SEPARATOR + sep;
 			}
 
-			this.addMediaType(new SEPMediaType(mediaType, null, Boolean.FALSE));
+			this.addMediaType(new SEPMediaType(mediaType, null, false));
 		}
 
 		/*
 			* These are the URIs where the Proxy Resolution Service is implemented.
 			*/
-		for (int i = 0; i < proxies.length; i++) {
+		for (int i = 0; i < proxies.Length; i++) {
 
 			Uri resolver = proxies[i];
 
@@ -77,57 +80,50 @@ public class ProxyResolutionService : Service {
 					URI_PRIORITY_HTTPS : URI_PRIORITY_DEFAULT;
 
 				this.addURI(new SEPUri(resolver.ToString(), priority, SEPUri.APPEND_NONE));
-			} catch (URISyntaxException ex) {
+			} catch (UriFormatException ex) {
 
 				continue;
 			}
 		}
 	}
 
-	public ProxyResolutionService(Uri proxy, string providerId, TrustType trustType, Boolean refs, Boolean sep) {
-
-		this(new Uri[] { proxy }, providerId, trustType, refs, sep);
+	public ProxyResolutionService(Uri proxy, string providerId, TrustType trustType, bool? refs, bool? sep) :
+		this(new Uri[] { proxy }, providerId, trustType, refs, sep) {
 	}
 
-	public ProxyResolutionService(Uri[] proxies, string providerId, TrustType trustType) {
-
-		this(proxies, providerId, trustType, null, null);
+	public ProxyResolutionService(Uri[] proxies, string providerId, TrustType trustType) :
+		this(proxies, providerId, trustType, null, null) {
 	}
 
-	public ProxyResolutionService(Uri proxy, string providerId, TrustType trustType) {
-
-		this(new Uri[] { proxy }, providerId, trustType, null, null);
+	public ProxyResolutionService(Uri proxy, string providerId, TrustType trustType) :
+		this(new Uri[] { proxy }, providerId, trustType, null, null) {
 	}
 
-	public ProxyResolutionService(Uri[] proxies, string providerId) {
-
-		this(proxies, providerId, null, null, null);
+	public ProxyResolutionService(Uri[] proxies, string providerId) :
+		this(proxies, providerId, null, null, null) {
 	}
 
-	public ProxyResolutionService(Uri proxy, string providerId) {
-
-		this(new Uri[] { proxy }, providerId, null, null, null);
+	public ProxyResolutionService(Uri proxy, string providerId) :
+		this(new Uri[] { proxy }, providerId, null, null, null) {
 	}
 
-	public ProxyResolutionService(Uri[] proxies) {
-
-		this(proxies, null, null, null, null);
+	public ProxyResolutionService(Uri[] proxies) :
+		this(proxies, null, null, null, null) {
 	}
 
-	public ProxyResolutionService(Uri proxy) {
-
-		this(new Uri[] { proxy }, null, null, null, null);
+	public ProxyResolutionService(Uri proxy) :
+				this(new Uri[] { proxy }, null, null, null, null) {
 	}
 
 	public static bool isInstance(Service service) {
 
 		if (service is ForwardingService) return (true);
 
-		List serviceTypes = service.getTypes();
+		ArrayList serviceTypes = service.getTypes();
 
 		for (int i = 0; i < serviceTypes.size(); i++) {
 
-			SEPType serviceType = (SEPType)serviceTypes.get(i);
+			SEPType serviceType = (SEPType)serviceTypes[i];
 
 			if (SERVICE_TYPE.Equals(serviceType.getValue())) return (true);
 		}

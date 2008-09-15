@@ -1,8 +1,7 @@
 namespace DotNetXri.Client.Xml {
 
-using java.net.URISyntaxException;
-
-using org.w3c.dom.XmlElement;
+//using java.net.URISyntaxException;
+//using org.w3c.dom.XmlElement;
 
 public class CanonicalEquivID :SimpleXMLElement {
 

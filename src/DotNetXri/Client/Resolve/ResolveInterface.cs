@@ -16,114 +16,124 @@
 */
 namespace DotNetXri.Client.Resolve {
 
-using java.net.Uri;
-using javax.net.ssl.SSLSocketFactory;
-using org.openxri.XRIParseException;
-using org.openxri.resolve.exception.XRIResolutionException;
-using org.openxri.xml.XRD;
+	using DotNetXri.Client.Xml;
+	//using java.net.Uri;
+	//using javax.net.ssl.SSLSocketFactory;
+	//using org.openxri.XRIParseException;
+	//using org.openxri.resolve.exception.XRIResolutionException;
+	//using org.openxri.xml.XRD;
 
 
-/*
-********************************************************************************
-* Interface: ResolveInterface
-********************************************************************************
-*/ /**
-* This class defines the public interfaces for the Resolver class
-*
-* @author =chetan
-*/
-public interface ResolveInterface
-{
-    /*
-    ****************************************************************************
-    * resolveAuthToXRD()
-    ****************************************************************************
-    */ /**
-    * Resolve XRI.
-    * Returns null upon pure not found.
-    * Returns the final XRD if found.
-    * Throws exceptions upon errors while talking to servers.
-    */
-    public XRD resolveAuthToXRD(
-        string qxri, string trustType, bool followRefs)
-        /*throws XRIParseException, XRIResolutionException;*/
+	/*
+	********************************************************************************
+	* Interface: ResolveInterface
+	********************************************************************************
+	*/
+	/**
+ * This class defines the public interfaces for the Resolver class
+ *
+ * @author =chetan
+ */
+	public interface ResolveInterface {
+		/*
+		****************************************************************************
+		* resolveAuthToXRD()
+		****************************************************************************
+		*/
+		/**
+	 * Resolve XRI.
+	 * Returns null upon pure not found.
+	 * Returns the final XRD if found.
+	 * Throws exceptions upon errors while talking to servers.
+	 */
+		public XRD resolveAuthToXRD(
+			string qxri, string trustType, bool followRefs);
+		/*throws XRIParseException, XRIResolutionException;*/
 
 
-    /*
-    ****************************************************************************
-    * getSSLSocketFactory()
-    ****************************************************************************
-    */ /**
-    * Returns the SSL Socket Factory being used for SSL connections.
-    * Returns null if default has not been changed.
-    */
-    public SSLSocketFactory getSSLSocketFactory();
+		/*
+		****************************************************************************
+		* getSSLSocketFactory()
+		****************************************************************************
+		*/
+		/**
+	 * Returns the SSL Socket Factory being used for SSL connections.
+	 * Returns null if default has not been changed.
+	 */
+		public SSLSocketFactory getSSLSocketFactory();
 
-    /*
-    ****************************************************************************
-    * setSSLSocketFactory()
-    ****************************************************************************
-    */ /**
-    * Sets the Socket Factory to use for SSL connections
-    */
-    public void setSSLSocketFactory(SSLSocketFactory oSocketFactory);
+		/*
+		****************************************************************************
+		* setSSLSocketFactory()
+		****************************************************************************
+		*/
+		/**
+	 * Sets the Socket Factory to use for SSL connections
+	 */
+		public void setSSLSocketFactory(SSLSocketFactory oSocketFactory);
 
-    /*
-    ****************************************************************************
-    * getFollowRedirects()
-    ****************************************************************************
-    */ /**
-    * Gets maximum number of redirects to follow for a single resolution
-    */
-    public int getFollowRedirects();
+		/*
+		****************************************************************************
+		* getFollowRedirects()
+		****************************************************************************
+		*/
+		/**
+	 * Gets maximum number of redirects to follow for a single resolution
+	 */
+		public int getFollowRedirects();
 
-    /*
-    ****************************************************************************
-    * setFollowRedirects()
-    ****************************************************************************
-    */ /**
-    * Sets how many redirects to follow in a single resolution
-    */
-    public void setFollowRedirects(int nFollowRedirects);
+		/*
+		****************************************************************************
+		* setFollowRedirects()
+		****************************************************************************
+		*/
+		/**
+	 * Sets how many redirects to follow in a single resolution
+	 */
+		public void setFollowRedirects(int nFollowRedirects);
 
-    /*
-    ****************************************************************************
-    * setProxyResolver()
-    ****************************************************************************
-    */ /**
-    * Sets the proxy resolver to use for XRI resolution
-    * @param oProxyURI - The Uri of the proxy resolver to use for resolution.
-    * Set to null to disable Proxy resolution
-    */
-    public void setProxyResolver(Uri oProxyURI);
+		/*
+		****************************************************************************
+		* setProxyResolver()
+		****************************************************************************
+		*/
+		/**
+	 * Sets the proxy resolver to use for XRI resolution
+	 * @param oProxyURI - The Uri of the proxy resolver to use for resolution.
+	 * Set to null to disable Proxy resolution
+	 */
+		public void setProxyResolver(Uri oProxyURI);
 
-    /*
-    ****************************************************************************
-    * getProxyResolver()
-    ****************************************************************************
-    */ /**
-    * Returns the Uri of the proxy resolver being used.  If null, root resolvers
-    * may be contacted directly.
-    */
-    public Uri getProxyResolver();
+		/*
+		****************************************************************************
+		* getProxyResolver()
+		****************************************************************************
+		*/
+		/**
+	 * Returns the Uri of the proxy resolver being used.  If null, root resolvers
+	 * may be contacted directly.
+	 */
+		public Uri getProxyResolver();
 
-    /*
-    ****************************************************************************
-    * isLookaheadMode()
-    ****************************************************************************
-    */ /**
-    * Returns true if lookahead mode is enabled
-    */
-    public bool isLookaheadMode();
+		/*
+		****************************************************************************
+		* isLookaheadMode()
+		****************************************************************************
+		*/
+		/**
+	 * Returns true if lookahead mode is enabled
+	 */
+		public bool isLookaheadMode();
 
-    /*
-    ****************************************************************************
-    * setLookaheadMode()
-    ****************************************************************************
-    */ /**
-    * Sets lookahead mode
-    */
-    public void setLookaheadMode(bool bVal);
+		/*
+		****************************************************************************
+		* setLookaheadMode()
+		****************************************************************************
+		*/
+		/**
+	 * Sets lookahead mode
+	 */
+		public void setLookaheadMode(bool bVal);
 
-} // Interface: ResolveInterface
+	} // Interface: ResolveInterface
 }

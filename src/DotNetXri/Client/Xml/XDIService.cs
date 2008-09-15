@@ -1,8 +1,8 @@
 namespace DotNetXri.Client.Xml {
 
-using java.net.Uri;
-using java.net.URISyntaxException;
-using java.util.List;
+//using java.net.Uri;
+//using java.net.UriFormatException;
+//using java.util.List;
 
 /**
 	* This is an XDI Service.
@@ -30,12 +30,12 @@ public class XDIService : Service {
 		/*
 			* This setting is REQUIRED to establish the XDI Service.
 			*/
-		this.addType(new SEPType(SERVICE_TYPE, null, Boolean.TRUE));
+		this.addType(new SEPType(SERVICE_TYPE, null, true));
 
 		/*
 			* This setting is REQUIRED to establish the XDI Service.
 			*/
-		this.addPath(new SEPPath(SERVICE_PATH, null, Boolean.TRUE));
+		this.addPath(new SEPPath(SERVICE_PATH, null, true));
 
 		/*
 			* Setting a media type to default
@@ -47,14 +47,14 @@ public class XDIService : Service {
 		/*
 			* These are the URIs where the XDI Service is implemented. Nothing will be appended.
 			*/
-		for (int i = 0; i < uris.length; i++) {
+		for (int i = 0; i < uris.Length; i++) {
 
 			Uri uri = uris[i];
 
 			try {
 
 				this.addURI(new SEPUri(uri.ToString(), null, SEPUri.APPEND_NONE));
-			} catch (URISyntaxException ex) {
+			} catch (UriFormatException ex) {
 
 				continue;
 			}
@@ -93,12 +93,12 @@ public class XDIService : Service {
 		/*
 			* This setting is REQUIRED to establish the XDI Service.
 			*/
-		this.addType(new SEPType(SERVICE_TYPE, null, Boolean.TRUE));
+		this.addType(new SEPType(SERVICE_TYPE, null, true));
 
 		/*
 			* This setting is REQUIRED to establish the XDI Service.
 			*/
-		this.addPath(new SEPPath(SERVICE_PATH, null, Boolean.TRUE));
+		this.addPath(new SEPPath(SERVICE_PATH, null, true));
 
 		/*
 			* Setting a media type to default
@@ -110,7 +110,7 @@ public class XDIService : Service {
 		/*
 			* These are the Refs where the XDI Service is implemented. Nothing will be appended.
 			*/
-		for (int i = 0; i < xdiRefs.length; i++) {
+		for (int i = 0; i < xdiRefs.Length; i++) {
 
 			Ref xdiRef = xdiRefs[i];
 
@@ -137,11 +137,11 @@ public class XDIService : Service {
 
 		if (service is XDIService) return (true);
 
-		List serviceTypes = service.getTypes();
+		ArrayList serviceTypes = service.getTypes();
 
 		for (int i = 0; i < serviceTypes.size(); i++) {
 
-			SEPType serviceType = (SEPType)serviceTypes.get(i);
+			SEPType serviceType = (SEPType)serviceTypes[i];
 
 			if (SERVICE_TYPE.Equals(serviceType.getValue())) return (true);
 		}

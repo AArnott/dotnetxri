@@ -1,5 +1,5 @@
 namespace DotNetXri.Client.Xml {
-	//using java.net.URISyntaxException;
+	//using java.net.UriFormatException;
 	//using org.w3c.dom.XmlElement;
 
 	public class Ref : SimpleXMLElement {
@@ -17,7 +17,7 @@ namespace DotNetXri.Client.Xml {
 		*  This method constructs the obj from DOM.  It does not keep a
 		* copy of the DOM around.  Whitespace information is lost in this process.
 		*/
-		public Ref(XmlElement oElem) /*throws URISyntaxException */: base(Tags.TAG_REF) {
+		public Ref(XmlElement oElem) /*throws UriFormatException */: base(Tags.TAG_REF) {
 			fromXML(oElem);
 
 			// make sure that the priority (if present) is valid (vommits exception if invalid)

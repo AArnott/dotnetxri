@@ -134,10 +134,10 @@ public class XRITest
         oVector.add(new XriTestCase("./moo!!", 0, 2, false));
         oVector.add(new XriTestCase("./moo://:/:!!", 0, 5, false));
 
-        Iterator oIt = oVector.iterator();
-        while (oIt.hasNext())
+        IEnumerator oIt = oVector.GetEnumerator();
+        while (oIt.MoveNext())
         {
-            XriTestCase oCase = (XriTestCase) oIt.next();
+            XriTestCase oCase = (XriTestCase) oIt.Current;
             String sXRI = (String) oCase.msVal;
             try
             {
@@ -280,10 +280,10 @@ public class XRITest
                 new XriTestCase(
                     "xri://!!1234/(+login)", 1, 1, true));
         
-        Iterator oIt = oVector.iterator();
-        while (oIt.hasNext())
+        IEnumerator oIt = oVector.GetEnumerator();
+        while (oIt.MoveNext())
         {
-            XriTestCase oCase = (XriTestCase) oIt.next();
+            XriTestCase oCase = (XriTestCase) oIt.Current;
             String sXRI = (String) oCase.msVal;
             try
             {
@@ -324,10 +324,10 @@ public class XRITest
         oVector.add("//x"); // has empty first segment
         oVector.add("*a:b"); // has colon in first xrisegment
 
-        Iterator oIt = oVector.iterator();
-        while (oIt.hasNext())
+        IEnumerator oIt = oVector.GetEnumerator();
+        while (oIt.MoveNext())
         {
-            String sXRI = (String) oIt.next();
+            String sXRI = (String) oIt.Current;
             try
             {
                 checkXRI(sXRI, false);
@@ -375,10 +375,10 @@ public class XRITest
         oVector.add("xri://[ah:45]/"); // bad IPv6 address
         oVector.add("xri://!*foo"); // ! community with non-persistent segment
         oVector.add("xri://!foo"); // ! community with non-persistent segment
-        Iterator oIt = oVector.iterator();
-        while (oIt.hasNext())
+        IEnumerator oIt = oVector.GetEnumerator();
+        while (oIt.MoveNext())
         {
-            String sXRI = (String) oIt.next();
+            String sXRI = (String) oIt.Current;
             try
             {
                 checkXRI(sXRI, true);
@@ -419,10 +419,10 @@ public class XRITest
         oVector.add("x");
         oVector.add("moo!a*b*c*d");
 
-        Iterator oIt = oVector.iterator();
-        while (oIt.hasNext())
+        IEnumerator oIt = oVector.GetEnumerator();
+        while (oIt.MoveNext())
         {
-            String sSeg = (String) oIt.next();
+            String sSeg = (String) oIt.Current;
             try
             {
                 checkXRISegment(sSeg);
@@ -479,10 +479,10 @@ public class XRITest
         oVector.add("xri://@!foo!bar*bix*moo!foo//");
         oVector.add("xri://@!foo!bar*bix*moo!foo/**x");
 
-        Iterator oIt = oVector.iterator();
-        while (oIt.hasNext())
+        IEnumerator oIt = oVector.GetEnumerator();
+        while (oIt.MoveNext())
         {
-            String sSeg = (String) oIt.next();
+            String sSeg = (String) oIt.Current;
             try
             {
                 checkXRISegment(sSeg);
@@ -522,7 +522,7 @@ public class XRITest
             oXRI = new RelativeXRI(sXRI);
         }
 
-        if (!oXRI.toString().equals(sXRI))
+        if (!oXRI.toString().Equals(sXRI))
         {
             throw new RuntimeException(
                 "Parsed xri \"" + oXRI.toString() +
@@ -542,7 +542,7 @@ public class XRITest
     {
         XRI oXRI = new XRI(sXRI);
         String sGenURI = oXRI.toURINormalForm();
-        if (!sGenURI.equals(sURI))
+        if (!sGenURI.Equals(sURI))
         {
             throw new RuntimeException(
                 "Parsed xri \"" + oXRI.toString() +
@@ -571,7 +571,7 @@ public class XRITest
             oXRI = new RelativeXRI(sXRI);
         }
 
-        if (!oXRI.toString().equals(sXRI))
+        if (!oXRI.toString().Equals(sXRI))
         {
             throw new RuntimeException(
                 "Parsed xri \"" + oXRI.toString() +
@@ -621,8 +621,8 @@ public class XRITest
         String sTostring = oXRISegment.toString();
 
         if (
-            (!sTostring.equals(sXRISegment)) &&
-            (!sTostring.equals(XRI.RDELIM_S + sXRISegment)))
+            (!sTostring.Equals(sXRISegment)) &&
+            (!sTostring.Equals(XRI.RDELIM_S + sXRISegment)))
         {
             throw new RuntimeException(
                 "Parsed xrisegment \"" + oXRISegment.toString() +
@@ -748,10 +748,10 @@ public class XRITest
                     "xri://@example*nopath?q=foo#bar",
                     "xri://@example*nopath?q=foo#bar"));
 
-        Iterator oIt = oVector.iterator();
-        while (oIt.hasNext())
+        IEnumerator oIt = oVector.GetEnumerator();
+        while (oIt.MoveNext())
         {
-            XriUriTestCase oCase = (XriUriTestCase) oIt.next();
+            XriUriTestCase oCase = (XriUriTestCase) oIt.Current;
             String sXRI = (String) oCase.msXRI;
             try
             {
@@ -782,7 +782,7 @@ public class XRITest
     	try {
     		XRI x1 = XRI.fromURINormalForm("xri://@foo*(=bar%2Fbaz)");
     		XRI x2 = new XRI("@foo*(=bar/baz)");
-    		assertTrue("x1 and x2 should be equivalent", x1.equals(x2));
+    		assertTrue("x1 and x2 should be equivalent", x1.Equals(x2));
     	}
     	catch (Exception e) {
     		fail("Not expecting exception here: " + e);
@@ -802,16 +802,16 @@ public class XRITest
         XRISegment oSegment = new XRISegment("!a!b!c!d");
         assertTrue(
             "Failed XRISegment::getRemainder",
-            oSegment.getRemainder(0).toString().equals("!a!b!c!d"));
+            oSegment.getRemainder(0).toString().Equals("!a!b!c!d"));
         assertTrue(
             "Failed XRISegment::getRemainder",
-            oSegment.getRemainder(1).toString().equals("!b!c!d"));
+            oSegment.getRemainder(1).toString().Equals("!b!c!d"));
         assertTrue(
             "Failed XRISegment::getRemainder",
-            oSegment.getRemainder(2).toString().equals("!c!d"));
+            oSegment.getRemainder(2).toString().Equals("!c!d"));
         assertTrue(
             "Failed XRISegment::getRemainder",
-            oSegment.getRemainder(3).toString().equals("!d"));
+            oSegment.getRemainder(3).toString().Equals("!d"));
         assertTrue(
             "Failed XRISegment::getRemainder", oSegment.getRemainder(4) == null);
 

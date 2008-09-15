@@ -14,11 +14,12 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
+using System;
 using System.Collections;
 namespace DotNetXri.Client.Xml {
 
 //using java.io.Serializable;
-//using java.net.URISyntaxException;
+//using java.net.UriFormatException;
 //using java.text.ParseException;
 //using java.util.ArrayList;
 
@@ -66,7 +67,7 @@ public class XRDS : Serializable
 	* a copy of their DOM after construction.
 	*/
 	public XRDS(XmlElement oElem, bool bKeepXRIDDOMs)
-		//throws URISyntaxException, ParseException
+		//throws UriFormatException, ParseException
 	{
 		fromDOM(oElem, bKeepXRIDDOMs);
 
@@ -157,7 +158,7 @@ public class XRDS : Serializable
 			if (n >= getNumChildren()){
 			return null;
 		}
-		Object o = moXRDs.get(n);
+		Object o = moXRDs[n];
 		if(o is XRD) return (XRD)o;
 		return null;
 
@@ -175,13 +176,13 @@ public class XRDS : Serializable
 		if (n >= getNumChildren()){
 			return null;
 		}
-		Object o = moXRDs.get(n);
+		Object o = moXRDs[n];
 		if(o is XRDS) return (XRDS)o;
 		return null;
 	} // getDescriptorAt()
 
 	public bool isXRDSAt(int n) {
-		Object o = moXRDs.get(n);
+		Object o = moXRDs[n];
 		
 		if ( o == null) return false;
 		
@@ -191,7 +192,7 @@ public class XRDS : Serializable
 	}
 	
 	public bool isXRDAt(int n) {
-		Object o = moXRDs.get(n);
+		Object o = moXRDs[n];
 		
 		if ( o == null) return false;
 		
@@ -223,12 +224,12 @@ public class XRDS : Serializable
 	* a copy of their DOM after construction.
 	*/
 	public void fromDOM(XmlElement oElem, bool bKeepXRIDDOMs)
-		//throws ParseException, URISyntaxException
+		//throws ParseException, UriFormatException
 	{
 		reset();
 		if (oElem != null){
 			NamedNodeMap attribs = oElem.getAttributes();
-			Node attribNode = attribs.getNamedItem(Tags.ATTR_REF);
+			XmlNode attribNode = attribs.getNamedItem(Tags.ATTR_REF);
 			if (attribNode != null)
 				_ref = attribNode.getNodeValue();
 
@@ -236,7 +237,7 @@ public class XRDS : Serializable
 			if (attribNode != null)
 				redirect = attribNode.getNodeValue();
 		}
-		Node oChild = DOMUtils.getFirstChildElement(oElem);
+		XmlNode oChild = DOMUtils.getFirstChildElement(oElem);
 
 		for (; oChild != null; oChild = DOMUtils.getNextSiblingElement(oChild))
 		{

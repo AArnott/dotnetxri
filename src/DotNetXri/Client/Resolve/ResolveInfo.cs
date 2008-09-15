@@ -16,166 +16,166 @@
 */
 namespace DotNetXri.Client.Resolve {
 
-using java.util.Iterator;
-using java.util.ArrayList;
-using org.openxri.xml.XRD;
+	//using java.util.Iterator;
+	//using java.util.ArrayList;
+	//using org.openxri.xml.XRD;
 	using System.Collections;
 
 
-/*
-********************************************************************************
-* Class: ResolveInfo
-********************************************************************************
-*/ /**
-* Holds information for a XRI resolve request.
-* @author =chetan
-*/
-public class ResolveInfo
-{
-    // ordered vector of descriptors used/obtained during resolve
-    private ArrayList moResolveChains = new ArrayList();
+	/*
+	********************************************************************************
+	* Class: ResolveInfo
+	********************************************************************************
+	*/
+	/**
+ * Holds information for a XRI resolve request.
+ * @author =chetan
+ */
+	public class ResolveInfo {
+		// ordered vector of descriptors used/obtained during resolve
+		private ArrayList moResolveChains = new ArrayList();
 
-    /*
-    ****************************************************************************
-    * Constructor()
-    ****************************************************************************
-    */ /**
-    * Constructor - initializes as unresolved.
-    */
-    public ResolveInfo(string sXRI)
-    {
-        ResolveChain oChain = new ResolveChain(sXRI);
-        moResolveChains.Add(oChain);
+		/*
+		****************************************************************************
+		* Constructor()
+		****************************************************************************
+		*/
+		/**
+	 * Constructor - initializes as unresolved.
+	 */
+		public ResolveInfo(string sXRI) {
+			ResolveChain oChain = new ResolveChain(sXRI);
+			moResolveChains.Add(oChain);
 
-    } // Constructor()
+		} // Constructor()
 
-    /*
-    ****************************************************************************
-    * getXRI()
-    ****************************************************************************
-    */ /**
-    * Get the XRI attempted to be resolved
-    */
-    public string getXRI()
-    {
-        return ((ResolveChain) moResolveChains.get(0)).getXRI();
+		/*
+		****************************************************************************
+		* getXRI()
+		****************************************************************************
+		*/
+		/**
+	 * Get the XRI attempted to be resolved
+	 */
+		public string getXRI() {
+			return ((ResolveChain)moResolveChains[0]).getXRI();
 
-    } // getXRI()
+		} // getXRI()
 
-    /*
-    ****************************************************************************
-    * resolvedAll()
-    ****************************************************************************
-    */ /**
-    * Was the XRI resolved to its completion?
-    */
-    public bool resolvedAll()
-    {
-        return getLastChain().resolvedAll();
+		/*
+		****************************************************************************
+		* resolvedAll()
+		****************************************************************************
+		*/
+		/**
+	 * Was the XRI resolved to its completion?
+	 */
+		public bool resolvedAll() {
+			return getLastChain().resolvedAll();
 
-    } // resolvedAll()
+		} // resolvedAll()
 
-    /*
-    ****************************************************************************
-    * addChain()
-    ****************************************************************************
-    */ /**
-    * Add the ResolveChain to the ResolvedInfo
-    */
-    public void addChain(ResolveChain oChain)
-    {
-        moResolveChains.Add(oChain);
+		/*
+		****************************************************************************
+		* addChain()
+		****************************************************************************
+		*/
+		/**
+	 * Add the ResolveChain to the ResolvedInfo
+	 */
+		public void addChain(ResolveChain oChain) {
+			moResolveChains.Add(oChain);
 
-    } // addChain()
+		} // addChain()
 
-    /*
-    ****************************************************************************
-    * getFinalXRIDescriptor()
-    ****************************************************************************
-    */ /**
-    * Get the last descriptor encountered during resolve.
-    *
-    * For a complete resolve, that is when resolvedAll() is true, the
-    * final descriptor belongs to the complete XRI.
-    *
-    * For an incomplete resolve, this descriptor, if non-null, gives
-    * the descriptor that was queried last for a resolve
-    * getUnresolved() gives the remaining part of XRI that is still
-    * left to be resolved.
-    */
-    public XRD getFinalXRIDescriptor()
-    {
-        return getLastChain().getFinalXRIDescriptor();
+		/*
+		****************************************************************************
+		* getFinalXRIDescriptor()
+		****************************************************************************
+		*/
+		/**
+	 * Get the last descriptor encountered during resolve.
+	 *
+	 * For a complete resolve, that is when resolvedAll() is true, the
+	 * final descriptor belongs to the complete XRI.
+	 *
+	 * For an incomplete resolve, this descriptor, if non-null, gives
+	 * the descriptor that was queried last for a resolve
+	 * getUnresolved() gives the remaining part of XRI that is still
+	 * left to be resolved.
+	 */
+		public XRD getFinalXRIDescriptor() {
+			return getLastChain().getFinalXRIDescriptor();
 
-    } // getFinalXRIDescriptor()
+		} // getFinalXRIDescriptor()
 
-    /*
-    ****************************************************************************
-    * getUnresolved()
-    ****************************************************************************
-    */ /**
-    * Get the unresolved portion.
-    * This portion does not start with "xri".
-    * Example: Could be ".yahoo.john" for "xri:@email.com.yahoo.john".
-    * Null is returned for complete resolutions.
-    */
-    public string getUnresolved()
-    {
-        return getLastChain().getUnresolved();
+		/*
+		****************************************************************************
+		* getUnresolved()
+		****************************************************************************
+		*/
+		/**
+	 * Get the unresolved portion.
+	 * This portion does not start with "xri".
+	 * Example: Could be ".yahoo.john" for "xri:@email.com.yahoo.john".
+	 * Null is returned for complete resolutions.
+	 */
+		public string getUnresolved() {
+			return getLastChain().getUnresolved();
 
-    } // getUnresolved()
+		} // getUnresolved()
 
-    /*
-    ****************************************************************************
-    * getFirstChain()
-    ****************************************************************************
-    */ /**
-    * Get the first chain that was being resolved
-    */
-    public ResolveChain getFirstChain()
-    {
-        return (ResolveChain) moResolveChains.get(0);
+		/*
+		****************************************************************************
+		* getFirstChain()
+		****************************************************************************
+		*/
+		/**
+	 * Get the first chain that was being resolved
+	 */
+		public ResolveChain getFirstChain() {
+			return (ResolveChain)moResolveChains[0];
 
-    } // getFirstChain()
+		} // getFirstChain()
 
-    /*
-    ****************************************************************************
-    * getLastChain()
-    ****************************************************************************
-    */ /**
-    * Get the last chain that was being resolved
-    */
-    public ResolveChain getLastChain()
-    {
-        return (ResolveChain) moResolveChains.get(moResolveChains.size() - 1);
+		/*
+		****************************************************************************
+		* getLastChain()
+		****************************************************************************
+		*/
+		/**
+	 * Get the last chain that was being resolved
+	 */
+		public ResolveChain getLastChain() {
+			return (ResolveChain)moResolveChains[moResolveChains.Count - 1];
 
-    } // getLastChain()
+		} // getLastChain()
 
-    /*
-    ****************************************************************************
-    * getNumChains()
-    ****************************************************************************
-    */ /**
-    * Get the number of chains during resolution
-    */
-    public int getNumChains()
-    {
-        return moResolveChains.size();
+		/*
+		****************************************************************************
+		* getNumChains()
+		****************************************************************************
+		*/
+		/**
+	 * Get the number of chains during resolution
+	 */
+		public int getNumChains() {
+			return moResolveChains.Count;
 
-    } // getNumChains()
+		} // getNumChains()
 
-    /*
-    ****************************************************************************
-    * getChainIterator()
-    ****************************************************************************
-    */ /**
-    * Get the number of chains during resolution
-    */
-    public Iterator getChainIterator()
-    {
-        return moResolveChains.iterator();
+		/*
+		****************************************************************************
+		* getChainIterator()
+		****************************************************************************
+		*/
+		/**
+	 * Get the number of chains during resolution
+	 */
+		public IEnumerator getChainIterator() {
+			return moResolveChains.GetEnumerator();
 
-    } // getChainIterator()
+		} // getChainIterator()
 
-} // Class: ResolveInfo
+	} // Class: ResolveInfo
 }

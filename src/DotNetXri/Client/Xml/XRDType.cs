@@ -15,6 +15,7 @@
 * limitations under the License.
 */
 namespace DotNetXri.Client.Xml {
+	using System;
 
 
 /**

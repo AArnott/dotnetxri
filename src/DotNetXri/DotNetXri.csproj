@@ -150,6 +150,7 @@
     <Compile Include="Client\Xml\XRDType.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="JavaHelpers.cs" />
     <Compile Include="Syntax\AuthorityPath.cs" />
     <Compile Include="Syntax\Characters.cs" />
     <Compile Include="Syntax\GCSAuthority.cs" />

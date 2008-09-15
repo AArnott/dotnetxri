@@ -194,7 +194,7 @@ public abstract class SEPElement : Cloneable, Serializable {
 		return(true);
 	}
 
-	public int hashCode() {
+	public int GetHashCode() {
 		
 		int h = 1;
 		

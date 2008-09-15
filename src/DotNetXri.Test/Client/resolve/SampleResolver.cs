@@ -40,7 +40,7 @@ public class SampleResolver {
 	  Service srv = new Service();
 	  TrustType tt = new TrustType(); // default trust type
 	  String authMediaType = Tags.CONTENT_TYPE_XRDS + ";" + tt.getParameterPair();
-	  srv.addMediaType(authMediaType, SEPElement.MATCH_ATTR_CONTENT, Boolean.FALSE);
+	  srv.addMediaType(authMediaType, SEPElement.MATCH_ATTR_CONTENT, false);
 	  srv.addType(Tags.SERVICE_AUTH_RES);
 	  srv.addURI(uri);
 

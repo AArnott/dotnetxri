@@ -1,10 +1,13 @@
+using System;
+using DotNetXri.Client.Resolve;
+using System.Collections;
 namespace DotNetXri.Client.Xml {
 
-	using java.net.Uri;
-	using java.net.URISyntaxException;
-	using java.util.List;
+	//using java.net.Uri;
+	//using java.net.URISyntaxException;
+	//using java.util.ArrayList;
 
-	using org.openxri.resolve.TrustType;
+	//using org.openxri.resolve.TrustType;
 
 	/**
 	* This is an Authority Resolution 2.0 Service.
@@ -39,7 +42,7 @@ namespace DotNetXri.Client.Xml {
 			/*
 			* This setting is REQUIRED. 
 			*/
-			this.addType(new SEPType(SERVICE_TYPE, null, Boolean.TRUE));
+			this.addType(new SEPType(SERVICE_TYPE, null, true));
 
 			/*
 			* This setting is REQUIRED. 
@@ -51,72 +54,65 @@ namespace DotNetXri.Client.Xml {
 				mediaType += TRUST_TYPE_SEPARATOR + trustType.getParameterPair();
 			}
 
-			this.addMediaType(new SEPMediaType(mediaType, null, Boolean.FALSE));
+			this.addMediaType(new SEPMediaType(mediaType, null, false));
 
 			/*
 			* These are the URIs where the Authority Resolution Service is implemented.
 			*/
-			for (int i = 0; i < resolvers.length; i++) {
+			for (int i = 0; i < resolvers.Length; i++) {
 
 				Uri resolver = resolvers[i];
 
 				try {
 
-					int? priority = resolver.getScheme().toLowerCase().Equals("https") ?
+					int? priority = resolver.Scheme.Equals("https", StringComparison.OrdinalIgnoreCase) ?
 							URI_PRIORITY_HTTPS : URI_PRIORITY_DEFAULT;
 
 					this.addURI(new SEPUri(resolver.ToString(), priority, append));
-				} catch (URISyntaxException ex) {
+				} catch (UriFormatException) {
 
 					continue;
 				}
 			}
 		}
 
-		public AuthorityResolutionService(Uri resolver, string providerId, TrustType trustType, string append) {
-
-			this(new Uri[] { resolver }, providerId, trustType, append);
+		public AuthorityResolutionService(Uri resolver, string providerId, TrustType trustType, string append) :
+			this(new Uri[] { resolver }, providerId, trustType, append) {
 		}
 
-		public AuthorityResolutionService(Uri[] resolvers, string providerId, TrustType trustType) {
-
-			this(resolvers, providerId, trustType, null);
+		public AuthorityResolutionService(Uri[] resolvers, string providerId, TrustType trustType) :
+			this(resolvers, providerId, trustType, null) {
 		}
 
-		public AuthorityResolutionService(Uri resolver, string providerId, TrustType trustType) {
-
-			this(new Uri[] { resolver }, providerId, trustType, null);
+		public AuthorityResolutionService(Uri resolver, string providerId, TrustType trustType) :
+			this(new Uri[] { resolver }, providerId, trustType, null) {
 		}
 
-		public AuthorityResolutionService(Uri[] resolvers, string providerId) {
-
-			this(resolvers, providerId, null, null);
+		public AuthorityResolutionService(Uri[] resolvers, string providerId) :
+			this(resolvers, providerId, null, null) {
 		}
 
-		public AuthorityResolutionService(Uri resolver, string providerId) {
-
-			this(new Uri[] { resolver }, providerId, null, null);
+		public AuthorityResolutionService(Uri resolver, string providerId) :
+			this(new Uri[] { resolver }, providerId, null, null) {
 		}
 
-		public AuthorityResolutionService(Uri[] resolvers) {
-
-			this(resolvers, null, null, null);
+		public AuthorityResolutionService(Uri[] resolvers)
+			: this(resolvers, null, null, null) {
 		}
 
-		public AuthorityResolutionService(Uri resolver) {
-
-			this(new Uri[] { resolver }, null, null, null);
+		public AuthorityResolutionService(Uri resolver)
+			: this(new Uri[] { resolver }, null, null, null) {
 		}
 
 		public static bool isInstance(Service service) {
 
 			if (service is ForwardingService) return (true);
 
-			List serviceTypes = service.getTypes();
+			ArrayList serviceTypes = service.getTypes();
 
-			for (int i = 0; i < serviceTypes.size(); i++) {
+			for (int i = 0; i < serviceTypes.Count; i++) {
 
-				SEPType serviceType = (SEPType)serviceTypes.get(i);
+				SEPType serviceType = (SEPType)serviceTypes[i];
 
 				if (SERVICE_TYPE.Equals(serviceType.getValue())) return (true);
 			}

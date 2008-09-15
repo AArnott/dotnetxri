@@ -1,6 +1,6 @@
 namespace DotNetXri.Client.Xml {
 
-using java.net.URISyntaxException;
+using java.net.UriFormatException;
 
 using org.w3c.dom.XmlElement;
 
@@ -17,7 +17,7 @@ public class EquivID :SimpleXMLElement {
 	* This method constructs the obj from DOM.  It does not keep a
 	* copy of the DOM around.  Whitespace information is lost in this process.
 	*/
-	public EquivID(XmlElement elem) /*throws URISyntaxException*/
+	public EquivID(XmlElement elem) /*throws UriFormatException*/
 	: base(Tags.TAG_EQUIVID) {
 		fromXML(elem);
 		
@@ -34,7 +34,7 @@ public class EquivID :SimpleXMLElement {
 		string val = getAttributeValue(Tags.ATTR_PRIORITY);
 		if (val == null || val.Equals(""))
 			return null;
-		return val;
+		return int.Parse( val);
 	}
 
 

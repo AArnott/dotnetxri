@@ -1,8 +1,10 @@
+using System;
+using System.Collections;
 namespace DotNetXri.Client.Xml {
 
-	using java.net.Uri;
-	using java.net.URISyntaxException;
-	using java.util.List;
+	//using java.net.Uri;
+	//using java.net.URISyntaxException;
+	//using java.util.List;
 
 	/**
 	* This is a Contact Service as described by "Contact Service v1.0 Working Draft 05, 7 September 2006
@@ -36,13 +38,13 @@ namespace DotNetXri.Client.Xml {
 			/*
 			* Set paths.
 			*/
-			this.addPath(new SEPPath(CONTACT_PATH, null, Boolean.TRUE));
+			this.addPath(new SEPPath(CONTACT_PATH, null, true));
 			if (makeDefault) this.addPath(new SEPPath(null, SEPElement.MATCH_ATTR_NULL, null));
 
 			/*
 			* Set service types.
 			*/
-			this.addType(new SEPType(SERVICE_TYPE, null, Boolean.TRUE));
+			this.addType(new SEPType(SERVICE_TYPE, null, true));
 			this.addType(new SEPType(null, SEPElement.MATCH_ATTR_NULL, null));
 
 			/*
@@ -54,54 +56,54 @@ namespace DotNetXri.Client.Xml {
 			* These are the Uri where the Contact Service is implemented. The QXRI will be appended.
 			* It is currently not in the scope of OpenXRI to implement the actual contact page.
 			*/
-			for (int i = 0; i < contactPages.length; i++) {
+			for (int i = 0; i < contactPages.Length; i++) {
 
 				Uri contactPage = contactPages[i];
 
 				try {
 
 					this.addURI(new SEPUri(contactPage.ToString(), null, SEPUri.APPEND_QXRI));
-				} catch (URISyntaxException ex) {
+				} catch (UriFormatException) {
 
 					continue;
 				}
 			}
 		}
 
-		public ContactService(Uri contactPage, string providerID, bool makeDefault) {
+		public ContactService(Uri contactPage, string providerID, bool makeDefault) :
 
-			this(new Uri[] { contactPage }, providerID, makeDefault);
+			this(new Uri[] { contactPage }, providerID, makeDefault) {
 		}
 
-		public ContactService(Uri[] contactPages, string providerID) {
+		public ContactService(Uri[] contactPages, string providerID) :
 
-			this(contactPages, providerID, true);
+			this(contactPages, providerID, true) {
 		}
 
-		public ContactService(Uri contactPage, string providerID) {
+		public ContactService(Uri contactPage, string providerID) :
 
-			this(new Uri[] { contactPage }, providerID, true);
+			this(new Uri[] { contactPage }, providerID, true) {
 		}
 
-		public ContactService(Uri[] contactPages) {
+		public ContactService(Uri[] contactPages) :
 
-			this(contactPages, null, true);
+			this(contactPages, null, true) {
 		}
 
-		public ContactService(Uri contactPage) {
+		public ContactService(Uri contactPage) :
 
-			this(new Uri[] { contactPage }, null, true);
+			this(new Uri[] { contactPage }, null, true) {
 		}
 
 		public static bool isInstance(Service service) {
 
 			if (service is ForwardingService) return (true);
 
-			List serviceTypes = service.getTypes();
+			ArrayList serviceTypes = service.getTypes();
 
-			for (int i = 0; i < serviceTypes.size(); i++) {
+			for (int i = 0; i < serviceTypes.Count; i++) {
 
-				SEPType serviceType = (SEPType)serviceTypes.get(i);
+				SEPType serviceType = (SEPType)serviceTypes[i];
 
 				if (SERVICE_TYPE.Equals(serviceType.getValue())) return (true);
 			}

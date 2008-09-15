@@ -91,13 +91,13 @@ public class ResolverTest
 			// Logger.Info(xrds);
 
 			assertTrue("Expected 5 XRDs", xrds.getNumChildren() == 5);
-			assertTrue("subseg[3] should be *0003-badcid", xrds.getDescriptorAt(3).getQuery().equals("*0003-badcid"));
+			assertTrue("subseg[3] should be *0003-badcid", xrds.getDescriptorAt(3).getQuery().Equals("*0003-badcid"));
 			
 			Status s3 = xrds.getDescriptorAt(3).getStatus();
-			assertTrue("subseg[3].status.cid should be 'failed'", s3.getCID().equals("failed"));
+			assertTrue("subseg[3].status.cid should be 'failed'", s3.getCID().Equals("failed"));
 			
 			Status s4 = xrds.getDescriptorAt(4).getStatus();
-			assertTrue("subseg[4].status.cid should be 'failed'", s4.getCID().equals("failed"));
+			assertTrue("subseg[4].status.cid should be 'failed'", s4.getCID().Equals("failed"));
 
 			
 			
@@ -106,9 +106,9 @@ public class ResolverTest
 			xrds = resolver.resolveAuthToXRDS(xri, flags, new ResolverState());
 			assertTrue("Expected 4 XRDs", xrds.getNumChildren() == 4);
 			XRD xrd3 = xrds.getDescriptorAt(3);
-			assertTrue("subseg[3] should be *0001-simple", xrd3.getQuery().equals("*0001-simple"));
-			assertTrue("subseg[3] should be CID verified", xrd3.getStatus().getCID().equals(Status.CID_VERIFIED));
-			assertTrue("subseg[3] should be CEID verified", xrd3.getStatus().getCEID().equals(Status.CID_VERIFIED));
+			assertTrue("subseg[3] should be *0001-simple", xrd3.getQuery().Equals("*0001-simple"));
+			assertTrue("subseg[3] should be CID verified", xrd3.getStatus().getCID().Equals(Status.CID_VERIFIED));
+			assertTrue("subseg[3] should be CEID verified", xrd3.getStatus().getCEID().Equals(Status.CID_VERIFIED));
 		}
 		catch (Exception e) {
 			fail("Not expecting an exception here: " + e);
@@ -153,32 +153,32 @@ public class ResolverTest
 
 			assertTrue("The fifth child should be an XRDS element because it followed a Redirect", xrds.isXRDSAt(4));
 			XRDS redirXRDS = xrds.getXRDSAt(4);
-			assertTrue("Wrong redirect followed in the fifth child", redirXRDS.getRedirect().equals("http://auth.xrid.net/!330/"));
+			assertTrue("Wrong redirect followed in the fifth child", redirXRDS.getRedirect().Equals("http://auth.xrid.net/!330/"));
 			
 			assertTrue("The fifth child should have 2 children", redirXRDS.getNumChildren() == 2);
 			assertTrue("The fifth child's first child should be an XRD", redirXRDS.isXRDAt(0));
 			assertTrue("The fifth child's second child should be an XRDS", redirXRDS.isXRDSAt(1));
 			redirXRDS = redirXRDS.getXRDSAt(1);
-			assertTrue("Wrong redirect followed in the fifth child's second child", redirXRDS.getRedirect().equals("http://does.not.exist/"));
-			assertFalse("Fifth child should have failed", redirXRDS.getFinalXRD().getStatusCode().equals(Status.SUCCESS));
+			assertTrue("Wrong redirect followed in the fifth child's second child", redirXRDS.getRedirect().Equals("http://does.not.exist/"));
+			assertFalse("Fifth child should have failed", redirXRDS.getFinalXRD().getStatusCode().Equals(Status.SUCCESS));
 			
 			assertTrue("The sixth child should be an XRDS element because it followed a Redirect", xrds.isXRDSAt(5));
 			redirXRDS = xrds.getXRDSAt(5);
-			assertTrue("Wrong redirect followed in the sixth child", redirXRDS.getRedirect().equals("http://auth.xrid.net/!333/"));
+			assertTrue("Wrong redirect followed in the sixth child", redirXRDS.getRedirect().Equals("http://auth.xrid.net/!333/"));
 			
 
 			assertTrue("The seventh child should be an XRDS element because it followed a Redirect", xrds.isXRDSAt(6));
 			redirXRDS = xrds.getXRDSAt(6);
-			assertTrue("Wrong redirect followed on the seventh child", redirXRDS.getRedirect().equals("http://auth.xrid.net/!331/"));
-			assertTrue("Seventh child should have succeeded", redirXRDS.getFinalXRD().getStatusCode().equals(Status.SUCCESS));
+			assertTrue("Wrong redirect followed on the seventh child", redirXRDS.getRedirect().Equals("http://auth.xrid.net/!331/"));
+			assertTrue("Seventh child should have succeeded", redirXRDS.getFinalXRD().getStatusCode().Equals(Status.SUCCESS));
 			
 			assertTrue("The eighth child should be an XRDS element because it followed a Service-level Redirect", xrds.isXRDSAt(7));
 			redirXRDS = xrds.getXRDSAt(7);
-			assertTrue("Wrong redirect followed on the eighth child", redirXRDS.getRedirect().equals("http://auth.xrid.net/!332/"));
-			assertTrue("Eighth child should have succeeded", redirXRDS.getFinalXRD().getStatusCode().equals(Status.SUCCESS));
+			assertTrue("Wrong redirect followed on the eighth child", redirXRDS.getRedirect().Equals("http://auth.xrid.net/!332/"));
+			assertTrue("Eighth child should have succeeded", redirXRDS.getFinalXRD().getStatusCode().Equals(Status.SUCCESS));
 			assertTrue("Should be one selected Service on eighth child", redirXRDS.getFinalXRD().getSelectedServices().getList().size() == 1);
 			Service srv = (Service)redirXRDS.getFinalXRD().getSelectedServices().getList().get(0);
-			assertTrue("In correct URI in selected service on eighth child", srv.getURIAt(0).getUriString().equals("http://my.blog.com"));
+			assertTrue("In correct URI in selected service on eighth child", srv.getURIAt(0).getUriString().Equals("http://my.blog.com"));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -197,10 +197,10 @@ public class ResolverTest
 			String result = resolver.constructURI(sepURI, "local",
 					new XRI(qxri));
 			assertTrue("Invalid constructed URI for append=local '" + result
-					+ "'", result.equals(sepURI.toString() + "/d/e?f=g"));
+					+ "'", result.Equals(sepURI.toString() + "/d/e?f=g"));
 			result = resolver.constructURI(sepURI, "qxri", new XRI(qxri));
 			assertTrue("Invalid constructed URI for append=qxri '" + result
-					+ "'", result.equals(sepURI.toString() + "@a*b*c/d/e?f=g"));
+					+ "'", result.Equals(sepURI.toString() + "@a*b*c/d/e?f=g"));
 			Logger.Info("result = " + result);
 		} catch (Exception oEx) {
 			fail("Got wrong exception while trying to resolve IRI " + oEx);
@@ -216,7 +216,7 @@ public class ResolverTest
 		TrustType tt = new TrustType(); // default trust type
 		String authMediaType = Tags.CONTENT_TYPE_XRDS + ";"
 				+ tt.getParameterPair();
-		srv.addMediaType(authMediaType, null, Boolean.FALSE);
+		srv.addMediaType(authMediaType, null, false);
 		srv.addType(Tags.SERVICE_AUTH_RES);
 		srv.addURI(uri);
 

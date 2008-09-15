@@ -14,196 +14,195 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
 */
+using DotNetXri.Client.Xml;
 namespace DotNetXri.Client.Resolve {
 
-using java.util.ArrayList;
-using org.openxri.xml.XRD;
-using org.openxri.xml.XRDS;
+	//using java.util.ArrayList;
+	//using org.openxri.xml.XRD;
+	//using org.openxri.xml.XRDS;
 
 
-/*
-********************************************************************************
-* Class: ResolveChain
-********************************************************************************
-*/ /**
-* Holds information for a XRI resolution chain (no redirects)
-* @author chandra
-* @author =chetan
-*/
-public class ResolveChain
-{
-    // xri attempted to resolve
-    private string msXRI = null;
+	/*
+	********************************************************************************
+	* Class: ResolveChain
+	********************************************************************************
+	*/
+	/**
+ * Holds information for a XRI resolution chain (no redirects)
+ * @author chandra
+ * @author =chetan
+ */
+	public class ResolveChain {
+		// xri attempted to resolve
+		private string msXRI = null;
 
-    // were all segments resolved?
-    private bool mbResolvedAll = false;
+		// were all segments resolved?
+		private bool mbResolvedAll = false;
 
-    // ordered vector of descriptors used/obtained during resolve
-    private XRDS moXRIDescriptors = new XRDS();
+		// ordered vector of descriptors used/obtained during resolve
+		private XRDS moXRIDescriptors = new XRDS();
 
-    // unresolved portion for an incomplete resolve
-    private string msUnresolved = "";
+		// unresolved portion for an incomplete resolve
+		private string msUnresolved = "";
 
-    /*
-    ****************************************************************************
-    * Constructor()
-    ****************************************************************************
-    */ /**
-    * Constructor - initializes as unresolved.
-    */
-    public ResolveChain(string sXRI)
-    {
-        msXRI = sXRI;
+		/*
+		****************************************************************************
+		* Constructor()
+		****************************************************************************
+		*/
+		/**
+	 * Constructor - initializes as unresolved.
+	 */
+		public ResolveChain(string sXRI) {
+			msXRI = sXRI;
 
-    } // Constructor()
+		} // Constructor()
 
-    /*
-    ****************************************************************************
-    * getXRI()
-    ****************************************************************************
-    */ /**
-    * Get the XRI attempted to be resolved
-    */
-    public string getXRI()
-    {
-        return msXRI;
+		/*
+		****************************************************************************
+		* getXRI()
+		****************************************************************************
+		*/
+		/**
+	 * Get the XRI attempted to be resolved
+	 */
+		public string getXRI() {
+			return msXRI;
 
-    } // getXRI()
+		} // getXRI()
 
-    /*
-    ****************************************************************************
-    * resolvedAll()
-    ****************************************************************************
-    */ /**
-    * Was the XRI resolved to its completion?
-    */
-    public bool resolvedAll()
-    {
-        return mbResolvedAll;
+		/*
+		****************************************************************************
+		* resolvedAll()
+		****************************************************************************
+		*/
+		/**
+	 * Was the XRI resolved to its completion?
+	 */
+		public bool resolvedAll() {
+			return mbResolvedAll;
 
-    } // resolvedAll()
+		} // resolvedAll()
 
-    /*
-    ****************************************************************************
-    * getXRIDescriptors()
-    ****************************************************************************
-    */ /**
-    * Returns the XRDS element for this chain
-    */
-    public XRDS getXRIDescriptors()
-    {
-        return moXRIDescriptors;
+		/*
+		****************************************************************************
+		* getXRIDescriptors()
+		****************************************************************************
+		*/
+		/**
+	 * Returns the XRDS element for this chain
+	 */
+		public XRDS getXRIDescriptors() {
+			return moXRIDescriptors;
 
-    } // getXRIDescriptors()
+		} // getXRIDescriptors()
 
-    /*
-    ****************************************************************************
-    * getFinalXRIDescriptor()
-    ****************************************************************************
-    */ /**
-    * Get the last descriptor encountered during resolve.
-    *
-    * For a complete resolve, that is when resolvedAll() is true, the
-    * final descriptor belongs to the complete XRI.
-    *
-    * For an incomplete resolve, this descriptor, if non-null, gives
-    * the descriptor that was queried last for a resolve
-    * getUnresolved() gives the remaining part of XRI that is still
-    * left to be resolved.
-    */
-    public XRD getFinalXRIDescriptor()
-    {
-        int nSize = moXRIDescriptors.getNumChildren();
-        return (nSize > 0) ? moXRIDescriptors.getDescriptorAt(nSize - 1) : null;
+		/*
+		****************************************************************************
+		* getFinalXRIDescriptor()
+		****************************************************************************
+		*/
+		/**
+	 * Get the last descriptor encountered during resolve.
+	 *
+	 * For a complete resolve, that is when resolvedAll() is true, the
+	 * final descriptor belongs to the complete XRI.
+	 *
+	 * For an incomplete resolve, this descriptor, if non-null, gives
+	 * the descriptor that was queried last for a resolve
+	 * getUnresolved() gives the remaining part of XRI that is still
+	 * left to be resolved.
+	 */
+		public XRD getFinalXRIDescriptor() {
+			int nSize = moXRIDescriptors.getNumChildren();
+			return (nSize > 0) ? moXRIDescriptors.getDescriptorAt(nSize - 1) : null;
 
-    } // getFinalXRIDescriptor()
+		} // getFinalXRIDescriptor()
 
-    /*
-    ****************************************************************************
-    * getUnresolved()
-    ****************************************************************************
-    */ /**
-    * Get the unresolved portion.
-    * This portion does not start with "xri".
-    * Example: Could be ".yahoo.john" for "xri:@email.com.yahoo.john".
-    * Null is returned for complete resolutions.
-    */
-    public string getUnresolved()
-    {
-        return msUnresolved;
+		/*
+		****************************************************************************
+		* getUnresolved()
+		****************************************************************************
+		*/
+		/**
+	 * Get the unresolved portion.
+	 * This portion does not start with "xri".
+	 * Example: Could be ".yahoo.john" for "xri:@email.com.yahoo.john".
+	 * Null is returned for complete resolutions.
+	 */
+		public string getUnresolved() {
+			return msUnresolved;
 
-    } // getUnresolved()
+		} // getUnresolved()
 
-    /*
-    ****************************************************************************
-    * setResolvedAll()
-    ****************************************************************************
-    */ /**
-    * Mark that the XRI resolved completely.
-    */
-    public void setResolvedAll()
-    {
-        mbResolvedAll = true;
+		/*
+		****************************************************************************
+		* setResolvedAll()
+		****************************************************************************
+		*/
+		/**
+	 * Mark that the XRI resolved completely.
+	 */
+		public void setResolvedAll() {
+			mbResolvedAll = true;
 
-    } // setResolvedAll()
+		} // setResolvedAll()
 
-    /*
-    ****************************************************************************
-    * setUnresolved()
-    ****************************************************************************
-    */ /**
-    * Set unresolved portion.
-    */
-    public void setUnresolved(string sUnresolved)
-    {
-        msUnresolved = (sUnresolved == null) ? "" : sUnresolved;
+		/*
+		****************************************************************************
+		* setUnresolved()
+		****************************************************************************
+		*/
+		/**
+	 * Set unresolved portion.
+	 */
+		public void setUnresolved(string sUnresolved) {
+			msUnresolved = (sUnresolved == null) ? "" : sUnresolved;
 
-    } // setUnresolved()
+		} // setUnresolved()
 
-    /*
-    ****************************************************************************
-    * addXRIDescriptor()
-    ****************************************************************************
-    */ /**
-    * Adds the specified XRI Descriptor to the chain
-    */
-    public void addXRIDescriptor(XRD oXRID)
-    {
-        moXRIDescriptors.add(oXRID);
+		/*
+		****************************************************************************
+		* addXRIDescriptor()
+		****************************************************************************
+		*/
+		/**
+	 * Adds the specified XRI Descriptor to the chain
+	 */
+		public void addXRIDescriptor(XRD oXRID) {
+			moXRIDescriptors.add(oXRID);
 
-    } // addXRIDescriptor()
+		} // addXRIDescriptor()
 
-    /*
-    ****************************************************************************
-    * addXRIDescriptors()
-    ****************************************************************************
-    */ /**
-    * Adds the specified XRI Descriptors to the chain
-    */
-    public void addXRIDescriptors(XRDS oDescriptors)
-    {
-        for (int i = 0; i < oDescriptors.getNumChildren(); i++)
-        {
-            addXRIDescriptor(oDescriptors.getDescriptorAt(i));
-        }
+		/*
+		****************************************************************************
+		* addXRIDescriptors()
+		****************************************************************************
+		*/
+		/**
+	 * Adds the specified XRI Descriptors to the chain
+	 */
+		public void addXRIDescriptors(XRDS oDescriptors) {
+			for (int i = 0; i < oDescriptors.getNumChildren(); i++) {
+				addXRIDescriptor(oDescriptors.getDescriptorAt(i));
+			}
 
-    } // addXRIDescriptors()
+		} // addXRIDescriptors()
 
-    /*
-    ****************************************************************************
-    * addXRIDescriptors()
-    ****************************************************************************
-    */ /**
-    * Adds the specified XRI Descriptors to the chain
-    */
-    public void addXRIDescriptors(ArrayList oDescriptors)
-    {
-        for (int i = 0; i < oDescriptors.size(); i++)
-        {
-            addXRIDescriptor((XRD) oDescriptors.get(i));
-        }
+		/*
+		****************************************************************************
+		* addXRIDescriptors()
+		****************************************************************************
+		*/
+		/**
+	 * Adds the specified XRI Descriptors to the chain
+	 */
+		public void addXRIDescriptors(ArrayList oDescriptors) {
+			for (int i = 0; i < oDescriptors.size(); i++) {
+				addXRIDescriptor((XRD)oDescriptors.get(i));
+			}
 
-    } // addXRIDescriptors()
+		} // addXRIDescriptors()
 
-} // Class: ResolveChain
+	} // Class: ResolveChain
 }
