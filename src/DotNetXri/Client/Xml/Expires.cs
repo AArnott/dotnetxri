@@ -9,7 +9,7 @@ namespace DotNetXri.Client.Xml {
 	public class Expires : SimpleXMLElement {
 		private DateTime? expires = null;
 
-		public Expires(Expires e)
+		public Expires(Expires? e)
 			: base(e) {
 		}
 
@@ -17,12 +17,12 @@ namespace DotNetXri.Client.Xml {
 			: base(Tags.TAG_EXPIRES) {
 		}
 
-		public Expires(DateTime dateValue)
+		public Expires(DateTime? dateValue)
 			: base(Tags.TAG_EXPIRES) {
 			setDate(dateValue);
 		}
 
-		public DateTime getDate() {
+		public DateTime? getDate() {
 			return expires;
 		}
 

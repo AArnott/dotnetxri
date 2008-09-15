@@ -287,10 +287,9 @@ namespace DotNetXri.Client.Xml {
 			if (oElem.hasAttributeNS(null, Tags.ATTR_XRD_VERSION))
 				version = oElem.getAttributeNS(null, Tags.ATTR_XRD_VERSION);
 
-			for (XmlElement oChild = oElem.FirstChild; oChild != null; oChild = oChild.NextSibling) {
+			for (XmlElement oChild = (XmlElement)oElem.FirstChild; oChild != null; oChild = (XmlElement)oChild.NextSibling) {
 
-				string sChildName = oChild.LocalName;
-				if (sChildName == null) sChildName = oChild.getNodeName();
+				string sChildName = oChild.LocalName ?? oChild.Name;
 
 				if (sChildName.Equals(Tags.TAG_TYPE)) {
 					XRDType t = new XRDType();
@@ -964,7 +963,7 @@ namespace DotNetXri.Client.Xml {
 
 			// before signing, make sure that the document is properly normalized
 			// this is separate from the XMLDSig canonicalization and is more for attributes, namespaces, etc.
-			moElem.getOwnerDocument().normalizeDocument();
+			moElem.OwnerDocument.Normalize();
 
 			XmlElement oAssertionElem =
 				DOMUtils.getFirstChildElement(
@@ -1125,7 +1124,7 @@ namespace DotNetXri.Client.Xml {
 		*/
 		public bool isValid() {
 			// check to make sure the descriptor is not expired
-			if ((expires != null && expires.getDate() != null) && (expires.getDate().before(new DateTime?()))) {
+			if ((expires != null && expires.getDate() != null) && (expires.getDate() < DateTime.Now)) {
 				return false;
 			}
 
