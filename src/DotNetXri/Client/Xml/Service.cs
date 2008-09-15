@@ -43,6 +43,8 @@ namespace DotNetXri.Client.Xml {
 	using System.Collections;
 	using DotNetXri.Loggers;
 	using System.Xml;
+	using System.Text;
+	using DotNetXri.Syntax;
 
 
 	/**
@@ -129,8 +131,8 @@ namespace DotNetXri.Client.Xml {
 			}
 
 			for (
-					XmlElement oChild = DOMUtils.getFirstChildElement(oElem); oChild != null;
-					oChild = DOMUtils.getNextSiblingElement(oChild)) {
+					XmlElement oChild = (XmlElement)oElem.FirstChild; oChild != null;
+					oChild = (XmlElement)oChild.NextSibling) {
 				// pre-grab the name and text value
 				string sChildName = oChild.LocalName;
 				if (sChildName == null) sChildName = oChild.getNodeName();
@@ -169,7 +171,7 @@ namespace DotNetXri.Client.Xml {
 						(ArrayList)otherChildrenVectorMap[sChildName];
 					if (oVector == null) {
 						oVector = new ArrayList();
-						otherChildrenVectorMap.put(sChildName, oVector);
+						otherChildrenVectorMap[sChildName] = oVector;
 					}
 
 					// Instead of Storing just the Child Value, store a clone of the complete
@@ -509,24 +511,22 @@ namespace DotNetXri.Client.Xml {
 			bool returnValue = false;
 
 			try {
-				InputStream oIn = new ByteArrayInputStream(xmlStr.getBytes());
-				DOMParser oDOMParser = DOMUtils.getDOMParser();
-				oDOMParser.parse(new InputSource(oIn));
-				XmlDocument oDOMDoc = oDOMParser.getDocument();
-				XmlElement oElement = oDOMDoc.getDocumentElement();
+				XmlDocument oDOMDoc = new XmlDocument();
+				oDOMDoc.LoadXml(xmlStr);
+				XmlElement oElement = oDOMDoc.DocumentElement;
 
 				ArrayList oVector = (ArrayList)otherChildrenVectorMap[sTag];
 
 				if (oVector == null) {
 					oVector = new ArrayList();
-					otherChildrenVectorMap.put(sTag, oVector);
+					otherChildrenVectorMap[sTag] = oVector;
 				}
 
 				oVector.Add(oElement.CloneNode(true));
 
 				returnValue = true;
 			} catch (Exception exp) {
-				exp.printStackTrace();
+				soLog.Error(string.Empty, exp);
 				returnValue = false;
 			}
 
@@ -559,7 +559,7 @@ namespace DotNetXri.Client.Xml {
 
 			StringBuilder extension = new StringBuilder();
 
-			IEnumerator oCustomTags = otherChildrenVectorMap.keySet().GetEnumerator();
+			IEnumerator oCustomTags = otherChildrenVectorMap.Keys.GetEnumerator();
 			while (oCustomTags.MoveNext()) {
 				string sTag = (string)oCustomTags.Current;
 				ArrayList oValues = (ArrayList)otherChildrenVectorMap[sTag];
@@ -655,7 +655,7 @@ namespace DotNetXri.Client.Xml {
 
 			// this does not preserve the order and only works for text elements
 			// TBD: Add namespace support for these
-			IEnumerator oCustomTags = otherChildrenVectorMap.keySet().GetEnumerator();
+			IEnumerator oCustomTags = otherChildrenVectorMap.Keys.GetEnumerator();
 			while (oCustomTags.MoveNext()) {
 				string sTag = (string)oCustomTags.Current;
 				ArrayList oValues = (ArrayList)otherChildrenVectorMap[sTag];
@@ -663,7 +663,7 @@ namespace DotNetXri.Client.Xml {
 					// Importing the Child Node into New XmlDocument and also adding it to the
 					// Service XmlElement as a Child Node
 					XmlNode oChild = (XmlNode)oValues[i];
-					XmlNode oChild2 = doc.importNode(oChild, true);
+					XmlNode oChild2 = doc.ImportNode(oChild, true);
 					elem.AppendChild(oChild2);
 				}
 			}
@@ -713,7 +713,7 @@ namespace DotNetXri.Client.Xml {
 		* @param priority The priority to set.
 		*/
 		public void setPriority(string priority) {
-			this.priority = priority;
+			this.priority = priority != null ? (int?)int.Parse(priority) : null;
 		}
 
 

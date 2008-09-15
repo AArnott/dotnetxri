@@ -1,3 +1,4 @@
+using System.Xml;
 namespace DotNetXri.Client.Xml {
 
 	//using java.net.UriFormatException;

@@ -60,7 +60,7 @@ namespace DotNetXri.Client.Util {
 				dbitem = new Item();
 				dbitem.priority = priority;
 				dbitem.objects.Add(o);
-				sortedList.put(priority, dbitem);
+				sortedList[priority] = dbitem;
 			}
 		}
 

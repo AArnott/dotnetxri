@@ -14,14 +14,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
 */
+using System.Xml;
+using DotNetXri.Client.Xml;
 namespace DotNetXri.Client.Saml {
 
-using org.apache.xerces.dom.XmlDocument;
-using org.openxri.util.DOMUtils;
-using org.openxri.xml.Tags;
-using org.w3c.dom.XmlDocument;
-using org.w3c.dom.XmlElement;
-using org.w3c.dom.Node;
+//using org.apache.xerces.dom.XmlDocument;
+//using org.openxri.util.DOMUtils;
+//using org.openxri.xml.Tags;
+//using org.w3c.dom.XmlDocument;
+//using org.w3c.dom.XmlElement;
+//using org.w3c.dom.Node;
 
 
 /*
@@ -93,18 +95,18 @@ public class Attribute
         }
 
         for (
-            Node oChild = DOMUtils.getFirstChildElement(oElem); oChild != null;
-            oChild = DOMUtils.getNextSiblingElement(oChild))
+            XmlNode oChild = oElem.FirstChild; oChild != null;
+            oChild = oChild.NextSibling)
         {
             if (oChild.LocalName.Equals(Tags.TAG_ATTRIBUTEVALUE))
             {
                 // only accept the first  element and make sure it
                 // is a text node                
                 if (
-                    (msValue.Equals("")) && (oChild.getFirstChild() != null) &&
-                    (oChild.getFirstChild().getNodeType() == Node.TEXT_NODE))
+                    (msValue.Equals("")) && (oChild.FirstChild != null) &&
+                    (oChild.FirstChild.NodeType == XmlNode.TEXT_NODE))
                 {
-                    msValue = oChild.getFirstChild().getNodeValue();
+                    msValue = oChild.FirstChild.getNodeValue();
                 }
             }
         }

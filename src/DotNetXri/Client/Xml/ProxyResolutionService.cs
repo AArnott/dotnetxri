@@ -76,11 +76,11 @@ public class ProxyResolutionService : Service {
 
 			try {
 
-				int? priority = resolver.getScheme().toLowerCase().Equals("https") ?
+				int? priority = resolver.Scheme.Equals("https", StringComparison.OrdinalIgnoreCase) ?
 					URI_PRIORITY_HTTPS : URI_PRIORITY_DEFAULT;
 
 				this.addURI(new SEPUri(resolver.ToString(), priority, SEPUri.APPEND_NONE));
-			} catch (UriFormatException ex) {
+			} catch (UriFormatException) {
 
 				continue;
 			}
@@ -121,7 +121,7 @@ public class ProxyResolutionService : Service {
 
 		ArrayList serviceTypes = service.getTypes();
 
-		for (int i = 0; i < serviceTypes.size(); i++) {
+		for (int i = 0; i < serviceTypes.Count; i++) {
 
 			SEPType serviceType = (SEPType)serviceTypes[i];
 

@@ -66,7 +66,7 @@ public class CacheTest
     */
     public static Test suite()
     {
-        return new TestSuite(CacheTest.class);
+        return new TestSuite(typeof(CacheTest));
 
     } // suite()
 

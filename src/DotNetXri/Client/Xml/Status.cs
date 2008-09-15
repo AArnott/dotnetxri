@@ -74,8 +74,8 @@ public class Status : SimpleXMLElement {
 		: base(s) {
 	}
 
-	public Status() {
-		this(Tags.TAG_STATUS);
+	public Status() :
+		this(Tags.TAG_STATUS) {
 	}
 
 	public Status(string code)

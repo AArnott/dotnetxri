@@ -11,6 +11,7 @@ namespace DotNetXri.Client.Xml {
 	//using org.w3c.dom.NamedNodeMap;
 	//using org.w3c.dom.Node;
 	using System.Xml;
+	using System.Collections;
 
 	public abstract class SimpleXMLElement : Cloneable, Serializable {
 
@@ -66,7 +67,7 @@ namespace DotNetXri.Client.Xml {
 			if (attrName == null || attrValue == null) return;
 			if (attributes == null)
 				attributes = new Hashtable();
-			attributes.put(attrName, attrValue);
+			attributes[attrName] = attrValue;
 		}
 
 		public string getAttributeValue(string attrName) {
@@ -80,7 +81,7 @@ namespace DotNetXri.Client.Xml {
 		public void removeAttribute(string attrName) {
 
 			if (attributes == null) return;
-			attributes.remove(attrName);
+			attributes.Remove(attrName);
 		}
 
 		/**
@@ -95,9 +96,9 @@ namespace DotNetXri.Client.Xml {
 			XmlElement body = doc.CreateElement(tag);
 
 			if (attributes != null) {
-				Enumeration keys = attributes.keys();
-				while (keys.hasMoreElements()) {
-					string attrName = (string)keys.nextElement();
+				IEnumerator keys = attributes.Keys.GetEnumerator();
+				while (keys.MoveNext()) {
+					string attrName = (string)keys.Current;
 					string attrValue = (string)attributes[attrName];
 					body.SetAttribute(attrName, attrValue);
 				}
@@ -123,15 +124,14 @@ namespace DotNetXri.Client.Xml {
 		*
 		*/
 		public void fromXML(XmlNode root) {
-			if (root.getNodeType() == XmlNode.ELEMENT_NODE) {
-				this.tag = root.LocalName;
-				if (this.tag == null) this.tag = root.getNodeName();
-				setValue(DOMUtils.getText(root));
-				NamedNodeMap attribs = root.getAttributes();
+			if (root.NodeType == XmlNodeType.Element) {
+				this.tag = root.LocalName ?? root.Name;
+				setValue(root.OuterXml);
+				NamedNodeMap attribs = root.Attributes;
 				for (int i = 0; i < attribs.getLength(); i++) {
 					XmlNode attribNode = attribs.item(i);
-					string attrName = attribNode.getNodeName();
-					string attrValue = attribNode.getNodeValue();
+					string attrName = attribNode.Name;
+					string attrValue = attribNode.Value;
 					addAttribute(attrName, attrValue);
 				}
 			}
@@ -141,7 +141,7 @@ namespace DotNetXri.Client.Xml {
 			XmlDocument doc = new XmlDocument();
 			XmlElement elm = this.toXML(doc, tag);
 			doc.AppendChild(elm);
-			return DOMUtils.ToString(doc);
+			return doc.OuterXml;
 		}
 
 		//public Object clone() { //throws CloneNotSupportedException {
@@ -183,7 +183,7 @@ namespace DotNetXri.Client.Xml {
 			XmlDocument doc = new XmlDocument();
 			XmlElement elm = this.toXML(doc);
 			doc.AppendChild(elm);
-			return DOMUtils.ToString(doc);
+			return doc.OuterXml;
 		}
 	}
 }

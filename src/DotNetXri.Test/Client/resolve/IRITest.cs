@@ -51,7 +51,7 @@ public class IRITest
     */ /**
     *
     */
-    public static void main(String[] oArgs)
+    public static void main(string[] oArgs)
     {
         // Pass control to the non-graphical test runner
         TestRunner.run(suite());
@@ -67,7 +67,7 @@ public class IRITest
     */
     public static Test suite()
     {
-        return new TestSuite(IRITest.class);
+        return new TestSuite(typeof(IRITest));
 
     } // suite()
 
@@ -82,11 +82,11 @@ public class IRITest
         :Resolver
     {
 
-        protected InputStream getDataFromURI(URI oURI, String query, ResolverFlags flags, ResolverState state)
-            throws XRIResolutionException
+        protected InputStream getDataFromURI(URI oURI, string query, ResolverFlags flags, ResolverState state)
+        //    throws XRIResolutionException
         {
             // the path better be empty
-            if ((oURI.getPath() != null) && (oURI.getPath().length() > 0))
+            if ((oURI.getPath() != null) && (oURI.getPath().Length > 0))
                 return null;
 
             XRD oDesc = new XRD();

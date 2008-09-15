@@ -1,18 +1,18 @@
-package org.openxri;
+//package org.openxri;
 
-using java.io.UnsupportedEncodingException;
+//using java.io.UnsupportedEncodingException;
 
-using junit.framework.TestCase;
+//using junit.framework.TestCase;
 
 public class IRIUtilsTest :TestCase
 {
 
 	/*
-	 * Test method for 'org.openxri.IRIUtils.IRItoXRI(String)'
+	 * Test method for 'org.openxri.IRIUtils.IRItoXRI(string)'
 	 */
-	public void testIRItoXRI() throws UnsupportedEncodingException
+	public void testIRItoXRI() //throws UnsupportedEncodingException
 	{
-		String r;
+		string r;
 		r = IRIUtils.IRItoXRI("http://xri.net/");
 		assertTrue(r.Equals("http://xri.net/"));
 
@@ -23,21 +23,21 @@ public class IRIUtilsTest :TestCase
 		r = IRIUtils.IRItoXRI(r);
 		assertTrue(r.Equals("http://xri.net/@foo%bar"));
 		
-		String u = "=%E6%97%A0%E8%81%8A";
-		String i = IRIUtils.URItoIRI(u);
+		string u = "=%E6%97%A0%E8%81%8A";
+		string i = IRIUtils.URItoIRI(u);
 		assertTrue(IRIUtils.IRItoURI(i).Equals(u));
 	}
 
 	/*
-	 * Test method for 'org.openxri.IRIUtils.URItoIRI(String)'
+	 * Test method for 'org.openxri.IRIUtils.URItoIRI(string)'
 	 */
 	public void testURItoIRI()
 	{
-		String r;
+		string r;
 		
 		try {
 			r = IRIUtils.URItoIRI("");
-			assertTrue(r.length() == 0);
+			assertTrue(r.Length == 0);
 
 			r = IRIUtils.URItoIRI("http://xri.net/");
 			assertTrue(r.Equals("http://xri.net/"));

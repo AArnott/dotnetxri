@@ -64,7 +64,7 @@ public class SignTest
     */
     public static Test suite()
     {
-        return new TestSuite(SignTest.class);
+        return new TestSuite(typeof(SignTest));
 
     } // suite()
 

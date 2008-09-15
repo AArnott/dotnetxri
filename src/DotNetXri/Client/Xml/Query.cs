@@ -11,6 +11,6 @@ public class Query : SimpleXMLElement {
 		: base(Tags.TAG_QUERY) {
 	}
 
-	public Query(Query q) { super(q); }
+	public Query(Query q) : base(q) { }
 }
 }

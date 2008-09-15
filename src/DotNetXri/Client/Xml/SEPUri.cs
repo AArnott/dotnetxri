@@ -182,13 +182,13 @@ namespace DotNetXri.Client.Xml {
 
 			SEPUri xin = new SEPUri();
 
-			xin.setUriString(DOMUtils.getText(root).Trim());
+			xin.setUriString(root.OuterXml.Trim());
 
 			if (el.HasAttribute(Tags.ATTR_PRIORITY)) {
 				try {
 					int priority = int.Parse(el.GetAttribute(Tags.ATTR_PRIORITY));
 					xin.setPriority(priority);
-				} catch (FormatException e) { }
+				} catch (FormatException) { }
 			}
 
 			if (el.HasAttribute(Tags.ATTR_APPEND))

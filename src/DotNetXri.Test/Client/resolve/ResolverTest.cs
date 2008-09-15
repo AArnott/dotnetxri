@@ -40,7 +40,7 @@ using org.openxri.xml.XRDS;
 public class ResolverTest
 	:TestCase
 {
-	public static void main(String[] oArgs)
+	public static void main(string[] oArgs)
 	{
 		// Pass control to the non-graphical test runner
 		TestRunner.run(suite());
@@ -48,12 +48,12 @@ public class ResolverTest
     
     
     public static Test suite() {
-		return new TestSuite(ResolverTest.class);
+		return new TestSuite(typeof(ResolverTest));
 	}
 
     
 	public void testResolve() {
-		String qxri;
+		string qxri;
 		
 		try {
 			Resolver resolver = setupResolver();
@@ -79,7 +79,7 @@ public class ResolverTest
 	}
 	
 	public void testCID() {
-		String qxri;
+		string qxri;
 		
 		try {
 			Resolver resolver = setupResolver();
@@ -117,7 +117,7 @@ public class ResolverTest
 	}
 
 	public void testLiveRef() {
-		String qxri;
+		string qxri;
 		try {
 			Resolver resolver = setupResolver();
 			qxri = "@xrid*test*live.unit.tests*0002-ref";
@@ -137,7 +137,7 @@ public class ResolverTest
 	}
 	
 	public void testLiveRedirect() {
-		String qxri = "@xrid*test*live.unit.tests*0004-redirect/(+blog)";
+		string qxri = "@xrid*test*live.unit.tests*0004-redirect/(+blog)";
 		try {
 			Resolver resolver = setupResolver();
 			XRI xri = XRI.fromIRINormalForm(qxri);
@@ -176,7 +176,7 @@ public class ResolverTest
 			redirXRDS = xrds.getXRDSAt(7);
 			assertTrue("Wrong redirect followed on the eighth child", redirXRDS.getRedirect().Equals("http://auth.xrid.net/!332/"));
 			assertTrue("Eighth child should have succeeded", redirXRDS.getFinalXRD().getStatusCode().Equals(Status.SUCCESS));
-			assertTrue("Should be one selected Service on eighth child", redirXRDS.getFinalXRD().getSelectedServices().getList().size() == 1);
+			assertTrue("Should be one selected Service on eighth child", redirXRDS.getFinalXRD().getSelectedServices().getList().Count == 1);
 			Service srv = (Service)redirXRDS.getFinalXRD().getSelectedServices().getList().get(0);
 			assertTrue("In correct URI in selected service on eighth child", srv.getURIAt(0).getUriString().Equals("http://my.blog.com"));
 		}
@@ -190,11 +190,11 @@ public class ResolverTest
 	public void testConstructURI() {
 		Resolver resolver = new Resolver();
 
-		String qxri = "xri://@a*b*c/d/e?f=g";
+		string qxri = "xri://@a*b*c/d/e?f=g";
 
 		try {
 			URI sepURI = new URI("http://example.com/hello");
-			String result = resolver.constructURI(sepURI, "local",
+			string result = resolver.constructURI(sepURI, "local",
 					new XRI(qxri));
 			assertTrue("Invalid constructed URI for append=local '" + result
 					+ "'", result.Equals(sepURI.toString() + "/d/e?f=g"));
@@ -208,13 +208,13 @@ public class ResolverTest
 	}
 
 	
-	public static XRD createAuthRoot(String uri) {
+	public static XRD createAuthRoot(string uri) {
 		XRD xrd = new XRD();
 
 		// construct an authority resolution service
 		Service srv = new Service();
 		TrustType tt = new TrustType(); // default trust type
-		String authMediaType = Tags.CONTENT_TYPE_XRDS + ";"
+		string authMediaType = Tags.CONTENT_TYPE_XRDS + ";"
 				+ tt.getParameterPair();
 		srv.addMediaType(authMediaType, null, false);
 		srv.addType(Tags.SERVICE_AUTH_RES);

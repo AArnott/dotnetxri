@@ -60,7 +60,7 @@ public class ParseTest
     */
     public static Test suite()
     {
-        return new TestSuite(ParseTest.class);
+        return new TestSuite(typeof(ParseTest));
 
     } // suite()
 

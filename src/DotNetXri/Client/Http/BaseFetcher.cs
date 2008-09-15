@@ -31,8 +31,8 @@ namespace DotNetXri.Client.Http {
  * @author =chetan
  */
 	public abstract class BaseFetcher {
-		public const String HTTP = "http";
-		public const String HTTPS = "https";
+		public const string HTTP = "http";
+		public const string HTTPS = "https";
 
 		/**
 		 * the maximum number of HTTP redirects to follow. Zero means not following any HTTP redirect.

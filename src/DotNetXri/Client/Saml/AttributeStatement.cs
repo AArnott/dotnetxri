@@ -76,8 +76,8 @@ public class AttributeStatement
         reset();
 
         for (
-            Node oChild = DOMUtils.getFirstChildElement(oElem); oChild != null;
-            oChild = DOMUtils.getNextSiblingElement(oChild))
+            Node oChild = oElem.FirstChild; oChild != null;
+            oChild = oChild.NextSibling)
         {
             if (oChild.LocalName.Equals(Tags.TAG_ATTRIBUTE))
             {

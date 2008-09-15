@@ -198,7 +198,7 @@ namespace DotNetXri.Client.Resolve {
 	 * Adds the specified XRI Descriptors to the chain
 	 */
 		public void addXRIDescriptors(ArrayList oDescriptors) {
-			for (int i = 0; i < oDescriptors.size(); i++) {
+			for (int i = 0; i < oDescriptors.Count; i++) {
 				addXRIDescriptor((XRD)oDescriptors.get(i));
 			}
 

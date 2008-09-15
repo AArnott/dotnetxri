@@ -17,15 +17,16 @@
  * limitations under the License.
 */
 namespace DotNetXri.Client.Util {
+	using System;
+	using System.Xml;
 
+//using java.lang.reflect.InvocationTargetException;
 
-using java.lang.reflect.InvocationTargetException;
-
-using org.apache.xerces.dom.XmlDocument;
-using org.w3c.dom.Attr;
-using org.w3c.dom.XmlDocument;
-using org.w3c.dom.XmlElement;
-using org.w3c.dom.Node;
+//using org.apache.xerces.dom.XmlDocument;
+//using org.w3c.dom.Attr;
+//using org.w3c.dom.XmlDocument;
+//using org.w3c.dom.XmlElement;
+//using org.w3c.dom.Node;
 
 
 /*
@@ -41,17 +42,19 @@ public class DOM3Utils
 {
     private static bool sbHasDOM3Support = false;
 
-    static
+    static DOM3Utils()
     {
-        try
-        {
-            XmlDocument.class.getDeclaredMethod(
-                "adoptNode", new Class[] { Node.class });
-            XmlElement.class.getDeclaredMethod(
-            		"setIdAttributeNode", new Class[] { Node.class });
-            sbHasDOM3Support = true;
-        }
-        catch (NoSuchMethodException e) {}
+		// C# porting note: I don't recognize these methods in XmlDocument, so for now
+		// let's go ahead and say we don't have DOM3 support.
+		//try
+		//{
+		//    typeof(XmlDocument).getDeclaredMethod(
+		//        "adoptNode", new Type[] { typeof(XmlNode) });
+		//    typeof(XmlElement).getDeclaredMethod(
+		//            "setIdAttributeNode", new Type[] { typeof(XmlNode) });
+		//    sbHasDOM3Support = true;
+		//}
+		//catch (NoSuchMethodException e) {}
     }
 
     /*
@@ -76,7 +79,7 @@ public class DOM3Utils
      */
     public static bool isXercesDocument(XmlDocument oDoc)
     {
-        return oDoc.getClass().getName().startsWith("org.apache.xerces.dom");
+        return oDoc.GetType().Name.startsWith("org.apache.xerces.dom");
     }
 
     /*
@@ -101,7 +104,7 @@ public class DOM3Utils
         {
         	// oDoc.adoptNode(oNode);
         	try {
-				oDoc.getClass().getMethod("adoptNode", new Class[] { oNode.getClass() })
+				oDoc.GetType().getMethod("adoptNode", new Class[] { oNode.GetType() })
 					.invoke(oDoc, new Object[] { oNode });
 			}
 			catch (IllegalArgumentException e) { }
@@ -150,7 +153,7 @@ public class DOM3Utils
             // compiler-friendly way of doing setId as follows:
             // oElem.setIdAttributeNode(oAttr, true);
         	try {
-        		oElem.getClass().getMethod("setIdAttributeNode", new Class[] { oAttr.getClass(), Boolean.TYPE })
+        		oElem.GetType().getMethod("setIdAttributeNode", new Class[] { oAttr.GetType(), Boolean.TYPE })
 					.invoke(oElem, new Object[] { oAttr, true });
 			}
         	/*

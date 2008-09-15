@@ -6,7 +6,7 @@ public abstract class SEPElement : Cloneable, Serializable {
 
 	//protected static org.apache.commons.logging.Log soLog =
 	//    org.apache.commons.logging.LogFactory.getLog(
-	//            XRD.class.getName());
+	//            typeof(XRD).Name);
 
 	/**
 	* Default value of the match attribute if it was omitted or its

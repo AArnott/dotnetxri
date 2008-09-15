@@ -1,8 +1,9 @@
+using System.Xml;
 namespace DotNetXri.Client.Xml {
 
-using java.net.UriFormatException;
+//using java.net.UriFormatException;
 
-using org.w3c.dom.XmlElement;
+//using org.w3c.dom.XmlElement;
 
 public class EquivID :SimpleXMLElement {
 

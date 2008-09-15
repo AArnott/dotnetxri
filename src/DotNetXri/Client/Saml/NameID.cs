@@ -88,8 +88,8 @@ public class NameID
             msNQ = oElem.getAttributeNS(null, Tags.ATTR_NAMEQUALIFIER);
         }
 
-        XmlNode oChild = oElem.getFirstChild();
-        if ((oChild != null) && (oChild.getNodeType() == XmlNode.TEXT_NODE))
+        XmlNode oChild = oElem.FirstChild;
+        if ((oChild != null) && (oChild.NodeType == XmlNode.TEXT_NODE))
         {
             msValue = oChild.getNodeValue();
         }

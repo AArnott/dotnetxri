@@ -1,11 +1,11 @@
 namespace DotNetXri.Client.Resolve {
 
 
-using java.util.ArrayList;
+//using java.util.ArrayList;
 
-using org.openxri.resolve.*;
-using org.openxri.resolve.exception.*;
-using org.openxri.xml.*;
+//using org.openxri.resolve.*;
+//using org.openxri.resolve.exception.*;
+//using org.openxri.xml.*;
 
 public class SampleResolver {
 
@@ -32,14 +32,14 @@ public class SampleResolver {
 	}
 
 //	 creates an XRD obj that contains an authority resolution service endpoint with the given URI
-	public static XRD createAuthRoot(String uri)
+	public static XRD createAuthRoot(string uri)
 	{
 	  XRD xrd = new XRD();
 
 	  // construct an authority resolution service
 	  Service srv = new Service();
 	  TrustType tt = new TrustType(); // default trust type
-	  String authMediaType = Tags.CONTENT_TYPE_XRDS + ";" + tt.getParameterPair();
+	  string authMediaType = Tags.CONTENT_TYPE_XRDS + ";" + tt.getParameterPair();
 	  srv.addMediaType(authMediaType, SEPElement.MATCH_ATTR_CONTENT, false);
 	  srv.addType(Tags.SERVICE_AUTH_RES);
 	  srv.addURI(uri);
@@ -51,7 +51,7 @@ public class SampleResolver {
 	}
 
 
-	public static void main (String[] args)
+	public static void main (string[] args)
 	{
 	  Resolver resolver = setupResolver();
 
@@ -73,7 +73,7 @@ public class SampleResolver {
 	    
 	    // select a service using a set of criteria 
 	    ArrayList uris = resolver.resolveSEPToURIList("=foo/bar", new TrustType(), "xri://+some-type", "some/media-type", true);
-	    for (int i = 0; i < uris.size(); i++) {
+	    for (int i = 0; i < uris.Count; i++) {
 	    	Logger.Info("Resolved URI[" + i + "] = " + uris.get(0).toString());
 	    }
 	  }
@@ -83,7 +83,7 @@ public class SampleResolver {
 	    XRDS errXRDS = prex.getPartialXRDS();
 	    XRD errXRD = errXRDS.getFinalXRD();
 	    Status stat = errXRD.getStatus();
-	    String statusCode = (stat == null) ? "unknown" : stat.getCode();
+	    string statusCode = (stat == null) ? "unknown" : stat.getCode();
 
 	    // the resolution did not complete successfully
 	    System.err.println("Resolution error code: " + statusCode);

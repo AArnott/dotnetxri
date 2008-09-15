@@ -65,7 +65,7 @@ public class XRITest
     */
     public static Test suite()
     {
-        return new TestSuite(XRITest.class);
+        return new TestSuite(typeof(XRITest));
 
     } // suite()
 

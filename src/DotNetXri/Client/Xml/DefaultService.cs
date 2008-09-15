@@ -5,6 +5,7 @@ namespace DotNetXri.Client.Xml {
 	//using java.util.ArrayList;
 	//using java.util.ArrayList;
 	using System;
+	using System.Collections;
 
 	/**
 	* This is a service that matches a resolution request without service type, media type and path.
@@ -44,26 +45,23 @@ namespace DotNetXri.Client.Xml {
 				try {
 
 					this.addURI(new SEPUri(page.ToString(), null, SEPUri.APPEND_NONE));
-				} catch (UriFormatException ex) {
+				} catch (UriFormatException) {
 
 					continue;
 				}
 			}
 		}
 
-		public DefaultService(Uri page, string providerID) {
-
-			this(new Uri[] { page }, providerID);
+		public DefaultService(Uri page, string providerID) :
+						this(new Uri[] { page }, providerID){
 		}
 
-		public DefaultService(Uri[] pages) {
-
-			this(pages, null);
+		public DefaultService(Uri[] pages) :
+			this(pages, null){
 		}
 
-		public DefaultService(Uri page) {
-
-			this(new Uri[] { page }, null);
+		public DefaultService(Uri page) :
+			this(new Uri[] { page }, null){
 		}
 
 		public static bool isInstance(Service service) {
@@ -76,21 +74,21 @@ namespace DotNetXri.Client.Xml {
 			ArrayList serviceTypes = service.getTypes();
 			ArrayList paths = service.getPaths();
 
-			for (int i = 0; i < mediaTypes.size(); i++) {
+			for (int i = 0; i < mediaTypes.Count; i++) {
 
 				SEPMediaType mediaType = (SEPMediaType)mediaTypes[i];
 
 				if (mediaType.getMatch().Equals(SEPMediaType.MATCH_ATTR_NULL)) mediaTypeNull = true;
 			}
 
-			for (int i = 0; i < serviceTypes.size(); i++) {
+			for (int i = 0; i < serviceTypes.Count; i++) {
 
 				SEPType serviceType = (SEPType)serviceTypes[i];
 
 				if (serviceType.getMatch().Equals(SEPType.MATCH_ATTR_NULL)) serviceTypeNull = true;
 			}
 
-			for (int i = 0; i < paths.size(); i++) {
+			for (int i = 0; i < paths.Count; i++) {
 
 				SEPPath path = (SEPPath)paths[i];
 

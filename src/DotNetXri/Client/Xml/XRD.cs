@@ -287,7 +287,7 @@ namespace DotNetXri.Client.Xml {
 			if (oElem.hasAttributeNS(null, Tags.ATTR_XRD_VERSION))
 				version = oElem.getAttributeNS(null, Tags.ATTR_XRD_VERSION);
 
-			for (XmlElement oChild = DOMUtils.getFirstChildElement(oElem); oChild != null; oChild = DOMUtils.getNextSiblingElement(oChild)) {
+			for (XmlElement oChild = oElem.FirstChild; oChild != null; oChild = oChild.NextSibling) {
 
 				string sChildName = oChild.LocalName;
 				if (sChildName == null) sChildName = oChild.getNodeName();
@@ -310,9 +310,7 @@ namespace DotNetXri.Client.Xml {
 					this.serverStatus = s;
 				} else if (sChildName.Equals(Tags.TAG_EXPIRES)) {
 					// only accept the first Expires element and make sure it
-					expires = new Expires(
-							DOMUtils.fromXMLDateTime(oChild.getFirstChild().getNodeValue())
-					);
+					expires = new Expires(XmlConvert.ToDateTime(oChild.FirstChild.Value));
 				} else if (sChildName.Equals(Tags.TAG_PROVIDERID)) {
 					ProviderID p = new ProviderID();
 					p.fromXML(oChild);
@@ -390,7 +388,7 @@ namespace DotNetXri.Client.Xml {
 			XmlDocument doc = new XmlDocument();
 			XmlElement elm = this.toDOM(doc, true); // filtered
 			doc.AppendChild(elm);
-			return DOMUtils.ToString(doc);
+			return doc.OuterXml;
 		}
 
 
@@ -657,7 +655,7 @@ namespace DotNetXri.Client.Xml {
 				for (int i = 0; i < oValues.Count; i++) {
 					XmlNode oChild = (XmlNode)oValues[i];
 
-					extension.append(DOMUtils.ToString((XmlElement)oChild, true, true));
+					extension.Append(DOMUtils.ToString((XmlElement)oChild, true, true));
 				}
 			}
 
@@ -728,15 +726,15 @@ namespace DotNetXri.Client.Xml {
 		/**
 		* Returns the expires element value
 		*/
-		public Date getExpires() {
-			return (expires != null) ? expires.getDate() : null;
+		public DateTime? getExpires() {
+			return (expires != null) ? (DateTime?)expires.getDate() : null;
 		}
 
 
 		/**
 		* Sets the expires element value
 		*/
-		public void setExpires(Date d) {
+		public void setExpires(DateTime? d) {
 			if (expires != null)
 				expires.setDate(d);
 			else
@@ -1018,7 +1016,7 @@ namespace DotNetXri.Client.Xml {
 			XmlElement oSigElem = oSig.getElement();
 
 			// insert the signature in the right place
-			oAssertionElem.insertBefore(oSigElem, oSubjectElem);
+			oAssertionElem.InsertBefore(oSigElem, oSubjectElem);
 
 		}
 
@@ -1127,7 +1125,7 @@ namespace DotNetXri.Client.Xml {
 		*/
 		public bool isValid() {
 			// check to make sure the descriptor is not expired
-			if ((expires != null && expires.getDate() != null) && (expires.getDate().before(new Date()))) {
+			if ((expires != null && expires.getDate() != null) && (expires.getDate().before(new DateTime?()))) {
 				return false;
 			}
 

@@ -16,6 +16,7 @@
 */
 using System;
 using System.Collections;
+using System.Xml;
 namespace DotNetXri.Client.Xml {
 
 //using java.io.Serializable;
@@ -82,7 +83,7 @@ public class XRDS : Serializable
 	*/
 	public void add(XRD oDescriptor)
 	{
-		moXRDs.add(oDescriptor);
+		moXRDs.Add(oDescriptor);
 
 	} // add()
 
@@ -95,7 +96,7 @@ public class XRDS : Serializable
 	*/
 	public void add(XRDS oDescriptor)
 	{
-		moXRDs.add(oDescriptor);
+		moXRDs.Add(oDescriptor);
 
 	} // add()
 
@@ -118,7 +119,7 @@ public class XRDS : Serializable
 	*/
 	public int getNumChildren()
 	{
-		return (moXRDs == null) ? 0 : moXRDs.size();
+		return (moXRDs == null) ? 0 : moXRDs.Count;
 
 	} // getNumDescriptors()
 
@@ -237,9 +238,9 @@ public class XRDS : Serializable
 			if (attribNode != null)
 				redirect = attribNode.getNodeValue();
 		}
-		XmlNode oChild = DOMUtils.getFirstChildElement(oElem);
+		XmlNode oChild = oElem.FirstChild;
 
-		for (; oChild != null; oChild = DOMUtils.getNextSiblingElement(oChild))
+		for (; oChild != null; oChild = oChild.NextSibling)
 		{
 			if (oChild.LocalName.Equals(Tags.TAG_XRD) )
 			{
@@ -387,7 +388,7 @@ public class XRDS : Serializable
 	
 	protected void removeChildAt(int i)
 	{
-		if (i < moXRDs.size())
+		if (i < moXRDs.Count)
 			moXRDs.remove(i);
 	}
 	

@@ -1,11 +1,13 @@
+using System.Xml;
+using System;
 namespace DotNetXri.Client.Xml {
 
-	using java.util.Date;
+	//using java.util.Date;
 
-	using org.openxri.util.DOMUtils;
+	//using org.openxri.util.DOMUtils;
 
 	public class Expires : SimpleXMLElement {
-		private Date expires = null;
+		private DateTime? expires = null;
 
 		public Expires(Expires e)
 			: base(e) {
@@ -15,21 +17,21 @@ namespace DotNetXri.Client.Xml {
 			: base(Tags.TAG_EXPIRES) {
 		}
 
-		public Expires(Date dateValue)
+		public Expires(DateTime dateValue)
 			: base(Tags.TAG_EXPIRES) {
 			setDate(dateValue);
 		}
 
-		public Date getDate() {
+		public DateTime getDate() {
 			return expires;
 		}
 
 		public string getDateString() {
 			if (expires == null) return "";
-			return DOMUtils.toXMLDateTime(expires);
+			return XmlConvert.ToString(expires.Value);
 		}
 
-		public void setDate(Date dateValue) {
+		public void setDate(DateTime? dateValue) {
 			expires = dateValue;
 			setValue(getDateString());
 

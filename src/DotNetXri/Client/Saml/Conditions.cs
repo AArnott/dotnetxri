@@ -15,239 +15,229 @@
  * limitations under the License.
 */
 namespace DotNetXri.Client.Saml {
-using java.text.ParseException;
-using java.util.Date;
+	//using java.text.ParseException;
+	//using java.util.Date;
 
-using org.openxri.util.DOMUtils;
-using org.openxri.xml.Tags;
-using org.w3c.dom.XmlDocument;
-using org.w3c.dom.XmlElement;
+	//using org.openxri.util.DOMUtils;
+	//using org.openxri.xml.Tags;
+	//using org.w3c.dom.XmlDocument;
+	//using org.w3c.dom.XmlElement;
+	using System;
+	using DotNetXri.Loggers;
 
 
-/*
-********************************************************************************
-* Class: Conditions
-********************************************************************************
-*/ /**
-* This class provides encapsulation of a SAML 2.0 Conditions element
-* @author =chetan
-*/
-public class Conditions
-{
-    private static org.apache.commons.logging.Log soLog =
-        org.apache.commons.logging.LogFactory.getLog(
-            Conditions.class.getName());
-    private Date moNotBefore = null;
-    private Date moNotAfter = null;
+	/*
+	********************************************************************************
+	* Class: Conditions
+	********************************************************************************
+	*/
+	/**
+ * This class provides encapsulation of a SAML 2.0 Conditions element
+ * @author =chetan
+ */
+	public class Conditions {
+		private static ILog soLog = Logger.Create(typeof(Conditions));
+		private DateTime? moNotBefore = null;
+		private DateTime? moNotAfter = null;
 
-    /*
-    ****************************************************************************
-    * Constructor()
-    ****************************************************************************
-    */ /**
-    * Creates an empty SAML conditions element
-    */
-    public Conditions() {} // Constructor()
+		/*
+		****************************************************************************
+		* Constructor()
+		****************************************************************************
+		*/
+		/**
+	 * Creates an empty SAML conditions element
+	 */
+		public Conditions() { } // Constructor()
 
-    /*
-    ****************************************************************************
-    * Constructor()
-    ****************************************************************************
-    */ /**
-    *  This method populates the obj from DOM.  It does not keep a
-    * copy of the DOM around.  Whitespace information is lost in this process.
-    */
-    public Conditions(XmlElement oElem)
-    {
-        fromDOM(oElem);
+		/*
+		****************************************************************************
+		* Constructor()
+		****************************************************************************
+		*/
+		/**
+	 *  This method populates the obj from DOM.  It does not keep a
+	 * copy of the DOM around.  Whitespace information is lost in this process.
+	 */
+		public Conditions(XmlElement oElem) {
+			fromDOM(oElem);
 
-    } // Constructor()
+		} // Constructor()
 
-    /*
-    ****************************************************************************
-    * ToString()
-    ****************************************************************************
-    */ /**
-    * Returns formatted obj.  Do not use if signature needs to be preserved.
-    */
-    public override string ToString()
-    {
-        return dump("");
+		/*
+		****************************************************************************
+		* ToString()
+		****************************************************************************
+		*/
+		/**
+	 * Returns formatted obj.  Do not use if signature needs to be preserved.
+	 */
+		public override string ToString() {
+			return dump("");
 
-    } // ToString()
+		} // ToString()
 
-    /*
-    ****************************************************************************
-    * dump()
-    ****************************************************************************
-    */ /**
-    * Returns obj as a formatted XML string.
-    * @param sTab - The characters to prepend before each new line
-    */
-    public string dump(string sTab)
-    {
-        return "";
+		/*
+		****************************************************************************
+		* dump()
+		****************************************************************************
+		*/
+		/**
+	 * Returns obj as a formatted XML string.
+	 * @param sTab - The characters to prepend before each new line
+	 */
+		public string dump(string sTab) {
+			return "";
 
-        // TODO Auto-generated
+			// TODO Auto-generated
 
-    } // dump()
+		} // dump()
 
-    /*
-    ****************************************************************************
-    * reset()
-    ****************************************************************************
-    */ /**
-    * Resets the internal state of this obj
-    */
-    public void reset()
-    {
-        moNotBefore = null;
-        moNotAfter = null;
+		/*
+		****************************************************************************
+		* reset()
+		****************************************************************************
+		*/
+		/**
+	 * Resets the internal state of this obj
+	 */
+		public void reset() {
+			moNotBefore = null;
+			moNotAfter = null;
 
-    } // reset()
+		} // reset()
 
-    /*
-    ****************************************************************************
-    * fromDOM()
-    ****************************************************************************
-    */ /**
-    *  This method populates the obj from DOM.  It does not keep a
-    * copy of the DOM around.  Whitespace information is lost in this process.
-    */
-    public void fromDOM(XmlElement oElem)
-    {
-        reset();
+		/*
+		****************************************************************************
+		* fromDOM()
+		****************************************************************************
+		*/
+		/**
+	 *  This method populates the obj from DOM.  It does not keep a
+	 * copy of the DOM around.  Whitespace information is lost in this process.
+	 */
+		public void fromDOM(XmlElement oElem) {
+			reset();
 
-        // get the notbefore attribute
-        if (oElem.hasAttributeNS(null, Tags.ATTR_NOTBEFORE))
-        {
-            string sVal = oElem.getAttributeNS(null, Tags.ATTR_NOTBEFORE);
-            try
-            {
-                moNotBefore = DOMUtils.fromXMLDateTime(sVal);
-            }
-            catch (ParseException oEx)
-            {
-                soLog.warn("Caught exception on notBefore time", oEx);
-            }
-        }
+			// get the notbefore attribute
+			if (oElem.hasAttributeNS(null, Tags.ATTR_NOTBEFORE)) {
+				string sVal = oElem.getAttributeNS(null, Tags.ATTR_NOTBEFORE);
+				try {
+					moNotBefore = DOMUtils.fromXMLDateTime(sVal);
+				} catch (ParseException oEx) {
+					soLog.warn("Caught exception on notBefore time", oEx);
+				}
+			}
 
-        // get the notAfter attribute
-        if (oElem.hasAttributeNS(null, Tags.ATTR_NOTONORAFTER))
-        {
-            string sVal = oElem.getAttributeNS(null, Tags.ATTR_NOTONORAFTER);
-            try
-            {
-                moNotAfter = DOMUtils.fromXMLDateTime(sVal);
-            }
-            catch (ParseException oEx)
-            {
-                soLog.warn("Caught exception on notAfter time", oEx);
-            }
-        }
+			// get the notAfter attribute
+			if (oElem.hasAttributeNS(null, Tags.ATTR_NOTONORAFTER)) {
+				string sVal = oElem.getAttributeNS(null, Tags.ATTR_NOTONORAFTER);
+				try {
+					moNotAfter = DOMUtils.fromXMLDateTime(sVal);
+				} catch (ParseException oEx) {
+					soLog.warn("Caught exception on notAfter time", oEx);
+				}
+			}
 
-    } // fromDOM()
+		} // fromDOM()
 
-    /*
-    ****************************************************************************
-    * isValid()
-    ****************************************************************************
-    */ /**
-    * Returns true if the current time is within the notBefore and NotOnOrAfter
-    * attributes.
-    */
-    public bool isValid()
-    {
-        Date oNow = new Date();
-        if ((moNotBefore != null) && (oNow.before(moNotBefore)))
-        {
-            return false;
-        }
+		/*
+		****************************************************************************
+		* isValid()
+		****************************************************************************
+		*/
+		/**
+	 * Returns true if the current time is within the notBefore and NotOnOrAfter
+	 * attributes.
+	 */
+		public bool isValid() {
+			DateTime oNow = DateTime.Now;
+			if ((moNotBefore != null) && (oNow < moNotBefore)) {
+				return false;
+			}
 
-        if ((moNotAfter != null) && (oNow.after(moNotAfter)))
-        {
-            return false;
-        }
+			if ((moNotAfter != null) && (oNow > moNotAfter)) {
+				return false;
+			}
 
-        return true;
+			return true;
 
-    } // isValid()
+		} // isValid()
 
-    /*
-    ****************************************************************************
-    * toDOM()
-    ****************************************************************************
-    */ /**
-    *  This method will make DOM using the specified document.  If any DOM state
-    * has been stored with the obj, it will not be used in this method.
-    * This method generates a reference-free copy of new DOM.
-    * @param oDoc - The document to use for generating DOM
-    */
-    public XmlElement toDOM(XmlDocument oDoc)
-    {
-        // for this particular toDOM implementation, oDoc must not be null
-        if (oDoc == null)
-        {
-            return null;
-        }
+		/*
+		****************************************************************************
+		* toDOM()
+		****************************************************************************
+		*/
+		/**
+	 *  This method will make DOM using the specified document.  If any DOM state
+	 * has been stored with the obj, it will not be used in this method.
+	 * This method generates a reference-free copy of new DOM.
+	 * @param oDoc - The document to use for generating DOM
+	 */
+		public XmlElement toDOM(XmlDocument oDoc) {
+			// for this particular toDOM implementation, oDoc must not be null
+			if (oDoc == null) {
+				return null;
+			}
 
-        XmlElement oElem = oDoc.createElementNS(Tags.NS_SAML, Tags.TAG_CONDITIONS);
+			XmlElement oElem = oDoc.createElementNS(Tags.NS_SAML, Tags.TAG_CONDITIONS);
 
-        return oElem;
+			return oElem;
 
-    } // toDOM()
+		} // toDOM()
 
-    /*
-    ****************************************************************************
-    * getNotAfter()
-    ****************************************************************************
-    */ /**
-    * Returns the notOnOrAfter attribute
-    */
-    public Date getNotAfter()
-    {
-        return moNotAfter;
+		/*
+		****************************************************************************
+		* getNotAfter()
+		****************************************************************************
+		*/
+		/**
+	 * Returns the notOnOrAfter attribute
+	 */
+		public DateTime? getNotAfter() {
+			return moNotAfter;
 
-    } // getNotAfter()
+		} // getNotAfter()
 
-    /*
-    ****************************************************************************
-    * setNotAfter()
-    ****************************************************************************
-    */ /**
-    * Sets the notOnOrAfter attribute
-    */
-    public void setNotAfter(Date oVal)
-    {
-        moNotAfter = oVal;
+		/*
+		****************************************************************************
+		* setNotAfter()
+		****************************************************************************
+		*/
+		/**
+	 * Sets the notOnOrAfter attribute
+	 */
+		public void setNotAfter(DateTime? oVal) {
+			moNotAfter = oVal;
 
-    } // setNotAfter()
+		} // setNotAfter()
 
-    /*
-    ****************************************************************************
-    * getNotBefore()
-    ****************************************************************************
-    */ /**
-    * Returns the notBefore attribute
-    */
-    public Date getNotBefore()
-    {
-        return moNotBefore;
+		/*
+		****************************************************************************
+		* getNotBefore()
+		****************************************************************************
+		*/
+		/**
+	 * Returns the notBefore attribute
+	 */
+		public DateTime? getNotBefore() {
+			return moNotBefore;
 
-    } // getNotBefore()
+		} // getNotBefore()
 
-    /*
-    ****************************************************************************
-    * setNotBefore()
-    ****************************************************************************
-    */ /**
-    * Sets the notBefore attribute
-    */
-    public void setNotBefore(Date oVal)
-    {
-        moNotBefore = oVal;
+		/*
+		****************************************************************************
+		* setNotBefore()
+		****************************************************************************
+		*/
+		/**
+	 * Sets the notBefore attribute
+	 */
+		public void setNotBefore(DateTime? oVal) {
+			moNotBefore = oVal;
 
-    } // setNotBefore()
+		} // setNotBefore()
 
-} // Class: Conditions
+	} // Class: Conditions
 }

@@ -4,6 +4,7 @@ namespace DotNetXri.Client.Xml {
 	//using java.net.UriFormatException;
 	//using java.util.List;
 	using System;
+	using System.Collections;
 
 	/**
 	* This is a Forwarding Service as described by "Forwarding Service v1.0 Working Draft 03, 7 September 2006
@@ -68,46 +69,40 @@ namespace DotNetXri.Client.Xml {
 				try {
 
 					this.addURI(new SEPUri(forwardingPage.ToString(), null, SEPUri.APPEND_QXRI));
-				} catch (UriFormatException ex) {
+				} catch (UriFormatException) {
 
 					continue;
 				}
 			}
 		}
 
-		public ForwardingService(Uri forwardingPage, string providerID, bool makeDefault, bool useIndexPath) {
+		public ForwardingService(Uri forwardingPage, string providerID, bool makeDefault, bool useIndexPath) :
 
-			this(new Uri[] { forwardingPage }, providerID, makeDefault, useIndexPath);
+			this(new Uri[] { forwardingPage }, providerID, makeDefault, useIndexPath) {
 		}
 
-		public ForwardingService(Uri[] forwardingPages, string providerID, bool makeDefault) {
-
-			this(forwardingPages, providerID, makeDefault, true);
+		public ForwardingService(Uri[] forwardingPages, string providerID, bool makeDefault) :
+			this(forwardingPages, providerID, makeDefault, true) {
 		}
 
-		public ForwardingService(Uri forwardingPage, string providerID, bool makeDefault) {
-
-			this(new Uri[] { forwardingPage }, providerID, makeDefault, true);
+		public ForwardingService(Uri forwardingPage, string providerID, bool makeDefault) :
+			this(new Uri[] { forwardingPage }, providerID, makeDefault, true) {
 		}
 
-		public ForwardingService(Uri[] forwardingPages, string providerID) {
-
-			this(forwardingPages, providerID, true, true);
+		public ForwardingService(Uri[] forwardingPages, string providerID) :
+			this(forwardingPages, providerID, true, true) {
 		}
 
-		public ForwardingService(Uri forwardingPage, string providerID) {
-
-			this(new Uri[] { forwardingPage }, providerID, true, true);
+		public ForwardingService(Uri forwardingPage, string providerID) :
+			this(new Uri[] { forwardingPage }, providerID, true, true) {
 		}
 
-		public ForwardingService(Uri[] forwardingPages) {
-
-			this(forwardingPages, null, true, true);
+		public ForwardingService(Uri[] forwardingPages) :
+			this(forwardingPages, null, true, true) {
 		}
 
-		public ForwardingService(Uri forwardingPage) {
-
-			this(new Uri[] { forwardingPage }, null, true, true);
+		public ForwardingService(Uri forwardingPage) :
+			this(new Uri[] { forwardingPage }, null, true, true) {
 		}
 
 		public static bool isInstance(Service service) {
@@ -116,7 +111,7 @@ namespace DotNetXri.Client.Xml {
 
 			ArrayList serviceTypes = service.getTypes();
 
-			for (int i = 0; i < serviceTypes.size(); i++) {
+			for (int i = 0; i < serviceTypes.Count; i++) {
 
 				SEPType serviceType = (SEPType)serviceTypes[i];
 

@@ -77,8 +77,8 @@ public class Subject
         reset();
 
         for (
-            XmlNode oChild = DOMUtils.getFirstChildElement(oElem); oChild != null;
-            oChild = DOMUtils.getNextSiblingElement(oChild))
+            XmlNode oChild = oElem.FirstChild; oChild != null;
+            oChild = oChild.NextSibling)
         {
             if (oChild.LocalName.Equals(Tags.TAG_NAMEID))
             {

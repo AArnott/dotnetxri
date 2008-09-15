@@ -73,6 +73,7 @@ namespace DotNetXri.Client.Resolve {
 	using System;
 	using DotNetXri.Client.Resolve.Exception;
 	using DotNetXri.Client.Saml;
+	using DotNetXri.Client.Http;
 
 	/**
 	 * @author wtan
@@ -928,7 +929,7 @@ namespace DotNetXri.Client.Resolve {
 				XRI x1 = XRI.fromURINormalForm(e1.getValue());
 				XRI x2 = XRI.fromURINormalForm(e2.getValue());
 				return x1.Equals(x2);
-			} catch (XRIParseException e) {
+			} catch (XRIParseException ) {
 				// CanonicalID not an XRI, we ignore here
 			}
 
@@ -937,7 +938,7 @@ namespace DotNetXri.Client.Resolve {
 				Uri u2 = new Uri(e2.getValue());
 				if (!u1.Equals(u2))
 					return false;
-			} catch (UriFormatException e) {
+			} catch (UriFormatException ) {
 				return false;
 			}
 
@@ -1963,7 +1964,7 @@ namespace DotNetXri.Client.Resolve {
 				sepURIStr.Append(uri.AbsolutePath);
 
 				if (sepURIStr.Length < 0
-						|| sepURIStr.charAt(sepURIStr.Length - 1) != '/')
+						|| sepURIStr[sepURIStr.Length - 1] != '/')
 					sepURIStr.Append('/');
 				sepURIStr.Append(segment);
 
@@ -2167,7 +2168,7 @@ namespace DotNetXri.Client.Resolve {
 		 * @param authXRD - XRD representing the authority
 		 */
 		public void setAuthority(string auth, XRD authXRD) {
-			root.put(auth, authXRD);
+			root[auth] = authXRD;
 		}
 
 
@@ -2175,7 +2176,7 @@ namespace DotNetXri.Client.Resolve {
 		 * Configures the Resolver to bypass HTTPS for the given authorities, while satisfying the https=true requirement.
 		 */
 		public void addHttpsBypassAuthority(string auth) {
-			needNoHttps.put(auth.toLowerCase(), true);
+			needNoHttps.put(auth.ToLower(), true);
 		}
 
 
@@ -2183,7 +2184,7 @@ namespace DotNetXri.Client.Resolve {
 		 * Tests to see if resolving names at the given authority can bypass HTTPS while satisfying the https=true requirement.
 		 */
 		public bool isHttpsBypassAuthority(string auth) {
-			if (needNoHttps.containsKey(auth.toLowerCase())) {
+			if (needNoHttps.ContainsKey(auth.ToLower())) {
 				return true;
 			}
 			return false;

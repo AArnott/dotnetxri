@@ -201,7 +201,7 @@ public class Assertion
 
         for (
             XmlNode oChild = oElem.FirstChild; oChild != null;
-            oChild = DOMUtils.getNextSiblingElement(oChild))
+            oChild = oChild.NextSibling)
         {
             if (oChild.LocalName.Equals(Tags.TAG_ISSUER))
             {

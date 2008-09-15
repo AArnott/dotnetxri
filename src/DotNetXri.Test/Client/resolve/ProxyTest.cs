@@ -69,7 +69,7 @@ public class ProxyTest
     */
     public static Test suite()
     {
-        return new TestSuite(ProxyTest.class);
+        return new TestSuite(typeof(ProxyTest));
 
     } // suite()
 
@@ -91,7 +91,7 @@ public class ProxyTest
         *
         */
         protected InputStream getDataFromURI(URI uri, String query, ResolverFlags flags, ResolverState state)
-            throws XRIResolutionException
+            //throws XRIResolutionException
         {
             // if we got the nonexistent "command" return a not found
             if (uri.getPath().indexOf("!nonexistent") >= 0)
